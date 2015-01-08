@@ -198,5 +198,10 @@
         <Property name="text" type="java.lang.String" value="Edit Customer"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JButton" name="jButton7">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Edit Customer"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>
