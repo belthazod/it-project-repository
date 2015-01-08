@@ -48,10 +48,6 @@ public class Main extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         cardWindow = new javax.swing.JPanel();
-        transfer1 = new itprojectii.Transfer();
-        createOrder1 = new itprojectii.CreateOrder();
-        reports1 = new itprojectii.Reports();
-        secondhandTradeIn1 = new itprojectii.SecondhandTradeIn();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 102));
@@ -216,10 +212,6 @@ public class Main extends javax.swing.JFrame {
         );
 
         cardWindow.setLayout(new java.awt.CardLayout());
-        cardWindow.add(transfer1, "transferCard");
-        cardWindow.add(createOrder1, "createOrderCard");
-        cardWindow.add(reports1, "reportsCard");
-        cardWindow.add(secondhandTradeIn1, "secondHandTradeInCard");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -266,12 +258,12 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jButton7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(cardWindow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addGap(0, 614, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -367,7 +359,6 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel cardWindow;
-    private itprojectii.CreateOrder createOrder1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
@@ -386,8 +377,5 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField jTextField1;
-    private itprojectii.Reports reports1;
-    private itprojectii.SecondhandTradeIn secondhandTradeIn1;
-    private itprojectii.Transfer transfer1;
     // End of variables declaration//GEN-END:variables
 }

@@ -106,13 +106,13 @@
                   <Component id="jButton7" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jButton8" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="41" max="32767" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Component id="cardWindow" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="614" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -364,36 +364,6 @@
         <Container class="javax.swing.JPanel" name="cardWindow">
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
-          <SubComponents>
-            <Component class="itprojectii.Transfer" name="transfer1">
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                  <CardConstraints cardName="transferCard"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="itprojectii.CreateOrder" name="createOrder1">
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                  <CardConstraints cardName="createOrderCard"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="itprojectii.Reports" name="reports1">
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                  <CardConstraints cardName="reportsCard"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="itprojectii.SecondhandTradeIn" name="secondhandTradeIn1">
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                  <CardConstraints cardName="secondHandTradeInCard"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-          </SubComponents>
         </Container>
       </SubComponents>
     </Container>
