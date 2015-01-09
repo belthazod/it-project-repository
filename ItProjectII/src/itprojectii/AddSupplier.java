@@ -5,9 +5,20 @@
  */
 package itprojectii;
 
+import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
- * @author weak_2030
+ * @author belthazod
  */
 public class AddSupplier extends javax.swing.JPanel {
 
@@ -27,149 +38,459 @@ public class AddSupplier extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        editSupplierDialog = new javax.swing.JDialog();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        supplierContactNumberEditInput = new javax.swing.JTextField();
+        supplierNameEditInput = new javax.swing.JTextField();
+        saveEditedSupplierButton = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        supplierIDEditInput = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        supplierNameInput = new javax.swing.JTextField();
+        contactNumberInput = new javax.swing.JTextField();
+        addSupplierButton = new javax.swing.JButton();
+        deleteSupplierButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        supplierListTable = new javax.swing.JTable();
+        editSupplierButton = new javax.swing.JButton();
+
+        editSupplierDialog.setTitle("Edit Supplier Information");
+        editSupplierDialog.setBounds(new java.awt.Rectangle(0, 0, 400, 200));
+        editSupplierDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+
+        jLabel3.setText("Supplier Name:");
+
+        jLabel4.setText("Contact Number:");
+
+        supplierContactNumberEditInput.setEditable(true);
+        supplierContactNumberEditInput.setText("jTextField1");
+        supplierContactNumberEditInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supplierContactNumberEditInputActionPerformed(evt);
+            }
+        });
+
+        supplierNameEditInput.setText("jTextField1");
+        supplierNameEditInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supplierNameEditInputActionPerformed(evt);
+            }
+        });
+
+        saveEditedSupplierButton.setText("Save");
+        saveEditedSupplierButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveEditedSupplierButtonActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Cancel");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        supplierIDEditInput.setText("jLabel6");
+
+        javax.swing.GroupLayout editSupplierDialogLayout = new javax.swing.GroupLayout(editSupplierDialog.getContentPane());
+        editSupplierDialog.getContentPane().setLayout(editSupplierDialogLayout);
+        editSupplierDialogLayout.setHorizontalGroup(
+            editSupplierDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editSupplierDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(saveEditedSupplierButton)
+                .addGap(18, 18, 18)
+                .addComponent(jButton5)
+                .addGap(39, 39, 39))
+            .addGroup(editSupplierDialogLayout.createSequentialGroup()
+                .addGroup(editSupplierDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addGroup(editSupplierDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(editSupplierDialogLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(supplierIDEditInput))
+                        .addGroup(editSupplierDialogLayout.createSequentialGroup()
+                            .addGap(28, 28, 28)
+                            .addComponent(jLabel3))))
+                .addGap(18, 18, 18)
+                .addGroup(editSupplierDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(supplierNameEditInput, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                    .addComponent(supplierContactNumberEditInput))
+                .addContainerGap(78, Short.MAX_VALUE))
+        );
+        editSupplierDialogLayout.setVerticalGroup(
+            editSupplierDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editSupplierDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(supplierIDEditInput)
+                .addGap(18, 18, 18)
+                .addGroup(editSupplierDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(supplierNameEditInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(editSupplierDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(supplierContactNumberEditInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(editSupplierDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(saveEditedSupplierButton))
+                .addGap(21, 21, 21))
+        );
+
+        supplierIDEditInput.setVisible(false);
+
+        editSupplierDialog.setLocationRelativeTo(this);
 
         setMaximumSize(new java.awt.Dimension(814, 592));
         setPreferredSize(new java.awt.Dimension(814, 592));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Name:");
+        jLabel1.setText("Supplier Name:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 32, -1, -1));
 
         jLabel2.setText("Contact Number:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 73, -1, -1));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        supplierNameInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                supplierNameInputActionPerformed(evt);
             }
         });
+        add(supplierNameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 32, 674, -1));
 
-        jButton3.setText("Add Supplier");
+        contactNumberInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contactNumberInputActionPerformed(evt);
+            }
+        });
+        contactNumberInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                contactNumberInputKeyPressed(evt);
+            }
+        });
+        add(contactNumberInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 674, -1));
 
-        jButton4.setText("Delete Supplier");
+        addSupplierButton.setText("Add Supplier");
+        addSupplierButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addSupplierButtonActionPerformed(evt);
+            }
+        });
+        add(addSupplierButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(711, 101, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        deleteSupplierButton.setText("Delete Supplier");
+        deleteSupplierButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteSupplierButtonActionPerformed(evt);
+            }
+        });
+        add(deleteSupplierButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 360, -1, -1));
+
+        supplierListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Supplier Name", "Contact Number"
+                "Supllier ID", "Supplier Name", "Contact Number"
             }
-        ));
-        jTable1.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                jTable1ComponentAdded(evt);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        supplierListTable.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                supplierListTableComponentAdded(evt);
+            }
+        });
+        jScrollPane1.setViewportView(supplierListTable);
+        if (supplierListTable.getColumnModel().getColumnCount() > 0) {
+            supplierListTable.getColumnModel().getColumn(0).setResizable(false);
+        }
+        supplierListTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        supplierListTable.getColumnModel().getColumn(0).setMinWidth(0);
+        supplierListTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        updateSupplierList();
 
-        jButton2.setText("Save ");
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 794, 185));
 
-        jButton1.setText("Back To Main");
-
-        jButton5.setText("Edit Supplier");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton4)))))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
-                .addGap(45, 45, 45)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addContainerGap())
-        );
+        editSupplierButton.setText("Edit Supplier");
+        editSupplierButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editSupplierButtonActionPerformed(evt);
+            }
+        });
+        add(editSupplierButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 360, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        String host = "jdbc:mysql://localhost:3306/inventory";
+        String uName = "root";
+        String uPass = "";
+    private void contactNumberInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactNumberInputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_contactNumberInputActionPerformed
 
-    private void jTable1ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jTable1ComponentAdded
+    private void supplierListTableComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_supplierListTableComponentAdded
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1ComponentAdded
+    }//GEN-LAST:event_supplierListTableComponentAdded
+    private boolean checkInputsIfNull(JTextField input1, JTextField input2){
+        if(input1.getText().equals("") || input2.getText().equals("")){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    private void addSupplierButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSupplierButtonActionPerformed
+        
+        if(supplierNameInput.getText().equals("") || contactNumberInput.getText().equals("")){
+            JOptionPane.showMessageDialog(null,
+                "Supplier Name or Contact Number cannot be empty",
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+        }else{
+            PreparedStatement insertStatement = null;
+            
+            try{
 
+
+            Connection con = DriverManager.getConnection(host,uName, uPass);
+
+
+            String insertString = "INSERT INTO supplier (supplier_name, supplier_contact) VALUES(?,?)";
+            insertStatement = con.prepareStatement(insertString);
+
+            insertStatement.setString(1,supplierNameInput.getText());
+            insertStatement.setString(2, contactNumberInput.getText());
+            insertStatement.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, supplierNameInput.getText() + " saved to Suppliers list.");
+            supplierNameInput.setText("");
+            contactNumberInput.setText("");
+            updateSupplierList();
+            }
+            catch ( SQLException err ){
+                System.out.println( err.getMessage ());
+                System.out.print("FAIL");
+            }
+        }
+    }//GEN-LAST:event_addSupplierButtonActionPerformed
+
+    private void contactNumberInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contactNumberInputKeyPressed
+         if (evt.getKeyCode()== KeyEvent.VK_ENTER)
+	{
+            addSupplierButton.doClick();
+	}
+    }//GEN-LAST:event_contactNumberInputKeyPressed
+
+    private void editSupplierButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editSupplierButtonActionPerformed
+        
+        
+            PreparedStatement selectStatement = null;
+            try{
+        
+            String host = "jdbc:mysql://localhost:3306/inventory";
+            String uName = "root";
+            String uPass = "";
+
+
+            Connection con = DriverManager.getConnection(host,uName, uPass);
+
+            String selectString = "SELECT supplier_name, supplier_contact FROM supplier WHERE supplier_id = ?";
+            selectStatement = con.prepareStatement(selectString);
+            Integer selectedRow = supplierListTable.getSelectedRow();
+            String result = (String) supplierListTable.getModel().getValueAt(selectedRow, 0);
+            selectStatement.setString(1,result);
+            ResultSet rs = selectStatement.executeQuery();
+
+                while(rs.next()){
+                    String supplierName = rs.getString(1);
+                    String supplierContact = rs.getString(2);
+
+                    supplierNameEditInput.setText(supplierName);
+                    supplierContactNumberEditInput.setText(supplierContact);
+                }
+            supplierIDEditInput.setText(result);
+            editSupplierDialog.setVisible(true);
+            }
+            catch ( SQLException err ){
+                System.out.println( err.getMessage ());
+                System.out.print("FAIL");
+            }
+        
+    }//GEN-LAST:event_editSupplierButtonActionPerformed
+
+    private void supplierContactNumberEditInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierContactNumberEditInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_supplierContactNumberEditInputActionPerformed
+
+    private void supplierNameEditInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierNameEditInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_supplierNameEditInputActionPerformed
+
+    private void saveEditedSupplierButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEditedSupplierButtonActionPerformed
+        if(supplierNameEditInput.getText().equals("") || supplierContactNumberEditInput.getText().equals("")){
+            JOptionPane.showMessageDialog(null,
+                "Supplier Name and Contact Number cannot be empty",
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+        }else{
+            PreparedStatement insertStatement = null;
+            try{
+                Connection con = DriverManager.getConnection(host,uName, uPass);
+
+                String insertString = "UPDATE supplier SET supplier_name = ?, supplier_contact = ? WHERE supplier_id = ?";
+                insertStatement = con.prepareStatement(insertString);
+
+                insertStatement.setString(1, supplierNameEditInput.getText());
+                insertStatement.setString(2, supplierContactNumberEditInput.getText());
+                insertStatement.setString(3, supplierIDEditInput.getText());
+                insertStatement.executeUpdate();
+
+                updateSupplierList();
+                editSupplierDialog.dispose();
+            }
+            catch ( SQLException err ){
+                System.out.println( err.getMessage ());
+                System.out.print("FAIL");
+            }
+        }
+    }//GEN-LAST:event_saveEditedSupplierButtonActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        editSupplierDialog.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void supplierNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierNameInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_supplierNameInputActionPerformed
+
+    private void deleteSupplierButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSupplierButtonActionPerformed
+        PreparedStatement selectStatement = null;
+        try{
+        
+        String host = "jdbc:mysql://localhost:3306/inventory";
+        String uName = "root";
+        String uPass = "";
+        
+        
+        Connection con = DriverManager.getConnection(host,uName, uPass);
+        
+        String selectString = "SELECT supplier_name FROM supplier WHERE supplier_id = ? LIMIT 1";
+        selectStatement = con.prepareStatement(selectString);
+        String selectedRow = (String) supplierListTable.getValueAt(supplierListTable.getSelectedRow(),0);
+        selectStatement.setString(1,selectedRow);
+        ResultSet rs = selectStatement.executeQuery();
+        
+            while(rs.next()){
+                String supplierName = rs.getString(1);
+                
+                PreparedStatement deleteStatement = null;
+                try{
+
+
+                    int reply = JOptionPane.showConfirmDialog(
+                    null,
+                    "Qre you sure in deleting " + supplierName + " from the Supplier List?" ,
+                    "Warning Message",
+                    JOptionPane.YES_NO_OPTION);
+                    
+                    if(reply == JOptionPane.YES_OPTION){
+                        String deleteString = "DELETE FROM Supplier WHERE supplier_id = ?";
+                        deleteStatement = con.prepareStatement(deleteString);
+                        deleteStatement.setString(1, selectedRow);
+                        deleteStatement.executeUpdate();
+                        updateSupplierList();
+                    }
+                
+                
+                
+                
+                }
+                catch ( SQLException err ){
+                    System.out.println( err.getMessage ());
+                    System.out.print("FAIL");
+                }
+
+            }
+        
+        }
+        catch ( SQLException err ){
+            System.out.println( err.getMessage ());
+            System.out.print("FAIL");
+        }
+        
+    }//GEN-LAST:event_deleteSupplierButtonActionPerformed
+   
+    private static void deleteAllRows(final JTable model) {
+        for(int row =0; row < model.getRowCount();  row++ ) {
+            for(int col = 0; col<3; col++){
+                
+                model.setValueAt(null, row, col );
+            }
+        }
+    }
+    
+    protected void updateSupplierList(){
+        try{
+        Connection con = DriverManager.getConnection(host,uName, uPass);
+        //customerListTable.addColumn(new TableColumn());
+        Statement stmt = con.createStatement();
+        String SQL = "SELECT  supplier_id, supplier_name, supplier_contact FROM supplier;";
+        
+       
+        deleteAllRows(supplierListTable);
+        ResultSet rs = stmt.executeQuery( SQL );
+        for(int row = 0; rs.next(); row++){
+            for(int col = 0; col<3; col++){
+            supplierListTable.setValueAt(rs.getString(col+1), row, col );
+        }
+        }
+        //customerListTable.removeColumn(customerListTable.getColumnModel().getColumn(2));
+        
+        //JTable inventoryTable = new JTable(buildTableModel(rs));
+        
+        }
+        catch ( SQLException err ){
+            System.out.println( err.getMessage ());
+            System.out.print("FAIL");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton addSupplierButton;
+    private javax.swing.JTextField contactNumberInput;
+    private javax.swing.JButton deleteSupplierButton;
+    private javax.swing.JButton editSupplierButton;
+    private javax.swing.JDialog editSupplierDialog;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton saveEditedSupplierButton;
+    protected static javax.swing.JTextField supplierContactNumberEditInput;
+    private javax.swing.JLabel supplierIDEditInput;
+    private javax.swing.JTable supplierListTable;
+    protected javax.swing.JTextField supplierNameEditInput;
+    private javax.swing.JTextField supplierNameInput;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,8 @@
  */
 package itprojectii;
 
+
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,6 +16,7 @@ import java.sql.Statement;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.TableColumn;
 
 /**
@@ -38,14 +41,13 @@ public class AddCustomer extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        editPanel = new javax.swing.JFrame();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        customerNameEditInput = new javax.swing.JTextField();
+        editCustomerDialog = new javax.swing.JDialog();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         contactNumberEditInput = new javax.swing.JTextField();
+        customerNameEditInput = new javax.swing.JTextField();
         saveEditedCustomerButton = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         customerIDEditInput = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -53,38 +55,34 @@ public class AddCustomer extends javax.swing.JPanel {
         contactNumberInput = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         customerListTable = new javax.swing.JTable();
-        AddCustomerButton = new javax.swing.JButton();
+        addCustomerButton = new javax.swing.JButton();
         deleteCustomerButton = new javax.swing.JButton();
         editCustomerButton = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
 
-        editPanel.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        editPanel.setBounds(new java.awt.Rectangle(0, 0, 400, 300));
-        editPanel.setModalExclusionType(java.awt.Dialog.ModalExclusionType.TOOLKIT_EXCLUDE);
-        editPanel.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        editCustomerDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        editCustomerDialog.setTitle("Edit Customer Information");
+        editCustomerDialog.setBounds(new java.awt.Rectangle(0, 0, 400, 200));
+        editCustomerDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
 
-        jLabel3.setText("Customer Name:");
-        editPanel.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 39, -1, -1));
+        jLabel6.setText("Customer Name:");
 
-        jLabel4.setText("Contact Number:");
-        editPanel.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 90, -1, -1));
+        jLabel7.setText("Contact Number:");
 
-        customerNameEditInput.setEditable(true);
-        customerNameEditInput.setText("jTextField1");
-        customerNameEditInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customerNameEditInputActionPerformed(evt);
-            }
-        });
-        editPanel.getContentPane().add(customerNameEditInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 36, 194, -1));
-
+        contactNumberEditInput.setEditable(true);
         contactNumberEditInput.setText("jTextField1");
         contactNumberEditInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contactNumberEditInputActionPerformed(evt);
             }
         });
-        editPanel.getContentPane().add(contactNumberEditInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 87, 194, -1));
+
+        customerNameEditInput.setText("jTextField1");
+        customerNameEditInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customerNameEditInputActionPerformed(evt);
+            }
+        });
 
         saveEditedCustomerButton.setText("Save");
         saveEditedCustomerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -92,30 +90,71 @@ public class AddCustomer extends javax.swing.JPanel {
                 saveEditedCustomerButtonActionPerformed(evt);
             }
         });
-        editPanel.getContentPane().add(saveEditedCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(221, 159, -1, -1));
 
-        jLabel5.setText("Edit Customer");
-        editPanel.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 11, -1, -1));
-
-        jButton5.setText("Cancel");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jButton6.setText("Cancel");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jButton6ActionPerformed(evt);
             }
         });
-        editPanel.getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 159, -1, -1));
 
         customerIDEditInput.setText("jLabel6");
-        editPanel.getContentPane().add(customerIDEditInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 11, -1, -1));
+
+        javax.swing.GroupLayout editCustomerDialogLayout = new javax.swing.GroupLayout(editCustomerDialog.getContentPane());
+        editCustomerDialog.getContentPane().setLayout(editCustomerDialogLayout);
+        editCustomerDialogLayout.setHorizontalGroup(
+            editCustomerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editCustomerDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(saveEditedCustomerButton)
+                .addGap(18, 18, 18)
+                .addComponent(jButton6)
+                .addGap(39, 39, 39))
+            .addGroup(editCustomerDialogLayout.createSequentialGroup()
+                .addGroup(editCustomerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7)
+                    .addGroup(editCustomerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(editCustomerDialogLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(customerIDEditInput))
+                        .addGroup(editCustomerDialogLayout.createSequentialGroup()
+                            .addGap(28, 28, 28)
+                            .addComponent(jLabel6))))
+                .addGap(18, 18, 18)
+                .addGroup(editCustomerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(customerNameEditInput, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                    .addComponent(contactNumberEditInput))
+                .addContainerGap(70, Short.MAX_VALUE))
+        );
+        editCustomerDialogLayout.setVerticalGroup(
+            editCustomerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editCustomerDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(customerIDEditInput)
+                .addGap(18, 18, 18)
+                .addGroup(editCustomerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(customerNameEditInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(editCustomerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(contactNumberEditInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                .addGroup(editCustomerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton6)
+                    .addComponent(saveEditedCustomerButton))
+                .addGap(21, 21, 21))
+        );
+
         customerIDEditInput.setVisible(false);
 
-        editPanel.setLocationRelativeTo(this);
+        editCustomerDialog.setLocationRelativeTo(this);
 
         setMaximumSize(new java.awt.Dimension(814, 592));
         setPreferredSize(new java.awt.Dimension(814, 592));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Name:");
+        jLabel1.setText("Customer Name:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 32, -1, -1));
 
         jLabel2.setText("Contact Number:");
@@ -131,6 +170,11 @@ public class AddCustomer extends javax.swing.JPanel {
         contactNumberInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contactNumberInputActionPerformed(evt);
+            }
+        });
+        contactNumberInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                contactNumberInputKeyPressed(evt);
             }
         });
         add(contactNumberInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 70, 670, -1));
@@ -157,7 +201,7 @@ public class AddCustomer extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "customer_id", "Name", "Contact Number"
+                "customer_id", "Customer Name", "Contact Number"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -176,13 +220,13 @@ public class AddCustomer extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 794, 182));
 
-        AddCustomerButton.setText("Add Customer");
-        AddCustomerButton.addActionListener(new java.awt.event.ActionListener() {
+        addCustomerButton.setText("Add Customer");
+        addCustomerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddCustomerButtonActionPerformed(evt);
+                addCustomerButtonActionPerformed(evt);
             }
         });
-        add(AddCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(703, 101, -1, -1));
+        add(addCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(703, 101, -1, -1));
 
         deleteCustomerButton.setText("Delete Customer");
         deleteCustomerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -211,78 +255,55 @@ public class AddCustomer extends javax.swing.JPanel {
     private void customerNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerNameInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_customerNameInputActionPerformed
-
-    private void AddCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCustomerButtonActionPerformed
-        
-        PreparedStatement insertStatement = null;
-        try{
-        
-        String host = "jdbc:mysql://localhost:3306/inventory";
-        String uName = "root";
-        String uPass = "";
-        
-        
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        
-        Statement stmt = con.createStatement( );
-        
-        String insertString = "INSERT INTO customer (customer_name, customer_contact) VALUES(?,?)";
-        insertStatement = con.prepareStatement(insertString);
-        
-        insertStatement.setString(1,customerNameInput.getText());
-        insertStatement.setString(2, contactNumberInput.getText());
-        insertStatement.executeUpdate();
-        
-        updateCustomerList();
+    private boolean checkInputsIfNull(JTextField input){
+        if(input.getText().equals("")){
+            return false;
         }
-        catch ( SQLException err ){
-            System.out.println( err.getMessage ());
-            System.out.print("FAIL");
+        else{
+            return true;
         }
-        
-    }//GEN-LAST:event_AddCustomerButtonActionPerformed
+    }
+    private void addCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerButtonActionPerformed
+        if(customerNameInput.getText().equals("")){
+            JOptionPane.showMessageDialog(null,
+                "Customer Name cannot be empty",
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+        }else{
+            PreparedStatement insertStatement = null;
+            try{
 
-    private void contactNumberEditInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactNumberEditInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_contactNumberEditInputActionPerformed
+            String host = "jdbc:mysql://localhost:3306/inventory";
+            String uName = "root";
+            String uPass = "";
 
-    private void saveEditedCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEditedCustomerButtonActionPerformed
-        PreparedStatement insertStatement = null;
-        try{
-        
-        String host = "jdbc:mysql://localhost:3306/inventory";
-        String uName = "root";
-        String uPass = "";
-        
-        
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        
-        Statement stmt = con.createStatement( );
-        
-        String insertString = "UPDATE customer SET customer_name = ?, customer_contact = ? WHERE customer_id = ?";
-        insertStatement = con.prepareStatement(insertString);
-        
-        insertStatement.setString(1,customerNameEditInput.getText());
-        insertStatement.setString(2, contactNumberEditInput.getText());
-        insertStatement.setString(3, customerIDEditInput.getText());
-        insertStatement.executeUpdate();
-        
-        updateCustomerList();
-        editPanel.dispose();
+
+            Connection con = DriverManager.getConnection(host,uName, uPass);
+
+            Statement stmt = con.createStatement( );
+
+            String insertString = "INSERT INTO customer (customer_name, customer_contact) VALUES(?,?)";
+            insertStatement = con.prepareStatement(insertString);
+
+            insertStatement.setString(1,customerNameInput.getText());
+            insertStatement.setString(2, contactNumberInput.getText());
+            insertStatement.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, customerNameInput.getText() + " saved to Customers list.");
+            customerNameInput.setText("");
+            contactNumberInput.setText("");
+            updateCustomerList();
+            }
+            catch ( SQLException err ){
+                System.out.println( err.getMessage ());
+                System.out.print("FAIL");
+            }
         }
-        catch ( SQLException err ){
-            System.out.println( err.getMessage ());
-            System.out.print("FAIL");
-        }
-    }//GEN-LAST:event_saveEditedCustomerButtonActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        editPanel.dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_addCustomerButtonActionPerformed
 
     private void editCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCustomerButtonActionPerformed
     
-        editPanel.setVisible(true);
+        
         
         PreparedStatement selectStatement = null;
         try{
@@ -297,9 +318,7 @@ public class AddCustomer extends javax.swing.JPanel {
         String selectString = "SELECT customer_name, customer_contact FROM customer WHERE customer_id = ?";
         selectStatement = con.prepareStatement(selectString);
         Integer selectedRow = customerListTable.getSelectedRow();
-        System.out.println("selected Row:"+ selectedRow);
         String result = (String) customerListTable.getModel().getValueAt(selectedRow, 0);
-        System.out.print(result);
         selectStatement.setString(1,result);
         ResultSet rs = selectStatement.executeQuery();
         
@@ -311,17 +330,13 @@ public class AddCustomer extends javax.swing.JPanel {
                 contactNumberEditInput.setText(customerContact);
             }
             customerIDEditInput.setText(result);
-        
+        editCustomerDialog.setVisible(true);
         }
         catch ( SQLException err ){
             System.out.println( err.getMessage ());
             System.out.print("FAIL");
         }
     }//GEN-LAST:event_editCustomerButtonActionPerformed
-
-    private void customerNameEditInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerNameEditInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_customerNameEditInputActionPerformed
 
     private void deleteCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCustomerButtonActionPerformed
         PreparedStatement selectStatement = null;
@@ -346,16 +361,19 @@ public class AddCustomer extends javax.swing.JPanel {
                 
                 PreparedStatement deleteStatement = null;
                 try{
-
-
-
-                String deleteString = "DELETE FROM customer WHERE customer_id = ?";
-                deleteStatement = con.prepareStatement(deleteString);
-
-                deleteStatement.setString(1, selectedRow);
-                deleteStatement.executeUpdate();
-                System.out.print("test");
-                updateCustomerList();
+                    int reply = JOptionPane.showConfirmDialog(
+                    null,
+                    "Are you sure in deleting " + customerName + " from the Customer List?" ,
+                    "Warning message",
+                    JOptionPane.YES_NO_OPTION);
+                    
+                    if(reply == JOptionPane.YES_OPTION){
+                        String deleteString = "DELETE FROM customer WHERE customer_id = ?";
+                        deleteStatement = con.prepareStatement(deleteString);
+                        deleteStatement.setString(1, selectedRow);
+                        deleteStatement.executeUpdate();
+                        updateCustomerList();
+                    }
                 }
                 catch ( SQLException err ){
                     System.out.println( err.getMessage ());
@@ -370,6 +388,65 @@ public class AddCustomer extends javax.swing.JPanel {
             System.out.print("FAIL");
         }
     }//GEN-LAST:event_deleteCustomerButtonActionPerformed
+
+    private void contactNumberInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contactNumberInputKeyPressed
+        
+        if (evt.getKeyCode()== KeyEvent.VK_ENTER)
+	{
+            addCustomerButton.doClick();
+	}
+
+    }//GEN-LAST:event_contactNumberInputKeyPressed
+
+    private void contactNumberEditInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactNumberEditInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contactNumberEditInputActionPerformed
+
+    private void customerNameEditInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerNameEditInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_customerNameEditInputActionPerformed
+
+    private void saveEditedCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEditedCustomerButtonActionPerformed
+        if(customerNameEditInput.getText().equals("")){
+            JOptionPane.showMessageDialog(null,
+                "Customer Name cannot be empty",
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+        }else{
+            PreparedStatement insertStatement = null;
+
+
+            try{
+
+                String host = "jdbc:mysql://localhost:3306/inventory";
+                String uName = "root";
+                String uPass = "";
+
+                Connection con = DriverManager.getConnection(host,uName, uPass);
+
+                Statement stmt = con.createStatement( );
+
+                String insertString = "UPDATE customer SET customer_name = ?, customer_contact = ? WHERE customer_id = ?";
+                insertStatement = con.prepareStatement(insertString);
+
+                insertStatement.setString(1, customerNameEditInput.getText());
+                insertStatement.setString(2, contactNumberEditInput.getText());
+                insertStatement.setString(3, customerIDEditInput.getText());
+                insertStatement.executeUpdate();
+
+                updateCustomerList();
+                editCustomerDialog.dispose();
+            }
+            catch ( SQLException err ){
+                System.out.println( err.getMessage ());
+                System.out.print("FAIL");
+            }
+        }
+    }//GEN-LAST:event_saveEditedCustomerButtonActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        editCustomerDialog.dispose();
+    }//GEN-LAST:event_jButton6ActionPerformed
     private static void deleteAllRows(final JTable model) {
         for(int row =0; row < model.getRowCount();  row++ ) {
             for(int col = 0; col<3; col++){
@@ -413,23 +490,22 @@ public class AddCustomer extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddCustomerButton;
-    protected javax.swing.JTextField contactNumberEditInput;
+    private javax.swing.JButton addCustomerButton;
+    protected static javax.swing.JTextField contactNumberEditInput;
     private javax.swing.JTextField contactNumberInput;
     private javax.swing.JLabel customerIDEditInput;
     private static javax.swing.JTable customerListTable;
-    protected static javax.swing.JTextField customerNameEditInput;
+    protected javax.swing.JTextField customerNameEditInput;
     private javax.swing.JTextField customerNameInput;
     private javax.swing.JButton deleteCustomerButton;
     private javax.swing.JButton editCustomerButton;
-    private javax.swing.JFrame editPanel;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JDialog editCustomerDialog;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton saveEditedCustomerButton;
     // End of variables declaration//GEN-END:variables
