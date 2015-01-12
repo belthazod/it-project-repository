@@ -67,40 +67,21 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="customerListTable">
           <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="2" rowCount="10">
-                <Column editable="true" title="Name" type="java.lang.Object">
-                  <Data value="Boac Nicole"/>
-                  <Data value="Edades Olaiza"/>
-                  <Data value="Desembrana Danica"/>
-                  <Data value="Eduria Luigi"/>
-                  <Data value="Julaton Johnbrix"/>
-                  <Data value="Macadaeg Harvey"/>
-                  <Data value="Tello Bassanio"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                </Column>
-                <Column editable="true" title="Contact Number" type="java.lang.Object">
-                  <Data value="09152425342"/>
-                  <Data value="09267329442"/>
-                  <Data value="09399484754"/>
-                  <Data value="09266094417"/>
-                  <Data value="09163728037"/>
-                  <Data value="09175997959"/>
-                  <Data value="09063742752"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                </Column>
-              </Table>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="updateCustomerList();">
+              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {&quot;Boac Nicole&quot;, &quot;09152425342&quot;},&#xa;        {&quot;Edades Olaiza&quot;, &quot;09267329442&quot;},&#xa;        {&quot;Desembrana Danica&quot;, &quot;09399484754&quot;},&#xa;        {&quot;Eduria Luigi&quot;, &quot;09266094417&quot;},&#xa;        {&quot;Julaton Johnbrix&quot;, &quot;09163728037&quot;},&#xa;        {&quot;Macadaeg Harvey&quot;, &quot;09175997959&quot;},&#xa;        {&quot;Tello Bassanio&quot;, &quot;09063742752&quot;},&#xa;        {null, null},&#xa;        {null, null},&#xa;        {null, null}&#xa;    },&#xa;    new String [] {&#xa;        &quot;Name&quot;, &quot;Contact Number&quot;&#xa;    }&#xa;)" type="code"/>
+            </Property>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+              <TableColumnModel selectionModel="0"/>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

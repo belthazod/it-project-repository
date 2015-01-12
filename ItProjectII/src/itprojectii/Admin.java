@@ -5,6 +5,8 @@
  */
 package itprojectii;
 
+import java.awt.CardLayout;
+
 /**
  *
  * @author weak_2030
@@ -28,29 +30,35 @@ public class Admin extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        customerAdminButton = new javax.swing.JButton();
+        supplierAdminButton = new javax.swing.JButton();
+        productAdminButton = new javax.swing.JButton();
         adminCards = new javax.swing.JPanel();
         addCustomer1 = new itprojectii.AddCustomer();
-        addProduct1 = new itprojectii.AddProduct();
         addSupplier1 = new itprojectii.AddSupplier();
+        addProduct1 = new itprojectii.AddProduct();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setText("Customer");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        customerAdminButton.setText("Customer");
+        customerAdminButton.setEnabled(false);
+        customerAdminButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                customerAdminButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Supplier");
-
-        jButton3.setText("Product");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        supplierAdminButton.setText("Supplier");
+        supplierAdminButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                supplierAdminButtonActionPerformed(evt);
+            }
+        });
+
+        productAdminButton.setText("Product");
+        productAdminButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productAdminButtonActionPerformed(evt);
             }
         });
 
@@ -61,27 +69,29 @@ public class Admin extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(customerAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(supplierAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(productAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jButton1)
+                .addComponent(customerAdminButton)
                 .addGap(30, 30, 30)
-                .addComponent(jButton2)
+                .addComponent(supplierAdminButton)
                 .addGap(30, 30, 30)
-                .addComponent(jButton3)
+                .addComponent(productAdminButton)
                 .addContainerGap(517, Short.MAX_VALUE))
         );
 
         adminCards.setLayout(new java.awt.CardLayout());
         adminCards.add(addCustomer1, "addCustomerCard");
-        adminCards.add(addProduct1, "card3");
-        adminCards.add(addSupplier1, "card4");
+        addCustomer1.getAccessibleContext().setAccessibleName("");
+
+        adminCards.add(addSupplier1, "addSupplierCard");
+        adminCards.add(addProduct1, "addProductCard");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -91,7 +101,7 @@ public class Admin extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
-                .addComponent(adminCards, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
+                .addComponent(adminCards, javax.swing.GroupLayout.PREFERRED_SIZE, 635, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -105,13 +115,31 @@ public class Admin extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void customerAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerAdminButtonActionPerformed
+        CardLayout card = (CardLayout)adminCards.getLayout();
+        card.show(adminCards, "addCustomerCard");
+        supplierAdminButton.setEnabled(true); 
+        customerAdminButton.setEnabled(false);
+        productAdminButton.setEnabled(true);
+    }//GEN-LAST:event_customerAdminButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void productAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productAdminButtonActionPerformed
+        CardLayout card = (CardLayout)adminCards.getLayout();
+        card.show(adminCards, "addProductCard");
+        
+        productAdminButton.setEnabled(false);
+        customerAdminButton.setEnabled(true);
+        supplierAdminButton.setEnabled(true);
+    }//GEN-LAST:event_productAdminButtonActionPerformed
+
+    private void supplierAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierAdminButtonActionPerformed
+        CardLayout card = (CardLayout)adminCards.getLayout();
+        card.show(adminCards, "addSupplierCard");
+        
+        productAdminButton.setEnabled(true);
+        customerAdminButton.setEnabled(true);
+        supplierAdminButton.setEnabled(false);
+    }//GEN-LAST:event_supplierAdminButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -119,9 +147,9 @@ public class Admin extends javax.swing.JPanel {
     private itprojectii.AddProduct addProduct1;
     private itprojectii.AddSupplier addSupplier1;
     private javax.swing.JPanel adminCards;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton customerAdminButton;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton productAdminButton;
+    private javax.swing.JButton supplierAdminButton;
     // End of variables declaration//GEN-END:variables
 }
