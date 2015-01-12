@@ -15,8 +15,9 @@ public class ItProjectII {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Main main = new Main();
+        UserLogIn main = new UserLogIn();
         main.setVisible(true);
+        main.setTitle("Just Another Inventory System");
     }
     
 }

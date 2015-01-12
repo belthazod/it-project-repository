@@ -6,6 +6,8 @@
 
 package itprojectii;
 
+import javax.swing.JTable;
+
 /**
  *
  * @author Belthazod
@@ -29,12 +31,12 @@ public class EditCustomer extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        customerListTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        customerListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Boac Nicole", "09152425342"},
                 {"Edades Olaiza", "09267329442"},
@@ -51,7 +53,8 @@ public class EditCustomer extends javax.swing.JPanel {
                 "Name", "Contact Number"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        updateCustomerList();
+        jScrollPane1.setViewportView(customerListTable);
 
         jButton1.setText("Back To Main");
 
@@ -105,13 +108,18 @@ public class EditCustomer extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+    
+    
+    
+    protected void updateCustomerList(){
 
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private static javax.swing.JTable customerListTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

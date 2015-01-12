@@ -363,7 +363,7 @@ public class AddCustomer extends javax.swing.JPanel {
                 try{
                     int reply = JOptionPane.showConfirmDialog(
                     null,
-                    "Are you sure in deleting " + customerName + " from the Customer List?" ,
+                    "Are you sure of deleting " + customerName + " from the Customer List?" ,
                     "Warning message",
                     JOptionPane.YES_NO_OPTION);
                     

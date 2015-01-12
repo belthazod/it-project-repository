@@ -5,6 +5,19 @@
  */
 package itprojectii;
 
+import static itprojectii.AddCustomer.contactNumberEditInput;
+import static itprojectii.AddSupplier.supplierContactNumberEditInput;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+
 /**
  *
  * @author weak_2030
@@ -27,180 +40,463 @@ public class AddProduct extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        editProductDialog = new javax.swing.JDialog();
+        jLabel8 = new javax.swing.JLabel();
+        productNameEditInput = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        categoryEditComboBox = new javax.swing.JComboBox();
+        jLabel10 = new javax.swing.JLabel();
+        descriptionEditInput = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        supplierEditComboBox = new javax.swing.JComboBox();
+        jLabel12 = new javax.swing.JLabel();
+        unitEditInput = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        quantityEditInput = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        productNameInput = new javax.swing.JTextField();
+        productDescriptionInput = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        quantityInput = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        unitInput = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        categoryComboBox = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
-        jComboBox3 = new javax.swing.JComboBox();
-        jComboBox4 = new javax.swing.JComboBox();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        AddProductButton = new javax.swing.JButton();
+        supplierComboBox = new javax.swing.JComboBox();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
+        reorderQuantityLevelSpinner = new javax.swing.JSpinner();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        adminProductsTable = new javax.swing.JTable();
+        editProductButton = new javax.swing.JButton();
+        deleteProductButton = new javax.swing.JButton();
+
+        editProductDialog.setBounds(new java.awt.Rectangle(0, 0, 600, 500));
+        editProductDialog.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setText("Product Name: ");
+        editProductDialog.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 80, 20));
+
+        productNameEditInput.setText("jTextField1");
+        productNameEditInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productNameEditInputActionPerformed(evt);
+            }
+        });
+        editProductDialog.getContentPane().add(productNameEditInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 250, -1));
+
+        jLabel9.setText("Category:");
+        editProductDialog.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+
+        categoryEditComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        editProductDialog.getContentPane().add(categoryEditComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 250, -1));
+
+        jLabel10.setText("Description:");
+        editProductDialog.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+
+        descriptionEditInput.setText("jTextField1");
+        editProductDialog.getContentPane().add(descriptionEditInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 290, -1));
+
+        jLabel11.setText("Supplier:");
+        editProductDialog.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+
+        supplierEditComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        editProductDialog.getContentPane().add(supplierEditComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 250, -1));
+
+        jLabel12.setText("Unit:");
+        editProductDialog.getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+
+        unitEditInput.setText("jTextField1");
+        editProductDialog.getContentPane().add(unitEditInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 250, -1));
+
+        jLabel13.setText("Physical Count:");
+        editProductDialog.getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
+
+        quantityEditInput.setText("jLabel14");
+        editProductDialog.getContentPane().add(quantityEditInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, -1, -1));
+
+        jLabel15.setText("reorder Quantity Level:");
+        editProductDialog.getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
+        editProductDialog.getContentPane().add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 90, -1));
+
+        jButton1.setText("Cancel");
+        editProductDialog.getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
+
+        jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        editProductDialog.getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, -1));
 
         setMaximumSize(new java.awt.Dimension(814, 592));
         setPreferredSize(new java.awt.Dimension(814, 592));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Name:");
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("Brand:");
+        jLabel1.setText("Product Name:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 55, -1, -1));
+
+        jLabel2.setText("Description:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 81, -1, -1));
+
+        productNameInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productNameInputActionPerformed(evt);
+            }
+        });
+        jPanel1.add(productNameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 614, -1));
+        jPanel1.add(productDescriptionInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 614, -1));
 
         jLabel3.setText("Quantity:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 122, -1, -1));
+        jPanel1.add(quantityInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 161, -1));
 
         jLabel4.setText("Re- order Level:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
 
         jLabel5.setText("Unit:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+        jPanel1.add(unitInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 161, -1));
 
         jLabel6.setText("Category:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Accessories" }));
+        categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Accessories" }));
+        categoryComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoryComboBoxActionPerformed(evt);
+            }
+        });
+        jPanel1.add(categoryComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 150, -1));
+        updateCategoryComboBox();
 
         jLabel7.setText("Supplier:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 198, -1, -1));
 
-        jLabel8.setText("Date:");
+        AddProductButton.setText("Add New Product");
+        AddProductButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddProductButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(AddProductButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "month" }));
+        supplierComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        supplierComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supplierComboBoxActionPerformed(evt);
+            }
+        });
+        jPanel1.add(supplierComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 150, -1));
+        updateSupplierComboBox();
+        jPanel1.add(filler1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, -1, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "day" }));
+        reorderQuantityLevelSpinner.setEnabled(false);
+        jPanel1.add(reorderQuantityLevelSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 60, 30));
+        reorderQuantityLevelSpinner.setVisible(false);
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "year" }));
+        jRadioButton1.setText("Enabled");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
+        reorderQuantityLevelGroup.add(jRadioButton1);
+        jRadioButton2.setSelected(true);
 
-        jLabel9.setText("Price:");
+        jRadioButton2.setText("Disabled");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
+        reorderQuantityLevelGroup.add(jRadioButton2);
 
-        jButton2.setText("Save");
+        jTabbedPane1.addTab("Add Product", jPanel1);
 
-        jButton3.setText("BackTo Main");
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                            .addComponent(jTextField5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(262, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
-                                    .addComponent(jTextField2)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel9))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(25, 25, 25)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextField7)))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(12, 12, 12)
-                .addComponent(jButton2)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 267, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2))
-                .addContainerGap())
-        );
+        adminProductsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "", "Product Name", "Description", "Supplier", "Unit", "Physical Count", "Reorder Quantity Level"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        adminProductsTable.setName(""); // NOI18N
+        jScrollPane1.setViewportView(adminProductsTable);
+        updateAdminProductsTable();
+        adminProductsTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        adminProductsTable.getColumnModel().getColumn(0).setMinWidth(0);
+        adminProductsTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 795, 410));
+
+        editProductButton.setText("Edit Product");
+        editProductButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editProductButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(editProductButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, -1, -1));
+
+        deleteProductButton.setText("Delete Product");
+        jPanel2.add(deleteProductButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 430, -1, -1));
+
+        jTabbedPane1.addTab("Edit Product", jPanel2);
+
+        add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 590));
     }// </editor-fold>//GEN-END:initComponents
+    String host = "jdbc:mysql://localhost:3306/inventory";
+    String uName = "root";
+    String uPass = "";
+    ButtonGroup reorderQuantityLevelGroup = new ButtonGroup();
+    private void productNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productNameInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_productNameInputActionPerformed
 
+    private void supplierComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_supplierComboBoxActionPerformed
+
+    private void categoryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_categoryComboBoxActionPerformed
+
+    private void AddProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductButtonActionPerformed
+        PreparedStatement insertStatement = null;
+            try{
+
+            String host = "jdbc:mysql://localhost:3306/inventory";
+            String uName = "root";
+            String uPass = "";
+
+
+            Connection con = DriverManager.getConnection(host,uName, uPass);
+
+            Statement stmt = con.createStatement( );
+
+            String insertString = "INSERT INTO product ( type_id, name, description, supplier_id, unit, physical_count, reorder_quantity) VALUES(?,?,?,?,?,?,?)";
+            insertStatement = con.prepareStatement(insertString);
+
+            insertStatement.setString(1, "1");
+            insertStatement.setString(2,productNameInput.getText());
+            insertStatement.setString(3, productDescriptionInput.getText());
+            insertStatement.setString(4, "1");
+            insertStatement.setString(5, unitInput.getText());
+            insertStatement.setString(6, quantityInput.getText());
+            insertStatement.setString(7, reorderQuantityLevelSpinner.getValue().toString());
+            insertStatement.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, productNameInput.getText() + " added to Product list.");
+            productNameInput.setText("");
+            productDescriptionInput.setText("");
+            unitInput.setText("");
+            quantityInput.setText("");
+            
+            updateAdminProductsTable();
+            }
+            catch ( SQLException err ){
+                System.out.println( err.getMessage ());
+                System.out.print("FAIL");
+            }
+        
+        
+    }//GEN-LAST:event_AddProductButtonActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        if(jRadioButton1.isSelected()){
+            reorderQuantityLevelSpinner.setEnabled(true);
+            reorderQuantityLevelSpinner.setVisible(true);
+        }
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        if(jRadioButton2.isSelected()){
+            reorderQuantityLevelSpinner.setEnabled(false);
+            reorderQuantityLevelSpinner.setVisible(false);
+            reorderQuantityLevelSpinner.setValue(0);
+        }
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void editProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProductButtonActionPerformed
+        PreparedStatement selectStatement = null;
+        try{
+        
+        String host = "jdbc:mysql://localhost:3306/inventory";
+        String uName = "root";
+        String uPass = "";
+        
+        
+        Connection con = DriverManager.getConnection(host,uName, uPass);
+        
+        String selectString = "SELECT product_id, name, description, "
+                + "type_name, supplier_name, Unit, physical_count AS Quantity, "
+                + "reorder_quantity FROM product JOIN type USING(type_id) JOIN "
+                + "supplier using(supplier_id);";
+        selectStatement = con.prepareStatement(selectString);
+        Integer selectedRow = adminProductsTable.getSelectedRow();
+        String result = (String) adminProductsTable.getModel().getValueAt(selectedRow, 0);
+        selectStatement.setString(1,result);
+        ResultSet rs = selectStatement.executeQuery();
+        
+            while(rs.next()){
+                String customerName = rs.getString(1);
+                String customerContact = rs.getString(2);
+                
+//                rpductNameEditInput.setText(customerName);
+                contactNumberEditInput.setText(customerContact);
+            }
+  //          customerIDEditInput.setText(result);
+       // editCustomerDialog.setVisible(true);
+        }
+        catch ( SQLException err ){
+            System.out.println( err.getMessage ());
+            System.out.print("FAIL");
+        }
+    }//GEN-LAST:event_editProductButtonActionPerformed
+
+    private void productNameEditInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productNameEditInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_productNameEditInputActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+    private static void deleteAllRows(final JTable model) {
+        for(int row =0; row < model.getRowCount();  row++ ) {
+            for(int col = 0; col<3; col++){
+                
+                model.setValueAt(null, row, col );
+            }
+        }
+    }
+    
+    public void updateAdminProductsTable(){
+            try{
+                
+        Connection con = DriverManager.getConnection(host,uName, uPass);
+        //customerListTable.addColumn(new TableColumn());
+        Statement stmt = con.createStatement( );
+        String SQL = "SELECT product_id, name, description, type_name, supplier_name, Unit, physical_count AS Quantity, reorder_quantity FROM product JOIN type USING(type_id) JOIN supplier using(supplier_id);";
+        
+       
+        deleteAllRows(adminProductsTable);
+        ResultSet rs = stmt.executeQuery( SQL );
+        for(int row = 0; rs.next(); row++){
+            for(int col = 0; col<7; col++){
+            adminProductsTable.setValueAt(rs.getString(col+1), row, col );
+        }
+        }
+        //customerListTable.removeColumn(customerListTable.getColumnModel().getColumn(2));
+        
+        //JTable inventoryTable = new JTable(buildTableModel(rs));
+        
+        }
+        catch ( SQLException err ){
+            System.out.println( err.getMessage ());
+            System.out.print("FAIL");
+        }
+    }
+    
+    public void updateSupplierComboBox(){
+            supplierComboBox.removeAllItems();
+            PreparedStatement selectStatement = null;
+            try{
+            Connection con = DriverManager.getConnection(host,uName, uPass);
+            String selectString = "SELECT supplier_name FROM supplier ORDER BY 1 ASC";
+            selectStatement = con.prepareStatement(selectString);
+            ResultSet rs = selectStatement.executeQuery();
+            supplierComboBox.addItem("--Choose Supplier--");
+                while(rs.next()){
+                    String supplierName = rs.getString(1);
+
+                    supplierComboBox.addItem(supplierName);
+                }
+
+            }
+            catch ( SQLException err ){
+                System.out.println( err.getMessage ());
+                System.out.print("FAIL");
+            }
+    }
+    
+    public void updateCategoryComboBox(){
+            categoryComboBox.removeAllItems();
+            PreparedStatement selectStatement = null;
+            try{
+            Connection con = DriverManager.getConnection(host,uName, uPass);
+            String selectString = "SELECT type_name FROM type ORDER By 1 ASC";
+            selectStatement = con.prepareStatement(selectString);
+            ResultSet rs = selectStatement.executeQuery();
+            categoryComboBox.addItem("--Choose Category--");
+                while(rs.next()){
+                    String categoryName = rs.getString(1);
+
+                    categoryComboBox.addItem(categoryName);
+                }
+
+            }
+            catch ( SQLException err ){
+                System.out.println( err.getMessage ());
+                System.out.print("FAIL");
+            }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton AddProductButton;
+    private javax.swing.JTable adminProductsTable;
+    private javax.swing.JComboBox categoryComboBox;
+    private javax.swing.JComboBox categoryEditComboBox;
+    private javax.swing.JButton deleteProductButton;
+    private javax.swing.JTextField descriptionEditInput;
+    private javax.swing.JButton editProductButton;
+    private javax.swing.JDialog editProductDialog;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JComboBox jComboBox4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -209,12 +505,22 @@ public class AddProduct extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField productDescriptionInput;
+    private javax.swing.JTextField productNameEditInput;
+    private javax.swing.JTextField productNameInput;
+    private javax.swing.JLabel quantityEditInput;
+    private javax.swing.JTextField quantityInput;
+    private javax.swing.JSpinner reorderQuantityLevelSpinner;
+    private javax.swing.JComboBox supplierComboBox;
+    private javax.swing.JComboBox supplierEditComboBox;
+    private javax.swing.JTextField unitEditInput;
+    private javax.swing.JTextField unitInput;
     // End of variables declaration//GEN-END:variables
 }
