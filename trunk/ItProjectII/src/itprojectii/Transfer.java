@@ -5,6 +5,14 @@
  */
 package itprojectii;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JTable;
+
 /**
  *
  * @author weak_2030
@@ -18,6 +26,7 @@ public class Transfer extends javax.swing.JPanel {
         initComponents();
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,7 +52,7 @@ public class Transfer extends javax.swing.JPanel {
         jTextField2 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        transferTable = new javax.swing.JTable();
 
         setMaximumSize(new java.awt.Dimension(814, 592));
         setPreferredSize(new java.awt.Dimension(814, 592));
@@ -76,34 +85,34 @@ public class Transfer extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Brand", "Category", "Quantity", "Re-order Level"
+                "product_id", "Name", "Brand", "Category", "Quantity", "Re-order Level"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 330, 250));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 60, 400, 360));
 
         jLabel5.setText("Quantity:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 425, -1, -1));
@@ -125,41 +134,47 @@ public class Transfer extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, -1, -1));
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 220, -1, -1));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        transferTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Brand", "Category", "Quantity", "Re-order Level"
+                "", "Name", "Brand", "Category", "Quantity", "Re-order Level"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(transferTable);
         updateTransferTable();
+        transferTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        transferTable.getColumnModel().getColumn(0).setMinWidth(0);
+        transferTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 330, 370));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, 370));
     }// </editor-fold>//GEN-END:initComponents
 
+        String host = "jdbc:mysql://localhost:3306/inventory";
+        String uName = "root";
+        String uPass = "";
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
@@ -167,7 +182,40 @@ public class Transfer extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
-
+    
+    private static void deleteAllRows(final JTable model) {
+        for(int row =0; row < model.getRowCount();  row++ ) {
+            for(int col = 0; col<6; col++){
+                
+                model.setValueAt(null, row, col );
+            }
+        }
+    }
+    public void updateTransferTable(){
+        try{
+        Connection con = DriverManager.getConnection(host,uName, uPass);
+        //customerListTable.addColumn(new TableColumn());
+        Statement stmt = con.createStatement( );
+        String SQL = "SELECT product_id, name, description, type_name, physical_count, reorder_quantity FROM product JOIN type USING(type_id)";
+        
+       
+        deleteAllRows(transferTable);
+        ResultSet rs = stmt.executeQuery( SQL );
+        for(int row = 0; rs.next(); row++){
+            for(int col = 0; col<6; col++){
+            transferTable.setValueAt(rs.getString(col+1), row, col );
+        }
+        }
+        //customerListTable.removeColumn(customerListTable.getColumnModel().getColumn(2));
+        
+        //JTable inventoryTable = new JTable(buildTableModel(rs));
+        
+        }
+        catch ( SQLException err ){
+            System.out.println( err.getMessage ());
+            System.out.print("FAIL");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -184,8 +232,8 @@ public class Transfer extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable transferTable;
     // End of variables declaration//GEN-END:variables
 }
