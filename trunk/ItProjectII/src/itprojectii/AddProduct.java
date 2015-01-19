@@ -5,8 +5,8 @@
  */
 package itprojectii;
 
+import BEANS.Product;
 import static itprojectii.AddCustomer.contactNumberEditInput;
-import static itprojectii.AddSupplier.supplierContactNumberEditInput;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,9 +14,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.ButtonGroup;
-import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -235,10 +235,7 @@ public class AddProduct extends javax.swing.JPanel {
 
         adminProductsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "", "Product Name", "Description", "Supplier", "Unit", "Physical Count", "Reorder Quantity Level"
@@ -297,10 +294,12 @@ public class AddProduct extends javax.swing.JPanel {
 
     private void categoryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryComboBoxActionPerformed
         // TODO add your handling code here:
+        System.out.println("Selected value = " +  evt.getActionCommand());
     }//GEN-LAST:event_categoryComboBoxActionPerformed
 
     private void AddProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductButtonActionPerformed
         PreparedStatement insertStatement = null;
+        PreparedStatement selectStatement = null;
             try{
 
             String host = "jdbc:mysql://localhost:3306/inventory";
@@ -310,15 +309,41 @@ public class AddProduct extends javax.swing.JPanel {
 
             Connection con = DriverManager.getConnection(host,uName, uPass);
 
+            String supplierName = supplierComboBox.getSelectedItem().toString();
+            String typeName = categoryComboBox.getSelectedItem().toString();
+            
             Statement stmt = con.createStatement( );
+            
+            String typeSelectString = "SELECT type_id FROM type WHERE type_name = ? LIMIT 1";
+            selectStatement = con.prepareStatement(typeSelectString);
+            
+            selectStatement.setString(1,typeName);
+            ResultSet rs = selectStatement.executeQuery();
+        
+            rs.next();
+            String typeID = rs.getString(1);
+            
+            String supplierSelectString = "SELECT supplier_id FROM supplier WHERE supplier_name = ? LIMIT 1";
+            selectStatement = con.prepareStatement(supplierSelectString);
+            
+            selectStatement.setString(1,supplierName);
+            ResultSet result = selectStatement.executeQuery();
+        
+            result.next();
+            String supplierID = result.getString(1);
+            
+            
 
             String insertString = "INSERT INTO product ( type_id, name, description, supplier_id, unit, physical_count, reorder_quantity) VALUES(?,?,?,?,?,?,?)";
             insertStatement = con.prepareStatement(insertString);
-
-            insertStatement.setString(1, "1");
+            
+            
+            
+            
+            insertStatement.setString(1, typeID);
             insertStatement.setString(2,productNameInput.getText());
             insertStatement.setString(3, productDescriptionInput.getText());
-            insertStatement.setString(4, "1");
+            insertStatement.setString(4, supplierID);
             insertStatement.setString(5, unitInput.getText());
             insertStatement.setString(6, quantityInput.getText());
             insertStatement.setString(7, reorderQuantityLevelSpinner.getValue().toString());
@@ -330,7 +355,7 @@ public class AddProduct extends javax.swing.JPanel {
             unitInput.setText("");
             quantityInput.setText("");
             
-            updateAdminProductsTable();
+            Main.updateProductsList();
             }
             catch ( SQLException err ){
                 System.out.println( err.getMessage ());
@@ -399,40 +424,22 @@ public class AddProduct extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
-    private static void deleteAllRows(final JTable model) {
-        for(int row =0; row < model.getRowCount();  row++ ) {
-            for(int col = 0; col<3; col++){
-                
-                model.setValueAt(null, row, col );
-            }
+    private static void deleteAllRows(final JTable table) {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        for(int row =0; row < model.getRowCount(); ) {
+            model.removeRow(0);
+        
         }
     }
     
-    public void updateAdminProductsTable(){
-            try{
-                
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        //customerListTable.addColumn(new TableColumn());
-        Statement stmt = con.createStatement( );
-        String SQL = "SELECT product_id, name, description, type_name, supplier_name, Unit, physical_count AS Quantity, reorder_quantity FROM product JOIN type USING(type_id) JOIN supplier using(supplier_id);";
-        
-       
+    public static void updateAdminProductsTable(){
         deleteAllRows(adminProductsTable);
-        ResultSet rs = stmt.executeQuery( SQL );
-        for(int row = 0; rs.next(); row++){
-            for(int col = 0; col<7; col++){
-            adminProductsTable.setValueAt(rs.getString(col+1), row, col );
+        DefaultTableModel model = (DefaultTableModel) adminProductsTable.getModel();
+
+        for(Product product: Main.productList){
+            model.addRow(new Object[]{product.getProductID(), product.getName(), product.getDescription(), product.getSupplierName(), product.getUnit(), product.getPhysicalCount(), product.getReorderQuantityLevel()});
         }
-        }
-        //customerListTable.removeColumn(customerListTable.getColumnModel().getColumn(2));
-        
-        //JTable inventoryTable = new JTable(buildTableModel(rs));
-        
-        }
-        catch ( SQLException err ){
-            System.out.println( err.getMessage ());
-            System.out.print("FAIL");
-        }
+       
     }
     
     public void updateSupplierComboBox(){
@@ -440,13 +447,16 @@ public class AddProduct extends javax.swing.JPanel {
             PreparedStatement selectStatement = null;
             try{
             Connection con = DriverManager.getConnection(host,uName, uPass);
-            String selectString = "SELECT supplier_name FROM supplier ORDER BY 1 ASC";
+            String selectString = "SELECT supplier_name, supplier_id FROM supplier ORDER BY 1 ASC";
             selectStatement = con.prepareStatement(selectString);
             ResultSet rs = selectStatement.executeQuery();
             supplierComboBox.addItem("--Choose Supplier--");
                 while(rs.next()){
                     String supplierName = rs.getString(1);
-
+                    String supplierID = rs.getString(2);
+                    
+                    String supplier[] = {supplierName, supplierID};
+                    
                     supplierComboBox.addItem(supplierName);
                 }
 
@@ -481,7 +491,7 @@ public class AddProduct extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddProductButton;
-    private javax.swing.JTable adminProductsTable;
+    private static javax.swing.JTable adminProductsTable;
     private javax.swing.JComboBox categoryComboBox;
     private javax.swing.JComboBox categoryEditComboBox;
     private javax.swing.JButton deleteProductButton;
