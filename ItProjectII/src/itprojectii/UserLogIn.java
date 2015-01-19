@@ -48,8 +48,6 @@ public class UserLogIn extends javax.swing.JFrame {
 
         jLabel2.setText("Password:");
 
-        passwordInput.setText("jPasswordField1");
-
         usernameInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usernameInputActionPerformed(evt);

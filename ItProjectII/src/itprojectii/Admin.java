@@ -37,8 +37,10 @@ public class Admin extends javax.swing.JPanel {
         addCustomer1 = new itprojectii.AddCustomer();
         addSupplier1 = new itprojectii.AddSupplier();
         addProduct1 = new itprojectii.AddProduct();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         customerAdminButton.setText("Customer");
         customerAdminButton.setEnabled(false);
@@ -83,8 +85,10 @@ public class Admin extends javax.swing.JPanel {
                 .addComponent(supplierAdminButton)
                 .addGap(30, 30, 30)
                 .addComponent(productAdminButton)
-                .addContainerGap(517, Short.MAX_VALUE))
+                .addContainerGap(463, Short.MAX_VALUE))
         );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 87, -1, -1));
 
         adminCards.setLayout(new java.awt.CardLayout());
         adminCards.add(addCustomer1, "addCustomerCard");
@@ -93,26 +97,11 @@ public class Admin extends javax.swing.JPanel {
         adminCards.add(addSupplier1, "addSupplierCard");
         adminCards.add(addProduct1, "addProductCard");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(adminCards, javax.swing.GroupLayout.PREFERRED_SIZE, 635, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(adminCards, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        add(adminCards, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 87, 821, 613));
+
+        jLabel1.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
+        jLabel1.setText("Admin Panel");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(488, 19, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void customerAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerAdminButtonActionPerformed
@@ -148,6 +137,7 @@ public class Admin extends javax.swing.JPanel {
     private itprojectii.AddSupplier addSupplier1;
     private javax.swing.JPanel adminCards;
     private javax.swing.JButton customerAdminButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton productAdminButton;
     private javax.swing.JButton supplierAdminButton;

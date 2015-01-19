@@ -5,6 +5,17 @@
  */
 package itprojectii;
 
+import BEANS.SecondHandProduct;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author weak_2030
@@ -28,182 +39,251 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
+        itemNameInput = new javax.swing.JTextField();
+        categoryComboBox = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        descriptionInput = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        qualityInput = new javax.swing.JTextField();
+        quantityInput = new javax.swing.JTextField();
+        addToItemListButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        secondHandProductsListTable = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(814, 592));
         setPreferredSize(new java.awt.Dimension(814, 592));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Item Name:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        itemNameInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                itemNameInputActionPerformed(evt);
             }
         });
+        add(itemNameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 710, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Batteries", "Rims" }));
-
-        jLabel2.setText("Brand:");
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Batteries", "Rims" }));
+        categoryComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                categoryComboBoxActionPerformed(evt);
             }
         });
+        add(categoryComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, -1, -1));
+        updateCategoryComboBox();
+
+        jLabel2.setText("Description:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+
+        descriptionInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descriptionInputActionPerformed(evt);
+            }
+        });
+        add(descriptionInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 705, -1));
 
         jLabel3.setText("Quality:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
         jLabel4.setText("Quantity:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+        add(qualityInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 705, -1));
+        add(quantityInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 705, -1));
 
-        jButton1.setText("Add to Item List");
+        addToItemListButton.setText("Add to Secondhand Product List");
+        addToItemListButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addToItemListButtonActionPerformed(evt);
+            }
+        });
+        add(addToItemListButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 200, 40));
 
-        jButton2.setText("Trade Item");
-
-        jButton3.setText("Back To Main");
+        jButton2.setText("Trade/Swap Item");
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 230, 150, 40));
 
         jLabel5.setText("Category:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        secondHandProductsListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Name", "Brand", "Quality", "Quantity"
+                "Product ID", "Name", "Brand", "Type", "Quality", "Quantity"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel4))
-                                .addGap(10, 10, 10)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField4)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField3)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(585, 585, 585)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton1)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton2))))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(33, 33, 33))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2))
-                .addGap(151, 151, 151))
-        );
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(secondHandProductsListTable);
+        secondHandProductsListTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        secondHandProductsListTable.getColumnModel().getColumn(0).setMinWidth(0);
+        secondHandProductsListTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 1010, 340));
+
+        jButton1.setText("Edit Item");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 660, -1, -1));
+
+        jButton3.setText("Delete Item");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 660, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
+        jLabel6.setText("Secondhand  & Trade In");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    static String host = "jdbc:mysql://localhost:3306/inventory";
+    static String uName = "root";
+    static String uPass = "";
+    
+    private void itemNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNameInputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_itemNameInputActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void descriptionInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descriptionInputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_descriptionInputActionPerformed
 
+    private void categoryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryComboBoxActionPerformed
+
+    }//GEN-LAST:event_categoryComboBoxActionPerformed
+
+    private void addToItemListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToItemListButtonActionPerformed
+        PreparedStatement insertStatement = null;
+        PreparedStatement selectStatement = null;
+            try{
+            Connection con = DriverManager.getConnection(host,uName, uPass);
+
+            String typeName = categoryComboBox.getSelectedItem().toString();
+            
+            Statement stmt = con.createStatement( );
+            
+            String typeSelectString = "SELECT type_id FROM type WHERE type_name = ? LIMIT 1";
+            selectStatement = con.prepareStatement(typeSelectString);
+            
+            selectStatement.setString(1,typeName);
+            ResultSet rs = selectStatement.executeQuery();
+        
+            rs.next();
+            String typeID = rs.getString(1);
+
+            String insertString = "INSERT INTO secondhand ( used_item_name, used_item_brand, used_item_quality, used_item_quantity, used_item_type) VALUES(?,?,?,?,?)";
+            insertStatement = con.prepareStatement(insertString);
+
+            insertStatement.setString(1, itemNameInput.getText());
+            insertStatement.setString(2, descriptionInput.getText());
+            insertStatement.setString(3, qualityInput.getText());
+            insertStatement.setString(4, quantityInput.getText());
+            insertStatement.setString(5, typeID);
+            insertStatement.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, itemNameInput.getText() + " added to Secondhand Products list.");
+            itemNameInput.setText("");
+            descriptionInput.setText("");
+            qualityInput.setText("");
+            quantityInput.setText("");
+            
+            Main.updateSecondHandList();
+            }
+            catch ( SQLException err ){
+                System.out.println( err.getMessage ());
+                System.out.print("FAIL");
+            }
+    }//GEN-LAST:event_addToItemListButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private static void deleteAllRows(final JTable table) {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        for(int row =0; row < model.getRowCount(); ) {
+            model.removeRow(0);
+        
+        }
+    }
+    
+    public static void updateCategoryComboBox(){
+            categoryComboBox.removeAllItems();
+            PreparedStatement selectStatement = null;
+            try{
+            Connection con = DriverManager.getConnection(host,uName, uPass);
+            String selectString = "SELECT type_name FROM type ORDER By 1 ASC";
+            selectStatement = con.prepareStatement(selectString);
+            ResultSet rs = selectStatement.executeQuery();
+            categoryComboBox.addItem("--Choose Category--");
+                while(rs.next()){
+                    String categoryName = rs.getString(1);
+
+                    categoryComboBox.addItem(categoryName);
+                }
+
+            }
+            catch ( SQLException err ){
+                System.out.println( err.getMessage ());
+                System.out.print("FAIL");
+            }
+    }
+    
+    protected static void updateSecondHandProductsListTable(){
+        deleteAllRows(secondHandProductsListTable);
+        DefaultTableModel model = (DefaultTableModel) secondHandProductsListTable.getModel();
+        System.out.print(Main.secondHandList);
+        for(SecondHandProduct product: Main.secondHandList){
+            model.addRow(new Object[]{product.getProductID(), product.getName(), product.getDescription(), product.getTypeName(),product.getQuality(), product.getPhysicalCount()});
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addToItemListButton;
+    private static javax.swing.JComboBox categoryComboBox;
+    private javax.swing.JTextField descriptionInput;
+    private javax.swing.JTextField itemNameInput;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField qualityInput;
+    private javax.swing.JTextField quantityInput;
+    private static javax.swing.JTable secondHandProductsListTable;
     // End of variables declaration//GEN-END:variables
 }

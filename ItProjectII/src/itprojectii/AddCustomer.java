@@ -302,9 +302,6 @@ public class AddCustomer extends javax.swing.JPanel {
     }//GEN-LAST:event_addCustomerButtonActionPerformed
 
     private void editCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCustomerButtonActionPerformed
-    
-        
-        
         PreparedStatement selectStatement = null;
         try{
         
