@@ -103,10 +103,10 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
                 addToItemListButtonActionPerformed(evt);
             }
         });
-        add(addToItemListButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 200, 40));
+        add(addToItemListButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 240, 40));
 
         jButton2.setText("Trade/Swap Item");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 230, 150, 40));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 230, 160, 40));
 
         jLabel5.setText("Category:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
