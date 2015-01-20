@@ -82,6 +82,7 @@ public class Main extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("main"));
         jPanel1.setPreferredSize(new java.awt.Dimension(1024, 768));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -90,6 +91,7 @@ public class Main extends javax.swing.JFrame {
         jButton1.setContentAreaFilled(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 114, -1, -1));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/delivery.png"))); // NOI18N
         jButton2.setBorderPainted(false);
@@ -100,6 +102,7 @@ public class Main extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 114, 105, 92));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/report.png"))); // NOI18N
         jButton3.setBorderPainted(false);
@@ -110,6 +113,7 @@ public class Main extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 212, 112, -1));
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/tradein.png"))); // NOI18N
         jButton4.setBorderPainted(false);
@@ -120,6 +124,7 @@ public class Main extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 301, 112, -1));
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/warranty-2.png"))); // NOI18N
         jButton5.setBorderPainted(false);
@@ -130,6 +135,7 @@ public class Main extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 390, 112, -1));
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/transfer.png"))); // NOI18N
         jButton7.setBorderPainted(false);
@@ -140,6 +146,7 @@ public class Main extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 479, 112, -1));
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/admin.png"))); // NOI18N
         jButton8.setBorderPainted(false);
@@ -150,6 +157,7 @@ public class Main extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 568, 112, -1));
 
         jButton16.setIcon(new javax.swing.ImageIcon("C:\\Users\\Belthazod\\Documents\\NetBeansProjects\\ItProjectII\\src\\UI ICONS\\NEW ICONS\\home-o.png")); // NOI18N
         jButton16.setBorderPainted(false);
@@ -161,6 +169,7 @@ public class Main extends javax.swing.JFrame {
                 jButton16ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 16, 105, 92));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -246,7 +255,7 @@ public class Main extends javax.swing.JFrame {
         inventoryTable.getColumnModel().getColumn(0).setMinWidth(0);
         inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 
-        inventoryPanel.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 1021, 480));
+        inventoryPanel.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 1021, 390));
 
         jButton14.setText("Add To Cart");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
@@ -254,10 +263,10 @@ public class Main extends javax.swing.JFrame {
                 jButton14ActionPerformed(evt);
             }
         });
-        inventoryPanel.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 590, -1, 56));
+        inventoryPanel.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 500, -1, 56));
 
         jButton15.setText("Buy");
-        inventoryPanel.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 590, 65, 56));
+        inventoryPanel.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 500, 65, 56));
 
         jLabel3.setText("Category:");
         inventoryPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
@@ -283,53 +292,9 @@ public class Main extends javax.swing.JFrame {
         cardWindow.add(transfer1, "transferCard");
         cardWindow.add(warranty2, "warrantyCard");
 
-        jPanel4.add(cardWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 60, 1100, 630));
+        jPanel4.add(cardWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 60, 1100, 590));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1134, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 24, Short.MAX_VALUE))
-        );
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 16, 1134, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -339,11 +304,12 @@ public class Main extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
         );
 
         updateProductsList();
         updateSecondHandList();
+        AddProduct.updateCategoryTable();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -529,7 +495,7 @@ public class Main extends javax.swing.JFrame {
             System.out.print("FAIL");
         }
     }
-    public void updateCategoryComboBox(){
+    public static void updateCategoryComboBox(){
             productFilterComboBox.removeAllItems();
             PreparedStatement selectStatement = null;
             try{
@@ -621,7 +587,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JComboBox productFilterComboBox;
+    private static javax.swing.JComboBox productFilterComboBox;
     private itprojectii.Reports reports1;
     private itprojectii.SecondhandTradeIn secondhandTradeIn1;
     private itprojectii.Transfer transfer1;

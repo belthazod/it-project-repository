@@ -97,7 +97,7 @@ public class Admin extends javax.swing.JPanel {
         adminCards.add(addSupplier1, "addSupplierCard");
         adminCards.add(addProduct1, "addProductCard");
 
-        add(adminCards, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 87, 821, 613));
+        add(adminCards, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 87, 821, 500));
 
         jLabel1.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
         jLabel1.setText("Admin Panel");
