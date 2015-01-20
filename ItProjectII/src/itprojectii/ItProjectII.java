@@ -18,6 +18,7 @@ public class ItProjectII {
         UserLogIn main = new UserLogIn();
         main.setVisible(true);
         main.setTitle("Ocampo's Battery Trading and Autosupply Inventory System");
+        main.setLocationRelativeTo(null);
         
         
 //        Main main = new Main();

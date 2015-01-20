@@ -122,10 +122,10 @@ public class Delivery extends javax.swing.JPanel {
         deliveryTable.getColumnModel().getColumn(0).setPreferredWidth(0);
         deliveryTable.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, 480, 290));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, 480, 290));
 
         jLabel2.setText("Delivery Summary (Items Received)");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 150, -1, -1));
 
         jLabel3.setText("Products List");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
@@ -136,7 +136,7 @@ public class Delivery extends javax.swing.JPanel {
                 removeFromListButtonActionPerformed(evt);
             }
         });
-        add(removeFromListButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 470, -1, -1));
+        add(removeFromListButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 470, -1, -1));
 
         jButton3.setText("Save Delivery");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -144,7 +144,7 @@ public class Delivery extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 520, 200, 50));
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 510, 200, 50));
 
         jButton2.setText("Add To List");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -152,7 +152,7 @@ public class Delivery extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, 90, 50));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, 110, 50));
 
         supplierComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         supplierComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +164,7 @@ public class Delivery extends javax.swing.JPanel {
         updateSupplierComboBox();
 
         jLabel4.setText("Supplier:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 480, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 480, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     String host = "jdbc:mysql://localhost:3306/inventory";

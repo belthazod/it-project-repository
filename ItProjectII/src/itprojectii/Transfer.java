@@ -77,7 +77,7 @@ public class Transfer extends javax.swing.JPanel {
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, -1, -1));
 
         jLabel2.setText("Transfer To:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 490, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 490, -1, -1));
 
         transferFromComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Main", "Marcos", "Trinidad", "Pacdal" }));
         transferFromComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +93,7 @@ public class Transfer extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 530, 190, 50));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 520, 190, 50));
 
         jLabel4.setText("Category:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
@@ -128,7 +128,7 @@ public class Transfer extends javax.swing.JPanel {
         truckTable.getColumnModel().getColumn(1).setPreferredWidth(0);
         truckTable.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 200, 400, 280));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 200, 400, 280));
 
         AddToTruckButton.setText("Add to truck");
         AddToTruckButton.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +136,7 @@ public class Transfer extends javax.swing.JPanel {
                 AddToTruckButtonActionPerformed(evt);
             }
         });
-        add(AddToTruckButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 280, -1, -1));
+        add(AddToTruckButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, -1, 50));
 
         transferTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -162,7 +162,7 @@ public class Transfer extends javax.swing.JPanel {
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, 370));
 
         transferToComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Marcos", "Trinidad", "Pacdal", "Main" }));
-        add(transferToComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 490, -1, -1));
+        add(transferToComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 490, -1, -1));
 
         removeItemButton.setText("Remove Item");
         removeItemButton.addActionListener(new java.awt.event.ActionListener() {
@@ -170,7 +170,7 @@ public class Transfer extends javax.swing.JPanel {
                 removeItemButtonActionPerformed(evt);
             }
         });
-        add(removeItemButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 490, -1, -1));
+        add(removeItemButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 490, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
         jLabel3.setText("Product Transfer");

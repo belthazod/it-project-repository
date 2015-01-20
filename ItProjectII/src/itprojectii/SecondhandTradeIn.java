@@ -106,6 +106,11 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         add(addToItemListButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 240, 40));
 
         jButton2.setText("Trade/Swap Item");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 230, 160, 40));
 
         jLabel5.setText("Category:");
@@ -139,7 +144,7 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         secondHandProductsListTable.getColumnModel().getColumn(0).setMinWidth(0);
         secondHandProductsListTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 1010, 340));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 1070, 240));
 
         jButton1.setText("Edit Item");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +152,7 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 660, -1, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 540, -1, -1));
 
         jButton3.setText("Delete Item");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +160,7 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 660, -1, -1));
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 540, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
         jLabel6.setText("Secondhand  & Trade In");
@@ -227,6 +232,10 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private static void deleteAllRows(final JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();

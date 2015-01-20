@@ -51,7 +51,7 @@ public class Warranty extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Items Returned Under Warranty");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -72,11 +72,11 @@ public class Warranty extends javax.swing.JPanel {
         ));
         jScrollPane3.setViewportView(jTable3);
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 1000, 200));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 1000, 190));
 
         jLabel3.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
         jLabel3.setText("Warranty");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, -1, -1));
 
         productsListWarrantyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -99,7 +99,7 @@ public class Warranty extends javax.swing.JPanel {
         productsListWarrantyTable.getColumnModel().getColumn(0).setMinWidth(0);
         productsListWarrantyTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 450, 170));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 450, 150));
 
         jLabel4.setText("Product Returned:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
@@ -125,7 +125,7 @@ public class Warranty extends javax.swing.JPanel {
         add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 90, 230, -1));
 
         jButton1.setText("Return Item");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, 190, 40));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, 190, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void serialNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serialNumberActionPerformed

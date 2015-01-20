@@ -7,6 +7,9 @@ package itprojectii;
 
 import BEANS.Product;
 import static itprojectii.AddCustomer.contactNumberEditInput;
+import static itprojectii.Main.host;
+import static itprojectii.Main.uName;
+import static itprojectii.Main.uPass;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -82,6 +85,15 @@ public class AddProduct extends javax.swing.JPanel {
         adminProductsTable = new javax.swing.JTable();
         editProductButton = new javax.swing.JButton();
         deleteProductButton = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        categoryTable = new javax.swing.JTable();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        categoryNameInput = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         editProductDialog.setBounds(new java.awt.Rectangle(0, 0, 600, 500));
         editProductDialog.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -278,11 +290,69 @@ public class AddProduct extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Edit Product", jPanel2);
 
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        categoryTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "type_id", "Category Name"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(categoryTable);
+        categoryTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        categoryTable.getColumnModel().getColumn(0).setMinWidth(0);
+        categoryTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 600, 230));
+
+        jLabel14.setText("Category List");
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+
+        jLabel16.setText("Category Name:");
+        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+        jPanel3.add(categoryNameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 500, -1));
+
+        jButton2.setText("Edit Category");
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, -1));
+
+        jButton4.setText("Delete Category");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, -1, -1));
+
+        jButton5.setText("Add to Category List");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, -1, -1));
+
+        jTabbedPane1.addTab("Add/Edit Category", jPanel3);
+
         add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 590));
     }// </editor-fold>//GEN-END:initComponents
-    String host = "jdbc:mysql://localhost:3306/inventory";
-    String uName = "root";
-    String uPass = "";
+
     ButtonGroup reorderQuantityLevelGroup = new ButtonGroup();
     private void productNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productNameInputActionPerformed
         // TODO add your handling code here:
@@ -341,7 +411,7 @@ public class AddProduct extends javax.swing.JPanel {
             
             
             insertStatement.setString(1, typeID);
-            insertStatement.setString(2,productNameInput.getText());
+            insertStatement.setString(2, productNameInput.getText());
             insertStatement.setString(3, productDescriptionInput.getText());
             insertStatement.setString(4, supplierID);
             insertStatement.setString(5, unitInput.getText());
@@ -424,6 +494,75 @@ public class AddProduct extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        PreparedStatement insertStatement = null;
+        PreparedStatement selectStatement = null;
+            try{
+            Connection con = DriverManager.getConnection(host,uName, uPass);
+ 
+            String insertString = "INSERT INTO type ( type_name) VALUES(?)";
+            insertStatement = con.prepareStatement(insertString);
+            
+            insertStatement.setString(1, categoryNameInput.getText());
+            insertStatement.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, categoryNameInput.getText() + " added to Category list.");
+            categoryNameInput.setText("");
+
+            updateCategoryTable();
+            }
+            catch ( SQLException err ){
+                System.out.println( err.getMessage ());
+                System.out.print("FAIL");
+            }
+        
+    
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        PreparedStatement selectStatement = null;
+        try{
+        Connection con = DriverManager.getConnection(host,uName, uPass);
+        
+        String selectString = "SELECT type_name FROM type WHERE type_id = ? LIMIT 1";
+        selectStatement = con.prepareStatement(selectString);
+        String selectedRow = (String) categoryTable.getValueAt(categoryTable.getSelectedRow(),0);
+        selectStatement.setString(1,selectedRow);
+        ResultSet rs = selectStatement.executeQuery();
+        
+            while(rs.next()){
+                String customerName = rs.getString(1);
+                
+                PreparedStatement deleteStatement = null;
+                try{
+                    int reply = JOptionPane.showConfirmDialog(
+                    null,
+                    "Are you sure of deleting " + customerName + " from the Category List?" ,
+                    "Warning message",
+                    JOptionPane.YES_NO_OPTION);
+                    
+                    if(reply == JOptionPane.YES_OPTION){
+                        String deleteString = "DELETE FROM type WHERE type_id = ?";
+                        deleteStatement = con.prepareStatement(deleteString);
+                        deleteStatement.setString(1, selectedRow);
+                        deleteStatement.executeUpdate();
+                        updateCategoryTable();
+                    }
+                }
+                catch ( SQLException err ){
+                    System.out.println( err.getMessage ());
+                    System.out.print("FAIL");
+                }
+
+            }
+        
+        }
+        catch ( SQLException err ){
+            System.out.println( err.getMessage ());
+            System.out.print("FAIL");
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
     private static void deleteAllRows(final JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         for(int row =0; row < model.getRowCount(); ) {
@@ -467,7 +606,7 @@ public class AddProduct extends javax.swing.JPanel {
             }
     }
     
-    public void updateCategoryComboBox(){
+    public static void updateCategoryComboBox(){
             categoryComboBox.removeAllItems();
             PreparedStatement selectStatement = null;
             try{
@@ -488,25 +627,59 @@ public class AddProduct extends javax.swing.JPanel {
                 System.out.print("FAIL");
             }
     }
+    protected static void updateCategoryTable(){
+        
+        PreparedStatement selectStatement = null;
+        DefaultTableModel model = (DefaultTableModel) categoryTable.getModel();
+        deleteAllRows(categoryTable);
+       
+        try{
+            Connection con = DriverManager.getConnection(host,uName, uPass);
+            String selectString = "SELECT type_id, type_name FROM type ORDER By 1 ASC";
+            selectStatement = con.prepareStatement(selectString);
+            ResultSet rs = selectStatement.executeQuery();
+                while(rs.next()){
+                    String typeID = rs.getString(1);
+                    String typeName = rs.getString(2);
+
+                    model.addRow(new Object[]{typeID, typeName});
+                }
+            Main.updateCategoryComboBox();
+            updateCategoryComboBox();
+            }
+            catch ( SQLException err ){
+                System.out.println( err.getMessage ());
+                System.out.print("FAIL");
+            }
+        
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddProductButton;
     private static javax.swing.JTable adminProductsTable;
-    private javax.swing.JComboBox categoryComboBox;
+    private static javax.swing.JComboBox categoryComboBox;
     private javax.swing.JComboBox categoryEditComboBox;
+    private javax.swing.JTextField categoryNameInput;
+    private static javax.swing.JTable categoryTable;
     private javax.swing.JButton deleteProductButton;
     private javax.swing.JTextField descriptionEditInput;
     private javax.swing.JButton editProductButton;
     private javax.swing.JDialog editProductDialog;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -517,9 +690,11 @@ public class AddProduct extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField productDescriptionInput;
