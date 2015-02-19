@@ -159,7 +159,7 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 568, 112, -1));
 
-        jButton16.setIcon(new javax.swing.ImageIcon("C:\\Users\\Belthazod\\Documents\\NetBeansProjects\\ItProjectII\\src\\UI ICONS\\NEW ICONS\\home-o.png")); // NOI18N
+        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/NEW ICONS/home-o.png"))); // NOI18N
         jButton16.setBorderPainted(false);
         jButton16.setContentAreaFilled(false);
         jButton16.setPreferredSize(new java.awt.Dimension(100, 83));
