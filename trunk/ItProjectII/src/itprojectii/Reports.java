@@ -109,7 +109,12 @@ public class Reports extends javax.swing.JPanel {
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Month" }));
         add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, -1, -1));
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date" }));
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Day" }));
+        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox5ActionPerformed(evt);
+            }
+        });
         add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, -1, -1));
 
         jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Year" }));
@@ -123,6 +128,10 @@ public class Reports extends javax.swing.JPanel {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
