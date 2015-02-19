@@ -31,48 +31,13 @@ public class Warranty extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         productsListWarrantyTable = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        serialNumber = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(814, 592));
         setPreferredSize(new java.awt.Dimension(814, 592));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setText("Items Returned Under Warranty");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
-
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Name", "Warranty Date", "End Date", "Return Date", "Serial No.", "Customer"
-            }
-        ));
-        jScrollPane3.setViewportView(jTable3);
-
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 1000, 190));
 
         jLabel3.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
         jLabel3.setText("Warranty");
@@ -83,7 +48,7 @@ public class Warranty extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Product ID", "Name", "Brand", "Category", "Quantity"
+                "Product ID", "Name", "Brand", "Category", "Serial No."
             }
         ) {
             Class[] types = new Class [] {
@@ -99,38 +64,8 @@ public class Warranty extends javax.swing.JPanel {
         productsListWarrantyTable.getColumnModel().getColumn(0).setMinWidth(0);
         productsListWarrantyTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 450, 150));
-
-        jLabel4.setText("Product Returned:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
-
-        jLabel5.setText("Warranty Date:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, -1, -1));
-
-        jLabel7.setText("End Date:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 140, -1, -1));
-
-        jLabel8.setText("Serial Number:");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
-
-        serialNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                serialNumberActionPerformed(evt);
-            }
-        });
-        add(serialNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 220, -1));
-
-        jLabel1.setText("Warranty Type:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, -1, -1));
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 90, 230, -1));
-
-        jButton1.setText("Return Item");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, 190, 40));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 970, 500));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void serialNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serialNumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_serialNumberActionPerformed
     private static void deleteAllRows(final JTable table) {
         
         DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -150,19 +85,8 @@ public class Warranty extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTextField jTextField1;
     private static javax.swing.JTable productsListWarrantyTable;
-    private javax.swing.JTextField serialNumber;
     // End of variables declaration//GEN-END:variables
 }
