@@ -6,6 +6,7 @@
 package itprojectii;
 
 
+import CONTROLLERS.CustomerController;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,7 +25,7 @@ import javax.swing.table.TableColumn;
  * @author weak_2030
  */
 public class AddCustomer extends javax.swing.JPanel {
-
+    CustomerController customerController; 
     /**
      * Creates new form AddCustomer
      */
@@ -212,6 +213,7 @@ public class AddCustomer extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        customerController = new CustomerController(customerListTable);
         updateCustomerList();
         jScrollPane1.setViewportView(customerListTable);
         customerListTable.getColumnModel().getColumn(0).setMaxWidth(0);
@@ -264,41 +266,77 @@ public class AddCustomer extends javax.swing.JPanel {
         }
     }
     private void addCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerButtonActionPerformed
-        if(customerNameInput.getText().equals("")){
-            JOptionPane.showMessageDialog(null,
-                "Customer Name cannot be empty",
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
-        }else{
-            PreparedStatement insertStatement = null;
-            try{
-
-            String host = "jdbc:mysql://localhost:3306/inventory";
-            String uName = "root";
-            String uPass = "";
-
-
-            Connection con = DriverManager.getConnection(host,uName, uPass);
-
-            Statement stmt = con.createStatement( );
-
-            String insertString = "INSERT INTO customer (customer_name, customer_contact) VALUES(?,?)";
-            insertStatement = con.prepareStatement(insertString);
-
-            insertStatement.setString(1,customerNameInput.getText());
-            insertStatement.setString(2, contactNumberInput.getText());
-            insertStatement.executeUpdate();
-
-            JOptionPane.showMessageDialog(null, customerNameInput.getText() + " saved to Customers list.");
-            customerNameInput.setText("");
-            contactNumberInput.setText("");
-            updateCustomerList();
-            }
-            catch ( SQLException err ){
-                System.out.println( err.getMessage ());
-                System.out.print("FAIL");
-            }
-        }
+        customerController.addCustomer(customerNameInput, contactNumberInput);
+        updateCustomerList();
+//        f(customerNameInput.getText().equals("")){
+//            JOptionPane.showMessageDialog(null,
+//                "Customer Name cannot be empty",
+//                "Error",
+//                JOptionPane.ERROR_MESSAGE);
+//        }else{
+//            PreparedStatement insertStatement = null;
+//            try{
+//
+//            String host = "jdbc:mysql://localhost:3306/inventory";
+//            String uName = "root";
+//            String uPass = "";
+//
+//
+//            Connection con = DriverManager.getConnection(host,uName, uPass);
+//
+//            Statement stmt = con.createStatement( );
+//
+//            String insertString = "INSERT INTO customer (customer_name, customer_contact) VALUES(?,?)";
+//            insertStatement = con.prepareStatement(insertString);
+//
+//            insertStatement.setString(1,customerNameInput.getText());
+//            insertStatement.setString(2, contactNumberInput.getText());
+//            insertStatement.executeUpdate();
+//
+//            JOptionPane.showMessageDialog(null, customerNameInput.getText() + " saved to Customers list.");
+//            customerNameInput.setText("");
+//            contactNumberInput.setText("");
+//            updateCustomerList();
+//            }
+//            catch ( SQLException err ){
+//                System.out.println( err.getMessage ());
+//                System.out.print("FAIL");
+//            }
+//        }if(customerNameInput.getText().equals("")){
+//            JOptionPane.showMessageDialog(null,
+//                "Customer Name cannot be empty",
+//                "Error",
+//                JOptionPane.ERROR_MESSAGE);
+//        }else{
+//            PreparedStatement insertStatement = null;
+//            try{
+//
+//            String host = "jdbc:mysql://localhost:3306/inventory";
+//            String uName = "root";
+//            String uPass = "";
+//
+//
+//            Connection con = DriverManager.getConnection(host,uName, uPass);
+//
+//            Statement stmt = con.createStatement( );
+//
+//            String insertString = "INSERT INTO customer (customer_name, customer_contact) VALUES(?,?)";
+//            insertStatement = con.prepareStatement(insertString);
+//
+//            insertStatement.setString(1,customerNameInput.getText());
+//            insertStatement.setString(2, contactNumberInput.getText());
+//            insertStatement.executeUpdate();
+//
+//            JOptionPane.showMessageDialog(null, customerNameInput.getText() + " saved to Customers list.");
+//            customerNameInput.setText("");
+//            contactNumberInput.setText("");
+//            updateCustomerList();
+//            }
+//            catch ( SQLException err ){
+//                System.out.println( err.getMessage ());
+//                System.out.print("FAIL");
+//            }
+//        }
     }//GEN-LAST:event_addCustomerButtonActionPerformed
 
     private void editCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCustomerButtonActionPerformed

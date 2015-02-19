@@ -17,9 +17,10 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 /**
  *
- * @author weak_2030
+ * @author Belthazod
  */
 public class Main extends javax.swing.JFrame {
+    CardLayout card;
 
     /**
      * Creates new form main
@@ -27,7 +28,6 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
     }
-    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -232,14 +232,14 @@ public class Main extends javax.swing.JFrame {
 
             },
             new String [] {
-                "product_id", "Name", "Description", "Category", "Unit", "Supplier", "Quantity", "Reorder Quantity Level"
+                "product_id", "Name", "Description", "Category", "Unit", "Supplier", "Quantity", "Reorder Quantity Level", "SecondHand"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -293,6 +293,7 @@ public class Main extends javax.swing.JFrame {
         cardWindow.add(warranty2, "warrantyCard");
 
         jPanel4.add(cardWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 60, 1100, 590));
+        card = (CardLayout)cardWindow.getLayout();
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 16, 1134, -1));
 
@@ -324,37 +325,37 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
 
-        CardLayout card = (CardLayout)cardWindow.getLayout();
+
         card.show(cardWindow, "inventoryCard");
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        CardLayout card = (CardLayout)cardWindow.getLayout();
+
         card.show(cardWindow, "adminCard");
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        CardLayout card = (CardLayout)cardWindow.getLayout();
+
         card.show(cardWindow, "transferCard");
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        CardLayout card = (CardLayout)cardWindow.getLayout();
+
         card.show(cardWindow, "warrantyCard");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        CardLayout card = (CardLayout)cardWindow.getLayout();
+
         card.show(cardWindow, "secondHandTradeInCard");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        CardLayout card = (CardLayout)cardWindow.getLayout();
+
         card.show(cardWindow, "reportsCard");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        CardLayout card = (CardLayout)cardWindow.getLayout();
+        
         card.show(cardWindow, "deliveryCard");
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -380,27 +381,8 @@ public class Main extends javax.swing.JFrame {
         static String uPass = "";
         static ArrayList<Product> productList = new ArrayList<Product>();
         static ArrayList<SecondHandProduct> secondHandList = new ArrayList<SecondHandProduct>();                                    
-                                    
-/*
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        CardLayout card = (CardLayout)cardWindow.getLayout();
-        card.show(cardWindow, "transferCard");
-    }                                        
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        CardLayout card = (CardLayout)cardWindow.getLayout();
-        card.show(cardWindow, "warrantyCard");
-    }                                        
-                                   
-
-    
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        CardLayout card = (CardLayout)cardWindow.getLayout();
-        card.show(cardWindow, "adminCard");
-    }
-  */      
-
-    public static void deleteAllRows() {
+        public static void deleteAllRows() {
         DefaultTableModel model = (DefaultTableModel) inventoryTable.getModel();
         for(int row =0; row < model.getRowCount(); ) {
             model.removeRow(0);
