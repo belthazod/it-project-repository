@@ -8,21 +8,12 @@ package itprojectii;
 
 import CONTROLLERS.CustomerController;
 import java.awt.event.KeyEvent;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.TableColumn;
 
 /**
  *
- * @author weak_2030
+ * @author Belthazod
  */
 public class AddCustomer extends javax.swing.JPanel {
     CustomerController customerController; 
@@ -214,7 +205,7 @@ public class AddCustomer extends javax.swing.JPanel {
             }
         });
         customerController = new CustomerController(customerListTable);
-        updateCustomerList();
+        customerController.updateTableContents();
         jScrollPane1.setViewportView(customerListTable);
         customerListTable.getColumnModel().getColumn(0).setMaxWidth(0);
         customerListTable.getColumnModel().getColumn(0).setMinWidth(0);
@@ -257,170 +248,29 @@ public class AddCustomer extends javax.swing.JPanel {
     private void customerNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerNameInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_customerNameInputActionPerformed
-    private boolean checkInputsIfNull(JTextField input){
-        if(input.getText().equals("")){
-            return false;
-        }
-        else{
-            return true;
-        }
-    }
+
     private void addCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerButtonActionPerformed
         customerController.addCustomer(customerNameInput, contactNumberInput);
-        updateCustomerList();
-//        f(customerNameInput.getText().equals("")){
-//            JOptionPane.showMessageDialog(null,
-//                "Customer Name cannot be empty",
-//                "Error",
-//                JOptionPane.ERROR_MESSAGE);
-//        }else{
-//            PreparedStatement insertStatement = null;
-//            try{
-//
-//            String host = "jdbc:mysql://localhost:3306/inventory";
-//            String uName = "root";
-//            String uPass = "";
-//
-//
-//            Connection con = DriverManager.getConnection(host,uName, uPass);
-//
-//            Statement stmt = con.createStatement( );
-//
-//            String insertString = "INSERT INTO customer (customer_name, customer_contact) VALUES(?,?)";
-//            insertStatement = con.prepareStatement(insertString);
-//
-//            insertStatement.setString(1,customerNameInput.getText());
-//            insertStatement.setString(2, contactNumberInput.getText());
-//            insertStatement.executeUpdate();
-//
-//            JOptionPane.showMessageDialog(null, customerNameInput.getText() + " saved to Customers list.");
-//            customerNameInput.setText("");
-//            contactNumberInput.setText("");
-//            updateCustomerList();
-//            }
-//            catch ( SQLException err ){
-//                System.out.println( err.getMessage ());
-//                System.out.print("FAIL");
-//            }
-//        }if(customerNameInput.getText().equals("")){
-//            JOptionPane.showMessageDialog(null,
-//                "Customer Name cannot be empty",
-//                "Error",
-//                JOptionPane.ERROR_MESSAGE);
-//        }else{
-//            PreparedStatement insertStatement = null;
-//            try{
-//
-//            String host = "jdbc:mysql://localhost:3306/inventory";
-//            String uName = "root";
-//            String uPass = "";
-//
-//
-//            Connection con = DriverManager.getConnection(host,uName, uPass);
-//
-//            Statement stmt = con.createStatement( );
-//
-//            String insertString = "INSERT INTO customer (customer_name, customer_contact) VALUES(?,?)";
-//            insertStatement = con.prepareStatement(insertString);
-//
-//            insertStatement.setString(1,customerNameInput.getText());
-//            insertStatement.setString(2, contactNumberInput.getText());
-//            insertStatement.executeUpdate();
-//
-//            JOptionPane.showMessageDialog(null, customerNameInput.getText() + " saved to Customers list.");
-//            customerNameInput.setText("");
-//            contactNumberInput.setText("");
-//            updateCustomerList();
-//            }
-//            catch ( SQLException err ){
-//                System.out.println( err.getMessage ());
-//                System.out.print("FAIL");
-//            }
-//        }
+        customerController.updateTableContents();
+        
     }//GEN-LAST:event_addCustomerButtonActionPerformed
 
     private void editCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCustomerButtonActionPerformed
-        PreparedStatement selectStatement = null;
-        try{
-        
-        String host = "jdbc:mysql://localhost:3306/inventory";
-        String uName = "root";
-        String uPass = "";
-        
-        
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        
-        String selectString = "SELECT customer_name, customer_contact FROM customer WHERE customer_id = ?";
-        selectStatement = con.prepareStatement(selectString);
         Integer selectedRow = customerListTable.getSelectedRow();
         String result = (String) customerListTable.getModel().getValueAt(selectedRow, 0);
-        selectStatement.setString(1,result);
-        ResultSet rs = selectStatement.executeQuery();
-        
-            while(rs.next()){
-                String customerName = rs.getString(1);
-                String customerContact = rs.getString(2);
-                
-                customerNameEditInput.setText(customerName);
-                contactNumberEditInput.setText(customerContact);
-            }
-            customerIDEditInput.setText(result);
-        editCustomerDialog.setVisible(true);
-        }
-        catch ( SQLException err ){
-            System.out.println( err.getMessage ());
-            System.out.print("FAIL");
+        JTextField[] inputs = {customerNameEditInput, contactNumberEditInput};
+        if(customerController.openEditDialog(result, inputs, customerIDEditInput)){
+            editCustomerDialog.setVisible(true);
         }
     }//GEN-LAST:event_editCustomerButtonActionPerformed
 
     private void deleteCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCustomerButtonActionPerformed
-        PreparedStatement selectStatement = null;
-        try{
+        Integer selectedRow = customerListTable.getSelectedRow();
+        String name = (String) customerListTable.getModel().getValueAt(selectedRow, 1);
+        int result = JOptionPane.showConfirmDialog(null, "Are you sure in deleting " + name + " from the Customer List","Warning!" ,JOptionPane.YES_NO_OPTION);
         
-        String host = "jdbc:mysql://localhost:3306/inventory";
-        String uName = "root";
-        String uPass = "";
-        
-        
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        
-        String selectString = "SELECT customer_name, customer_contact FROM customer WHERE customer_id = ? LIMIT 1";
-        selectStatement = con.prepareStatement(selectString);
-        String selectedRow = (String) customerListTable.getValueAt(customerListTable.getSelectedRow(),0);
-        selectStatement.setString(1,selectedRow);
-        ResultSet rs = selectStatement.executeQuery();
-        
-            while(rs.next()){
-                String customerName = rs.getString(1);
-                String customerContact = rs.getString(2);
-                
-                PreparedStatement deleteStatement = null;
-                try{
-                    int reply = JOptionPane.showConfirmDialog(
-                    null,
-                    "Are you sure of deleting " + customerName + " from the Customer List?" ,
-                    "Warning message",
-                    JOptionPane.YES_NO_OPTION);
-                    
-                    if(reply == JOptionPane.YES_OPTION){
-                        String deleteString = "DELETE FROM customer WHERE customer_id = ?";
-                        deleteStatement = con.prepareStatement(deleteString);
-                        deleteStatement.setString(1, selectedRow);
-                        deleteStatement.executeUpdate();
-                        updateCustomerList();
-                    }
-                }
-                catch ( SQLException err ){
-                    System.out.println( err.getMessage ());
-                    System.out.print("FAIL");
-                }
-
-            }
-        
-        }
-        catch ( SQLException err ){
-            System.out.println( err.getMessage ());
-            System.out.print("FAIL");
+        if(result == 0){
+            customerController.deleteSelectedCustomer();
         }
     }//GEN-LAST:event_deleteCustomerButtonActionPerformed
 
@@ -442,87 +292,15 @@ public class AddCustomer extends javax.swing.JPanel {
     }//GEN-LAST:event_customerNameEditInputActionPerformed
 
     private void saveEditedCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEditedCustomerButtonActionPerformed
-        if(customerNameEditInput.getText().equals("")){
-            JOptionPane.showMessageDialog(null,
-                "Customer Name cannot be empty",
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
-        }else{
-            PreparedStatement insertStatement = null;
-
-
-            try{
-
-                String host = "jdbc:mysql://localhost:3306/inventory";
-                String uName = "root";
-                String uPass = "";
-
-                Connection con = DriverManager.getConnection(host,uName, uPass);
-
-                Statement stmt = con.createStatement( );
-
-                String insertString = "UPDATE customer SET customer_name = ?, customer_contact = ? WHERE customer_id = ?";
-                insertStatement = con.prepareStatement(insertString);
-
-                insertStatement.setString(1, customerNameEditInput.getText());
-                insertStatement.setString(2, contactNumberEditInput.getText());
-                insertStatement.setString(3, customerIDEditInput.getText());
-                insertStatement.executeUpdate();
-
-                updateCustomerList();
-                editCustomerDialog.dispose();
-            }
-            catch ( SQLException err ){
-                System.out.println( err.getMessage ());
-                System.out.print("FAIL");
-            }
-        }
+        customerController.editCustomer(customerNameEditInput, contactNumberEditInput, customerIDEditInput.getText());
+        customerController.updateTableContents();
+        editCustomerDialog.dispose();
     }//GEN-LAST:event_saveEditedCustomerButtonActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         editCustomerDialog.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
-    private static void deleteAllRows(final JTable model) {
-        for(int row =0; row < model.getRowCount();  row++ ) {
-            for(int col = 0; col<3; col++){
-                
-                model.setValueAt(null, row, col );
-            }
-        }
-    }
-    private static void editCustomerList(){
-        String customerID = customerListTable.getValueAt(customerListTable.getSelectedRow(),0).toString();
-        
-    }
-    protected void updateCustomerList(){
-        try{
-        
-        String host = "jdbc:mysql://localhost:3306/inventory";
-        String uName = "root";
-        String uPass = "";
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        //customerListTable.addColumn(new TableColumn());
-        Statement stmt = con.createStatement( );
-        String SQL = "SELECT  customer_id, customer_name, customer_contact FROM customer;";
-        
-       
-        deleteAllRows(customerListTable);
-        ResultSet rs = stmt.executeQuery( SQL );
-        for(int row = 0; rs.next(); row++){
-            for(int col = 0; col<3; col++){
-            customerListTable.setValueAt(rs.getString(col+1), row, col );
-        }
-        }
-        //customerListTable.removeColumn(customerListTable.getColumnModel().getColumn(2));
-        
-        //JTable inventoryTable = new JTable(buildTableModel(rs));
-        
-        }
-        catch ( SQLException err ){
-            System.out.println( err.getMessage ());
-            System.out.print("FAIL");
-        }
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCustomerButton;
