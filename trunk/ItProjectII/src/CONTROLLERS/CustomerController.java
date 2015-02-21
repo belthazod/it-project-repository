@@ -5,8 +5,8 @@
  */
 package CONTROLLERS;
 
-import BEANS.DatabaseConnector;
-import BEANS.InputValidator;
+import UTIL.DatabaseConnector;
+import UTIL.InputValidator;
 import BEANS.TableManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,8 +23,6 @@ public class CustomerController {
     private final DatabaseConnector dbConnector = DatabaseConnector.getInstance();
     private TableManager customerTableManager;
     
-    public CustomerController() {
-    }
 
     public CustomerController(JTable table) {
         customerTableManager = new TableManager(table);
