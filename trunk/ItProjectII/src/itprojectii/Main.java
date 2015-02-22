@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Belthazod
  */
 public class Main extends javax.swing.JFrame {
+   
     CardLayout card;
 
     /**
@@ -38,6 +39,7 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton6 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -67,12 +69,20 @@ public class Main extends javax.swing.JFrame {
         jButton20 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         reports1 = new itprojectii.Reports();
+        returns1 = new itprojectii.Returns();
         secondhandTradeIn1 = new itprojectii.SecondhandTradeIn();
         createOrder1 = new itprojectii.CreateOrder();
         delivery1 = new itprojectii.Delivery();
         transfer1 = new itprojectii.Transfer();
         warranty2 = new itprojectii.Warranty();
-        admin1 = new itprojectii.Admin();
+        jButton9 = new javax.swing.JButton();
+
+        jButton6.setText("returns");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 102));
@@ -284,17 +294,25 @@ public class Main extends javax.swing.JFrame {
 
         cardWindow.add(inventoryPanel, "inventoryCard");
         cardWindow.add(reports1, "reportsCard");
+        cardWindow.add(returns1, "returnsCard");
         cardWindow.add(secondhandTradeIn1, "secondHandTradeInCard");
         cardWindow.add(createOrder1, "createOrderCard");
         cardWindow.add(delivery1, "deliveryCard");
         cardWindow.add(transfer1, "transferCard");
         cardWindow.add(warranty2, "warrantyCard");
-        cardWindow.add(admin1, "adminCard");
 
         jPanel4.add(cardWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 60, 1100, 590));
         card = (CardLayout)cardWindow.getLayout();
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 16, 1134, -1));
+
+        jButton9.setText("Returns");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 650, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -304,7 +322,7 @@ public class Main extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
         );
 
         pack();
@@ -371,6 +389,14 @@ public class Main extends javax.swing.JFrame {
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+         card.show(cardWindow, "returnsCard");
+    }//GEN-LAST:event_jButton9ActionPerformed
         static String host = "jdbc:mysql://localhost:3306/inventory";
         static String uName = "root";
         static String uPass = "";
@@ -532,7 +558,6 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private itprojectii.Admin admin1;
     private javax.swing.JPanel cardWindow;
     private itprojectii.CreateOrder createOrder1;
     private itprojectii.Delivery delivery1;
@@ -553,8 +578,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -564,6 +591,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private static javax.swing.JComboBox productFilterComboBox;
     private itprojectii.Reports reports1;
+    private itprojectii.Returns returns1;
     private itprojectii.SecondhandTradeIn secondhandTradeIn1;
     private itprojectii.Transfer transfer1;
     private itprojectii.Warranty warranty2;
