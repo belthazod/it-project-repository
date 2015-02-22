@@ -51,9 +51,6 @@
           <Dimension value="[1024, 768]"/>
         </Property>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="updateProductsList();&#xa;updateSecondHandList();&#xa;AddProduct.updateCategoryTable();"/>
-      </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
         <Property name="useNullLayout" type="boolean" value="false"/>
@@ -590,6 +587,13 @@
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="warrantyCard"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="itprojectii.Admin" name="admin1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="adminCard"/>
                     </Constraint>
                   </Constraints>
                 </Component>

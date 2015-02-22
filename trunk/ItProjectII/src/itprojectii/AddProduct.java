@@ -7,7 +7,6 @@ package itprojectii;
 
 import BEANS.Product;
 import CONTROLLERS.ProductController;
-import static itprojectii.AddCustomer.contactNumberEditInput;
 import static itprojectii.Main.host;
 import static itprojectii.Main.uName;
 import static itprojectii.Main.uPass;
@@ -16,7 +15,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -387,72 +385,7 @@ public class AddProduct extends javax.swing.JPanel {
             productController.addProduct(productNameInput, productDescriptionInput, quantityInput, unitInput, supplierComboBox, categoryComboBox, reorderQuantityLevelSpinner);    
             productController.updateTableContents();
         }
-        
-//        PreparedStatement insertStatement = null;
-//        PreparedStatement selectStatement = null;
-//            try{
-//
-//            String host = "jdbc:mysql://localhost:3306/inventory";
-//            String uName = "root";
-//            String uPass = "";
-//
-//
-//            Connection con = DriverManager.getConnection(host,uName, uPass);
-//
-//            String supplierName = supplierComboBox.getSelectedItem().toString();
-//            String typeName = categoryComboBox.getSelectedItem().toString();
-//            
-//            Statement stmt = con.createStatement( );
-//            
-//            String typeSelectString = "SELECT type_id FROM type WHERE type_name = ? LIMIT 1";
-//            selectStatement = con.prepareStatement(typeSelectString);
-//            
-//            selectStatement.setString(1,typeName);
-//            ResultSet rs = selectStatement.executeQuery();
-//        
-//            rs.next();
-//            String typeID = rs.getString(1);
-//            
-//            String supplierSelectString = "SELECT supplier_id FROM supplier WHERE supplier_name = ? LIMIT 1";
-//            selectStatement = con.prepareStatement(supplierSelectString);
-//            
-//            selectStatement.setString(1,supplierName);
-//            ResultSet result = selectStatement.executeQuery();
-//        
-//            result.next();
-//            String supplierID = result.getString(1);
-//            
-//            
-//
-//            String insertString = "INSERT INTO product ( type_id, name, description, supplier_id, unit, physical_count, reorder_quantity) VALUES(?,?,?,?,?,?,?)";
-//            insertStatement = con.prepareStatement(insertString);
-//            
-//            
-//            
-//            
-//            insertStatement.setString(1, typeID);
-//            insertStatement.setString(2, productNameInput.getText());
-//            insertStatement.setString(3, productDescriptionInput.getText());
-//            insertStatement.setString(4, supplierID);
-//            insertStatement.setString(5, unitInput.getText());
-//            insertStatement.setString(6, quantityInput.getText());
-//            insertStatement.setString(7, reorderQuantityLevelSpinner.getValue().toString());
-//            insertStatement.executeUpdate();
-//
-//            JOptionPane.showMessageDialog(null, productNameInput.getText() + " added to Product list.");
-//            productNameInput.setText("");
-//            productDescriptionInput.setText("");
-//            unitInput.setText("");
-//            quantityInput.setText("");
-//            
-//            Main.updateProductsList();
-//            }
-//            catch ( SQLException err ){
-//                System.out.println( err.getMessage ());
-//                System.out.print("FAIL");
-//            }
-//        
-//        
+ 
     }//GEN-LAST:event_AddProductButtonActionPerformed
 
     private void reorderLevelEnableRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reorderLevelEnableRadioButtonActionPerformed

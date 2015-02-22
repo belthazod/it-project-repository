@@ -72,6 +72,7 @@ public class Main extends javax.swing.JFrame {
         delivery1 = new itprojectii.Delivery();
         transfer1 = new itprojectii.Transfer();
         warranty2 = new itprojectii.Warranty();
+        admin1 = new itprojectii.Admin();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 102));
@@ -288,6 +289,7 @@ public class Main extends javax.swing.JFrame {
         cardWindow.add(delivery1, "deliveryCard");
         cardWindow.add(transfer1, "transferCard");
         cardWindow.add(warranty2, "warrantyCard");
+        cardWindow.add(admin1, "adminCard");
 
         jPanel4.add(cardWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 60, 1100, 590));
         card = (CardLayout)cardWindow.getLayout();
@@ -304,10 +306,6 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
         );
-
-        updateProductsList();
-        updateSecondHandList();
-        AddProduct.updateCategoryTable();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -434,7 +432,6 @@ public class Main extends javax.swing.JFrame {
             }
         Delivery.updateProductsListDeliveryTable();
         Transfer.updateTransferTable();
-        AddProduct.updateAdminProductsTable();
         Warranty.updateProductsListWarrantyTable();
         updateInventoryTable();
         
@@ -535,6 +532,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private itprojectii.Admin admin1;
     private javax.swing.JPanel cardWindow;
     private itprojectii.CreateOrder createOrder1;
     private itprojectii.Delivery delivery1;

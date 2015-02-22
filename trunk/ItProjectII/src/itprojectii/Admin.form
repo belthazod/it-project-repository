@@ -95,27 +95,24 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
       <SubComponents>
-        <Component class="itprojectii.AddCustomer" name="addCustomer1">
-          <AccessibilityProperties>
-            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
-          </AccessibilityProperties>
+        <Component class="itprojectii.AddCustomer" name="addCustomer2">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="addCustomerCard"/>
+              <CardConstraints cardName="customerCard"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="itprojectii.AddProduct" name="addProduct2">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="productCard"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="itprojectii.AddSupplier" name="addSupplier1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="addSupplierCard"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="itprojectii.AddProduct" name="addProduct1">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="addProductCard"/>
+              <CardConstraints cardName="supplierCard"/>
             </Constraint>
           </Constraints>
         </Component>
