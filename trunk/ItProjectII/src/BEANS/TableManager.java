@@ -7,6 +7,7 @@ package BEANS;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -43,4 +44,10 @@ public class TableManager {
         model.removeRow(table.getSelectedRow());
     }
     
+    public void addRowContent(String[] values){
+        model.addRow(new Vector());
+        for(int col = 0; col<model.getColumnCount(); col++){
+                model.setValueAt(values[col], model.getRowCount()-1, col);
+            }
+    }
 }
