@@ -6,6 +6,7 @@
 package itprojectii;
 
 import BEANS.Product;
+import CONTROLLERS.ProductController;
 import static itprojectii.AddCustomer.contactNumberEditInput;
 import static itprojectii.Main.host;
 import static itprojectii.Main.uName;
@@ -23,10 +24,10 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author weak_2030
+ * @author Belthazod
  */
 public class AddProduct extends javax.swing.JPanel {
-
+    ProductController productController;
     /**
      * Creates new form AddProduct
      */
@@ -60,6 +61,7 @@ public class AddProduct extends javax.swing.JPanel {
         jSpinner1 = new javax.swing.JSpinner();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        productIDEditInput = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -78,8 +80,8 @@ public class AddProduct extends javax.swing.JPanel {
         supplierComboBox = new javax.swing.JComboBox();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
         reorderQuantityLevelSpinner = new javax.swing.JSpinner();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        reorderLevelEnableRadioButton = new javax.swing.JRadioButton();
+        reorderLevelDisableRadioButton = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         adminProductsTable = new javax.swing.JTable();
@@ -139,7 +141,7 @@ public class AddProduct extends javax.swing.JPanel {
         quantityEditInput.setText("jLabel14");
         editProductDialog.getContentPane().add(quantityEditInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, -1, -1));
 
-        jLabel15.setText("reorder Quantity Level:");
+        jLabel15.setText("Reorder Quantity Level");
         editProductDialog.getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
         editProductDialog.getContentPane().add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 90, -1));
 
@@ -153,6 +155,9 @@ public class AddProduct extends javax.swing.JPanel {
             }
         });
         editProductDialog.getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, -1));
+
+        productIDEditInput.setText("jLabel17");
+        editProductDialog.getContentPane().add(productIDEditInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
 
         setMaximumSize(new java.awt.Dimension(814, 592));
         setPreferredSize(new java.awt.Dimension(814, 592));
@@ -172,6 +177,12 @@ public class AddProduct extends javax.swing.JPanel {
             }
         });
         jPanel1.add(productNameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 614, -1));
+
+        productDescriptionInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productDescriptionInputActionPerformed(evt);
+            }
+        });
         jPanel1.add(productDescriptionInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 614, -1));
 
         jLabel3.setText("Quantity:");
@@ -222,24 +233,24 @@ public class AddProduct extends javax.swing.JPanel {
         jPanel1.add(reorderQuantityLevelSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 60, 30));
         reorderQuantityLevelSpinner.setVisible(false);
 
-        jRadioButton1.setText("Enabled");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        reorderLevelEnableRadioButton.setText("Enabled");
+        reorderLevelEnableRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                reorderLevelEnableRadioButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
-        reorderQuantityLevelGroup.add(jRadioButton1);
-        jRadioButton2.setSelected(true);
+        jPanel1.add(reorderLevelEnableRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
+        reorderQuantityLevelGroup.add(reorderLevelEnableRadioButton);
+        reorderLevelDisableRadioButton.setSelected(true);
 
-        jRadioButton2.setText("Disabled");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        reorderLevelDisableRadioButton.setText("Disabled");
+        reorderLevelDisableRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                reorderLevelDisableRadioButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
-        reorderQuantityLevelGroup.add(jRadioButton2);
+        jPanel1.add(reorderLevelDisableRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
+        reorderQuantityLevelGroup.add(reorderLevelDisableRadioButton);
 
         jTabbedPane1.addTab("Add Product", jPanel1);
 
@@ -270,7 +281,8 @@ public class AddProduct extends javax.swing.JPanel {
         });
         adminProductsTable.setName(""); // NOI18N
         jScrollPane1.setViewportView(adminProductsTable);
-        updateAdminProductsTable();
+        productController = new ProductController(adminProductsTable);
+        productController.updateTableContents();
         adminProductsTable.getColumnModel().getColumn(0).setMaxWidth(0);
         adminProductsTable.getColumnModel().getColumn(0).setMinWidth(0);
         adminProductsTable.getColumnModel().getColumn(0).setPreferredWidth(0);
@@ -368,89 +380,102 @@ public class AddProduct extends javax.swing.JPanel {
     }//GEN-LAST:event_categoryComboBoxActionPerformed
 
     private void AddProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductButtonActionPerformed
-        PreparedStatement insertStatement = null;
-        PreparedStatement selectStatement = null;
-            try{
-
-            String host = "jdbc:mysql://localhost:3306/inventory";
-            String uName = "root";
-            String uPass = "";
-
-
-            Connection con = DriverManager.getConnection(host,uName, uPass);
-
-            String supplierName = supplierComboBox.getSelectedItem().toString();
-            String typeName = categoryComboBox.getSelectedItem().toString();
-            
-            Statement stmt = con.createStatement( );
-            
-            String typeSelectString = "SELECT type_id FROM type WHERE type_name = ? LIMIT 1";
-            selectStatement = con.prepareStatement(typeSelectString);
-            
-            selectStatement.setString(1,typeName);
-            ResultSet rs = selectStatement.executeQuery();
+        if(reorderLevelEnableRadioButton.isSelected()){
+            productController.addProduct(productNameInput, productDescriptionInput, quantityInput, unitInput, supplierComboBox, categoryComboBox, reorderQuantityLevelSpinner);
+            productController.updateTableContents();
+        }else{
+            productController.addProduct(productNameInput, productDescriptionInput, quantityInput, unitInput, supplierComboBox, categoryComboBox, reorderQuantityLevelSpinner);    
+            productController.updateTableContents();
+        }
         
-            rs.next();
-            String typeID = rs.getString(1);
-            
-            String supplierSelectString = "SELECT supplier_id FROM supplier WHERE supplier_name = ? LIMIT 1";
-            selectStatement = con.prepareStatement(supplierSelectString);
-            
-            selectStatement.setString(1,supplierName);
-            ResultSet result = selectStatement.executeQuery();
-        
-            result.next();
-            String supplierID = result.getString(1);
-            
-            
-
-            String insertString = "INSERT INTO product ( type_id, name, description, supplier_id, unit, physical_count, reorder_quantity) VALUES(?,?,?,?,?,?,?)";
-            insertStatement = con.prepareStatement(insertString);
-            
-            
-            
-            
-            insertStatement.setString(1, typeID);
-            insertStatement.setString(2, productNameInput.getText());
-            insertStatement.setString(3, productDescriptionInput.getText());
-            insertStatement.setString(4, supplierID);
-            insertStatement.setString(5, unitInput.getText());
-            insertStatement.setString(6, quantityInput.getText());
-            insertStatement.setString(7, reorderQuantityLevelSpinner.getValue().toString());
-            insertStatement.executeUpdate();
-
-            JOptionPane.showMessageDialog(null, productNameInput.getText() + " added to Product list.");
-            productNameInput.setText("");
-            productDescriptionInput.setText("");
-            unitInput.setText("");
-            quantityInput.setText("");
-            
-            Main.updateProductsList();
-            }
-            catch ( SQLException err ){
-                System.out.println( err.getMessage ());
-                System.out.print("FAIL");
-            }
-        
-        
+//        PreparedStatement insertStatement = null;
+//        PreparedStatement selectStatement = null;
+//            try{
+//
+//            String host = "jdbc:mysql://localhost:3306/inventory";
+//            String uName = "root";
+//            String uPass = "";
+//
+//
+//            Connection con = DriverManager.getConnection(host,uName, uPass);
+//
+//            String supplierName = supplierComboBox.getSelectedItem().toString();
+//            String typeName = categoryComboBox.getSelectedItem().toString();
+//            
+//            Statement stmt = con.createStatement( );
+//            
+//            String typeSelectString = "SELECT type_id FROM type WHERE type_name = ? LIMIT 1";
+//            selectStatement = con.prepareStatement(typeSelectString);
+//            
+//            selectStatement.setString(1,typeName);
+//            ResultSet rs = selectStatement.executeQuery();
+//        
+//            rs.next();
+//            String typeID = rs.getString(1);
+//            
+//            String supplierSelectString = "SELECT supplier_id FROM supplier WHERE supplier_name = ? LIMIT 1";
+//            selectStatement = con.prepareStatement(supplierSelectString);
+//            
+//            selectStatement.setString(1,supplierName);
+//            ResultSet result = selectStatement.executeQuery();
+//        
+//            result.next();
+//            String supplierID = result.getString(1);
+//            
+//            
+//
+//            String insertString = "INSERT INTO product ( type_id, name, description, supplier_id, unit, physical_count, reorder_quantity) VALUES(?,?,?,?,?,?,?)";
+//            insertStatement = con.prepareStatement(insertString);
+//            
+//            
+//            
+//            
+//            insertStatement.setString(1, typeID);
+//            insertStatement.setString(2, productNameInput.getText());
+//            insertStatement.setString(3, productDescriptionInput.getText());
+//            insertStatement.setString(4, supplierID);
+//            insertStatement.setString(5, unitInput.getText());
+//            insertStatement.setString(6, quantityInput.getText());
+//            insertStatement.setString(7, reorderQuantityLevelSpinner.getValue().toString());
+//            insertStatement.executeUpdate();
+//
+//            JOptionPane.showMessageDialog(null, productNameInput.getText() + " added to Product list.");
+//            productNameInput.setText("");
+//            productDescriptionInput.setText("");
+//            unitInput.setText("");
+//            quantityInput.setText("");
+//            
+//            Main.updateProductsList();
+//            }
+//            catch ( SQLException err ){
+//                System.out.println( err.getMessage ());
+//                System.out.print("FAIL");
+//            }
+//        
+//        
     }//GEN-LAST:event_AddProductButtonActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        if(jRadioButton1.isSelected()){
+    private void reorderLevelEnableRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reorderLevelEnableRadioButtonActionPerformed
+        if(reorderLevelEnableRadioButton.isSelected()){
             reorderQuantityLevelSpinner.setEnabled(true);
             reorderQuantityLevelSpinner.setVisible(true);
+            
         }
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_reorderLevelEnableRadioButtonActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        if(jRadioButton2.isSelected()){
+    private void reorderLevelDisableRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reorderLevelDisableRadioButtonActionPerformed
+        if(reorderLevelDisableRadioButton.isSelected()){
             reorderQuantityLevelSpinner.setEnabled(false);
             reorderQuantityLevelSpinner.setVisible(false);
             reorderQuantityLevelSpinner.setValue(0);
         }
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_reorderLevelDisableRadioButtonActionPerformed
 
     private void editProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProductButtonActionPerformed
+
+
+
+
         PreparedStatement selectStatement = null;
         try{
         
@@ -464,7 +489,7 @@ public class AddProduct extends javax.swing.JPanel {
         String selectString = "SELECT product_id, name, description, "
                 + "type_name, supplier_name, Unit, physical_count AS Quantity, "
                 + "reorder_quantity FROM product JOIN type USING(type_id) JOIN "
-                + "supplier using(supplier_id);";
+                + "supplier using(supplier_id) WHERE product_ID = ? LIMIT 1;";
         selectStatement = con.prepareStatement(selectString);
         Integer selectedRow = adminProductsTable.getSelectedRow();
         String result = (String) adminProductsTable.getModel().getValueAt(selectedRow, 0);
@@ -472,14 +497,23 @@ public class AddProduct extends javax.swing.JPanel {
         ResultSet rs = selectStatement.executeQuery();
         
             while(rs.next()){
-                String customerName = rs.getString(1);
+                String productID = rs.getString(1);
+                String productName = rs.getString(2);
+                String description = rs.getString(3);
+                String typeName = rs.getString(4);
+                String supplierName = rs.getString(5);
+                String unit = rs.getString(6);
+                String physicalCount = rs.getString(7);
+                
                 String customerContact = rs.getString(2);
                 
-//                rpductNameEditInput.setText(customerName);
-                contactNumberEditInput.setText(customerContact);
+                productIDEditInput.setText(productID);
+                productNameEditInput.setText(productName);
+                descriptionEditInput.setText(description);
+                
             }
-  //          customerIDEditInput.setText(result);
-       // editCustomerDialog.setVisible(true);
+            productIDEditInput.setText(result);
+        editProductDialog.setVisible(true);
         }
         catch ( SQLException err ){
             System.out.println( err.getMessage ());
@@ -563,6 +597,10 @@ public class AddProduct extends javax.swing.JPanel {
             System.out.print("FAIL");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void productDescriptionInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productDescriptionInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_productDescriptionInputActionPerformed
     private static void deleteAllRows(final JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         for(int row =0; row < model.getRowCount(); ) {
@@ -589,7 +627,6 @@ public class AddProduct extends javax.swing.JPanel {
             String selectString = "SELECT supplier_name, supplier_id FROM supplier ORDER BY 1 ASC";
             selectStatement = con.prepareStatement(selectString);
             ResultSet rs = selectStatement.executeQuery();
-            supplierComboBox.addItem("--Choose Supplier--");
                 while(rs.next()){
                     String supplierName = rs.getString(1);
                     String supplierID = rs.getString(2);
@@ -614,13 +651,10 @@ public class AddProduct extends javax.swing.JPanel {
             String selectString = "SELECT type_name FROM type ORDER By 1 ASC";
             selectStatement = con.prepareStatement(selectString);
             ResultSet rs = selectStatement.executeQuery();
-            categoryComboBox.addItem("--Choose Category--");
                 while(rs.next()){
                     String categoryName = rs.getString(1);
-
                     categoryComboBox.addItem(categoryName);
                 }
-
             }
             catch ( SQLException err ){
                 System.out.println( err.getMessage ());
@@ -691,17 +725,18 @@ public class AddProduct extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField productDescriptionInput;
+    private javax.swing.JLabel productIDEditInput;
     private javax.swing.JTextField productNameEditInput;
     private javax.swing.JTextField productNameInput;
     private javax.swing.JLabel quantityEditInput;
     private javax.swing.JTextField quantityInput;
+    private javax.swing.JRadioButton reorderLevelDisableRadioButton;
+    private javax.swing.JRadioButton reorderLevelEnableRadioButton;
     private javax.swing.JSpinner reorderQuantityLevelSpinner;
     private javax.swing.JComboBox supplierComboBox;
     private javax.swing.JComboBox supplierEditComboBox;

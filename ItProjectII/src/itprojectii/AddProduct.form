@@ -152,7 +152,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel15">
           <Properties>
-            <Property name="text" type="java.lang.String" value="reorder Quantity Level:"/>
+            <Property name="text" type="java.lang.String" value="Reorder Quantity Level"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -187,6 +187,16 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="260" y="290" width="-1" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="productIDEditInput">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jLabel17"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="500" y="20" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -271,6 +281,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="productDescriptionInput">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="productDescriptionInputActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="160" y="80" width="614" height="-1"/>
@@ -426,15 +439,15 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+            <Component class="javax.swing.JRadioButton" name="reorderLevelEnableRadioButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Enabled"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reorderLevelEnableRadioButtonActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="reorderQuantityLevelGroup.add(jRadioButton1);&#xa;jRadioButton2.setSelected(true);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="reorderQuantityLevelGroup.add(reorderLevelEnableRadioButton);&#xa;reorderLevelDisableRadioButton.setSelected(true);"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -442,15 +455,15 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+            <Component class="javax.swing.JRadioButton" name="reorderLevelDisableRadioButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Disabled"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reorderLevelDisableRadioButtonActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="reorderQuantityLevelGroup.add(jRadioButton2);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="reorderQuantityLevelGroup.add(reorderLevelDisableRadioButton);"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -498,7 +511,7 @@
                         <Column editable="false" title="Reorder Quantity Level" type="java.lang.Object"/>
                       </Table>
                     </Property>
-                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="updateAdminProductsTable();&#xa;adminProductsTable.getColumnModel().getColumn(0).setMaxWidth(0);&#xa;adminProductsTable.getColumnModel().getColumn(0).setMinWidth(0);&#xa;adminProductsTable.getColumnModel().getColumn(0).setPreferredWidth(0);">
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="productController = new ProductController(adminProductsTable);&#xa;productController.updateTableContents();&#xa;adminProductsTable.getColumnModel().getColumn(0).setMaxWidth(0);&#xa;adminProductsTable.getColumnModel().getColumn(0).setMinWidth(0);&#xa;adminProductsTable.getColumnModel().getColumn(0).setPreferredWidth(0);">
                       <TableColumnModel selectionModel="0">
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
