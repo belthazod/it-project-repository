@@ -104,21 +104,21 @@ public class Reports extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 71, 910, 330));
 
         jLabel3.setText("Date :");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 40, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 40, -1, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Month" }));
-        add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, -1, -1));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
+        add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 40, -1, -1));
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Day" }));
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         jComboBox5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox5ActionPerformed(evt);
             }
         });
-        add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, -1, -1));
+        add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 40, -1, -1));
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Year" }));
-        add(jComboBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 40, -1, -1));
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016" }));
+        add(jComboBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
