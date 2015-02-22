@@ -38,7 +38,6 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        admin1 = new itprojectii.Admin();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -70,7 +69,6 @@ public class Main extends javax.swing.JFrame {
         reports1 = new itprojectii.Reports();
         secondhandTradeIn1 = new itprojectii.SecondhandTradeIn();
         createOrder1 = new itprojectii.CreateOrder();
-        admin2 = new itprojectii.Admin();
         delivery1 = new itprojectii.Delivery();
         transfer1 = new itprojectii.Transfer();
         warranty2 = new itprojectii.Warranty();
@@ -126,10 +124,10 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 301, 112, -1));
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/warranty-2.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/NEW ICONS/warranty-o.png"))); // NOI18N
         jButton5.setBorderPainted(false);
         jButton5.setContentAreaFilled(false);
-        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/warranty-1.png"))); // NOI18N
+        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/NEW ICONS/warranty.png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -287,7 +285,6 @@ public class Main extends javax.swing.JFrame {
         cardWindow.add(reports1, "reportsCard");
         cardWindow.add(secondhandTradeIn1, "secondHandTradeInCard");
         cardWindow.add(createOrder1, "createOrderCard");
-        cardWindow.add(admin2, "adminCard");
         cardWindow.add(delivery1, "deliveryCard");
         cardWindow.add(transfer1, "transferCard");
         cardWindow.add(warranty2, "warrantyCard");
@@ -538,8 +535,6 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private itprojectii.Admin admin1;
-    private itprojectii.Admin admin2;
     private javax.swing.JPanel cardWindow;
     private itprojectii.CreateOrder createOrder1;
     private itprojectii.Delivery delivery1;
