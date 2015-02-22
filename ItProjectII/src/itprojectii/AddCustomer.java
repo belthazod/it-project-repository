@@ -204,9 +204,10 @@ public class AddCustomer extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jScrollPane1.setViewportView(customerListTable);
         customerController = new CustomerController(customerListTable);
         customerController.updateTableContents();
-        jScrollPane1.setViewportView(customerListTable);
+
         customerListTable.getColumnModel().getColumn(0).setMaxWidth(0);
         customerListTable.getColumnModel().getColumn(0).setMinWidth(0);
         customerListTable.getColumnModel().getColumn(0).setPreferredWidth(0);

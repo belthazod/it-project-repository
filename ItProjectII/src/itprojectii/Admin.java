@@ -9,7 +9,7 @@ import java.awt.CardLayout;
 
 /**
  *
- * @author weak_2030
+ * @Belthazod
  */
 public class Admin extends javax.swing.JPanel {
 
@@ -34,9 +34,9 @@ public class Admin extends javax.swing.JPanel {
         supplierAdminButton = new javax.swing.JButton();
         productAdminButton = new javax.swing.JButton();
         adminCards = new javax.swing.JPanel();
-        addCustomer1 = new itprojectii.AddCustomer();
+        addCustomer2 = new itprojectii.AddCustomer();
+        addProduct2 = new itprojectii.AddProduct();
         addSupplier1 = new itprojectii.AddSupplier();
-        addProduct1 = new itprojectii.AddProduct();
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -91,11 +91,9 @@ public class Admin extends javax.swing.JPanel {
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 87, -1, -1));
 
         adminCards.setLayout(new java.awt.CardLayout());
-        adminCards.add(addCustomer1, "addCustomerCard");
-        addCustomer1.getAccessibleContext().setAccessibleName("");
-
-        adminCards.add(addSupplier1, "addSupplierCard");
-        adminCards.add(addProduct1, "addProductCard");
+        adminCards.add(addCustomer2, "customerCard");
+        adminCards.add(addProduct2, "productCard");
+        adminCards.add(addSupplier1, "supplierCard");
 
         add(adminCards, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 87, 821, 500));
 
@@ -106,7 +104,7 @@ public class Admin extends javax.swing.JPanel {
 
     private void customerAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerAdminButtonActionPerformed
         CardLayout card = (CardLayout)adminCards.getLayout();
-        card.show(adminCards, "addCustomerCard");
+        card.show(adminCards, "customerCard");
         supplierAdminButton.setEnabled(true); 
         customerAdminButton.setEnabled(false);
         productAdminButton.setEnabled(true);
@@ -114,7 +112,7 @@ public class Admin extends javax.swing.JPanel {
 
     private void productAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productAdminButtonActionPerformed
         CardLayout card = (CardLayout)adminCards.getLayout();
-        card.show(adminCards, "addProductCard");
+        card.show(adminCards, "productCard");
         
         productAdminButton.setEnabled(false);
         customerAdminButton.setEnabled(true);
@@ -123,7 +121,7 @@ public class Admin extends javax.swing.JPanel {
 
     private void supplierAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierAdminButtonActionPerformed
         CardLayout card = (CardLayout)adminCards.getLayout();
-        card.show(adminCards, "addSupplierCard");
+        card.show(adminCards, "supplierCard");
         
         productAdminButton.setEnabled(true);
         customerAdminButton.setEnabled(true);
@@ -132,8 +130,8 @@ public class Admin extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private itprojectii.AddCustomer addCustomer1;
-    private itprojectii.AddProduct addProduct1;
+    private itprojectii.AddCustomer addCustomer2;
+    private itprojectii.AddProduct addProduct2;
     private itprojectii.AddSupplier addSupplier1;
     private javax.swing.JPanel adminCards;
     private javax.swing.JButton customerAdminButton;

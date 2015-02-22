@@ -35,8 +35,6 @@ public class InputValidator {
             Integer.parseInt(input);
             return true;
         }catch(NumberFormatException x){
-            x.printStackTrace();
-            
             JOptionPane.showMessageDialog(null, message, "Input error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
