@@ -207,7 +207,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButton3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Move back to Inventory"/>
+                <Property name="text" type="java.lang.String" value="Move item back to Inventory"/>
               </Properties>
             </Component>
           </SubComponents>

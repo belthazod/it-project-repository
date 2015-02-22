@@ -78,7 +78,7 @@ public class Returns extends javax.swing.JPanel {
 
         jLabel2.setText("Returned Items");
 
-        jButton3.setText("Move back to Inventory");
+        jButton3.setText("Move item back to Inventory");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
