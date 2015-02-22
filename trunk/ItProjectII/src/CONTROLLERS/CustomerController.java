@@ -29,7 +29,8 @@ public class CustomerController {
     }
     
     public void addCustomer(JTextField name, JTextField number){
-        if(InputValidator.checkInput(name) && InputValidator.checkInput(number)){
+        if(InputValidator.checkInput(name.getText(), "Customer Name cannot be empty.") 
+                && InputValidator.checkInput(number.getText(), "Contact Number cannot be empty")){
             String[] values = {name.getText(), number.getText()};
             try{
             dbConnector.insert("INSERT INTO Customer(customer_name, customer_contact) VALUES(?,?)", values);
@@ -54,12 +55,12 @@ public class CustomerController {
     }
     
     public void editCustomer(JTextField name, JTextField contactNumber, String customerID){
-        if(InputValidator.checkInput(name) && InputValidator.checkInput(contactNumber)){
+        if(InputValidator.checkInput(name.getText(), "Customer Name cannot be empty.") 
+                & InputValidator.checkInput(contactNumber.getText(), "Contact Number cannot be empty.")){
             try{
                 String[] values = {name.getText(), contactNumber.getText()};
                 dbConnector.update("UPDATE customer SET customer_name = ?, customer_contact = ? WHERE customer_id = ?", values, customerID);
                 JTextField[] inputs = {contactNumber, name};
-                
                 InputValidator.clearInput(inputs);
             }catch(SQLException sqlE){
                 JOptionPane.showMessageDialog(null, "Edit customer failed", "Database error", JOptionPane.ERROR_MESSAGE);
