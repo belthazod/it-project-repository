@@ -18,7 +18,6 @@ import javax.swing.JOptionPane;
  */
 
 public class DatabaseConnector {
-    private static DatabaseConnector database = new DatabaseConnector();
     private String host;
     private String uName;
     private String uPass;
@@ -29,7 +28,7 @@ public class DatabaseConnector {
  * 
  *
  */
-    private DatabaseConnector() {
+    public DatabaseConnector() {
         host = "jdbc:mysql://localhost:3306/inventory";
         uName = "root";
         uPass = "";
@@ -39,10 +38,6 @@ public class DatabaseConnector {
  * @return <code>DatabaseConnector</code> the one and only DatabaseConnector instance 
  * 
  */
-
-    public static DatabaseConnector getInstance(){
-        return database;
-    }
     
     /**
  * A method that queries from the set database based on the SQL statement given

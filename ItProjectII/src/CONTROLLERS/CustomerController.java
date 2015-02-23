@@ -26,7 +26,7 @@ public class CustomerController {
 
     public CustomerController(JTable table) {
         customerTableManager = new TableManager(table);
-        dbConnector= DatabaseConnector.getInstance();
+        dbConnector= new DatabaseConnector();
     }
     
     public void addCustomer(JTextField name, JTextField number){

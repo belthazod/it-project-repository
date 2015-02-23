@@ -32,12 +32,12 @@ public class ProductController {
     ArrayList<Product> productList;
     
     public ProductController(JTable adminTable){
-        dbConnector = DatabaseConnector.getInstance();
+        dbConnector = new DatabaseConnector();
         adminProductTableManager = new TableManager(adminTable);
     }
     
     public ProductController(JTable adminTable, JTable inventoryTable, JTable transferTable, JTable deliveryTable){
-        dbConnector = DatabaseConnector.getInstance();
+        dbConnector = new DatabaseConnector();
         adminProductTableManager = new TableManager(adminTable);
         inventoryTableManager = new TableManager(inventoryTable);
         transferTableManager = new TableManager(transferTable);
