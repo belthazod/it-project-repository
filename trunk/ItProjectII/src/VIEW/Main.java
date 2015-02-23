@@ -136,10 +136,10 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 301, 112, -1));
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/NEW ICONS/warranty-o.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/warranty-o.png"))); // NOI18N
         jButton5.setBorderPainted(false);
         jButton5.setContentAreaFilled(false);
-        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/NEW ICONS/warranty.png"))); // NOI18N
+        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/warranty.png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -169,11 +169,11 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 568, 112, -1));
 
-        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/NEW ICONS/home-o.png"))); // NOI18N
+        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/home-o.png"))); // NOI18N
         jButton16.setBorderPainted(false);
         jButton16.setContentAreaFilled(false);
         jButton16.setPreferredSize(new java.awt.Dimension(100, 83));
-        jButton16.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/NEW ICONS/home.png"))); // NOI18N
+        jButton16.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/home_1.png"))); // NOI18N
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton16ActionPerformed(evt);
