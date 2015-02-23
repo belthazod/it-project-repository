@@ -68,14 +68,6 @@ public class Main extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton20 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        reports1 = new VIEW.Reports();
-        returns1 = new VIEW.Returns();
-        secondhandTradeIn1 = new VIEW.SecondhandTradeIn();
-        createOrder1 = new VIEW.CreateOrder();
-        deliveryPanel = new VIEW.Delivery();
-        transferPanel = new VIEW.Transfer();
-        warrantyCard = new VIEW.Warranty();
-        adminPanel = new VIEW.AdminUI();
         jButton9 = new javax.swing.JButton();
 
         jButton6.setText("returns");
@@ -294,14 +286,6 @@ public class Main extends javax.swing.JFrame {
         inventoryPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, -1, -1));
 
         cardWindow.add(inventoryPanel, "inventoryCard");
-        cardWindow.add(reports1, "reportsCard");
-        cardWindow.add(returns1, "returnsCard");
-        cardWindow.add(secondhandTradeIn1, "secondHandTradeInCard");
-        cardWindow.add(createOrder1, "createOrderCard");
-        cardWindow.add(deliveryPanel, "deliveryCard");
-        cardWindow.add(transferPanel, "transferCard");
-        cardWindow.add(warrantyCard, "warrantyCard");
-        cardWindow.add(adminPanel, "adminCard");
 
         jPanel4.add(cardWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 60, 1100, 590));
         card = (CardLayout)cardWindow.getLayout();
@@ -560,10 +544,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private VIEW.AdminUI adminPanel;
     private javax.swing.JPanel cardWindow;
-    private VIEW.CreateOrder createOrder1;
-    private VIEW.Delivery deliveryPanel;
     private static javax.swing.JPanel inventoryPanel;
     private static javax.swing.JTable inventoryTable;
     private javax.swing.JButton jButton1;
@@ -593,10 +574,5 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField1;
     private static javax.swing.JComboBox productFilterComboBox;
-    private VIEW.Reports reports1;
-    private VIEW.Returns returns1;
-    private VIEW.SecondhandTradeIn secondhandTradeIn1;
-    private VIEW.Transfer transferPanel;
-    private VIEW.Warranty warrantyCard;
     // End of variables declaration//GEN-END:variables
 }

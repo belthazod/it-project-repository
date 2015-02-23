@@ -558,62 +558,6 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="VIEW.Reports" name="reports1">
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                      <CardConstraints cardName="reportsCard"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
-                <Component class="VIEW.Returns" name="returns1">
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                      <CardConstraints cardName="returnsCard"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
-                <Component class="VIEW.SecondhandTradeIn" name="secondhandTradeIn1">
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                      <CardConstraints cardName="secondHandTradeInCard"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
-                <Component class="VIEW.CreateOrder" name="createOrder1">
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                      <CardConstraints cardName="createOrderCard"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
-                <Component class="VIEW.Delivery" name="deliveryPanel">
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                      <CardConstraints cardName="deliveryCard"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
-                <Component class="VIEW.Transfer" name="transferPanel">
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                      <CardConstraints cardName="transferCard"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
-                <Component class="VIEW.Warranty" name="warrantyCard">
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                      <CardConstraints cardName="warrantyCard"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
-                <Component class="VIEW.AdminUI" name="adminPanel">
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                      <CardConstraints cardName="adminCard"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
               </SubComponents>
             </Container>
           </SubComponents>
