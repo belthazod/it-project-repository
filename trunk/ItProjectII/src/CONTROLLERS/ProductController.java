@@ -5,6 +5,7 @@
  */
 package CONTROLLERS;
 
+import BEANS.ComboItem;
 import UTIL.DatabaseConnector;
 import UTIL.InputValidator;
 import BEANS.Product;
@@ -32,12 +33,12 @@ public class ProductController {
     ArrayList<Product> productList;
     
     public ProductController(JTable adminTable){
-        dbConnector = new DatabaseConnector();
+        dbConnector = DatabaseConnector.getInstance();
         adminProductTableManager = new TableManager(adminTable);
     }
     
     public ProductController(JTable adminTable, JTable inventoryTable, JTable transferTable, JTable deliveryTable){
-        dbConnector = new DatabaseConnector();
+        dbConnector = DatabaseConnector.getInstance();
         adminProductTableManager = new TableManager(adminTable);
         inventoryTableManager = new TableManager(inventoryTable);
         transferTableManager = new TableManager(transferTable);
@@ -47,12 +48,15 @@ public class ProductController {
     
     public void addProduct(JTextField productName, JTextField description, JTextField quantity, JTextField unit, JComboBox supplier, JComboBox category, JSpinner reorderQuantity){
         try{
-        ResultSet categoryResult = dbConnector.query("SELECT type_id FROM type WHERE type_name = ? LIMIT 1", category.getSelectedItem().toString());
+        Object supplierComboBoxitem = supplier.getSelectedItem();
+        String supplierID = ((ComboItem)supplierComboBoxitem).getLabel();
+        
+        Object typeComboBoxitem = category.getSelectedItem();
+        String typeID = ((ComboItem)typeComboBoxitem).getLabel(); 
+        
         ResultSet supplierResult = dbConnector.query("SELECT supplier_id FROM supplier WHERE supplier_name = ? LIMIT 1", supplier.getSelectedItem().toString());
-        supplierResult.next();
-        categoryResult.next();
         JTextField[] inputs = {productName, description, quantity, unit};
-        String[] values = {categoryResult.getString(1), productName.getText(), description.getText(), supplierResult.getString(1), unit.getText(), quantity.getText(), reorderQuantity.getValue().toString() };
+        String[] values = {typeID, productName.getText(), description.getText(), supplierID, unit.getText(), quantity.getText(), reorderQuantity.getValue().toString() };
         if(InputValidator.checkInput(productName.getText(), "Product Name cannot be empty.")
             & InputValidator.checkInput(quantity.getText(), "Quantity should be a number.")    
             & InputValidator.checkIfNumber(quantity.getText(), "Quantity should be a number.") 
@@ -63,9 +67,12 @@ public class ProductController {
                     + "supplier_id, unit, physical_count, reorder_quantity) "
                     + "VALUES(?,?,?,?,?,?,?)", values);
         }
-        
+        JOptionPane.showMessageDialog(null, productName.getText() + " added to lis of products.", "Success", JOptionPane.INFORMATION_MESSAGE);
         InputValidator.clearInput(inputs);
+        reorderQuantity.setValue(0);
+        dbConnector.closeConnection();
         }catch(SQLException sqlE){
+            
             JOptionPane.showMessageDialog(null,"Failed to add Product.","Database error",JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -90,6 +97,7 @@ public class ProductController {
         }
         
         InputValidator.clearInput(inputs);
+        dbConnector.closeConnection();
         }catch(SQLException sqlE){
             JOptionPane.showMessageDialog(null,"Failed to add Product.","Database error",JOptionPane.ERROR_MESSAGE);
         }
@@ -115,7 +123,7 @@ public class ProductController {
 
                 productList.add(product);
             }
-        
+        dbConnector.closeConnection();
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
             JOptionPane.showMessageDialog(null, "Incorrect Product SQL query", "Database error", JOptionPane.ERROR_MESSAGE);
@@ -138,7 +146,7 @@ public class ProductController {
             
             adminProductTableManager.addRowContent(values);
         }
-        
+        dbConnector.closeConnection();
     }
     
 }

@@ -50,4 +50,11 @@ public class TableManager {
                 model.setValueAt(values[col], model.getRowCount()-1, col);
             }
     }
+    
+    public int getSelectedRow(){
+        return table.getSelectedRow();
+    }
+    public String getIDFromTable(int row){
+        return table.getValueAt(row, 0).toString();
+    }
 }
