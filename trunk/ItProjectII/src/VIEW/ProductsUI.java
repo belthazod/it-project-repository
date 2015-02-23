@@ -32,10 +32,7 @@ public class ProductsUI extends javax.swing.JPanel {
     public ProductsUI() {
         initComponents();
         productController = new ProductController(adminProductsTable);
-        productController.updateTableContents();
-        adminProductsTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        adminProductsTable.getColumnModel().getColumn(0).setMinWidth(0);
-        adminProductsTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        
         
         categoryTable.getColumnModel().getColumn(0).setMaxWidth(0);
         categoryTable.getColumnModel().getColumn(0).setMinWidth(0);
@@ -289,6 +286,10 @@ public class ProductsUI extends javax.swing.JPanel {
         });
         adminProductsTable.setName(""); // NOI18N
         jScrollPane1.setViewportView(adminProductsTable);
+        productController.updateTableContents();
+        adminProductsTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        adminProductsTable.getColumnModel().getColumn(0).setMinWidth(0);
+        adminProductsTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 795, 410));
 
