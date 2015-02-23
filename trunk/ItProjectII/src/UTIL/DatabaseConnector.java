@@ -22,7 +22,6 @@ public class DatabaseConnector {
     private String host;
     private String uName;
     private String uPass;
-    private Connection connection;
     
 
 /**
@@ -34,13 +33,6 @@ public class DatabaseConnector {
         host = "jdbc:mysql://localhost:3306/inventory";
         uName = "root";
         uPass = "";
-
-        try{
-            connection = DriverManager.getConnection(host,uName, uPass);
-
-        }catch(SQLException sqlException){
-            JOptionPane.showMessageDialog(null,"Database Error","Database not set up.", JOptionPane.ERROR_MESSAGE);
-        }
     }
     
  /**
@@ -63,7 +55,8 @@ public class DatabaseConnector {
 
     public ResultSet query(String queryStatement) throws SQLException{
         ResultSet rs = null;
-        PreparedStatement selectStatement = connection.prepareStatement(queryStatement);
+        Connection con = DriverManager.getConnection(host,uName, uPass);
+        PreparedStatement selectStatement = con.prepareStatement(queryStatement);
         rs = selectStatement.executeQuery();
         return rs;
     }
@@ -80,7 +73,8 @@ public class DatabaseConnector {
  */
     public ResultSet query(String queryStatement, String[] values) throws SQLException{
         ResultSet rs = null;
-        PreparedStatement selectStatement = connection.prepareStatement(queryStatement);
+        Connection con = DriverManager.getConnection(host,uName, uPass);
+        PreparedStatement selectStatement = con.prepareStatement(queryStatement);
         for(int i = 0; i < values.length; i++){
             selectStatement.setString( i+1 , values[i]);
         }
@@ -100,7 +94,8 @@ public class DatabaseConnector {
  */
     public ResultSet query(String queryStatement, String value) throws SQLException{
         ResultSet rs = null;
-        PreparedStatement selectStatement = connection.prepareStatement(queryStatement);
+        Connection con = DriverManager.getConnection(host,uName, uPass);
+        PreparedStatement selectStatement = con.prepareStatement(queryStatement);
         selectStatement.setString( 1 , value);
         rs = selectStatement.executeQuery();
         return rs;
