@@ -24,7 +24,7 @@ import javax.swing.JTextField;
  * @author Belthazod
  */
 public class ProductController {
-    private final DatabaseConnector dbConnector = DatabaseConnector.getInstance();
+    private final DatabaseConnector dbConnector;
     private TableManager adminProductTableManager;
     private TableManager inventoryTableManager;
     private TableManager transferTableManager;
@@ -32,14 +32,17 @@ public class ProductController {
     ArrayList<Product> productList;
     
     public ProductController(JTable adminTable){
+        dbConnector = DatabaseConnector.getInstance();
         adminProductTableManager = new TableManager(adminTable);
     }
     
     public ProductController(JTable adminTable, JTable inventoryTable, JTable transferTable, JTable deliveryTable){
+        dbConnector = DatabaseConnector.getInstance();
         adminProductTableManager = new TableManager(adminTable);
         inventoryTableManager = new TableManager(inventoryTable);
         transferTableManager = new TableManager(transferTable);
         deliveryTableManager = new TableManager(deliveryTable);
+        
     }
     
     public void addProduct(JTextField productName, JTextField description, JTextField quantity, JTextField unit, JComboBox supplier, JComboBox category, JSpinner reorderQuantity){

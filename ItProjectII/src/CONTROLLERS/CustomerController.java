@@ -20,12 +20,13 @@ import javax.swing.JTextField;
  * @author Belthazod
  */
 public class CustomerController {
-    private final DatabaseConnector dbConnector = DatabaseConnector.getInstance();
+    private final DatabaseConnector dbConnector; 
     private TableManager customerTableManager;
     
 
     public CustomerController(JTable table) {
         customerTableManager = new TableManager(table);
+        dbConnector= DatabaseConnector.getInstance();
     }
     
     public void addCustomer(JTextField name, JTextField number){
@@ -47,7 +48,7 @@ public class CustomerController {
     }
     public void updateTableContents(){
         try{
-        ResultSet rs = dbConnector.query("SELECT customer_id, customer_name, customer_contact FROM customer");
+        ResultSet rs = dbConnector.query("SELECT customer_id, customer_name, customer_contact FROM customer ORDER BY 2 ASC");
         customerTableManager.importDBContents(rs);
         }catch(SQLException sqlE){
             JOptionPane.showMessageDialog(null, "Table update failed", "Database error", JOptionPane.ERROR_MESSAGE);
