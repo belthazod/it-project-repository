@@ -28,6 +28,9 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        ProductsUI.updateAdminProductsTable();
+        CustomerUI.updateCustomerTable();
+        ProductsUI.updateCategoryTable();
     }
     
     /**
@@ -41,14 +44,14 @@ public class Main extends javax.swing.JFrame {
 
         jButton6 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
+        deliveryMenuButton = new javax.swing.JButton();
+        reportsMenuButton = new javax.swing.JButton();
+        tradeInMenuButton = new javax.swing.JButton();
+        warrantyMenuButton = new javax.swing.JButton();
+        transferMenuButton = new javax.swing.JButton();
+        adminMenuButton = new javax.swing.JButton();
+        salesMenuButton = new javax.swing.JButton();
+        returnsMenuButton = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -68,7 +71,15 @@ public class Main extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton20 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jButton9 = new javax.swing.JButton();
+        delivery1 = new VIEW.Delivery();
+        warranty1 = new VIEW.Warranty();
+        transfer1 = new VIEW.Transfer();
+        adminUI1 = new VIEW.AdminUI();
+        tradeInUI1 = new VIEW.TradeInUI();
+        reports1 = new VIEW.Reports();
+        returns1 = new VIEW.Returns();
+        customerUI1 = new VIEW.CustomerUI();
+        jButton1 = new javax.swing.JButton();
 
         jButton6.setText("returns");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -86,92 +97,91 @@ public class Main extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(1024, 768));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 114, -1, -1));
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/delivery.png"))); // NOI18N
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/delivery-1.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        deliveryMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/delivery.png"))); // NOI18N
+        deliveryMenuButton.setBorderPainted(false);
+        deliveryMenuButton.setContentAreaFilled(false);
+        deliveryMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/delivery-1.png"))); // NOI18N
+        deliveryMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                deliveryMenuButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 114, 105, 92));
+        jPanel1.add(deliveryMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 114, 105, 92));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/report.png"))); // NOI18N
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/report-1.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        reportsMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/report.png"))); // NOI18N
+        reportsMenuButton.setBorderPainted(false);
+        reportsMenuButton.setContentAreaFilled(false);
+        reportsMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/report-1.png"))); // NOI18N
+        reportsMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                reportsMenuButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 212, 112, -1));
+        jPanel1.add(reportsMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 212, 112, -1));
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/tradein.png"))); // NOI18N
-        jButton4.setBorderPainted(false);
-        jButton4.setContentAreaFilled(false);
-        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/tradein-1.png"))); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        tradeInMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/tradein.png"))); // NOI18N
+        tradeInMenuButton.setBorderPainted(false);
+        tradeInMenuButton.setContentAreaFilled(false);
+        tradeInMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/tradein-1.png"))); // NOI18N
+        tradeInMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                tradeInMenuButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 301, 112, -1));
+        jPanel1.add(tradeInMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 301, 112, -1));
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/warranty-o.png"))); // NOI18N
-        jButton5.setBorderPainted(false);
-        jButton5.setContentAreaFilled(false);
-        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/warranty.png"))); // NOI18N
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        warrantyMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/warranty-o.png"))); // NOI18N
+        warrantyMenuButton.setBorderPainted(false);
+        warrantyMenuButton.setContentAreaFilled(false);
+        warrantyMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/warranty.png"))); // NOI18N
+        warrantyMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                warrantyMenuButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 390, 112, -1));
+        jPanel1.add(warrantyMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 390, 112, -1));
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/transfer.png"))); // NOI18N
-        jButton7.setBorderPainted(false);
-        jButton7.setContentAreaFilled(false);
-        jButton7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/transfer-1.png"))); // NOI18N
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        transferMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/transfer.png"))); // NOI18N
+        transferMenuButton.setBorderPainted(false);
+        transferMenuButton.setContentAreaFilled(false);
+        transferMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/transfer-1.png"))); // NOI18N
+        transferMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                transferMenuButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 479, 112, -1));
+        jPanel1.add(transferMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 479, 112, -1));
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/admin.png"))); // NOI18N
-        jButton8.setBorderPainted(false);
-        jButton8.setContentAreaFilled(false);
-        jButton8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/admin-1.png"))); // NOI18N
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        adminMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/admin.png"))); // NOI18N
+        adminMenuButton.setBorderPainted(false);
+        adminMenuButton.setContentAreaFilled(false);
+        adminMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/admin-1.png"))); // NOI18N
+        adminMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                adminMenuButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 568, 112, -1));
+        jPanel1.add(adminMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 568, 112, -1));
 
-        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/home-o.png"))); // NOI18N
-        jButton16.setBorderPainted(false);
-        jButton16.setContentAreaFilled(false);
-        jButton16.setPreferredSize(new java.awt.Dimension(100, 83));
-        jButton16.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/home_1.png"))); // NOI18N
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
+        salesMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/home-o.png"))); // NOI18N
+        salesMenuButton.setBorderPainted(false);
+        salesMenuButton.setContentAreaFilled(false);
+        salesMenuButton.setPreferredSize(new java.awt.Dimension(100, 83));
+        salesMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/home_1.png"))); // NOI18N
+        salesMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
+                salesMenuButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 16, 105, 92));
+        jPanel1.add(salesMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 16, 105, 92));
+
+        returnsMenuButton.setText("Returns");
+        returnsMenuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnsMenuButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(returnsMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 650, -1, -1));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -286,19 +296,30 @@ public class Main extends javax.swing.JFrame {
         inventoryPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, -1, -1));
 
         cardWindow.add(inventoryPanel, "inventoryCard");
+        cardWindow.add(delivery1, "deliveryCard");
+        cardWindow.add(warranty1, "warrantyCard");
+        cardWindow.add(transfer1, "transferCard");
+        cardWindow.add(adminUI1, "adminCard");
+        cardWindow.add(tradeInUI1, "tradeInCard");
+        cardWindow.add(reports1, "reportsCard");
+        reports1.getAccessibleContext().setAccessibleName("");
+
+        cardWindow.add(returns1, "returnsCard");
+        cardWindow.add(customerUI1, "customerCard");
+        customerUI1.getAccessibleContext().setAccessibleName("");
 
         jPanel4.add(cardWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 60, 1100, 590));
         card = (CardLayout)cardWindow.getLayout();
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 16, 1134, -1));
-
-        jButton9.setText("Returns");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Customers");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 650, -1, -1));
+        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 10, -1, -1));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 16, 1134, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -322,41 +343,33 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton11ActionPerformed
 
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-
-
+    private void salesMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesMenuButtonActionPerformed
         card.show(cardWindow, "inventoryCard");
-    }//GEN-LAST:event_jButton16ActionPerformed
+    }//GEN-LAST:event_salesMenuButtonActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-
+    private void adminMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminMenuButtonActionPerformed
         card.show(cardWindow, "adminCard");
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_adminMenuButtonActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-
+    private void transferMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferMenuButtonActionPerformed
         card.show(cardWindow, "transferCard");
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_transferMenuButtonActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
+    private void warrantyMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warrantyMenuButtonActionPerformed
         card.show(cardWindow, "warrantyCard");
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_warrantyMenuButtonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void tradeInMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tradeInMenuButtonActionPerformed
+        card.show(cardWindow, "tradeInCard");
+    }//GEN-LAST:event_tradeInMenuButtonActionPerformed
 
-        card.show(cardWindow, "secondHandTradeInCard");
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
+    private void reportsMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportsMenuButtonActionPerformed
         card.show(cardWindow, "reportsCard");
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_reportsMenuButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+    private void deliveryMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deliveryMenuButtonActionPerformed
         card.show(cardWindow, "deliveryCard");
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_deliveryMenuButtonActionPerformed
 
     private void productFilterComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productFilterComboBoxActionPerformed
         System.out.print("ComboBox");
@@ -380,9 +393,13 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void returnsMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnsMenuButtonActionPerformed
          card.show(cardWindow, "returnsCard");
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_returnsMenuButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        card.show(cardWindow, "customerCard");
+    }//GEN-LAST:event_jButton1ActionPerformed
         static String host = "jdbc:mysql://localhost:3306/inventory";
         static String uName = "root";
         static String uPass = "";
@@ -541,10 +558,16 @@ public class Main extends javax.swing.JFrame {
         });
         
         
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton adminMenuButton;
+    private VIEW.AdminUI adminUI1;
     private javax.swing.JPanel cardWindow;
+    private VIEW.CustomerUI customerUI1;
+    private VIEW.Delivery delivery1;
+    private javax.swing.JButton deliveryMenuButton;
     private static javax.swing.JPanel inventoryPanel;
     private static javax.swing.JTable inventoryTable;
     private javax.swing.JButton jButton1;
@@ -553,19 +576,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -574,5 +589,16 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField1;
     private static javax.swing.JComboBox productFilterComboBox;
+    private VIEW.Reports reports1;
+    private javax.swing.JButton reportsMenuButton;
+    private VIEW.Returns returns1;
+    private javax.swing.JButton returnsMenuButton;
+    private javax.swing.JButton salesMenuButton;
+    private javax.swing.JButton tradeInMenuButton;
+    private VIEW.TradeInUI tradeInUI1;
+    private VIEW.Transfer transfer1;
+    private javax.swing.JButton transferMenuButton;
+    private VIEW.Warranty warranty1;
+    private javax.swing.JButton warrantyMenuButton;
     // End of variables declaration//GEN-END:variables
 }

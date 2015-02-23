@@ -21,14 +21,14 @@ public class DatabaseConnector {
     private String host;
     private String uName;
     private String uPass;
-    
-
+    Connection connection;
+    static DatabaseConnector dbConnector = new DatabaseConnector();
 /**
  * A private DatabaseConnector following the singleton design pattern
  * 
  *
  */
-    public DatabaseConnector() {
+    private DatabaseConnector() {
         host = "jdbc:mysql://localhost:3306/inventory";
         uName = "root";
         uPass = "";
@@ -38,7 +38,9 @@ public class DatabaseConnector {
  * @return <code>DatabaseConnector</code> the one and only DatabaseConnector instance 
  * 
  */
-    
+    public static DatabaseConnector getInstance(){
+        return dbConnector;
+    }
     /**
  * A method that queries from the set database based on the SQL statement given
  * and returns the result of the query in the form of a <code>ResultSet</code>
@@ -50,8 +52,8 @@ public class DatabaseConnector {
 
     public ResultSet query(String queryStatement) throws SQLException{
         ResultSet rs = null;
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        PreparedStatement selectStatement = con.prepareStatement(queryStatement);
+        startConnection();
+        PreparedStatement selectStatement = connection.prepareStatement(queryStatement);
         rs = selectStatement.executeQuery();
         return rs;
     }
@@ -68,8 +70,8 @@ public class DatabaseConnector {
  */
     public ResultSet query(String queryStatement, String[] values) throws SQLException{
         ResultSet rs = null;
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        PreparedStatement selectStatement = con.prepareStatement(queryStatement);
+        startConnection();
+        PreparedStatement selectStatement = connection.prepareStatement(queryStatement);
         for(int i = 0; i < values.length; i++){
             selectStatement.setString( i+1 , values[i]);
         }
@@ -89,8 +91,8 @@ public class DatabaseConnector {
  */
     public ResultSet query(String queryStatement, String value) throws SQLException{
         ResultSet rs = null;
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        PreparedStatement selectStatement = con.prepareStatement(queryStatement);
+        startConnection();
+        PreparedStatement selectStatement = connection.prepareStatement(queryStatement);
         selectStatement.setString( 1 , value);
         rs = selectStatement.executeQuery();
         return rs;
@@ -105,12 +107,28 @@ public class DatabaseConnector {
  * @exception SQLException Throws this exception if the SQL statement has an error.
  */
     public void delete(String umlStatement, String[] values) throws SQLException{
-        
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        PreparedStatement deleteStatement = con.prepareStatement(umlStatement);
+        startConnection();
+        PreparedStatement deleteStatement = connection.prepareStatement(umlStatement);
+        for(int i = 0; i<values.length ; i++){
+            deleteStatement.setString(i+1, values[i]);
+        }
         deleteStatement.executeUpdate();
     }
-    
+
+ /**
+ * A method that deletes a single row from the set database based on the SQL statement.
+ * 
+ *
+ * @param umlStatement  The SQL delete statement to execute.
+ * @param value The given values mapped to the "?"s in the query Statement.
+ * @exception SQLException Throws this exception if the SQL statement has an error.
+ */
+    public void delete(String umlStatement, String value) throws SQLException{
+        startConnection();
+        PreparedStatement deleteStatement = connection.prepareStatement(umlStatement);
+        deleteStatement.setString(1, value);
+        deleteStatement.executeUpdate();
+    }
 /**
  * A method that adds new elements to the set database based on the SQL statement
  * and values to be stored matching each attribute.
@@ -121,8 +139,8 @@ public class DatabaseConnector {
  * @exception SQLException Throws this exception if the SQL statement has an error.
  */
     public void insert(String umlStatement, String[] values) throws SQLException{
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        PreparedStatement insertStatement = con.prepareStatement(umlStatement);
+        startConnection();
+        PreparedStatement insertStatement = connection.prepareStatement(umlStatement);
         
         for(int i = 0; i<values.length ; i++){
             insertStatement.setString(i+1, values[i]);
@@ -132,9 +150,26 @@ public class DatabaseConnector {
         
     }
     
-    /**
- * A method that adds new elements to the set database based on the SQL statement
+ /**
+ * A method that adds a new element to the set database based on the SQL statement
  * and values to be stored matching each attribute.
+ * 
+ *
+ * @param umlStatement  The SQL UML statement to execute.
+ * @param value The given value mapped to the "?" in the UML Statement.
+ * @exception SQLException Throws this exception if the SQL statement has an error.
+ */
+    public void insert(String umlStatement, String value) throws SQLException{
+        startConnection();
+        PreparedStatement insertStatement = connection.prepareStatement(umlStatement);
+        insertStatement.setString(1, value);
+        insertStatement.executeUpdate();
+        
+    }
+    
+    /**
+ * A method that changes certain values of elements in the set database based on the SQL statement
+ * 
  * 
  *
  * @param umlStatement  The SQL UML statement to execute.
@@ -143,8 +178,8 @@ public class DatabaseConnector {
  * @exception SQLException Throws this exception if the SQL statement has an error.
  */
     public void update(String umlStatement, String[] values, String[] args) throws SQLException{
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        PreparedStatement insertStatement = con.prepareStatement(umlStatement);
+        startConnection();
+        PreparedStatement insertStatement = connection.prepareStatement(umlStatement);
         
         for(int i = 0; i<values.length ; i++){
             insertStatement.setString(i+1, values[i]);
@@ -155,18 +190,18 @@ public class DatabaseConnector {
     }
     
         /**
- * A method that adds new elements to the set database based on the SQL statement
- * and values to be stored matching each attribute.
+ * A method that changes certain values of elements in the set database based on the SQL statement
+ * 
  * 
  *
  * @param umlStatement  The SQL UML statement to execute.
  * @param values The values to be stored in the database
- * @param arg  The given values mapped to the "?"s in the query Statement.
+ * @param arg  The given value mapped to the "?"  in the query Statement.
  * @exception SQLException Throws this exception if the SQL statement has an error.
  */
     public void update(String umlStatement, String[] values, String arg) throws SQLException{
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        PreparedStatement insertStatement = con.prepareStatement(umlStatement);
+        startConnection();
+        PreparedStatement insertStatement = connection.prepareStatement(umlStatement);
         int i = 0;
         
         for(; i<values.length ; i++){
@@ -188,14 +223,30 @@ public class DatabaseConnector {
  * @exception SQLException Throws this exception if the SQL statement has an error.
  */
     public void update(String umlStatement, String[] values) throws SQLException{
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        PreparedStatement insertStatement = con.prepareStatement(umlStatement);
-        
+        startConnection();
+        PreparedStatement insertStatement = connection.prepareStatement(umlStatement);
         for(int i = 0; i<values.length ; i++){
             insertStatement.setString(i+1, values[i]);
         }
         
         insertStatement.executeUpdate();
         
+    }
+    
+    public void startConnection(){
+        try{
+            connection = DriverManager.getConnection(host,uName, uPass);
+        }catch(SQLException sqlE){
+            sqlE.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Failed to start Database connection", "Database error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    public void closeConnection(){
+        try{
+            connection.close();
+        }catch(SQLException sqlE){
+            sqlE.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Failed to close Database connection", "Database error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

@@ -26,7 +26,7 @@ public class CustomerController {
 
     public CustomerController(JTable table) {
         customerTableManager = new TableManager(table);
-        dbConnector= new DatabaseConnector();
+        dbConnector= DatabaseConnector.getInstance();
     }
     
     public void addCustomer(JTextField name, JTextField number){
@@ -39,6 +39,7 @@ public class CustomerController {
             
             JOptionPane.showMessageDialog(null, name.getText() + " saved to Customers list.");
             InputValidator.clearInput(inputs);
+            dbConnector.closeConnection();
             }catch(SQLException sqlE){
                 JOptionPane.showMessageDialog(null, "Add to contacts failed", "Database error", JOptionPane.ERROR_MESSAGE);
             }
@@ -50,6 +51,7 @@ public class CustomerController {
         try{
         ResultSet rs = dbConnector.query("SELECT customer_id, customer_name, customer_contact FROM customer ORDER BY 2 ASC");
         customerTableManager.importDBContents(rs);
+        dbConnector.closeConnection();
         }catch(SQLException sqlE){
             JOptionPane.showMessageDialog(null, "Table update failed", "Database error", JOptionPane.ERROR_MESSAGE);
         }
@@ -63,6 +65,7 @@ public class CustomerController {
                 dbConnector.update("UPDATE customer SET customer_name = ?, customer_contact = ? WHERE customer_id = ?", values, customerID);
                 JTextField[] inputs = {contactNumber, name};
                 InputValidator.clearInput(inputs);
+                dbConnector.closeConnection();
             }catch(SQLException sqlE){
                 JOptionPane.showMessageDialog(null, "Edit customer failed", "Database error", JOptionPane.ERROR_MESSAGE);
             }
@@ -89,6 +92,5 @@ public class CustomerController {
     }
     
     public void deleteSelectedCustomer(){
-        customerTableManager.deleteRow();
     }
 }

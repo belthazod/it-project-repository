@@ -16,7 +16,7 @@ import javax.swing.JTextField;
  * @author Belthazod
  */
 public class CustomerUI extends javax.swing.JPanel {
-    CustomerController customerController; 
+    private static CustomerController customerController; 
     
 
     /**
@@ -25,6 +25,10 @@ public class CustomerUI extends javax.swing.JPanel {
     public CustomerUI() {
         initComponents();
         customerController = new CustomerController(customerListTable);
+        customerListTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        customerListTable.getColumnModel().getColumn(0).setMinWidth(0);
+        customerListTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+
         
 
     }
@@ -210,10 +214,6 @@ public class CustomerUI extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(customerListTable);
-        customerController.updateTableContents();
-        customerListTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        customerListTable.getColumnModel().getColumn(0).setMinWidth(0);
-        customerListTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 794, 182));
 
@@ -305,6 +305,9 @@ public class CustomerUI extends javax.swing.JPanel {
         editCustomerDialog.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    public static void updateCustomerTable(){
+        customerController.updateTableContents();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCustomerButton;
     protected static javax.swing.JTextField contactNumberEditInput;
