@@ -278,6 +278,11 @@ public class Main extends javax.swing.JFrame {
         inventoryPanel.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 500, -1, 56));
 
         jButton15.setText("Buy");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
         inventoryPanel.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 500, 65, 56));
 
         jLabel3.setText("Category:");
@@ -400,6 +405,12 @@ public class Main extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         card.show(cardWindow, "customerCard");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+       
+        Sales s = new Sales();
+        s.setVisible(true);
+    }//GEN-LAST:event_jButton15ActionPerformed
         static String host = "jdbc:mysql://localhost:3306/inventory";
         static String uName = "root";
         static String uPass = "";
