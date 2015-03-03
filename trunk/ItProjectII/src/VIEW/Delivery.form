@@ -43,19 +43,31 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="productsListDeliveryTable">
+        <Component class="javax.swing.JTable" name="deliveryProductsTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="4">
+              <Table columnCount="7" rowCount="4">
                 <Column editable="false" title="Product ID" type="java.lang.String"/>
                 <Column editable="false" title="Name" type="java.lang.String"/>
                 <Column editable="false" title="Description" type="java.lang.String"/>
                 <Column editable="false" title="Category" type="java.lang.String"/>
+                <Column editable="false" title="Unit" type="java.lang.String"/>
                 <Column editable="false" title="Current Quantity" type="java.lang.String"/>
+                <Column editable="false" title="ReorderQuantity Level" type="java.lang.String"/>
               </Table>
             </Property>
-            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" preCode="productsListDeliveryTable.getColumnModel().getColumn(0).setMaxWidth(0);&#xa;productsListDeliveryTable.getColumnModel().getColumn(0).setMinWidth(0);&#xa;productsListDeliveryTable.getColumnModel().getColumn(0).setPreferredWidth(0);">
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" preCode="deliveryProductsTable.getColumnModel().getColumn(0).setMaxWidth(0);&#xa;deliveryProductsTable.getColumnModel().getColumn(0).setMinWidth(0);&#xa;deliveryProductsTable.getColumnModel().getColumn(0).setPreferredWidth(0);">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>

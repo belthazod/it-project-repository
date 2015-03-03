@@ -43,7 +43,7 @@ public class Delivery extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        productsListDeliveryTable = new javax.swing.JTable();
+        deliveryProductsTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         deliveryTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -60,22 +60,22 @@ public class Delivery extends javax.swing.JPanel {
         jLabel1.setText("Delivery Acknowledgement");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
 
-        productsListDeliveryTable.setModel(new javax.swing.table.DefaultTableModel(
+        deliveryProductsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Product ID", "Name", "Description", "Category", "Current Quantity"
+                "Product ID", "Name", "Description", "Category", "Unit", "Current Quantity", "ReorderQuantity Level"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -86,10 +86,13 @@ public class Delivery extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(productsListDeliveryTable);
-        productsListDeliveryTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        productsListDeliveryTable.getColumnModel().getColumn(0).setMinWidth(0);
-        productsListDeliveryTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        jScrollPane1.setViewportView(deliveryProductsTable);
+        deliveryProductsTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        deliveryProductsTable.getColumnModel().getColumn(0).setMinWidth(0);
+        deliveryProductsTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        if (deliveryProductsTable.getColumnModel().getColumnCount() > 0) {
+            deliveryProductsTable.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 450, 370));
 
@@ -264,8 +267,8 @@ public class Delivery extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Integer transferTableSelectedRow = productsListDeliveryTable.getSelectedRow();
-        String transferProductID = (String) productsListDeliveryTable.getModel().getValueAt(transferTableSelectedRow, 0);
+        Integer transferTableSelectedRow = deliveryProductsTable.getSelectedRow();
+        String transferProductID = (String) deliveryProductsTable.getModel().getValueAt(transferTableSelectedRow, 0);
         
         boolean flag = false;
         
@@ -283,9 +286,9 @@ public class Delivery extends javax.swing.JPanel {
                 "Error",
                 JOptionPane.ERROR_MESSAGE);
         }else{
-        String name = (String) productsListDeliveryTable.getModel().getValueAt(transferTableSelectedRow, 1);
-        String description = (String) productsListDeliveryTable.getModel().getValueAt(transferTableSelectedRow, 2);
-        String category = (String) productsListDeliveryTable.getModel().getValueAt(transferTableSelectedRow, 3);
+        String name = (String) deliveryProductsTable.getModel().getValueAt(transferTableSelectedRow, 1);
+        String description = (String) deliveryProductsTable.getModel().getValueAt(transferTableSelectedRow, 2);
+        String category = (String) deliveryProductsTable.getModel().getValueAt(transferTableSelectedRow, 3);
         
         DefaultTableModel model = (DefaultTableModel) deliveryTable.getModel();
         model.addRow(new Object[]{transferProductID, name, description, category, ""});
@@ -305,8 +308,8 @@ public class Delivery extends javax.swing.JPanel {
     }
     public static void updateProductsListDeliveryTable(){
         
-        deleteAllRows(productsListDeliveryTable);
-        DefaultTableModel model = (DefaultTableModel) productsListDeliveryTable.getModel();
+        deleteAllRows(deliveryProductsTable);
+        DefaultTableModel model = (DefaultTableModel) deliveryProductsTable.getModel();
 
         for(Product product: Main.productList){
             model.addRow(new Object[]{product.getProductID(), product.getName(), product.getDescription(), product.getTypeName(), product.getPhysicalCount()});
@@ -335,8 +338,13 @@ public class Delivery extends javax.swing.JPanel {
                 System.out.print("FAIL");
             }
     }
-
+    
+    public static JTable getDeliveryProductsTable(){
+        return deliveryProductsTable;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JTable deliveryProductsTable;
     private javax.swing.JTable deliveryTable;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -346,7 +354,6 @@ public class Delivery extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    public static javax.swing.JTable productsListDeliveryTable;
     private javax.swing.JButton removeFromListButton;
     private javax.swing.JComboBox supplierComboBox;
     // End of variables declaration//GEN-END:variables

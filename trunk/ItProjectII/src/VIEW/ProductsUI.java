@@ -6,10 +6,8 @@
 package VIEW;
 
 import BEANS.ComboItem;
-import BEANS.Product;
 import CONTROLLERS.CategoryController;
 import CONTROLLERS.ProductController;
-import static VIEW.CustomerUI.contactNumberEditInput;
 import static VIEW.Main.host;
 import static VIEW.Main.uName;
 import static VIEW.Main.uPass;
@@ -21,7 +19,6 @@ import java.sql.SQLException;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -36,18 +33,15 @@ public class ProductsUI extends javax.swing.JPanel {
      */
     public ProductsUI() {
         initComponents();
-        productController = new ProductController(adminProductsTable);
+        productController = new ProductController(adminProductsTable, InventoryUI.getInventoryTable(), Transfer.getTransferProductsTable(), Delivery.getDeliveryProductsTable());
         categoryController = new CategoryController(categoryTable);
         adminProductsTable.getColumnModel().getColumn(0).setMaxWidth(0);
         adminProductsTable.getColumnModel().getColumn(0).setMinWidth(0);
         adminProductsTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 
-        
-        
         categoryTable.getColumnModel().getColumn(0).setMaxWidth(0);
         categoryTable.getColumnModel().getColumn(0).setMinWidth(0);
         categoryTable.getColumnModel().getColumn(0).setPreferredWidth(0);
-
     }
 
     /**
@@ -336,14 +330,14 @@ public class ProductsUI extends javax.swing.JPanel {
 
             },
             new String [] {
-                "", "Product Name", "Description", "Supplier", "Unit", "Physical Count", "Reorder Quantity Level"
+                "ProductID", "Product Name", "Description", "Category", "Unit", "Supplier", "Physical Count", "Reorder Quantity Level"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -356,6 +350,9 @@ public class ProductsUI extends javax.swing.JPanel {
         });
         adminProductsTable.setName(""); // NOI18N
         jScrollPane1.setViewportView(adminProductsTable);
+        if (adminProductsTable.getColumnModel().getColumnCount() > 0) {
+            adminProductsTable.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 795, 410));
 
