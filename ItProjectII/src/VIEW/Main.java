@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -62,15 +63,7 @@ public class Main extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         cardWindow = new javax.swing.JPanel();
-        inventoryPanel = new javax.swing.JPanel();
-        productFilterComboBox = new javax.swing.JComboBox();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        inventoryTable = new javax.swing.JTable();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jButton20 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        inventoryUI1 = new VIEW.InventoryUI();
         delivery1 = new VIEW.Delivery();
         warranty1 = new VIEW.Warranty();
         transfer1 = new VIEW.Transfer();
@@ -78,7 +71,6 @@ public class Main extends javax.swing.JFrame {
         tradeInUI1 = new VIEW.TradeInUI();
         reports1 = new VIEW.Reports();
         returns1 = new VIEW.Returns();
-        customerUI1 = new VIEW.CustomerUI();
         jButton1 = new javax.swing.JButton();
 
         jButton6.setText("returns");
@@ -226,81 +218,7 @@ public class Main extends javax.swing.JFrame {
         cardWindow.setBackground(new java.awt.Color(102, 102, 102));
         cardWindow.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cardWindow.setLayout(new java.awt.CardLayout());
-
-        inventoryPanel.setBackground(new java.awt.Color(255, 255, 255));
-        inventoryPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        productFilterComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Accessories", "Batteries", "Oils", "Rims", "Tires" }));
-        productFilterComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                productFilterComboBoxActionPerformed(evt);
-            }
-        });
-        inventoryPanel.add(productFilterComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
-        updateCategoryComboBox();
-
-        inventoryTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "product_id", "Name", "Description", "Category", "Unit", "Supplier", "Quantity", "Reorder Quantity Level", "SecondHand"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(inventoryTable);
-        inventoryTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        inventoryTable.getColumnModel().getColumn(0).setMinWidth(0);
-        inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(0);
-
-        inventoryPanel.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 1021, 390));
-
-        jButton14.setText("Add To Cart");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
-            }
-        });
-        inventoryPanel.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 500, -1, 56));
-
-        jButton15.setText("Buy");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
-            }
-        });
-        inventoryPanel.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 500, 65, 56));
-
-        jLabel3.setText("Category:");
-        inventoryPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
-
-        jButton20.setText("Critical Product");
-        jButton20.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton20ActionPerformed(evt);
-            }
-        });
-        inventoryPanel.add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 60, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
-        jLabel2.setText("Product Inventory");
-        inventoryPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, -1, -1));
-
-        cardWindow.add(inventoryPanel, "inventoryCard");
+        cardWindow.add(inventoryUI1, "inventoryCard");
         cardWindow.add(delivery1, "deliveryCard");
         cardWindow.add(warranty1, "warrantyCard");
         cardWindow.add(transfer1, "transferCard");
@@ -310,8 +228,6 @@ public class Main extends javax.swing.JFrame {
         reports1.getAccessibleContext().setAccessibleName("");
 
         cardWindow.add(returns1, "returnsCard");
-        cardWindow.add(customerUI1, "customerCard");
-        customerUI1.getAccessibleContext().setAccessibleName("");
 
         jPanel4.add(cardWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 60, 1100, 590));
         card = (CardLayout)cardWindow.getLayout();
@@ -339,11 +255,6 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        Cart c = new Cart();
-        c.setVisible(true);
-    }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
@@ -377,24 +288,6 @@ public class Main extends javax.swing.JFrame {
         card.show(cardWindow, "deliveryCard");
     }//GEN-LAST:event_deliveryMenuButtonActionPerformed
 
-    private void productFilterComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productFilterComboBoxActionPerformed
-        System.out.print("ComboBox");
-        
-        if(productFilterComboBox.getSelectedItem()!=null){
-            String category = productFilterComboBox.getSelectedItem().toString();
-            System.out.print(category);
-            if(category.equals("All")){
-                updateInventoryTable();
-            }else{
-                updateInventoryTable(category);
-            }
-        }
-    }//GEN-LAST:event_productFilterComboBoxActionPerformed
-
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton20ActionPerformed
-
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -406,49 +299,16 @@ public class Main extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         card.show(cardWindow, "customerCard");
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-       
-        Sales s = new Sales();
-        s.setVisible(true);
-    }//GEN-LAST:event_jButton15ActionPerformed
         static String host = "jdbc:mysql://localhost:3306/inventory";
         static String uName = "root";
         static String uPass = "";
         static ArrayList<Product> productList = new ArrayList<Product>();
         static ArrayList<SecondHandProduct> secondHandList = new ArrayList<SecondHandProduct>();                                    
 
-        public static void deleteAllRows() {
-        DefaultTableModel model = (DefaultTableModel) inventoryTable.getModel();
-        for(int row =0; row < model.getRowCount(); ) {
-            model.removeRow(0);
-        }
-    }
-    static private void updateInventoryTable(){
-        deleteAllRows();
-        DefaultTableModel model = (DefaultTableModel) inventoryTable.getModel();
+    
 
-        for(Product product: Main.productList){
-            model.addRow(new Object[]{product.getProductID(), product.getName(),
-                product.getDescription(), product.getTypeName(), product.getUnit(),
-                product.getSupplierName(), product.getPhysicalCount(), 
-                product.getReorderQuantityLevel()});
-        }
-        
-    }
-    static private void updateInventoryTable(String category){
-        deleteAllRows();
-        DefaultTableModel model = (DefaultTableModel) inventoryTable.getModel();
-        
-        for(Product product: Main.productList){
-            if(category.equals(product.getTypeName())){
-                model.addRow(new Object[]{product.getProductID(), product.getName(),
-                    product.getDescription(), product.getTypeName(), product.getUnit(),
-                    product.getSupplierName(), product.getPhysicalCount(), 
-                    product.getReorderQuantityLevel()});
-            }
-        }
-    }
+
+    
     public static void updateProductsList(){
         PreparedStatement selectStatement = null;
         productList.clear();
@@ -474,8 +334,7 @@ public class Main extends javax.swing.JFrame {
         Delivery.updateProductsListDeliveryTable();
         Transfer.updateTransferTable();
         Warranty.updateProductsListWarrantyTable();
-        updateInventoryTable();
-        
+
   //          customerIDEditInput.setText(result);
        // editCustomerDialog.setVisible(true);
         }
@@ -512,28 +371,8 @@ public class Main extends javax.swing.JFrame {
             System.out.print("FAIL");
         }
     }
-    public static void updateCategoryComboBox(){
-            productFilterComboBox.removeAllItems();
-            PreparedStatement selectStatement = null;
-            try{
-            Connection con = DriverManager.getConnection(host,uName, uPass);
-            String selectString = "SELECT type_name FROM type ORDER By 1 ASC";
-            selectStatement = con.prepareStatement(selectString);
-            ResultSet rs = selectStatement.executeQuery();
-            productFilterComboBox.addItem("All");
-                while(rs.next()){
-                    String categoryName = rs.getString(1);
-
-                    productFilterComboBox.addItem(categoryName);
-                }
-
-            }
-            catch ( SQLException err ){
-                System.out.println( err.getMessage ());
-                System.out.print("FAIL");
-            }
-    }
     
+
     /**
      * @param args the command line arguments
      */
@@ -577,30 +416,21 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton adminMenuButton;
     private VIEW.AdminUI adminUI1;
     private javax.swing.JPanel cardWindow;
-    private VIEW.CustomerUI customerUI1;
     private VIEW.Delivery delivery1;
     private javax.swing.JButton deliveryMenuButton;
-    private static javax.swing.JPanel inventoryPanel;
-    private static javax.swing.JTable inventoryTable;
+    private VIEW.InventoryUI inventoryUI1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField1;
-    private static javax.swing.JComboBox productFilterComboBox;
     private VIEW.Reports reports1;
     private javax.swing.JButton reportsMenuButton;
     private VIEW.Returns returns1;

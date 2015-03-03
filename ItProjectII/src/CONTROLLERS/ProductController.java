@@ -137,14 +137,29 @@ public class ProductController {
     
     public void updateTableContents() {
         adminProductTableManager.clearTableContents();
+        inventoryTableManager.clearTableContents();
+        transferTableManager.clearTableContents();
+        deliveryTableManager.clearTableContents();
+        
         getProducts();
         for(Product product : productList){
-            String[] values = {product.getProductID(), product.getName(), 
-                product.getDescription(), product.getSupplierName(), 
-                product.getUnit(), product.getPhysicalCount(), 
+            String[] completeValues = {product.getProductID(), product.getName(), 
+                product.getDescription(), product.getTypeName(), product.getUnit(),
+                product.getSupplierName(), product.getPhysicalCount(), 
                 product.getReorderQuantityLevel()};
             
-            adminProductTableManager.addRowContent(values);
+            String[] shortValues = {product.getProductID(), product.getName(), 
+                product.getDescription(), product.getTypeName(), 
+                product.getUnit(), product.getPhysicalCount(), 
+                product.getReorderQuantityLevel()};
+            adminProductTableManager.addRowContent(completeValues);
+            try{
+            inventoryTableManager.addRowContent(completeValues);
+            }catch(Exception E){
+                E.printStackTrace();
+            }
+            transferTableManager.addRowContent(shortValues);
+            deliveryTableManager.addRowContent(shortValues);
         }
         dbConnector.closeConnection();
     }

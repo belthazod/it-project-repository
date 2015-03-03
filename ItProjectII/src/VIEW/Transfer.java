@@ -55,7 +55,7 @@ public class Transfer extends javax.swing.JPanel {
         truckTable = new javax.swing.JTable();
         AddToTruckButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        transferTable = new javax.swing.JTable();
+        transferProductsTable = new javax.swing.JTable();
         transferToComboBox = new javax.swing.JComboBox();
         removeItemButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -138,26 +138,36 @@ public class Transfer extends javax.swing.JPanel {
         });
         add(AddToTruckButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, -1, 50));
 
-        transferTable.setModel(new javax.swing.table.DefaultTableModel(
+        transferProductsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "", "Name", "Brand", "Category", "Quantity", "Re-order Level"
+                "", "Name", "Brand", "Category", "Unit", "Quantity", "Re-order Level"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(transferTable);
-        transferTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        transferTable.getColumnModel().getColumn(0).setMinWidth(0);
-        transferTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        jScrollPane2.setViewportView(transferProductsTable);
+        transferProductsTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        transferProductsTable.getColumnModel().getColumn(0).setMinWidth(0);
+        transferProductsTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        if (transferProductsTable.getColumnModel().getColumnCount() > 0) {
+            transferProductsTable.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, 370));
 
@@ -182,8 +192,8 @@ public class Transfer extends javax.swing.JPanel {
         String uPass = "";
     private void AddToTruckButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddToTruckButtonActionPerformed
 
-        Integer transferTableSelectedRow = transferTable.getSelectedRow();
-        String transferProductID = (String) transferTable.getModel().getValueAt(transferTableSelectedRow, 0);
+        Integer transferTableSelectedRow = transferProductsTable.getSelectedRow();
+        String transferProductID = (String) transferProductsTable.getModel().getValueAt(transferTableSelectedRow, 0);
         
         boolean flag = false;
         
@@ -201,10 +211,10 @@ public class Transfer extends javax.swing.JPanel {
                 "Error",
                 JOptionPane.ERROR_MESSAGE);
         }else{
-        String name = (String) transferTable.getModel().getValueAt(transferTableSelectedRow, 1);
-        String description = (String) transferTable.getModel().getValueAt(transferTableSelectedRow, 2);
-        String category = (String) transferTable.getModel().getValueAt(transferTableSelectedRow, 3);
-        String quantity = (String) transferTable.getModel().getValueAt(transferTableSelectedRow, 4);
+        String name = (String) transferProductsTable.getModel().getValueAt(transferTableSelectedRow, 1);
+        String description = (String) transferProductsTable.getModel().getValueAt(transferTableSelectedRow, 2);
+        String category = (String) transferProductsTable.getModel().getValueAt(transferTableSelectedRow, 3);
+        String quantity = (String) transferProductsTable.getModel().getValueAt(transferTableSelectedRow, 4);
         
         DefaultTableModel model = (DefaultTableModel) truckTable.getModel();
         model.addRow(new Object[]{transferProductID, quantity, name, description, category, ""});
@@ -310,8 +320,8 @@ public class Transfer extends javax.swing.JPanel {
     }
     public static void updateTransferTable(){
         
-        deleteAllRows(transferTable);
-        DefaultTableModel model = (DefaultTableModel) transferTable.getModel();
+        deleteAllRows(transferProductsTable);
+        DefaultTableModel model = (DefaultTableModel) transferProductsTable.getModel();
 
         for(Product product: Main.productList){
             model.addRow(new Object[]{product.getProductID(), product.getName(), product.getDescription(), product.getTypeName(), product.getPhysicalCount(), product.getReorderQuantityLevel()});
@@ -323,6 +333,10 @@ public class Transfer extends javax.swing.JPanel {
         
 
     }
+    
+    public static JTable getTransferProductsTable(){
+        return transferProductsTable;
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddToTruckButton;
@@ -340,7 +354,7 @@ public class Transfer extends javax.swing.JPanel {
     private javax.swing.JButton removeItemButton;
     private javax.swing.JDialog transferDialog;
     private javax.swing.JComboBox transferFromComboBox;
-    private static javax.swing.JTable transferTable;
+    private static javax.swing.JTable transferProductsTable;
     private javax.swing.JComboBox transferToComboBox;
     private javax.swing.JTable truckTable;
     // End of variables declaration//GEN-END:variables
