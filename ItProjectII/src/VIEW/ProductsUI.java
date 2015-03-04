@@ -8,15 +8,8 @@ package VIEW;
 import BEANS.ComboItem;
 import CONTROLLERS.CategoryController;
 import CONTROLLERS.ProductController;
-import static VIEW.Main.host;
-import static VIEW.Main.uName;
-import static VIEW.Main.uPass;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.swing.ButtonGroup;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -33,8 +26,8 @@ public class ProductsUI extends javax.swing.JPanel {
      */
     public ProductsUI() {
         initComponents();
-        productController = new ProductController(adminProductsTable, InventoryUI.getInventoryTable(), Transfer.getTransferProductsTable(), Delivery.getDeliveryProductsTable());
-        categoryController = new CategoryController(categoryTable);
+        productController = new ProductController(adminProductsTable, InventoryUI.getInventoryTable(), Transfer.getTransferProductsTable(), Delivery.getDeliveryProductsTable(), productsTab );
+        categoryController = new CategoryController(categoryTable, addProductCategoryComboBox, editProductCategoryComboBox);
         adminProductsTable.getColumnModel().getColumn(0).setMaxWidth(0);
         adminProductsTable.getColumnModel().getColumn(0).setMinWidth(0);
         adminProductsTable.getColumnModel().getColumn(0).setPreferredWidth(0);
@@ -57,27 +50,28 @@ public class ProductsUI extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         productNameEditInput = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        categoryEditComboBox = new javax.swing.JComboBox();
+        editProductCategoryComboBox = new javax.swing.JComboBox<ComboItem>();
         jLabel10 = new javax.swing.JLabel();
         descriptionEditInput = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        supplierEditComboBox = new javax.swing.JComboBox();
+        editProductSupplierComboBox = new javax.swing.JComboBox<ComboItem>();
         jLabel12 = new javax.swing.JLabel();
         unitEditInput = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         quantityEditInput = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        reorderQuantityEditSpinner = new javax.swing.JSpinner();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         productIDEditInput = new javax.swing.JLabel();
+        productIDEditInput.setVisible(false);
         editCategoryDialog = new javax.swing.JDialog();
         jLabel17 = new javax.swing.JLabel();
         categoryEditInput = new javax.swing.JTextField();
         saveEditCategoryButton = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         categoryIDEditInput = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        productsTab = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -89,10 +83,10 @@ public class ProductsUI extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         unitInput = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        categoryComboBox = new javax.swing.JComboBox();
+        addProductCategoryComboBox = new javax.swing.JComboBox<ComboItem>();
         jLabel7 = new javax.swing.JLabel();
         AddProductButton = new javax.swing.JButton();
-        supplierComboBox = new javax.swing.JComboBox<String>();
+        addProductSupplierComboBox = new javax.swing.JComboBox<ComboItem>();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
         reorderQuantityLevelSpinner = new javax.swing.JSpinner();
         reorderLevelEnableRadioButton = new javax.swing.JRadioButton();
@@ -130,8 +124,8 @@ public class ProductsUI extends javax.swing.JPanel {
         jLabel9.setText("Category:");
         editProductDialog.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
-        categoryEditComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        editProductDialog.getContentPane().add(categoryEditComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 250, -1));
+        editProductCategoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        editProductDialog.getContentPane().add(editProductCategoryComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 250, -1));
 
         jLabel10.setText("Description:");
         editProductDialog.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
@@ -142,8 +136,8 @@ public class ProductsUI extends javax.swing.JPanel {
         jLabel11.setText("Supplier:");
         editProductDialog.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
-        supplierEditComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        editProductDialog.getContentPane().add(supplierEditComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 250, -1));
+        editProductSupplierComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        editProductDialog.getContentPane().add(editProductSupplierComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 250, -1));
 
         jLabel12.setText("Unit:");
         editProductDialog.getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
@@ -159,12 +153,17 @@ public class ProductsUI extends javax.swing.JPanel {
 
         jLabel15.setText("Reorder Quantity Level");
         editProductDialog.getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
-        editProductDialog.getContentPane().add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 90, -1));
+        editProductDialog.getContentPane().add(reorderQuantityEditSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 90, -1));
 
         jButton1.setText("Cancel");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         editProductDialog.getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
 
-        jButton3.setText("jButton3");
+        jButton3.setText("Save");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -173,7 +172,7 @@ public class ProductsUI extends javax.swing.JPanel {
         editProductDialog.getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, -1));
 
         productIDEditInput.setText("jLabel17");
-        editProductDialog.getContentPane().add(productIDEditInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
+        editProductDialog.getContentPane().add(productIDEditInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, -1));
 
         editCategoryDialog.setBounds(new java.awt.Rectangle(0, 0, 500, 300));
 
@@ -268,14 +267,13 @@ public class ProductsUI extends javax.swing.JPanel {
         jLabel6.setText("Category:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
 
-        categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Accessories" }));
-        categoryComboBox.addActionListener(new java.awt.event.ActionListener() {
+        addProductCategoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Accessories" }));
+        addProductCategoryComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                categoryComboBoxActionPerformed(evt);
+                addProductCategoryComboBoxActionPerformed(evt);
             }
         });
-        jPanel1.add(categoryComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 150, -1));
-        updateCategoryComboBox();
+        jPanel1.add(addProductCategoryComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 150, -1));
 
         jLabel7.setText("Supplier:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 198, -1, -1));
@@ -288,14 +286,13 @@ public class ProductsUI extends javax.swing.JPanel {
         });
         jPanel1.add(AddProductButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
 
-        supplierComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        supplierComboBox.addActionListener(new java.awt.event.ActionListener() {
+        addProductSupplierComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        addProductSupplierComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                supplierComboBoxActionPerformed(evt);
+                addProductSupplierComboBoxActionPerformed(evt);
             }
         });
-        jPanel1.add(supplierComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 150, -1));
-        updateSupplierComboBox();
+        jPanel1.add(addProductSupplierComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 150, -1));
         jPanel1.add(filler1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, -1, -1));
 
         reorderQuantityLevelSpinner.setEnabled(false);
@@ -321,7 +318,7 @@ public class ProductsUI extends javax.swing.JPanel {
         jPanel1.add(reorderLevelDisableRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
         reorderQuantityLevelGroup.add(reorderLevelDisableRadioButton);
 
-        jTabbedPane1.addTab("Add Product", jPanel1);
+        productsTab.addTab("Add Product", jPanel1);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -365,9 +362,14 @@ public class ProductsUI extends javax.swing.JPanel {
         jPanel2.add(editProductButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, -1, -1));
 
         deleteProductButton.setText("Delete Product");
+        deleteProductButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteProductButtonActionPerformed(evt);
+            }
+        });
         jPanel2.add(deleteProductButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 430, -1, -1));
 
-        jTabbedPane1.addTab("Edit Product", jPanel2);
+        productsTab.addTab("Edit Product", jPanel2);
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -432,9 +434,9 @@ public class ProductsUI extends javax.swing.JPanel {
         });
         jPanel3.add(addNewCategoryButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, -1, -1));
 
-        jTabbedPane1.addTab("Add/Edit Category", jPanel3);
+        productsTab.addTab("Add/Edit Category", jPanel3);
 
-        add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 590));
+        add(productsTab, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 590));
     }// </editor-fold>//GEN-END:initComponents
 
     ButtonGroup reorderQuantityLevelGroup = new ButtonGroup();
@@ -442,17 +444,17 @@ public class ProductsUI extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_productNameInputActionPerformed
 
-    private void supplierComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierComboBoxActionPerformed
+    private void addProductSupplierComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductSupplierComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_supplierComboBoxActionPerformed
+    }//GEN-LAST:event_addProductSupplierComboBoxActionPerformed
 
-    private void categoryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryComboBoxActionPerformed
+    private void addProductCategoryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductCategoryComboBoxActionPerformed
         // TODO add your handling code here:
         System.out.println("Selected value = " +  evt.getActionCommand());
-    }//GEN-LAST:event_categoryComboBoxActionPerformed
+    }//GEN-LAST:event_addProductCategoryComboBoxActionPerformed
 
     private void AddProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductButtonActionPerformed
-        productController.addProduct(productNameInput, productDescriptionInput, quantityInput, unitInput, supplierComboBox, categoryComboBox, reorderQuantityLevelSpinner);    
+        productController.addProduct(productNameInput, productDescriptionInput, quantityInput, unitInput, addProductSupplierComboBox, addProductCategoryComboBox, reorderQuantityLevelSpinner);    
         productController.updateTableContents();
 
     }//GEN-LAST:event_AddProductButtonActionPerformed
@@ -473,53 +475,10 @@ public class ProductsUI extends javax.swing.JPanel {
     }//GEN-LAST:event_reorderLevelDisableRadioButtonActionPerformed
 
     private void editProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProductButtonActionPerformed
-
-
-
-
-        PreparedStatement selectStatement = null;
-        try{
-        
-        String host = "jdbc:mysql://localhost:3306/inventory";
-        String uName = "root";
-        String uPass = "";
-        
-        
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        
-        String selectString = "SELECT product_id, name, description, "
-                + "type_name, supplier_name, Unit, physical_count AS Quantity, "
-                + "reorder_quantity FROM product JOIN type USING(type_id) JOIN "
-                + "supplier using(supplier_id) WHERE product_ID = ? LIMIT 1;";
-        selectStatement = con.prepareStatement(selectString);
         Integer selectedRow = adminProductsTable.getSelectedRow();
         String result = (String) adminProductsTable.getModel().getValueAt(selectedRow, 0);
-        selectStatement.setString(1,result);
-        ResultSet rs = selectStatement.executeQuery();
-        
-            while(rs.next()){
-                String productID = rs.getString(1);
-                String productName = rs.getString(2);
-                String description = rs.getString(3);
-                String typeName = rs.getString(4);
-                String supplierName = rs.getString(5);
-                String unit = rs.getString(6);
-                String physicalCount = rs.getString(7);
-                
-                String customerContact = rs.getString(2);
-                
-                productIDEditInput.setText(productID);
-                productNameEditInput.setText(productName);
-                descriptionEditInput.setText(description);
-                
-            }
-            productIDEditInput.setText(result);
+        productController.openProductEditDialog(result, productIDEditInput, productNameEditInput, descriptionEditInput, editProductCategoryComboBox, editProductSupplierComboBox, unitEditInput, quantityEditInput, reorderQuantityEditSpinner);
         editProductDialog.setVisible(true);
-        }
-        catch ( SQLException err ){
-            System.out.println( err.getMessage ());
-            System.out.print("FAIL");
-        }
     }//GEN-LAST:event_editProductButtonActionPerformed
 
     private void productNameEditInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productNameEditInputActionPerformed
@@ -527,7 +486,8 @@ public class ProductsUI extends javax.swing.JPanel {
     }//GEN-LAST:event_productNameEditInputActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        productController.editProduct(editProductDialog, productIDEditInput, productNameEditInput, descriptionEditInput, quantityEditInput, unitEditInput, editProductSupplierComboBox, editProductCategoryComboBox, reorderQuantityEditSpinner);
+        productController.updateTableContents();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void addNewCategoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewCategoryButtonActionPerformed
@@ -563,6 +523,21 @@ public class ProductsUI extends javax.swing.JPanel {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         editCategoryDialog.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        editProductDialog.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void deleteProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteProductButtonActionPerformed
+        Integer selectedRow = adminProductsTable.getSelectedRow();
+        String name = (String) adminProductsTable.getModel().getValueAt(selectedRow, 1);
+        int result = JOptionPane.showConfirmDialog(null, "Are you sure in deleting " + name + " from the Products List","Warning!" ,JOptionPane.YES_NO_OPTION);
+        
+        if(result == 0){
+            productController.deleteSelectedProduct();
+            productController.updateTableContents();
+        }
+    }//GEN-LAST:event_deleteProductButtonActionPerformed
     private static void deleteAllRows(final JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         for(int row =0; row < model.getRowCount(); ) {
@@ -574,87 +549,24 @@ public class ProductsUI extends javax.swing.JPanel {
     public static void updateAdminProductsTable(){
         productController.updateTableContents();
     }
-    
-    public void updateSupplierComboBox(){
-            supplierComboBox.removeAllItems();
-            PreparedStatement selectStatement = null;
-            try{
-            Connection con = DriverManager.getConnection(host,uName, uPass);
-            String selectString = "SELECT supplier_name, supplier_id FROM supplier ORDER BY 1 ASC";
-            selectStatement = con.prepareStatement(selectString);
-            ResultSet rs = selectStatement.executeQuery();
-                while(rs.next()){
-                    String supplierName = rs.getString(1);
-                    String supplierID = rs.getString(2);
-                    
-                    String supplier[] = {supplierName, supplierID};
-                    
-                    supplierComboBox.addItem(new ComboItem(supplierID, supplierName));
-                }
 
-            }
-            catch ( SQLException err ){
-                System.out.println( err.getMessage ());
-                System.out.print("FAIL");
-            }
-    }
-    
-    public static void updateCategoryComboBox(){
-            categoryComboBox.removeAllItems();
-            PreparedStatement selectStatement = null;
-            try{
-            Connection con = DriverManager.getConnection(host,uName, uPass);
-            String selectString = "SELECT type_name, type_id FROM type ORDER By 1 ASC";
-            selectStatement = con.prepareStatement(selectString);
-            ResultSet rs = selectStatement.executeQuery();
-                while(rs.next()){
-                    String categoryName = rs.getString(1);
-                    String categoryID = rs.getString(2);
-                    categoryComboBox.addItem(new ComboItem(categoryID, categoryName));
-                }
-            }
-            catch ( SQLException err ){
-                System.out.println( err.getMessage ());
-                System.out.print("FAIL");
-            }
-    }
-//    protected static void updateCategoryTable(){
-//        
-//        PreparedStatement selectStatement = null;
-//        DefaultTableModel model = (DefaultTableModel) categoryTable.getModel();
-//        deleteAllRows(categoryTable);
-//       
-//        try{
-//            Connection con = DriverManager.getConnection(host,uName, uPass);
-//            String selectString = "SELECT type_id, type_name FROM type ORDER By 1 ASC";
-//            selectStatement = con.prepareStatement(selectString);
-//            ResultSet rs = selectStatement.executeQuery();
-//                while(rs.next()){
-//                    String typeID = rs.getString(1);
-//                    String typeName = rs.getString(2);
-//
-//                    model.addRow(new Object[]{typeID, typeName});
-//                }
-//            Main.updateCategoryComboBox();
-//            updateCategoryComboBox();
-//            }
-//            catch ( SQLException err ){
-//                System.out.println( err.getMessage ());
-//                System.out.print("FAIL");
-//            }
-//        
-//        
-//    }
     public static void updateCategoryTable(){
         categoryController.updateCategoryTable();
     }
-
+    
+    public static JComboBox getAddProductSupplierComboBox(){
+        return addProductSupplierComboBox;
+    }
+    
+    public static JComboBox getEditProductSupplierComboBox(){
+        return editProductSupplierComboBox;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddProductButton;
     private javax.swing.JButton addNewCategoryButton;
+    private static javax.swing.JComboBox<ComboItem> addProductCategoryComboBox;
+    private static javax.swing.JComboBox<ComboItem> addProductSupplierComboBox;
     private static javax.swing.JTable adminProductsTable;
-    private static javax.swing.JComboBox categoryComboBox;
-    private javax.swing.JComboBox categoryEditComboBox;
     private javax.swing.JTextField categoryEditInput;
     private javax.swing.JLabel categoryIDEditInput;
     private javax.swing.JTextField categoryNameInput;
@@ -664,7 +576,9 @@ public class ProductsUI extends javax.swing.JPanel {
     private javax.swing.JButton editCategoryButton;
     private javax.swing.JDialog editCategoryDialog;
     private javax.swing.JButton editProductButton;
+    private javax.swing.JComboBox<ComboItem> editProductCategoryComboBox;
     private javax.swing.JDialog editProductDialog;
+    private static javax.swing.JComboBox<ComboItem> editProductSupplierComboBox;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
@@ -692,20 +606,18 @@ public class ProductsUI extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField productDescriptionInput;
     private javax.swing.JLabel productIDEditInput;
     private javax.swing.JTextField productNameEditInput;
     private javax.swing.JTextField productNameInput;
+    private javax.swing.JTabbedPane productsTab;
     private javax.swing.JLabel quantityEditInput;
     private javax.swing.JTextField quantityInput;
     private javax.swing.JRadioButton reorderLevelDisableRadioButton;
     private javax.swing.JRadioButton reorderLevelEnableRadioButton;
+    private javax.swing.JSpinner reorderQuantityEditSpinner;
     private javax.swing.JSpinner reorderQuantityLevelSpinner;
     private javax.swing.JButton saveEditCategoryButton;
-    private javax.swing.JComboBox supplierComboBox;
-    private javax.swing.JComboBox supplierEditComboBox;
     private javax.swing.JTextField unitEditInput;
     private javax.swing.JTextField unitInput;
     // End of variables declaration//GEN-END:variables

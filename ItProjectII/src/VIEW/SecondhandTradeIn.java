@@ -5,6 +5,7 @@
  */
 package VIEW;
 
+import BEANS.ComboItem;
 import BEANS.SecondHandProduct;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -40,7 +41,7 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         itemNameInput = new javax.swing.JTextField();
-        categoryComboBox = new javax.swing.JComboBox();
+        categoryComboBox = new javax.swing.JComboBox<ComboItem>();
         jLabel2 = new javax.swing.JLabel();
         descriptionInput = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -250,14 +251,14 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
             PreparedStatement selectStatement = null;
             try{
             Connection con = DriverManager.getConnection(host,uName, uPass);
-            String selectString = "SELECT type_name FROM type ORDER By 1 ASC";
+            String selectString = "SELECT type_name, type_id FROM type ORDER By 1 ASC";
             selectStatement = con.prepareStatement(selectString);
             ResultSet rs = selectStatement.executeQuery();
-            categoryComboBox.addItem("--Choose Category--");
+            categoryComboBox.addItem(new ComboItem("--Choose Category--","null"));
                 while(rs.next()){
                     String categoryName = rs.getString(1);
-
-                    categoryComboBox.addItem(categoryName);
+                    String categoryID = rs.getString(2);
+                    categoryComboBox.addItem(new ComboItem(categoryName, categoryID));
                 }
 
             }
@@ -278,7 +279,7 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addToItemListButton;
-    private static javax.swing.JComboBox categoryComboBox;
+    private static javax.swing.JComboBox<ComboItem> categoryComboBox;
     private javax.swing.JTextField descriptionInput;
     private javax.swing.JTextField itemNameInput;
     private javax.swing.JButton jButton1;

@@ -63,6 +63,7 @@ public class CustomerController {
             try{
                 String[] values = {name.getText(), contactNumber.getText()};
                 dbConnector.update("UPDATE customer SET customer_name = ?, customer_contact = ? WHERE customer_id = ?", values, customerID);
+                JOptionPane.showMessageDialog(null, "Customer details updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
                 JTextField[] inputs = {contactNumber, name};
                 InputValidator.clearInput(inputs);
                 dbConnector.closeConnection();
@@ -92,5 +93,12 @@ public class CustomerController {
     }
     
     public void deleteSelectedCustomer(){
+        try{
+            String customerID = customerTableManager.getIDFromTable(customerTableManager.getSelectedRow());
+            dbConnector.delete("DELETE FROM customer WHERE customer_id = ?", customerID);
+        }catch(SQLException sqlE){
+            sqlE.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Failed to delete selected customerer.", "Database Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

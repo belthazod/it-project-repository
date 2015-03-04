@@ -12,7 +12,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -318,20 +317,14 @@ public class Transfer extends javax.swing.JPanel {
         
         }
     }
+    
     public static void updateTransferTable(){
-        
         deleteAllRows(transferProductsTable);
         DefaultTableModel model = (DefaultTableModel) transferProductsTable.getModel();
 
         for(Product product: Main.productList){
             model.addRow(new Object[]{product.getProductID(), product.getName(), product.getDescription(), product.getTypeName(), product.getPhysicalCount(), product.getReorderQuantityLevel()});
         }
-        //customerListTable.removeColumn(customerListTable.getColumnModel().getColumn(2));
-        
-        //JTable inventoryTable = new JTable(buildTableModel(rs));
-       
-        
-
     }
     
     public static JTable getTransferProductsTable(){

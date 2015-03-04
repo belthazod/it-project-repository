@@ -5,6 +5,7 @@
  */
 package VIEW;
 
+import BEANS.ComboItem;
 import BEANS.Product;
 import java.sql.Connection;
 import java.sql.Date;
@@ -51,7 +52,7 @@ public class Delivery extends javax.swing.JPanel {
         removeFromListButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        supplierComboBox = new javax.swing.JComboBox();
+        supplierComboBox = new javax.swing.JComboBox<ComboItem>();
         jLabel4 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -329,7 +330,7 @@ public class Delivery extends javax.swing.JPanel {
                     
                     String supplier[] = {supplierName, supplierID};
                     
-                    supplierComboBox.addItem(supplierName);
+                    supplierComboBox.addItem(new ComboItem(supplierName, supplierName));
                 }
 
             }
@@ -355,6 +356,6 @@ public class Delivery extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton removeFromListButton;
-    private javax.swing.JComboBox supplierComboBox;
+    private javax.swing.JComboBox<ComboItem> supplierComboBox;
     // End of variables declaration//GEN-END:variables
 }
