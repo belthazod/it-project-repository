@@ -5,15 +5,9 @@
  */
 package VIEW;
 
+import CONTROLLERS.SupplierController;
 import java.awt.event.KeyEvent;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
@@ -21,12 +15,19 @@ import javax.swing.JTextField;
  * @author belthazod
  */
 public class SupplierUI extends javax.swing.JPanel {
-
+    static SupplierController supplierController;
+            
     /**
      * Creates new form AddSupplier
      */
     public SupplierUI() {
         initComponents();
+        supplierListTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        supplierListTable.getColumnModel().getColumn(0).setMinWidth(0);
+        supplierListTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        supplierController = new SupplierController(supplierListTable, 
+                ProductsUI.getAddProductSupplierComboBox(), 
+                ProductsUI.getEditProductSupplierComboBox());
     }
 
     /**
@@ -207,9 +208,16 @@ public class SupplierUI extends javax.swing.JPanel {
                 "Supllier ID", "Supplier Name", "Contact Number"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -224,10 +232,6 @@ public class SupplierUI extends javax.swing.JPanel {
         if (supplierListTable.getColumnModel().getColumnCount() > 0) {
             supplierListTable.getColumnModel().getColumn(0).setResizable(false);
         }
-        supplierListTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        supplierListTable.getColumnModel().getColumn(0).setMinWidth(0);
-        supplierListTable.getColumnModel().getColumn(0).setPreferredWidth(0);
-        updateSupplierList();
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 794, 185));
 
@@ -259,38 +263,8 @@ public class SupplierUI extends javax.swing.JPanel {
         }
     }
     private void addSupplierButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSupplierButtonActionPerformed
-        
-        if(supplierNameInput.getText().equals("") || contactNumberInput.getText().equals("")){
-            JOptionPane.showMessageDialog(null,
-                "Supplier Name or Contact Number cannot be empty",
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
-        }else{
-            PreparedStatement insertStatement = null;
-            
-            try{
-
-
-            Connection con = DriverManager.getConnection(host,uName, uPass);
-
-
-            String insertString = "INSERT INTO supplier (supplier_name, supplier_contact) VALUES(?,?)";
-            insertStatement = con.prepareStatement(insertString);
-
-            insertStatement.setString(1,supplierNameInput.getText());
-            insertStatement.setString(2, contactNumberInput.getText());
-            insertStatement.executeUpdate();
-
-            JOptionPane.showMessageDialog(null, supplierNameInput.getText() + " saved to Suppliers list.");
-            supplierNameInput.setText("");
-            contactNumberInput.setText("");
-            updateSupplierList();
-            }
-            catch ( SQLException err ){
-                System.out.println( err.getMessage ());
-                System.out.print("FAIL");
-            }
-        }
+        supplierController.addSupplier(supplierNameInput, contactNumberInput);
+        supplierController.updateTableContents();
     }//GEN-LAST:event_addSupplierButtonActionPerformed
 
     private void contactNumberInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contactNumberInputKeyPressed
@@ -301,40 +275,12 @@ public class SupplierUI extends javax.swing.JPanel {
     }//GEN-LAST:event_contactNumberInputKeyPressed
 
     private void editSupplierButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editSupplierButtonActionPerformed
-        
-        
-            PreparedStatement selectStatement = null;
-            try{
-        
-            String host = "jdbc:mysql://localhost:3306/inventory";
-            String uName = "root";
-            String uPass = "";
-
-
-            Connection con = DriverManager.getConnection(host,uName, uPass);
-
-            String selectString = "SELECT supplier_name, supplier_contact FROM supplier WHERE supplier_id = ?";
-            selectStatement = con.prepareStatement(selectString);
-            Integer selectedRow = supplierListTable.getSelectedRow();
-            String result = (String) supplierListTable.getModel().getValueAt(selectedRow, 0);
-            selectStatement.setString(1,result);
-            ResultSet rs = selectStatement.executeQuery();
-
-                while(rs.next()){
-                    String supplierName = rs.getString(1);
-                    String supplierContact = rs.getString(2);
-
-                    supplierNameEditInput.setText(supplierName);
-                    supplierContactNumberEditInput.setText(supplierContact);
-                }
-            supplierIDEditInput.setText(result);
+        Integer selectedRow = supplierListTable.getSelectedRow();
+        String result = (String) supplierListTable.getModel().getValueAt(selectedRow, 0);
+        JTextField[] inputs = {supplierNameEditInput, supplierContactNumberEditInput};
+        if(supplierController.openEditDialog(result, inputs, supplierIDEditInput)){
             editSupplierDialog.setVisible(true);
-            }
-            catch ( SQLException err ){
-                System.out.println( err.getMessage ());
-                System.out.print("FAIL");
-            }
-        
+        }
     }//GEN-LAST:event_editSupplierButtonActionPerformed
 
     private void supplierContactNumberEditInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierContactNumberEditInputActionPerformed
@@ -346,32 +292,9 @@ public class SupplierUI extends javax.swing.JPanel {
     }//GEN-LAST:event_supplierNameEditInputActionPerformed
 
     private void saveEditedSupplierButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEditedSupplierButtonActionPerformed
-        if(supplierNameEditInput.getText().equals("") || supplierContactNumberEditInput.getText().equals("")){
-            JOptionPane.showMessageDialog(null,
-                "Supplier Name and Contact Number cannot be empty",
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
-        }else{
-            PreparedStatement insertStatement = null;
-            try{
-                Connection con = DriverManager.getConnection(host,uName, uPass);
-
-                String insertString = "UPDATE supplier SET supplier_name = ?, supplier_contact = ? WHERE supplier_id = ?";
-                insertStatement = con.prepareStatement(insertString);
-
-                insertStatement.setString(1, supplierNameEditInput.getText());
-                insertStatement.setString(2, supplierContactNumberEditInput.getText());
-                insertStatement.setString(3, supplierIDEditInput.getText());
-                insertStatement.executeUpdate();
-
-                updateSupplierList();
-                editSupplierDialog.dispose();
-            }
-            catch ( SQLException err ){
-                System.out.println( err.getMessage ());
-                System.out.print("FAIL");
-            }
-        }
+        supplierController.editSupplier(supplierNameEditInput, supplierContactNumberEditInput, supplierIDEditInput.getText());
+        supplierController.updateTableContents();
+        editSupplierDialog.dispose();
     }//GEN-LAST:event_saveEditedSupplierButtonActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -383,96 +306,19 @@ public class SupplierUI extends javax.swing.JPanel {
     }//GEN-LAST:event_supplierNameInputActionPerformed
 
     private void deleteSupplierButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSupplierButtonActionPerformed
-        PreparedStatement selectStatement = null;
-        try{
+        Integer selectedRow = supplierListTable.getSelectedRow();
+        String name = (String) supplierListTable.getModel().getValueAt(selectedRow, 1);
+        int result = JOptionPane.showConfirmDialog(null, "Are you sure in deleting " + name + " from the Supplier List","Warning!" ,JOptionPane.YES_NO_OPTION);
         
-        String host = "jdbc:mysql://localhost:3306/inventory";
-        String uName = "root";
-        String uPass = "";
-        
-        
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        
-        String selectString = "SELECT supplier_name FROM supplier WHERE supplier_id = ? LIMIT 1";
-        selectStatement = con.prepareStatement(selectString);
-        String selectedRow = (String) supplierListTable.getValueAt(supplierListTable.getSelectedRow(),0);
-        selectStatement.setString(1,selectedRow);
-        ResultSet rs = selectStatement.executeQuery();
-        
-            while(rs.next()){
-                String supplierName = rs.getString(1);
-                
-                PreparedStatement deleteStatement = null;
-                try{
-
-
-                    int reply = JOptionPane.showConfirmDialog(
-                    null,
-                    "Qre you sure in deleting " + supplierName + " from the Supplier List?" ,
-                    "Warning Message",
-                    JOptionPane.YES_NO_OPTION);
-                    
-                    if(reply == JOptionPane.YES_OPTION){
-                        String deleteString = "DELETE FROM Supplier WHERE supplier_id = ?";
-                        deleteStatement = con.prepareStatement(deleteString);
-                        deleteStatement.setString(1, selectedRow);
-                        deleteStatement.executeUpdate();
-                        updateSupplierList();
-                    }
-                
-                
-                
-                
-                }
-                catch ( SQLException err ){
-                    System.out.println( err.getMessage ());
-                    System.out.print("FAIL");
-                }
-
-            }
-        
+        if(result == 0){
+            supplierController.deleteSelectedSupplier();
+            supplierController.updateTableContents();
         }
-        catch ( SQLException err ){
-            System.out.println( err.getMessage ());
-            System.out.print("FAIL");
-        }
-        
     }//GEN-LAST:event_deleteSupplierButtonActionPerformed
-   
-    private static void deleteAllRows(final JTable model) {
-        for(int row =0; row < model.getRowCount();  row++ ) {
-            for(int col = 0; col<3; col++){
-                
-                model.setValueAt(null, row, col );
-            }
-        }
+    public static void updateSupplierTable(){
+        supplierController.updateTableContents();
     }
     
-    protected void updateSupplierList(){
-        try{
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        //customerListTable.addColumn(new TableColumn());
-        Statement stmt = con.createStatement();
-        String SQL = "SELECT  supplier_id, supplier_name, supplier_contact FROM supplier;";
-        
-       
-        deleteAllRows(supplierListTable);
-        ResultSet rs = stmt.executeQuery( SQL );
-        for(int row = 0; rs.next(); row++){
-            for(int col = 0; col<3; col++){
-            supplierListTable.setValueAt(rs.getString(col+1), row, col );
-        }
-        }
-        //customerListTable.removeColumn(customerListTable.getColumnModel().getColumn(2));
-        
-        //JTable inventoryTable = new JTable(buildTableModel(rs));
-        
-        }
-        catch ( SQLException err ){
-            System.out.println( err.getMessage ());
-            System.out.print("FAIL");
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addSupplierButton;

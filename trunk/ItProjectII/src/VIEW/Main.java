@@ -14,8 +14,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Belthazod
@@ -31,6 +29,7 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         ProductsUI.updateAdminProductsTable();
         CustomerUI.updateCustomerTable();
+        SupplierUI.updateSupplierTable();
         ProductsUI.updateCategoryTable();
     }
     
@@ -62,6 +61,7 @@ public class Main extends javax.swing.JFrame {
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         cardWindow = new javax.swing.JPanel();
         inventoryUI1 = new VIEW.InventoryUI();
         delivery1 = new VIEW.Delivery();
@@ -71,7 +71,6 @@ public class Main extends javax.swing.JFrame {
         tradeInUI1 = new VIEW.TradeInUI();
         reports1 = new VIEW.Reports();
         returns1 = new VIEW.Returns();
-        jButton1 = new javax.swing.JButton();
 
         jButton6.setText("returns");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -215,6 +214,14 @@ public class Main extends javax.swing.JFrame {
         jButton13.setContentAreaFilled(false);
         jPanel4.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1044, 0, -1, -1));
 
+        jButton1.setText("Customers");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 10, -1, -1));
+
         cardWindow.setBackground(new java.awt.Color(102, 102, 102));
         cardWindow.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cardWindow.setLayout(new java.awt.CardLayout());
@@ -231,14 +238,6 @@ public class Main extends javax.swing.JFrame {
 
         jPanel4.add(cardWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 60, 1100, 590));
         card = (CardLayout)cardWindow.getLayout();
-
-        jButton1.setText("Customers");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 10, -1, -1));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 16, 1134, -1));
 

@@ -28,9 +28,6 @@ public class CustomerUI extends javax.swing.JPanel {
         customerListTable.getColumnModel().getColumn(0).setMaxWidth(0);
         customerListTable.getColumnModel().getColumn(0).setMinWidth(0);
         customerListTable.getColumnModel().getColumn(0).setPreferredWidth(0);
-
-        
-
     }
 
     /**
@@ -275,6 +272,7 @@ public class CustomerUI extends javax.swing.JPanel {
         
         if(result == 0){
             customerController.deleteSelectedCustomer();
+            customerController.updateTableContents();
         }
     }//GEN-LAST:event_deleteCustomerButtonActionPerformed
 

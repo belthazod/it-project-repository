@@ -29,17 +29,16 @@ public class AdminUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        customerUI2 = new VIEW.CustomerUI();
         jPanel1 = new javax.swing.JPanel();
         customerAdminButton = new javax.swing.JButton();
         supplierAdminButton = new javax.swing.JButton();
         productAdminButton = new javax.swing.JButton();
         backupAdminButton = new javax.swing.JButton();
         adminCards = new javax.swing.JPanel();
-        customerUI1 = new VIEW.CustomerUI();
+        customerPanel = new VIEW.CustomerUI();
+        productsPanel = new VIEW.ProductsUI();
         supplierPanel = new VIEW.SupplierUI();
-        productsUI1 = new VIEW.ProductsUI();
-        backUp1 = new VIEW.BackUp();
+        backUpPanel = new VIEW.BackUp();
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -102,10 +101,10 @@ public class AdminUI extends javax.swing.JPanel {
         );
 
         adminCards.setLayout(new java.awt.CardLayout());
-        adminCards.add(customerUI1, "customerCard");
+        adminCards.add(customerPanel, "customerCard");
+        adminCards.add(productsPanel, "productCard");
         adminCards.add(supplierPanel, "supplierCard");
-        adminCards.add(productsUI1, "productCard");
-        adminCards.add(backUp1, "backupCard");
+        adminCards.add(backUpPanel, "backupCard");
 
         jLabel1.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
         jLabel1.setText("Admin Panel");
@@ -122,7 +121,7 @@ public class AdminUI extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
+                        .addGap(18, 18, 18)
                         .addComponent(adminCards, javax.swing.GroupLayout.PREFERRED_SIZE, 870, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
@@ -182,18 +181,18 @@ public class AdminUI extends javax.swing.JPanel {
         supplierAdminButton.setEnabled(true);
     }//GEN-LAST:event_backupAdminButtonActionPerformed
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel adminCards;
-    private VIEW.BackUp backUp1;
+    private VIEW.BackUp backUpPanel;
     private javax.swing.JButton backupAdminButton;
     private javax.swing.JButton customerAdminButton;
-    private VIEW.CustomerUI customerUI1;
-    private VIEW.CustomerUI customerUI2;
+    private VIEW.CustomerUI customerPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton productAdminButton;
-    private VIEW.ProductsUI productsUI1;
+    private VIEW.ProductsUI productsPanel;
     private javax.swing.JButton supplierAdminButton;
     private VIEW.SupplierUI supplierPanel;
     // End of variables declaration//GEN-END:variables

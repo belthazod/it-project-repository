@@ -7,7 +7,6 @@ package BEANS;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -20,8 +19,13 @@ public class TableManager {
     private  DefaultTableModel model;
     private JTable table;
     public TableManager(JTable table) {
-        this.table = table;
-        model = (DefaultTableModel) table.getModel();
+        try{
+            this.table = table;
+            model = (DefaultTableModel) table.getModel();
+        }catch(NullPointerException npe){
+            npe.printStackTrace();
+            return;
+        }
     }
     
     public void clearTableContents(){

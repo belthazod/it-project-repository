@@ -5,11 +5,13 @@
  */
 package CONTROLLERS;
 
+import BEANS.ComboItem;
 import BEANS.TableManager;
 import UTIL.DatabaseConnector;
 import UTIL.InputValidator;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -21,9 +23,13 @@ import javax.swing.JTextField;
  */
 public class CategoryController {
     TableManager categoryTableManager;
+    JComboBox<ComboItem> addProductCategoryComboBox;
+    JComboBox<ComboItem> editProductCategoryComboBox;
     DatabaseConnector dbConnector = DatabaseConnector.getInstance();
-    public CategoryController(JTable categoryTable){
+    public CategoryController(JTable categoryTable, JComboBox<ComboItem> addProductCategoryComboBox, JComboBox<ComboItem> editProductCategoryComboBox){
         categoryTableManager = new TableManager(categoryTable);
+        this.addProductCategoryComboBox = addProductCategoryComboBox;
+        this.editProductCategoryComboBox = editProductCategoryComboBox;
     }
     
     public void addCategory(JTextField categoryName){
@@ -51,6 +57,7 @@ public class CategoryController {
         try{
         ResultSet rs = dbConnector.query("SELECT type_id, type_name FROM type ORDER BY 2 ASC");
         categoryTableManager.importDBContents(rs);
+        updateCategoryComponents();
         dbConnector.closeConnection();
         }catch(SQLException sqlE){
             JOptionPane.showMessageDialog(null, "Table update failed", "Database error", JOptionPane.ERROR_MESSAGE);
@@ -71,6 +78,21 @@ public class CategoryController {
             return false;
         }
     }
-    
+    public void updateCategoryComponents(){
+        addProductCategoryComboBox.removeAllItems();
+        editProductCategoryComboBox.removeAllItems();
+        try{
+        ResultSet rs = dbConnector.query("SELECT type_id, type_name FROM type ORDER BY 2 ASC");
+        while(rs.next()){
+            String categoryID = rs.getString(1);
+            String categoryName = rs.getString(2);
+            addProductCategoryComboBox.addItem(new ComboItem(categoryID, categoryName));
+            editProductCategoryComboBox.addItem(new ComboItem(categoryID, categoryName));
+        }
+        dbConnector.closeConnection();
+        }catch(SQLException sqlE){
+            JOptionPane.showMessageDialog(null, "Table update failed", "Database error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
    
 }
