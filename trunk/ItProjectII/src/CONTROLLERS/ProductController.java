@@ -9,7 +9,7 @@ import BEANS.ComboItem;
 import UTIL.DatabaseConnector;
 import UTIL.InputValidator;
 import BEANS.Product;
-import BEANS.TableManager;
+import UTIL.TableManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

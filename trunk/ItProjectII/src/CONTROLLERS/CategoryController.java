@@ -6,7 +6,7 @@
 package CONTROLLERS;
 
 import BEANS.ComboItem;
-import BEANS.TableManager;
+import UTIL.TableManager;
 import UTIL.DatabaseConnector;
 import UTIL.InputValidator;
 import java.sql.ResultSet;
