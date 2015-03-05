@@ -7,7 +7,7 @@ package CONTROLLERS;
 
 import UTIL.DatabaseConnector;
 import UTIL.InputValidator;
-import BEANS.TableManager;
+import UTIL.TableManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JLabel;
