@@ -23,23 +23,29 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
- *
+ * The Logic Controller for the Product Bean and AdminProducts User Interface
+ * including the components involving products.
+ * 
  * @author Belthazod
  */
 public class ProductController {
     private final DatabaseConnector dbConnector;
-    private TableManager adminProductTableManager;
+    private final TableManager adminProductTableManager;
     private TableManager inventoryTableManager;
     private TableManager transferTableManager;
     private TableManager deliveryTableManager;
     private JTabbedPane productsTab;
     private ArrayList<Product> productList;
     
-    public ProductController(JTable adminTable){
-        dbConnector = DatabaseConnector.getInstance();
-        adminProductTableManager = new TableManager(adminTable);
-    }
-    
+    /**
+     * Creates an instance of ProductController capturing all the UI components
+     * affected by the BEAN <code>Product</code>
+     * @param adminTable - the JTable located at the Administrator module.
+     * @param inventoryTable - the JTable located at the Sales or Home User Interface
+     * @param transferTable - the JTable located at the Transfer module
+     * @param deliveryTable - the JTable located at the Delivery module
+     * @param productsTab - the products Tab that opens after adding a product
+     */
     public ProductController(JTable adminTable, JTable inventoryTable, JTable transferTable, JTable deliveryTable, JTabbedPane productsTab){
         dbConnector = DatabaseConnector.getInstance();
         adminProductTableManager = new TableManager(adminTable);
@@ -49,7 +55,19 @@ public class ProductController {
         this.productsTab = productsTab;
     }
     
-    public void addProduct(JTextField productName, JTextField description, JTextField quantity, JTextField unit, JComboBox supplier, JComboBox category, JSpinner reorderQuantity){
+    /**
+     * Adds a new tuple to the Products table in the database based on the user inputs on the components.
+     * <p>The components enlisted should not be empty, otherwise a <code>JOptionPane</code>
+     * containing the error message appears.
+     * @param productName - the <code>JTextField</code> containing the new product
+     * @param description - the <code>JTextField</code> containing the new product's description
+     * @param quantity - the <code>JTextField</code> containing the new product's quantity
+     * @param unit - the <code>JComboBox</code> containing the unit of measurement of the new product
+     * @param supplier - the <code>JComboBox</code> containing the selected supplier of the new product
+     * @param category - the <code>JComboBox</code> containing the selected category of the new product
+     * @param reorderQuantity - the <code>JSpinner</code> containing the reorder quantity level of the new product
+     */
+    public void addProduct(JTextField productName, JTextField description, JTextField quantity, JComboBox<String> unit, JComboBox supplier, JComboBox category, JSpinner reorderQuantity){
         try{
         Object supplierComboBoxitem = supplier.getSelectedItem();
         String supplierID = ((ComboItem)supplierComboBoxitem).getValue();
@@ -57,13 +75,12 @@ public class ProductController {
         Object typeComboBoxitem = category.getSelectedItem();
         String typeID = ((ComboItem)typeComboBoxitem).getValue(); 
         ResultSet supplierResult = dbConnector.query("SELECT supplier_id FROM supplier WHERE supplier_name = ? LIMIT 1", supplier.getSelectedItem().toString());
-        JTextField[] inputs = {productName, description, quantity, unit};
-        String[] values = {typeID, productName.getText(), description.getText(), supplierID, unit.getText(), quantity.getText(), reorderQuantity.getValue().toString() };
+        JTextField[] inputs = {productName, description, quantity};
+        String[] values = {typeID, productName.getText(), description.getText(), supplierID, unit.getSelectedItem().toString(), quantity.getText(), reorderQuantity.getValue().toString() };
        
         if(InputValidator.checkInput(productName.getText(), "Product Name cannot be empty.")
             & InputValidator.checkInput(quantity.getText(), "Quantity should be a number.")    
             & InputValidator.checkIfNumber(quantity.getText(), "Quantity should be a number.") 
-            & InputValidator.checkInput(unit.getText(), "Unit of measurement cannot be empty.")
             & InputValidator.checkInput(reorderQuantity.getValue().toString(), "Reorder quantity should be a number.")){
             
             dbConnector.insert("INSERT INTO product ( type_id, name, description, "
@@ -83,7 +100,21 @@ public class ProductController {
         }
     }
     
-    public void editProduct(JDialog editDialog,JLabel productIDEditInput, JTextField productName, JTextField description, JLabel quantity, JTextField unit, JComboBox supplier, JComboBox category, JSpinner reorderQuantity){
+    /**
+     * Updates the values of the selected <code>Product</code> in the database based on the values in the EditDialog.
+     * The following components should not be empty, otherwise a <code>JDialog</code> is shown prompting the user to
+     *      modify these before proceeding.
+     * @param editDialog - the <code>JDialog</code> used to edit the details of the <code>Product</code>
+     * @param productIDEditInput - the hidden <code>JLabel</code> containing the product ID of the Product being updated 
+     * @param productName - the <code>JTextField</code> containing the <code>Product</code> name.
+     * @param description - the <code>JTextField</code> containing the <code>Product</code> description.
+     * @param quantity - the <code>JLabel</code> containing the <code>Product</code> quantity.
+     * @param unit - the <code>JComboBox</code> containing the <code>Product</code> unit of measurement
+     * @param supplier - 
+     * @param category
+     * @param reorderQuantity 
+     */
+    public void editProduct(JDialog editDialog,JLabel productIDEditInput, JTextField productName, JTextField description, JLabel quantity, JComboBox<String> unit, JComboBox supplier, JComboBox category, JSpinner reorderQuantity){
         try{
         Object supplierComboBoxitem = supplier.getSelectedItem();
         String supplierID = ((ComboItem)supplierComboBoxitem).getValue();
@@ -91,13 +122,12 @@ public class ProductController {
         Object typeComboBoxitem = category.getSelectedItem();
         String typeID = ((ComboItem)typeComboBoxitem).getValue(); 
         
-        JTextField[] inputs = {productName, description, unit};
+        JTextField[] inputs = {productName, description};
         
-        String[] values = {typeID, productName.getText(), description.getText(), supplierID, unit.getText(), quantity.getText(), reorderQuantity.getValue().toString() };
+        String[] values = {typeID, productName.getText(), description.getText(), supplierID, unit.getSelectedItem().toString(), quantity.getText(), reorderQuantity.getValue().toString() };
         if(InputValidator.checkInput(productName.getText(), "Product Name cannot be empty.")
             & InputValidator.checkInput(quantity.getText(), "Quantity should be a number.")    
             & InputValidator.checkIfNumber(quantity.getText(), "Quantity should be a number.") 
-            & InputValidator.checkInput(unit.getText(), "Unit of measurement cannot be empty.")
             & InputValidator.checkInput(reorderQuantity.getValue().toString(), "Reorder quantity should be a number.")){
             
             dbConnector.update("UPDATE product SET type_id = ?, name = ?, description = ?, "
@@ -118,9 +148,24 @@ public class ProductController {
         }
     }
     
+    /**
+     * Opens the EditProduct Dialog box. Components are updated based on the 
+     * selected product in the table.
+     * 
+     * @param prodID - the selected product ID
+     * @param productIDTextField - the hidden <code>JTextField</code> that would contain the
+     *      productID of the product.
+     * @param productNameTextField - <code>JTextField</code> containing the product Name in the EditDialog
+     * @param descriptionTextField - <code>JTextField</code> containing the description/brand of the product in the EditDialog 
+     * @param categoryComboBox - <code>JComboBox</code> containing the list of product types/categories in the Edit Dialog
+     * @param supplierComboBox - <code>JComboBox</code> containing the list of suppliers in the EditDialog
+     * @param unitComboBox -  <code>JComboBox</code> containing the unit of measurement in the EditDialog
+     * @param quantityLabel -   <code>JLabel</code> containing the quantity of the selected product in the EditDialog
+     * @param reorderQuantityLevelSpinner - <code>JSpinner</code> containing the reorder quantity level in the EditDialog
+     */
     public void openProductEditDialog(String prodID, JLabel productIDTextField, JTextField productNameTextField, JTextField descriptionTextField,
             JComboBox<ComboItem> categoryComboBox, JComboBox<ComboItem> supplierComboBox, 
-            JTextField unitTextField, JLabel quantityLabel, JSpinner reorderQuantityLevelSpinner){
+            JComboBox<String> unitComboBox, JLabel quantityLabel, JSpinner reorderQuantityLevelSpinner){
         
         String selectString = "SELECT product_id, name, description, "
                 + "type_id, supplier_id, Unit, physical_count AS Quantity, "
@@ -143,9 +188,16 @@ public class ProductController {
                 productIDTextField.setText(productID);
                 productNameTextField.setText(productName);
                 descriptionTextField.setText(description);
-                unitTextField.setText(unit);
+                
                 quantityLabel.setText(physicalCount);
                 reorderQuantityLevelSpinner.setValue(reorderQuantity);
+                
+                for(int i = 0; i < unitComboBox.getItemCount(); i++){
+                    if( unitComboBox.getItemAt(i).equals(unit) ){
+                        unitComboBox.setSelectedItem(unitComboBox.getItemAt(i));
+                    }
+                }
+                
                 for(int i = 0; i < categoryComboBox.getItemCount(); i++){
                     if( categoryComboBox.getItemAt(i).getValue().equals(typeID) ){
                         categoryComboBox.setSelectedItem(categoryComboBox.getItemAt(i));
@@ -164,6 +216,12 @@ public class ProductController {
             JOptionPane.showMessageDialog(null, "Failed to load Edit Dialog.", "Database Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    /**
+     * Queries from the database all the list of products stored including all their
+     * attributes.
+     * @return an <code>ArrayList</code> of the <code>Product</code> Bean 
+     */
     public ArrayList<Product> getProducts(){
         productList = new ArrayList<Product>();
         try{
@@ -189,10 +247,18 @@ public class ProductController {
         return productList;
     }
 
+    /**
+     * Gets the list of <code>Product</code>s
+     * @return an <code>ArrayList</code> of <code>Product</code>s taken from the 
+     *  database
+     */
     public ArrayList<Product> getProductList() {
         return productList;
     }
     
+    /**
+     * Updates all the <code>JTable</code>s containing product information.
+     */
     public void updateTableContents() {
         adminProductTableManager.clearTableContents();
         inventoryTableManager.clearTableContents();
@@ -217,6 +283,10 @@ public class ProductController {
         }
         dbConnector.closeConnection();
     }
+    
+    /**
+     * deletes the selected <code>Product</code> in the adminProductsList
+     */
     public void deleteSelectedProduct(){
         try{
             String productID = adminProductTableManager.getIDFromTable(adminProductTableManager.getSelectedRow());
