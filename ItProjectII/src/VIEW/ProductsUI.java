@@ -26,7 +26,7 @@ public class ProductsUI extends javax.swing.JPanel {
      */
     public ProductsUI() {
         initComponents();
-        productController = new ProductController(adminProductsTable, InventoryUI.getInventoryTable(), Transfer.getTransferProductsTable(), Delivery.getDeliveryProductsTable(), productsTab );
+        productController = new ProductController(adminProductsTable, InventoryUI.getInventoryTable(), TransferUI.getTransferProductsTable(), DeliveryUI.getDeliveryProductsTable(), productsTab );
         categoryController = new CategoryController(categoryTable, addProductCategoryComboBox, editProductCategoryComboBox);
         adminProductsTable.getColumnModel().getColumn(0).setMaxWidth(0);
         adminProductsTable.getColumnModel().getColumn(0).setMinWidth(0);
@@ -329,6 +329,7 @@ public class ProductsUI extends javax.swing.JPanel {
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        adminProductsTable.setAutoCreateRowSorter(true);
         adminProductsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
