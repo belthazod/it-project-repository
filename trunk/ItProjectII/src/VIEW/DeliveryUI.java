@@ -6,7 +6,7 @@
 package VIEW;
 
 import BEANS.ComboItem;
-import BEANS.Product;
+import CONTROLLERS.DeliveryController;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -15,22 +15,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author weak_2030
+ * @author Belthazod
  */
-public class Delivery extends javax.swing.JPanel {
-
+public class DeliveryUI extends javax.swing.JPanel {
+    private DeliveryController deliveryController;
     /**
      * Creates new form Delivery
      */
-    public Delivery() {
+    public DeliveryUI() {
         initComponents();
+        deliveryController = new DeliveryController(deliveryProductsTable, deliveryTable, deliveryProductFilterSupplierComboBox, deliverySupplierComboBox);
     }
 
     /**
@@ -50,17 +51,17 @@ public class Delivery extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         removeFromListButton = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        saveDeliveryButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        supplierComboBox = new javax.swing.JComboBox<ComboItem>();
+        deliverySupplierComboBox = new javax.swing.JComboBox<ComboItem>();
         jLabel4 = new javax.swing.JLabel();
-
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        deliveryProductFilterSupplierComboBox = new javax.swing.JComboBox<ComboItem>();
+        jLabel5 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
         jLabel1.setText("Delivery Acknowledgement");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
 
+        deliveryProductsTable.setAutoCreateRowSorter(true);
         deliveryProductsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -95,14 +96,13 @@ public class Delivery extends javax.swing.JPanel {
             deliveryProductsTable.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 450, 370));
-
+        deliveryTable.setAutoCreateRowSorter(true);
         deliveryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Product ID", "Name", "Description", "Category", "Quantity delivered"
+                "Product ID", "Name", "Description", "Unit of measurement", "Quantity delivered"
             }
         ) {
             Class[] types = new Class [] {
@@ -126,13 +126,9 @@ public class Delivery extends javax.swing.JPanel {
         deliveryTable.getColumnModel().getColumn(0).setPreferredWidth(0);
         deliveryTable.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, 480, 290));
-
         jLabel2.setText("Delivery Summary (Items Received)");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 150, -1, -1));
 
         jLabel3.setText("Products List");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         removeFromListButton.setText("Remove From List");
         removeFromListButton.addActionListener(new java.awt.event.ActionListener() {
@@ -140,15 +136,13 @@ public class Delivery extends javax.swing.JPanel {
                 removeFromListButtonActionPerformed(evt);
             }
         });
-        add(removeFromListButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 470, -1, -1));
 
-        jButton3.setText("Save Delivery");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        saveDeliveryButton.setText("Save Delivery");
+        saveDeliveryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                saveDeliveryButtonActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 510, 200, 50));
 
         jButton2.setText("Add To List");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -156,34 +150,108 @@ public class Delivery extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, 110, 50));
 
-        supplierComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        supplierComboBox.addActionListener(new java.awt.event.ActionListener() {
+        deliverySupplierComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        deliverySupplierComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                supplierComboBoxActionPerformed(evt);
+                deliverySupplierComboBoxActionPerformed(evt);
             }
         });
-        add(supplierComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 480, 200, -1));
-        updateSupplierComboBox();
 
         jLabel4.setText("Supplier:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 480, -1, -1));
+
+        deliveryProductFilterSupplierComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        deliveryProductFilterSupplierComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deliveryProductFilterSupplierComboBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Supplier:");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(420, 420, 420)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deliveryProductFilterSupplierComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(610, 610, 610)
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(deliverySupplierComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(removeFromListButton))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(880, 880, 880)
+                            .addComponent(saveDeliveryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1)
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(deliveryProductFilterSupplierComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(3, 3, 3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel2)
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(deliverySupplierComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(removeFromListButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(saveDeliveryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     String host = "jdbc:mysql://localhost:3306/inventory";
         String uName = "root";
         String uPass = "";
     private void removeFromListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFromListButtonActionPerformed
-        Integer truckTableSelectedRow = deliveryTable.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel) deliveryTable.getModel();
-        
-        model.removeRow(truckTableSelectedRow);
-        
-        
+        deliveryController.removeSelectedRow();
     }//GEN-LAST:event_removeFromListButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void saveDeliveryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveDeliveryButtonActionPerformed
         DefaultTableModel model = (DefaultTableModel) deliveryTable.getModel();
         boolean flag = false;
         try{
@@ -204,7 +272,7 @@ public class Delivery extends javax.swing.JPanel {
                     PreparedStatement selectStatement = null;
                     Connection con = DriverManager.getConnection(host,uName, uPass);
                     
-                    String supplierName = supplierComboBox.getSelectedItem().toString();
+                    String supplierName = deliverySupplierComboBox.getSelectedItem().toString();
                     System.out.print(supplierName);
                     Statement stmt = con.createStatement( );
                     
@@ -258,104 +326,52 @@ public class Delivery extends javax.swing.JPanel {
                     
                 }
                 JOptionPane.showMessageDialog(null, "Delivery aknowledged");
-                deleteAllRows(deliveryTable);
                 
             }
         }catch ( SQLException err ){
                 System.out.println( err.getMessage ());
                 System.out.print("FAIL");
             }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_saveDeliveryButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Integer transferTableSelectedRow = deliveryProductsTable.getSelectedRow();
-        String transferProductID = (String) deliveryProductsTable.getModel().getValueAt(transferTableSelectedRow, 0);
-        
-        boolean flag = false;
-        
-        for(int row = 0; row < deliveryTable.getRowCount(); row++){
-            String deliveryProductID = (String) deliveryTable.getModel().getValueAt(row, 0);
-            if(transferProductID.equals(deliveryProductID)){
-                flag = true;
-            }else{
-                flag = false;
-            }
-        }
-        if(flag){
-            JOptionPane.showMessageDialog(null,
-                "Item already in delivery list.",
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
-        }else{
-        String name = (String) deliveryProductsTable.getModel().getValueAt(transferTableSelectedRow, 1);
-        String description = (String) deliveryProductsTable.getModel().getValueAt(transferTableSelectedRow, 2);
-        String category = (String) deliveryProductsTable.getModel().getValueAt(transferTableSelectedRow, 3);
-        
-        DefaultTableModel model = (DefaultTableModel) deliveryTable.getModel();
-        model.addRow(new Object[]{transferProductID, name, description, category, ""});
-        }
+        deliveryController.addSelectedToDeliverySummary();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void supplierComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierComboBoxActionPerformed
+    private void deliverySupplierComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deliverySupplierComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_supplierComboBoxActionPerformed
-    private static void deleteAllRows(final JTable table) {
-        
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        for(int row =0; row < model.getRowCount(); ) {
-            model.removeRow(0);
-        
-        }
-    }
-    public static void updateProductsListDeliveryTable(){
-        
-        deleteAllRows(deliveryProductsTable);
-        DefaultTableModel model = (DefaultTableModel) deliveryProductsTable.getModel();
+    }//GEN-LAST:event_deliverySupplierComboBoxActionPerformed
 
-        for(Product product: Main.productList){
-            model.addRow(new Object[]{product.getProductID(), product.getName(), product.getDescription(), product.getTypeName(), product.getPhysicalCount()});
-        }
-    }
-    public void updateSupplierComboBox(){
-            supplierComboBox.removeAllItems();
-            PreparedStatement selectStatement = null;
-            try{
-            Connection con = DriverManager.getConnection(host,uName, uPass);
-            String selectString = "SELECT supplier_name, supplier_id FROM supplier ORDER BY 1 ASC";
-            selectStatement = con.prepareStatement(selectString);
-            ResultSet rs = selectStatement.executeQuery();
-                while(rs.next()){
-                    String supplierName = rs.getString(1);
-                    String supplierID = rs.getString(2);
-                    
-                    String supplier[] = {supplierName, supplierID};
-                    
-                    supplierComboBox.addItem(new ComboItem(supplierName, supplierName));
-                }
+    private void deliveryProductFilterSupplierComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deliveryProductFilterSupplierComboBoxActionPerformed
+        deliveryController.filterProducts();
+    }//GEN-LAST:event_deliveryProductFilterSupplierComboBoxActionPerformed
 
-            }
-            catch ( SQLException err ){
-                System.out.println( err.getMessage ());
-                System.out.print("FAIL");
-            }
-    }
     
     public static JTable getDeliveryProductsTable(){
         return deliveryProductsTable;
     }
     
+    public static JComboBox getDeliveryProductFilterSupplierComboBox(){
+        return deliveryProductFilterSupplierComboBox;
+    }
+    
+    public static JComboBox getDeliverySupplierComboBox(){
+        return deliverySupplierComboBox;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private static javax.swing.JComboBox<ComboItem> deliveryProductFilterSupplierComboBox;
     public static javax.swing.JTable deliveryProductsTable;
+    private static javax.swing.JComboBox<ComboItem> deliverySupplierComboBox;
     private javax.swing.JTable deliveryTable;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton removeFromListButton;
-    private javax.swing.JComboBox<ComboItem> supplierComboBox;
+    private javax.swing.JButton saveDeliveryButton;
     // End of variables declaration//GEN-END:variables
 }

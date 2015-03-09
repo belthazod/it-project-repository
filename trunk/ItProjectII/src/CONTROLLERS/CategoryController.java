@@ -26,7 +26,10 @@ public class CategoryController {
     JComboBox<ComboItem> addProductCategoryComboBox;
     JComboBox<ComboItem> editProductCategoryComboBox;
     DatabaseConnector dbConnector = DatabaseConnector.getInstance();
-    public CategoryController(JTable categoryTable, JComboBox<ComboItem> addProductCategoryComboBox, JComboBox<ComboItem> editProductCategoryComboBox){
+    
+    public CategoryController(JTable categoryTable, 
+            JComboBox<ComboItem> addProductCategoryComboBox, 
+            JComboBox<ComboItem> editProductCategoryComboBox){
         categoryTableManager = new TableManager(categoryTable);
         this.addProductCategoryComboBox = addProductCategoryComboBox;
         this.editProductCategoryComboBox = editProductCategoryComboBox;

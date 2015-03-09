@@ -247,25 +247,25 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
     }
     
     public static void updateCategoryComboBox(){
-            categoryComboBox.removeAllItems();
-            PreparedStatement selectStatement = null;
-            try{
-            Connection con = DriverManager.getConnection(host,uName, uPass);
-            String selectString = "SELECT type_name, type_id FROM type ORDER By 1 ASC";
-            selectStatement = con.prepareStatement(selectString);
-            ResultSet rs = selectStatement.executeQuery();
-            categoryComboBox.addItem(new ComboItem("--Choose Category--","null"));
-                while(rs.next()){
-                    String categoryName = rs.getString(1);
-                    String categoryID = rs.getString(2);
-                    categoryComboBox.addItem(new ComboItem(categoryName, categoryID));
-                }
+        categoryComboBox.removeAllItems();
+        PreparedStatement selectStatement = null;
+        try{
+        Connection con = DriverManager.getConnection(host,uName, uPass);
+        String selectString = "SELECT type_name, type_id FROM type ORDER By 1 ASC";
+        selectStatement = con.prepareStatement(selectString);
+        ResultSet rs = selectStatement.executeQuery();
+        categoryComboBox.addItem(new ComboItem("--Choose Category--","null"));
+            while(rs.next()){
+                String categoryName = rs.getString(1);
+                String categoryID = rs.getString(2);
+                categoryComboBox.addItem(new ComboItem(categoryName, categoryID));
+            }
 
-            }
-            catch ( SQLException err ){
-                System.out.println( err.getMessage ());
-                System.out.print("FAIL");
-            }
+        }
+        catch ( SQLException err ){
+            System.out.println( err.getMessage ());
+            System.out.print("FAIL");
+        }
     }
     
     protected static void updateSecondHandProductsListTable(){

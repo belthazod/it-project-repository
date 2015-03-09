@@ -111,4 +111,22 @@ public class TableManager {
     public String getIDFromTable(int row) throws NullPointerException{
         return table.getValueAt(row, 0).toString();
     }
+    
+    /**
+     * Gets the total number of existing tuples in the JTable
+     * @return the number of rows in the form of an integer 
+     */
+    public int getRowCount(){
+        return table.getRowCount();
+    }
+    
+    /**
+     * Retrieves the value located at the specified indeces in the <code>JTable</code>
+     * @param row - the row index in the <code>Jtable</code>
+     * @param col - the column index in the <code>JTable</code>
+     * @return 
+     */
+    public String getValueAt(int row, int col){
+        return table.getValueAt(row,col).toString();
+    }
 }

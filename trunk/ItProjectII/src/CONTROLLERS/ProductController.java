@@ -28,15 +28,22 @@ import javax.swing.JTextField;
  * 
  * @author Belthazod
  */
+
+
+
 public class ProductController {
-    private final DatabaseConnector dbConnector;
-    private final TableManager adminProductTableManager;
+    private DatabaseConnector dbConnector;
+    private TableManager adminProductTableManager;
     private TableManager inventoryTableManager;
     private TableManager transferTableManager;
     private TableManager deliveryTableManager;
     private JTabbedPane productsTab;
-    private ArrayList<Product> productList;
+    private static ArrayList<Product> productList;
     
+    public ProductController(){
+    dbConnector = DatabaseConnector.getInstance();
+    productList = getProducts();
+    }
     /**
      * Creates an instance of ProductController capturing all the UI components
      * affected by the BEAN <code>Product</code>
@@ -106,13 +113,13 @@ public class ProductController {
      *      modify these before proceeding.
      * @param editDialog - the <code>JDialog</code> used to edit the details of the <code>Product</code>
      * @param productIDEditInput - the hidden <code>JLabel</code> containing the product ID of the Product being updated 
-     * @param productName - the <code>JTextField</code> containing the <code>Product</code> name.
-     * @param description - the <code>JTextField</code> containing the <code>Product</code> description.
-     * @param quantity - the <code>JLabel</code> containing the <code>Product</code> quantity.
+     * @param productName - the <code>JTextField</code> containing the <code>Product</code> name
+     * @param description - the <code>JTextField</code> containing the <code>Product</code> description
+     * @param quantity - the <code>JLabel</code> containing the <code>Product</code> quantity
      * @param unit - the <code>JComboBox</code> containing the <code>Product</code> unit of measurement
-     * @param supplier - 
-     * @param category
-     * @param reorderQuantity 
+     * @param supplier - the <code>JComboBox</code> containing the <code>Product</code> supplier
+     * @param category - the <code>JComboBox</code> containing the <code>Product</code> category
+     * @param reorderQuantity - the <code>JSpinner</code> containing the <code>Product</code> reorder Quantity level
      */
     public void editProduct(JDialog editDialog,JLabel productIDEditInput, JTextField productName, JTextField description, JLabel quantity, JComboBox<String> unit, JComboBox supplier, JComboBox category, JSpinner reorderQuantity){
         try{
@@ -252,7 +259,7 @@ public class ProductController {
      * @return an <code>ArrayList</code> of <code>Product</code>s taken from the 
      *  database
      */
-    public ArrayList<Product> getProductList() {
+    public static ArrayList<Product> getProductList() {
         return productList;
     }
     
@@ -272,14 +279,21 @@ public class ProductController {
                 product.getSupplierName(), product.getPhysicalCount(), 
                 product.getReorderQuantityLevel()};
             
-            String[] shortValues = {product.getProductID(), product.getName(), 
+            String[] deliveryValues = {product.getProductID(), product.getName(), 
                 product.getDescription(), product.getTypeName(), 
                 product.getUnit(), product.getPhysicalCount(), 
                 product.getReorderQuantityLevel()};
+            
             adminProductTableManager.addRowContent(completeValues);
             inventoryTableManager.addRowContent(completeValues);
-            transferTableManager.addRowContent(shortValues);
-            deliveryTableManager.addRowContent(shortValues);
+            deliveryTableManager.addRowContent(deliveryValues);
+            if((product.getPhysicalCount()!=null) && Integer.parseInt(product.getPhysicalCount()) != 0){
+                String[] transferValues = {product.getProductID(), product.getName(), 
+                    product.getDescription(), product.getTypeName(), 
+                    product.getUnit(), product.getPhysicalCount(), 
+                    product.getReorderQuantityLevel()};
+                transferTableManager.addRowContent(transferValues);
+            }
         }
         dbConnector.closeConnection();
     }

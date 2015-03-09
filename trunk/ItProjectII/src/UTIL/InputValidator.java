@@ -22,9 +22,13 @@ public class InputValidator {
  */
     public static boolean checkInput(String input, String message){
         boolean result = true;
-        if(input.trim().equals("")){
+        try{
+            if(input.trim().equals("")){
             JOptionPane.showMessageDialog(null, message, "Input error", JOptionPane.ERROR_MESSAGE);
-            return false;
+            result = false;
+            }
+        }catch(NullPointerException npe){
+            result = false;
         }
         return result;
     }
