@@ -27,10 +27,14 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        try{
         ProductsUI.updateAdminProductsTable();
         CustomerUI.updateCustomerTable();
         SupplierUI.updateSupplierTable();
         ProductsUI.updateCategoryTable();
+        }catch(Exception e){
+            
+        }
     }
     
     /**
