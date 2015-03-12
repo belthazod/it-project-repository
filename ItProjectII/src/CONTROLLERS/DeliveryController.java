@@ -37,12 +37,16 @@ public class DeliveryController {
      * @param deliverySupplierComboBox - the <code>JComboBox</code> containing the list of suppliers to identify from whom the delivery came from.
      */
     public DeliveryController(JTable deliveryProductsTable, JTable deliveryTable, JComboBox<ComboItem> deliveryProductFilterSupplierComboBox, JComboBox<ComboItem> deliverySupplierComboBox){
+        try{
         this.deliveryProductsTableManager = new TableManager(deliveryProductsTable);
         this.deliveryTableManager = new TableManager(deliveryTable);
         this.deliveryProductFilterSupplierComboBox = deliveryProductFilterSupplierComboBox;
         this.deliverySupplierComboBox = deliverySupplierComboBox;
         this.productController = new ProductController();
         productList = ProductController.getProductList();
+        }catch(NullPointerException npe){
+            
+        }
     }
     
     /**
