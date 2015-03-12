@@ -87,7 +87,7 @@ public class TransferController {
             Date today = new Date(timeNow);
             boolean mainIsSelected = false;
             int mainCount = 0;
-            boolean invalidQuantityFlag = true;
+            boolean invalidQuantityFlag = false;
             for(int row = 0; row < truckTableManager.getRowCount();row++){
                 int quantity = Integer.parseInt(truckTableManager.getValueAt(
                         truckTableManager.getSelectedRow(), 5));
@@ -105,29 +105,32 @@ public class TransferController {
                 mainIsSelected = true;
                 mainCount++;
             }
-            
-            if(mainIsSelected && mainCount != 2){
-                dbConnector.insert("INSERT INTO transfers (transfer_date, "
-                        + "transfer_from, destination) VALUES(?,?,?)", 
-                        new String[]{today.toString(),transferFrom, transferTo  });
-                ResultSet rs = dbConnector.query("SELECT transfer_id FROM transfers ORDER BY 1 DESC LIMIT 1");
-                rs.next();
-                String transferID = rs.getString(1);
-                for(int row = 0; row < truckTableManager.getRowCount(); row++){
-                    Integer quantityToTransfer = Integer.parseInt(truckTableManager.getValueAt(row, 5));
-                    Integer currentQuantity = Integer.parseInt(truckTableManager.getValueAt(row, 1));    
-                    String productID = truckTableManager.getIDFromTable(row);
-                    if(quantityToTransfer < currentQuantity && quantityToTransfer > 0){
-                        dbConnector.insert("INSERT INTO transferdetails "
-                                + "(transfer_id, product_id, qty_transfered) "
-                                + "VALUES(?,?,?)", new String[]{transferID, productID, quantityToTransfer.toString()});
+            if(!invalidQuantityFlag){
+                if(mainIsSelected && mainCount != 2){
+                    dbConnector.insert("INSERT INTO transfers (transfer_date, "
+                            + "transfer_from, destination) VALUES(?,?,?)", 
+                            new String[]{today.toString(),transferFrom, transferTo  });
+                    ResultSet rs = dbConnector.query("SELECT transfer_id FROM transfers ORDER BY 1 DESC LIMIT 1");
+                    rs.next();
+                    String transferID = rs.getString(1);
+                    for(int row = 0; row < truckTableManager.getRowCount(); row++){
+                        Integer quantityToTransfer = Integer.parseInt(truckTableManager.getValueAt(row, 5));
+                        Integer currentQuantity = Integer.parseInt(truckTableManager.getValueAt(row, 1));    
+                        String productID = truckTableManager.getIDFromTable(row);
+                        if(quantityToTransfer < currentQuantity && quantityToTransfer > 0){
+                            dbConnector.insert("INSERT INTO transferdetails "
+                                    + "(transfer_id, product_id, qty_transfered) "
+                                    + "VALUES(?,?,?)", new String[]{transferID, productID, quantityToTransfer.toString()});
+                        }
                     }
+                    truckTableManager.clearTableContents();
+                    dbConnector.closeConnection();
+                    JOptionPane.showMessageDialog(null, "Products transfered successfully", "Success", JOptionPane.INFORMATION_MESSAGE);        
+                }else{
+                    JOptionPane.showMessageDialog(null, "Please check the sender and recipient of the transfer. The Main branch should be in either of the two not both.", "Branch allocation error.", JOptionPane.ERROR_MESSAGE);
                 }
-                truckTableManager.clearTableContents();
-                dbConnector.closeConnection();
-                JOptionPane.showMessageDialog(null, "Products transfered successfully", "Success", JOptionPane.INFORMATION_MESSAGE);        
             }else{
-                JOptionPane.showMessageDialog(null, "Please check the sender and recipient of the transfer. The Main branch should be in either of the two not both.", "Branch allocation error.", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please check the delivered quantity of each product. The quantity should not be empty, equal to 0, or less that 0", "Branch allocation error.", JOptionPane.ERROR_MESSAGE);
             }
             
             

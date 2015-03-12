@@ -9,6 +9,9 @@ import BEANS.ComboItem;
 import BEANS.Product;
 import UTIL.DatabaseConnector;
 import UTIL.TableManager;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -49,24 +52,28 @@ public class DeliveryController {
     public void addSelectedToDeliverySummary(){
         
         boolean itemExists = false;
-        String productID = deliveryProductsTableManager.getIDFromTable(deliveryProductsTableManager.getSelectedRow());
-        
-        for(int row = 0; row < deliveryTableManager.getRowCount(); row++){
-            String truckProductID = deliveryTableManager.getIDFromTable(row);
-            itemExists = productID.equals(truckProductID);
-        }
-        if(itemExists){
-            JOptionPane.showMessageDialog(null,
-                "Item already in truck.",
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
-        }else{
-            String name = (String) deliveryProductsTableManager.getValueAt(deliveryProductsTableManager.getSelectedRow(), 1);
-            String description = (String) deliveryProductsTableManager.getValueAt(deliveryProductsTableManager.getSelectedRow(), 2);
-            String unit = (String) deliveryProductsTableManager.getValueAt(deliveryProductsTableManager.getSelectedRow(), 4);
-        
-            deliveryTableManager.addRowContent(new String[]{productID, name, description, unit, ""});
-            
+        try{
+            String productID = deliveryProductsTableManager.getIDFromTable(deliveryProductsTableManager.getSelectedRow());
+
+            for(int row = 0; row < deliveryTableManager.getRowCount(); row++){
+                String truckProductID = deliveryTableManager.getIDFromTable(row);
+                itemExists = productID.equals(truckProductID);
+            }
+            if(itemExists){
+                JOptionPane.showMessageDialog(null,
+                    "Item already in truck.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            }else{
+                String name = (String) deliveryProductsTableManager.getValueAt(deliveryProductsTableManager.getSelectedRow(), 1);
+                String description = (String) deliveryProductsTableManager.getValueAt(deliveryProductsTableManager.getSelectedRow(), 2);
+                String unit = (String) deliveryProductsTableManager.getValueAt(deliveryProductsTableManager.getSelectedRow(), 4);
+
+                deliveryTableManager.addRowContent(new String[]{productID, name, description, unit, ""});
+
+            }
+        }catch(IndexOutOfBoundsException ioobe){
+            JOptionPane.showMessageDialog(null, "Please select a Product to add to the Delivery Summary Table", "Selection Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -77,6 +84,10 @@ public class DeliveryController {
         deliveryTableManager.deleteRow();
     }
     
+    /**
+     * Filters the Products in the Products <code>JTable</code> to show only products 
+     * coming from a particular supplier.
+     */
     public void filterProducts(){
         
         if(deliveryProductFilterSupplierComboBox.getSelectedItem()!=null && productList != null){
@@ -95,7 +106,6 @@ public class DeliveryController {
                 }
             }else{
                 for(Product product : productList){
-
                     if(product.getSupplierName().equals(supplier)){
                         String[] deliveryValues = {product.getProductID(), product.getName(), 
                             product.getDescription(), product.getTypeName(), 
@@ -106,6 +116,59 @@ public class DeliveryController {
                     }
                 }
             }
+        }
+    }
+    
+    /**
+     * Gets all the products enlisted in the "Delivery" <code>JTable</code> and 
+     * creates a delivery and delivery_details topple(s) based on the values 
+     * in the table.
+     */
+    public void acknowledgeDelivery(){
+        try{
+            ComboItem supplier = (ComboItem)deliverySupplierComboBox.getSelectedItem();
+            String supplierID = supplier.getValue();
+            
+            long timeNow = System.currentTimeMillis();
+            Date today = new Date(timeNow);
+            
+            boolean invalidQuantityFlag = false;
+            for(int row = 0; row < deliveryTableManager.getRowCount();row++){
+                int quantity = Integer.parseInt(deliveryTableManager.getValueAt(
+                        deliveryTableManager.getSelectedRow(), 4));
+                if(quantity <= 0){
+                    invalidQuantityFlag = true;
+                    break;
+                }
+            }
+
+            
+            if(!invalidQuantityFlag){
+                dbConnector.insert("INSERT INTO delivery (supplier_id, date_order_received) VALUES(?,?)", 
+                        new String[]{supplierID, today.toString() });
+                ResultSet rs = dbConnector.query("SELECT delivery_id FROM delivery ORDER BY 1 DESC LIMIT 1");
+                rs.next();
+                String deliveryID = rs.getString(1);
+                for(int row = 0; row < deliveryTableManager.getRowCount(); row++){
+                    Integer quantityToTransfer = Integer.parseInt(deliveryTableManager.getValueAt(row, 4));
+                        
+                    String productID = deliveryTableManager.getIDFromTable(row);
+                    if(quantityToTransfer > 0){
+                        dbConnector.insert("INSERT INTO deliverydetails "
+                                + "(delivery_id, product_id, quantity_delivered)"
+                                + " VALUES(?,?,?)", 
+                                new String[]{deliveryID, productID, quantityToTransfer.toString()});
+                    }
+                }
+                deliveryTableManager.clearTableContents();
+                dbConnector.closeConnection();
+                JOptionPane.showMessageDialog(null, "Products transfered successfully", "Success", JOptionPane.INFORMATION_MESSAGE);        
+            }else{
+                JOptionPane.showMessageDialog(null, "Please check the delivered quantity of each product. The quantity should not be empty, equal to 0, or less than 0", "Quantity Input Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }catch(SQLException sqlE){
+            sqlE.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Failed to transfer products", "Database error.", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

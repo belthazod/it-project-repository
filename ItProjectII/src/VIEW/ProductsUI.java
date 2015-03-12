@@ -71,6 +71,7 @@ public class ProductsUI extends javax.swing.JPanel {
         saveEditCategoryButton = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         categoryIDEditInput = new javax.swing.JLabel();
+        dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
         productsTab = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -583,6 +584,7 @@ public class ProductsUI extends javax.swing.JPanel {
     private javax.swing.JLabel categoryIDEditInput;
     private javax.swing.JTextField categoryNameInput;
     private static javax.swing.JTable categoryTable;
+    private datechooser.beans.DateChooserCombo dateChooserCombo1;
     private javax.swing.JButton deleteProductButton;
     private javax.swing.JTextField descriptionEditInput;
     private javax.swing.JButton editCategoryButton;

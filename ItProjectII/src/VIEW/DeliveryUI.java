@@ -7,18 +7,8 @@ package VIEW;
 
 import BEANS.ComboItem;
 import CONTROLLERS.DeliveryController;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -52,7 +42,7 @@ public class DeliveryUI extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         removeFromListButton = new javax.swing.JButton();
         saveDeliveryButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        addToListButton = new javax.swing.JButton();
         deliverySupplierComboBox = new javax.swing.JComboBox<ComboItem>();
         jLabel4 = new javax.swing.JLabel();
         deliveryProductFilterSupplierComboBox = new javax.swing.JComboBox<ComboItem>();
@@ -144,10 +134,10 @@ public class DeliveryUI extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Add To List");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        addToListButton.setText("Add To List");
+        addToListButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                addToListButtonActionPerformed(evt);
             }
         });
 
@@ -189,7 +179,7 @@ public class DeliveryUI extends javax.swing.JPanel {
                                 .addComponent(deliveryProductFilterSupplierComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addToListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -222,7 +212,7 @@ public class DeliveryUI extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(130, 130, 130)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(addToListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(jLabel2)
@@ -244,99 +234,17 @@ public class DeliveryUI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    String host = "jdbc:mysql://localhost:3306/inventory";
-        String uName = "root";
-        String uPass = "";
     private void removeFromListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFromListButtonActionPerformed
         deliveryController.removeSelectedRow();
     }//GEN-LAST:event_removeFromListButtonActionPerformed
 
     private void saveDeliveryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveDeliveryButtonActionPerformed
-        DefaultTableModel model = (DefaultTableModel) deliveryTable.getModel();
-        boolean flag = false;
-        try{
-            for(int row = 0; row<model.getRowCount();row++ ){
-                String quantity = (String) deliveryTable.getModel().getValueAt(row, 4);
-                
-                if(quantity == null){
-                    JOptionPane.showMessageDialog(null,
-                        "Please set the quantity received from delivery to all products in the delivery list.",
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
-                    flag = true;
-                    break;
-                }
-            }
-            if(!flag){
-                    PreparedStatement insertStatement = null;
-                    PreparedStatement selectStatement = null;
-                    Connection con = DriverManager.getConnection(host,uName, uPass);
-                    
-                    String supplierName = deliverySupplierComboBox.getSelectedItem().toString();
-                    System.out.print(supplierName);
-                    Statement stmt = con.createStatement( );
-                    
-                    String typeSelectString = "SELECT supplier_id FROM supplier WHERE supplier_name = ? LIMIT 1";
-                    selectStatement = con.prepareStatement(typeSelectString);
-                    
-                    selectStatement.setString(1,supplierName);
-                    ResultSet rs = selectStatement.executeQuery();
-
-                    rs.next();
-                    String supplierID = rs.getString(1);
-                    long timeNow = System.currentTimeMillis();
-                   
-                    
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                    Date date = new Date(timeNow);
-                    
-                                       
-                    String insertString = "INSERT INTO delivery (supplier_id, date_order_received) VALUES(?,?)";
-                    insertStatement = con.prepareStatement(insertString);
-
-                    insertStatement.setString(1, supplierID);
-                    insertStatement.setDate(2, date);
-                    insertStatement.executeUpdate();
-                    
-                    
-                    String selectString = "SELECT delivery_id FROM delivery ORDER BY 1 DESC LIMIT 1";
-                    selectStatement = con.prepareStatement(selectString);
-                    
-                    ResultSet result = selectStatement.executeQuery();
-
-                    result.next();
-                    String deliveryID = result.getString(1);
-                    
-                    
-                for(int row = 0; row<model.getRowCount();row++){
-
-                    String deliveryInsertString = "INSERT INTO deliverydetails (delivery_id, product_id, quantity_delivered) VALUES(?,?,?)";
-                    insertStatement = con.prepareStatement(deliveryInsertString);
-                    
-                    String deliveryProductID = (String) deliveryTable.getModel().getValueAt(row, 0);
-                    String quantity = (String) deliveryTable.getModel().getValueAt(row, 4);
-                    System.out.print("Quantity"+quantity);
-                    insertStatement.setString(1, deliveryID);
-                    insertStatement.setString(2, deliveryProductID);
-                    insertStatement.setString(3, quantity);
-                    insertStatement.executeUpdate();
-
-                    
-
-                    
-                }
-                JOptionPane.showMessageDialog(null, "Delivery aknowledged");
-                
-            }
-        }catch ( SQLException err ){
-                System.out.println( err.getMessage ());
-                System.out.print("FAIL");
-            }
+        deliveryController.acknowledgeDelivery();
     }//GEN-LAST:event_saveDeliveryButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void addToListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToListButtonActionPerformed
         deliveryController.addSelectedToDeliverySummary();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_addToListButtonActionPerformed
 
     private void deliverySupplierComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deliverySupplierComboBoxActionPerformed
         // TODO add your handling code here:
@@ -346,7 +254,6 @@ public class DeliveryUI extends javax.swing.JPanel {
         deliveryController.filterProducts();
     }//GEN-LAST:event_deliveryProductFilterSupplierComboBoxActionPerformed
 
-    
     public static JTable getDeliveryProductsTable(){
         return deliveryProductsTable;
     }
@@ -359,11 +266,11 @@ public class DeliveryUI extends javax.swing.JPanel {
         return deliverySupplierComboBox;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addToListButton;
     private static javax.swing.JComboBox<ComboItem> deliveryProductFilterSupplierComboBox;
     public static javax.swing.JTable deliveryProductsTable;
     private static javax.swing.JComboBox<ComboItem> deliverySupplierComboBox;
     private javax.swing.JTable deliveryTable;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
