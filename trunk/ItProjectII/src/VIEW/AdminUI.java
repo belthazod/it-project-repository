@@ -34,6 +34,8 @@ public class AdminUI extends javax.swing.JPanel {
         supplierAdminButton = new javax.swing.JButton();
         productAdminButton = new javax.swing.JButton();
         backupAdminButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         adminCards = new javax.swing.JPanel();
         customerPanel = new VIEW.CustomerUI();
         productsPanel = new VIEW.ProductsUI();
@@ -73,6 +75,10 @@ public class AdminUI extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("User");
+
+        jButton2.setText("Logs");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -83,7 +89,9 @@ public class AdminUI extends javax.swing.JPanel {
                     .addComponent(customerAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(supplierAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(productAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(backupAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(backupAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -97,7 +105,11 @@ public class AdminUI extends javax.swing.JPanel {
                 .addComponent(productAdminButton)
                 .addGap(29, 29, 29)
                 .addComponent(backupAdminButton)
-                .addContainerGap(312, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(jButton1)
+                .addGap(26, 26, 26)
+                .addComponent(jButton2)
+                .addContainerGap(213, Short.MAX_VALUE))
         );
 
         adminCards.setLayout(new java.awt.CardLayout());
@@ -189,6 +201,8 @@ public class AdminUI extends javax.swing.JPanel {
     private javax.swing.JButton backupAdminButton;
     private javax.swing.JButton customerAdminButton;
     private VIEW.CustomerUI customerPanel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton productAdminButton;
