@@ -33,7 +33,6 @@ public class InventoryUI extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         inventoryTable = new javax.swing.JTable();
         jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jButton20 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -74,17 +73,10 @@ public class InventoryUI extends javax.swing.JPanel {
         inventoryTable.getColumnModel().getColumn(0).setMinWidth(0);
         inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 
-        jButton14.setText("Add To Cart");
+        jButton14.setText("Mark as bought");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
-            }
-        });
-
-        jButton15.setText("Buy");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
             }
         });
 
@@ -107,7 +99,7 @@ public class InventoryUI extends javax.swing.JPanel {
             .addGap(0, 1088, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 33, Short.MAX_VALUE)
+                    .addGap(0, 30, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(430, 430, 430)
@@ -120,11 +112,9 @@ public class InventoryUI extends javax.swing.JPanel {
                             .addComponent(jButton20))
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1021, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(820, 820, 820)
-                            .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(35, 35, 35)
+                            .addGap(920, 920, 920)
                             .addComponent(jButton14)))
-                    .addGap(0, 34, Short.MAX_VALUE)))
+                    .addGap(0, 31, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,9 +131,7 @@ public class InventoryUI extends javax.swing.JPanel {
                     .addGap(17, 17, 17)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(10, 10, 10)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -169,13 +157,9 @@ public class InventoryUI extends javax.swing.JPanel {
         c.setVisible(true);
     }//GEN-LAST:event_jButton14ActionPerformed
 
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        Sales s = new Sales();
-        s.setVisible(true);
-    }//GEN-LAST:event_jButton15ActionPerformed
-
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        // TODO add your handling code here:
+        CriticalProducts cp = new CriticalProducts();
+        cp.setVisible(true);
     }//GEN-LAST:event_jButton20ActionPerformed
     public static JTable getInventoryTable(){
         return inventoryTable;
@@ -184,7 +168,6 @@ public class InventoryUI extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JTable inventoryTable;
     private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton20;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
