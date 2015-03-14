@@ -58,6 +58,7 @@ public class SupplierUI extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         supplierListTable = new javax.swing.JTable();
         editSupplierButton = new javax.swing.JButton();
+        Contactcmb = new javax.swing.JComboBox();
 
         editSupplierDialog.setTitle("Edit Supplier Information");
         editSupplierDialog.setBounds(new java.awt.Rectangle(0, 0, 400, 200));
@@ -175,7 +176,7 @@ public class SupplierUI extends javax.swing.JPanel {
                 contactNumberInputKeyPressed(evt);
             }
         });
-        add(contactNumberInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 674, -1));
+        add(contactNumberInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 70, 600, -1));
 
         addSupplierButton.setText("Add Supplier");
         addSupplierButton.addActionListener(new java.awt.event.ActionListener() {
@@ -244,6 +245,9 @@ public class SupplierUI extends javax.swing.JPanel {
             }
         });
         add(editSupplierButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 360, -1, -1));
+
+        Contactcmb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09", "+639", "074" }));
+        add(Contactcmb, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
         String host = "jdbc:mysql://localhost:3306/inventory";
@@ -265,7 +269,7 @@ public class SupplierUI extends javax.swing.JPanel {
         }
     }
     private void addSupplierButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSupplierButtonActionPerformed
-        supplierController.addSupplier(supplierNameInput, contactNumberInput);
+        supplierController.addSupplier(supplierNameInput, contactNumberInput, Contactcmb);
         supplierController.updateTableContents();
     }//GEN-LAST:event_addSupplierButtonActionPerformed
 
@@ -323,6 +327,7 @@ public class SupplierUI extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox Contactcmb;
     private javax.swing.JButton addSupplierButton;
     private javax.swing.JTextField contactNumberInput;
     private javax.swing.JButton deleteSupplierButton;
