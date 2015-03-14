@@ -14,6 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -27,12 +30,41 @@ public class CustomerController {
     public CustomerController(JTable table) {
         customerTableManager = new TableManager(table);
         dbConnector= DatabaseConnector.getInstance();
+       
     }
     
-    public void addCustomer(JTextField name, JTextField number){
+    public void addCustomer(JTextField name, JTextField number, JComboBox Contactcmb){
+        
+        Pattern pat = Pattern.compile("[0-9]{9}");
+        Matcher mat = pat.matcher(number.getText());
+        boolean match = mat.matches();
+        
+        Pattern pat2 = Pattern.compile("[0-9]{7}");
+        Matcher mat2 = pat2.matcher(number.getText());
+        boolean match2 = mat2.matches();
+        
         if(InputValidator.checkInput(name.getText(), "Customer Name cannot be empty.") 
                 && InputValidator.checkInput(number.getText(), "Contact Number cannot be empty")){
-            String[] values = {name.getText(), number.getText()};
+            Object selected = Contactcmb.getSelectedItem();
+                       
+            if(selected.toString().equals("09") && match == true){
+            String[] values = {name.getText(), selected + number.getText()};
+ 
+            try{
+            dbConnector.insert("INSERT INTO Customer(customer_name, customer_contact) VALUES(?,?)", values);
+            JTextField[] inputs = {name,number};
+            
+            JOptionPane.showMessageDialog(null, name.getText() + " saved to Customers list.");
+            InputValidator.clearInput(inputs);
+            dbConnector.closeConnection();
+            }catch(SQLException sqlE){
+                JOptionPane.showMessageDialog(null, "Add to contacts failed", "Database error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+            
+            }else if(selected.toString().equals("+639") && match == true){
+            String[] values = {name.getText(), selected + number.getText()};
+
             try{
             dbConnector.insert("INSERT INTO Customer(customer_name, customer_contact) VALUES(?,?)", values);
             JTextField[] inputs = {name, number};
@@ -43,7 +75,24 @@ public class CustomerController {
             }catch(SQLException sqlE){
                 JOptionPane.showMessageDialog(null, "Add to contacts failed", "Database error", JOptionPane.ERROR_MESSAGE);
             }
-        }else{
+            }else if(selected.toString().equals("074") && match2 == true){
+            String[] values = {name.getText(), selected + number.getText()};
+
+            try{
+            dbConnector.insert("INSERT INTO Customer(customer_name, customer_contact) VALUES(?,?)", values);
+            JTextField[] inputs = {name, number};
+            
+            JOptionPane.showMessageDialog(null, name.getText() + " saved to Customers list.");
+            InputValidator.clearInput(inputs);
+            dbConnector.closeConnection();
+            }catch(SQLException sqlE){
+                JOptionPane.showMessageDialog(null, "Add to contacts failed", "Database error", JOptionPane.ERROR_MESSAGE);
+            }
+            }else{
+                JOptionPane.showMessageDialog(null, "Please enter a valid phone number", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+    }else{
             JOptionPane.showMessageDialog(null, "Please fill out all fields", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
