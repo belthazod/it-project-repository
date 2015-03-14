@@ -48,6 +48,14 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         editPasswordDialog = new javax.swing.JDialog();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        userLabel = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        oldUserPasswordInput = new javax.swing.JPasswordField();
+        newUserPasswordInput = new javax.swing.JPasswordField();
+        newUserConfirmPasswordInput = new javax.swing.JPasswordField();
         jPanel1 = new javax.swing.JPanel();
         deliveryMenuButton = new javax.swing.JButton();
         reportsMenuButton = new javax.swing.JButton();
@@ -66,23 +74,75 @@ public class Main extends javax.swing.JFrame {
         deliveryPanel = new VIEW.DeliveryUI();
         warrantyPanel = new VIEW.Warranty();
         transferPanel = new VIEW.TransferUI();
+        tradeInPanel = new VIEW.SecondhandTradeIn();
         adminPanel = new VIEW.AdminUI();
         reportsPanel = new VIEW.Reports();
         ReturnsAndReplacementPanel = new VIEW.Returns();
-        tradeInPanel = new VIEW.SecondhandTradeIn();
         adminMenuButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+
+        editPasswordDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel2.setText("Username:");
+
+        jLabel3.setText("Old Password:");
+
+        userLabel.setText("user");
+
+        jLabel5.setText("New Password:");
+
+        jLabel6.setText("Confirm New Password:");
+
+        oldUserPasswordInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oldUserPasswordInputActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout editPasswordDialogLayout = new javax.swing.GroupLayout(editPasswordDialog.getContentPane());
         editPasswordDialog.getContentPane().setLayout(editPasswordDialogLayout);
         editPasswordDialogLayout.setHorizontalGroup(
             editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(editPasswordDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(editPasswordDialogLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(newUserConfirmPasswordInput))
+                    .addGroup(editPasswordDialogLayout.createSequentialGroup()
+                        .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5))
+                        .addGap(49, 49, 49)
+                        .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(userLabel)
+                            .addComponent(newUserPasswordInput, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                            .addComponent(oldUserPasswordInput))))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         editPasswordDialogLayout.setVerticalGroup(
             editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(editPasswordDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(userLabel))
+                .addGap(29, 29, 29)
+                .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(oldUserPasswordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(newUserPasswordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(newUserConfirmPasswordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -198,12 +258,12 @@ public class Main extends javax.swing.JFrame {
         cardWindow.add(deliveryPanel, "deliveryCard");
         cardWindow.add(warrantyPanel, "warrantyCard");
         cardWindow.add(transferPanel, "transferCard");
+        cardWindow.add(tradeInPanel, "tradeInCard");
         cardWindow.add(adminPanel, "adminCard");
         cardWindow.add(reportsPanel, "reportsCard");
         reportsPanel.getAccessibleContext().setAccessibleName("");
 
         cardWindow.add(ReturnsAndReplacementPanel, "returnsCard");
-        cardWindow.add(tradeInPanel, "tradeInCard");
 
         jPanel4.add(cardWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 60, 1100, 590));
         card = (CardLayout)cardWindow.getLayout();
@@ -346,6 +406,10 @@ public class Main extends javax.swing.JFrame {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         editPasswordDialog.setVisible(true);
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void oldUserPasswordInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oldUserPasswordInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_oldUserPasswordInputActionPerformed
         static String host = "jdbc:mysql://localhost:3306/inventory";
         static String uName = "root";
         static String uPass = "";
@@ -472,8 +536,15 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPasswordField newUserConfirmPasswordInput;
+    private javax.swing.JPasswordField newUserPasswordInput;
+    private javax.swing.JPasswordField oldUserPasswordInput;
     private javax.swing.JButton reportsMenuButton;
     private VIEW.Reports reportsPanel;
     private javax.swing.JButton returnsMenuButton;
@@ -482,6 +553,7 @@ public class Main extends javax.swing.JFrame {
     private VIEW.SecondhandTradeIn tradeInPanel;
     private javax.swing.JButton transferMenuButton;
     private VIEW.TransferUI transferPanel;
+    private javax.swing.JLabel userLabel;
     private javax.swing.JButton warrantyMenuButton;
     private VIEW.Warranty warrantyPanel;
     // End of variables declaration//GEN-END:variables
