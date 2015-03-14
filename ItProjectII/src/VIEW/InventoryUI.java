@@ -5,6 +5,8 @@
  */
 package VIEW;
 
+import BEANS.ComboItem;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 
 /**
@@ -178,6 +180,9 @@ public class InventoryUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton20ActionPerformed
     public static JTable getInventoryTable(){
         return inventoryTable;
+    }
+    public static JComboBox<ComboItem> getProductFilterCategoryComboBox(){
+        return productFilterComboBox;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

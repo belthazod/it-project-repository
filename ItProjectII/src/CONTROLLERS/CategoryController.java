@@ -22,17 +22,23 @@ import javax.swing.JTextField;
  * @author Belthazod
  */
 public class CategoryController {
-    TableManager categoryTableManager;
-    JComboBox<ComboItem> addProductCategoryComboBox;
-    JComboBox<ComboItem> editProductCategoryComboBox;
-    DatabaseConnector dbConnector = DatabaseConnector.getInstance();
+    private TableManager categoryTableManager;
+    private JComboBox<ComboItem> addProductCategoryComboBox;
+    private JComboBox<ComboItem> editProductCategoryComboBox;
+    private JComboBox<ComboItem> secondHandCategoryComboBox;
+    private JComboBox<ComboItem> inventoryCategoryComboBox;
+    private DatabaseConnector dbConnector = DatabaseConnector.getInstance();
     
     public CategoryController(JTable categoryTable, 
             JComboBox<ComboItem> addProductCategoryComboBox, 
-            JComboBox<ComboItem> editProductCategoryComboBox){
+            JComboBox<ComboItem> editProductCategoryComboBox, 
+            JComboBox<ComboItem> secondHandCategoryComboBox,
+            JComboBox<ComboItem> inventoryCategoryComboBox){
         categoryTableManager = new TableManager(categoryTable);
         this.addProductCategoryComboBox = addProductCategoryComboBox;
         this.editProductCategoryComboBox = editProductCategoryComboBox;
+        this.secondHandCategoryComboBox = secondHandCategoryComboBox;
+        this.inventoryCategoryComboBox = inventoryCategoryComboBox;
     }
     
     public void addCategory(JTextField categoryName){
@@ -84,6 +90,7 @@ public class CategoryController {
     public void updateCategoryComponents(){
         addProductCategoryComboBox.removeAllItems();
         editProductCategoryComboBox.removeAllItems();
+        secondHandCategoryComboBox.removeAllItems();
         try{
         ResultSet rs = dbConnector.query("SELECT type_id, type_name FROM type ORDER BY 2 ASC");
         while(rs.next()){
@@ -91,6 +98,7 @@ public class CategoryController {
             String categoryName = rs.getString(2);
             addProductCategoryComboBox.addItem(new ComboItem(categoryID, categoryName));
             editProductCategoryComboBox.addItem(new ComboItem(categoryID, categoryName));
+            secondHandCategoryComboBox.addItem(new ComboItem(categoryID, categoryName));
         }
         dbConnector.closeConnection();
         }catch(SQLException sqlE){
