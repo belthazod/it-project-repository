@@ -62,14 +62,14 @@ public class Main extends javax.swing.JFrame {
         jButton19 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         cardWindow = new javax.swing.JPanel();
-        inventoryUI1 = new VIEW.InventoryUI();
-        deliveryUI1 = new VIEW.DeliveryUI();
-        warranty1 = new VIEW.Warranty();
-        transfer1 = new VIEW.TransferUI();
-        adminUI1 = new VIEW.AdminUI();
-        tradeInUI1 = new VIEW.TradeInUI();
-        reports1 = new VIEW.Reports();
-        returns1 = new VIEW.Returns();
+        inventoryPanel = new VIEW.InventoryUI();
+        deliveryPanel = new VIEW.DeliveryUI();
+        warrantyPanel = new VIEW.Warranty();
+        transferPanel = new VIEW.TransferUI();
+        adminPanel = new VIEW.AdminUI();
+        reportsPanel = new VIEW.Reports();
+        ReturnsAndReplacementPanel = new VIEW.Returns();
+        tradeInPanel = new VIEW.SecondhandTradeIn();
         adminMenuButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -193,17 +193,17 @@ public class Main extends javax.swing.JFrame {
         cardWindow.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cardWindow.setLayout(new java.awt.CardLayout());
 
-        inventoryUI1.setBackground(new java.awt.Color(58, 67, 98));
-        cardWindow.add(inventoryUI1, "inventoryCard");
-        cardWindow.add(deliveryUI1, "deliveryCard");
-        cardWindow.add(warranty1, "warrantyCard");
-        cardWindow.add(transfer1, "transferCard");
-        cardWindow.add(adminUI1, "adminCard");
-        cardWindow.add(tradeInUI1, "tradeInCard");
-        cardWindow.add(reports1, "reportsCard");
-        reports1.getAccessibleContext().setAccessibleName("");
+        inventoryPanel.setBackground(new java.awt.Color(58, 67, 98));
+        cardWindow.add(inventoryPanel, "inventoryCard");
+        cardWindow.add(deliveryPanel, "deliveryCard");
+        cardWindow.add(warrantyPanel, "warrantyCard");
+        cardWindow.add(transferPanel, "transferCard");
+        cardWindow.add(adminPanel, "adminCard");
+        cardWindow.add(reportsPanel, "reportsCard");
+        reportsPanel.getAccessibleContext().setAccessibleName("");
 
-        cardWindow.add(returns1, "returnsCard");
+        cardWindow.add(ReturnsAndReplacementPanel, "returnsCard");
+        cardWindow.add(tradeInPanel, "tradeInCard");
 
         jPanel4.add(cardWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 60, 1100, 590));
         card = (CardLayout)cardWindow.getLayout();
@@ -458,13 +458,14 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private VIEW.Returns ReturnsAndReplacementPanel;
     private javax.swing.JButton adminMenuButton;
-    private VIEW.AdminUI adminUI1;
+    private VIEW.AdminUI adminPanel;
     private javax.swing.JPanel cardWindow;
     private javax.swing.JButton deliveryMenuButton;
-    private VIEW.DeliveryUI deliveryUI1;
+    private VIEW.DeliveryUI deliveryPanel;
     private javax.swing.JDialog editPasswordDialog;
-    private VIEW.InventoryUI inventoryUI1;
+    private VIEW.InventoryUI inventoryPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton17;
@@ -473,16 +474,15 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
-    private VIEW.Reports reports1;
     private javax.swing.JButton reportsMenuButton;
-    private VIEW.Returns returns1;
+    private VIEW.Reports reportsPanel;
     private javax.swing.JButton returnsMenuButton;
     private javax.swing.JButton salesMenuButton;
     private javax.swing.JButton tradeInMenuButton;
-    private VIEW.TradeInUI tradeInUI1;
-    private VIEW.TransferUI transfer1;
+    private VIEW.SecondhandTradeIn tradeInPanel;
     private javax.swing.JButton transferMenuButton;
-    private VIEW.Warranty warranty1;
+    private VIEW.TransferUI transferPanel;
     private javax.swing.JButton warrantyMenuButton;
+    private VIEW.Warranty warrantyPanel;
     // End of variables declaration//GEN-END:variables
 }
