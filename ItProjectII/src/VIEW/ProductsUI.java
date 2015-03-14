@@ -26,6 +26,7 @@ public class ProductsUI extends javax.swing.JPanel {
      */
     public ProductsUI() {
         initComponents();
+        try{
         productController = new ProductController(adminProductsTable, InventoryUI.getInventoryTable(), TransferUI.getTransferProductsTable(), DeliveryUI.getDeliveryProductsTable(), productsTab );
         categoryController = new CategoryController(categoryTable, addProductCategoryComboBox, editProductCategoryComboBox);
         adminProductsTable.getColumnModel().getColumn(0).setMaxWidth(0);
@@ -35,6 +36,9 @@ public class ProductsUI extends javax.swing.JPanel {
         categoryTable.getColumnModel().getColumn(0).setMaxWidth(0);
         categoryTable.getColumnModel().getColumn(0).setMinWidth(0);
         categoryTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        }catch(NullPointerException npe){
+            npe.printStackTrace();
+        }
     }
 
     /**
