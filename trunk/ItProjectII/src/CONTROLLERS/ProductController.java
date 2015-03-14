@@ -54,12 +54,16 @@ public class ProductController {
      * @param productsTab - the products Tab that opens after adding a product
      */
     public ProductController(JTable adminTable, JTable inventoryTable, JTable transferTable, JTable deliveryTable, JTabbedPane productsTab){
+        try{
         dbConnector = DatabaseConnector.getInstance();
         adminProductTableManager = new TableManager(adminTable);
         inventoryTableManager = new TableManager(inventoryTable);
         transferTableManager = new TableManager(transferTable);
         deliveryTableManager = new TableManager(deliveryTable);
         this.productsTab = productsTab;
+        }catch(NullPointerException npe){
+            npe.printStackTrace();
+        }
     }
     
     /**

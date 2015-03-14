@@ -9,15 +9,16 @@ import java.awt.CardLayout;
 
 /**
  *
- * @Belthazod
+ * @author Belthazod
  */
 public class AdminUI extends javax.swing.JPanel {
-
+    CardLayout card; 
     /**
      * Creates new form Admin
      */
     public AdminUI() {
         initComponents();
+        card = (CardLayout)adminCards.getLayout();
     }
 
     /**
@@ -34,13 +35,14 @@ public class AdminUI extends javax.swing.JPanel {
         supplierAdminButton = new javax.swing.JButton();
         productAdminButton = new javax.swing.JButton();
         backupAdminButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        userAdminButton = new javax.swing.JButton();
+        logsAdminButton = new javax.swing.JButton();
         adminCards = new javax.swing.JPanel();
         customerPanel = new VIEW.CustomerUI();
         productsPanel = new VIEW.ProductsUI();
         supplierPanel = new VIEW.SupplierUI();
         backUpPanel = new VIEW.BackUp();
+        userPanel = new VIEW.UserUI();
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -75,9 +77,19 @@ public class AdminUI extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("User");
+        userAdminButton.setText("User");
+        userAdminButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userAdminButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Logs");
+        logsAdminButton.setText("Logs");
+        logsAdminButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logsAdminButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -90,8 +102,8 @@ public class AdminUI extends javax.swing.JPanel {
                     .addComponent(supplierAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(productAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(backupAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(userAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(logsAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -106,9 +118,9 @@ public class AdminUI extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addComponent(backupAdminButton)
                 .addGap(27, 27, 27)
-                .addComponent(jButton1)
+                .addComponent(userAdminButton)
                 .addGap(26, 26, 26)
-                .addComponent(jButton2)
+                .addComponent(logsAdminButton)
                 .addContainerGap(213, Short.MAX_VALUE))
         );
 
@@ -117,6 +129,7 @@ public class AdminUI extends javax.swing.JPanel {
         adminCards.add(productsPanel, "productCard");
         adminCards.add(supplierPanel, "supplierCard");
         adminCards.add(backUpPanel, "backupCard");
+        adminCards.add(userPanel, "userCard");
 
         jLabel1.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
         jLabel1.setText("Admin Panel");
@@ -155,8 +168,11 @@ public class AdminUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void customerAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerAdminButtonActionPerformed
-        CardLayout card = (CardLayout)adminCards.getLayout();
+
         card.show(adminCards, "customerCard");
+        
+        userAdminButton.setEnabled(true);
+        logsAdminButton.setEnabled(true);
         supplierAdminButton.setEnabled(true); 
         customerAdminButton.setEnabled(false);
         productAdminButton.setEnabled(true);
@@ -164,9 +180,11 @@ public class AdminUI extends javax.swing.JPanel {
     }//GEN-LAST:event_customerAdminButtonActionPerformed
 
     private void productAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productAdminButtonActionPerformed
-        CardLayout card = (CardLayout)adminCards.getLayout();
+
         card.show(adminCards, "productCard");
         
+        userAdminButton.setEnabled(true);
+        logsAdminButton.setEnabled(true);
         productAdminButton.setEnabled(false);
         customerAdminButton.setEnabled(true);
         supplierAdminButton.setEnabled(true);
@@ -174,9 +192,11 @@ public class AdminUI extends javax.swing.JPanel {
     }//GEN-LAST:event_productAdminButtonActionPerformed
 
     private void supplierAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierAdminButtonActionPerformed
-        CardLayout card = (CardLayout)adminCards.getLayout();
+
         card.show(adminCards, "supplierCard");
         
+        userAdminButton.setEnabled(true);
+        logsAdminButton.setEnabled(true);
         productAdminButton.setEnabled(true);
         customerAdminButton.setEnabled(true);
         supplierAdminButton.setEnabled(false);
@@ -184,14 +204,40 @@ public class AdminUI extends javax.swing.JPanel {
     }//GEN-LAST:event_supplierAdminButtonActionPerformed
 
     private void backupAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backupAdminButtonActionPerformed
-        CardLayout card = (CardLayout)adminCards.getLayout();
+
         card.show(adminCards, "backupCard");
         
+        userAdminButton.setEnabled(true);
+        logsAdminButton.setEnabled(true);
         backupAdminButton.setEnabled(false);
         productAdminButton.setEnabled(true);
         customerAdminButton.setEnabled(true);
         supplierAdminButton.setEnabled(true);
     }//GEN-LAST:event_backupAdminButtonActionPerformed
+
+    private void userAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userAdminButtonActionPerformed
+        card.show(adminCards, "userCard");
+        
+        userAdminButton.setEnabled(false);
+        logsAdminButton.setEnabled(true);
+        backupAdminButton.setEnabled(true);
+        productAdminButton.setEnabled(true);
+        customerAdminButton.setEnabled(true);
+        supplierAdminButton.setEnabled(true);
+        logsAdminButton.setEnabled(true);
+    }//GEN-LAST:event_userAdminButtonActionPerformed
+
+    private void logsAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logsAdminButtonActionPerformed
+        card.show(adminCards, "logsCard");
+        
+        userAdminButton.setEnabled(true);
+        logsAdminButton.setEnabled(false);
+        backupAdminButton.setEnabled(true);
+        productAdminButton.setEnabled(true);
+        customerAdminButton.setEnabled(true);
+        supplierAdminButton.setEnabled(true);
+        logsAdminButton.setEnabled(true);
+    }//GEN-LAST:event_logsAdminButtonActionPerformed
 
     
 
@@ -201,13 +247,14 @@ public class AdminUI extends javax.swing.JPanel {
     private javax.swing.JButton backupAdminButton;
     private javax.swing.JButton customerAdminButton;
     private VIEW.CustomerUI customerPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton logsAdminButton;
     private javax.swing.JButton productAdminButton;
     private VIEW.ProductsUI productsPanel;
     private javax.swing.JButton supplierAdminButton;
     private VIEW.SupplierUI supplierPanel;
+    private javax.swing.JButton userAdminButton;
+    private VIEW.UserUI userPanel;
     // End of variables declaration//GEN-END:variables
 }

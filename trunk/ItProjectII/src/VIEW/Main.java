@@ -32,6 +32,7 @@ public class Main extends javax.swing.JFrame {
         CustomerUI.updateCustomerTable();
         SupplierUI.updateSupplierTable();
         ProductsUI.updateCategoryTable();
+        UserUI.updateUsersTable();
         }catch(Exception e){
             
         }
@@ -46,7 +47,7 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton6 = new javax.swing.JButton();
+        editPasswordDialog = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         deliveryMenuButton = new javax.swing.JButton();
         reportsMenuButton = new javax.swing.JButton();
@@ -62,6 +63,7 @@ public class Main extends javax.swing.JFrame {
         jButton13 = new javax.swing.JButton();
         cardWindow = new javax.swing.JPanel();
         inventoryUI1 = new VIEW.InventoryUI();
+        deliveryUI1 = new VIEW.DeliveryUI();
         warranty1 = new VIEW.Warranty();
         transfer1 = new VIEW.TransferUI();
         adminUI1 = new VIEW.AdminUI();
@@ -72,12 +74,16 @@ public class Main extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        jButton6.setText("returns");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout editPasswordDialogLayout = new javax.swing.GroupLayout(editPasswordDialog.getContentPane());
+        editPasswordDialog.getContentPane().setLayout(editPasswordDialogLayout);
+        editPasswordDialogLayout.setHorizontalGroup(
+            editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        editPasswordDialogLayout.setVerticalGroup(
+            editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 102));
@@ -176,6 +182,11 @@ public class Main extends javax.swing.JFrame {
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/logout2.png"))); // NOI18N
         jButton13.setBorderPainted(false);
         jButton13.setContentAreaFilled(false);
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
         jPanel4.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 10, -1, -1));
 
         cardWindow.setBackground(new java.awt.Color(102, 102, 102));
@@ -184,6 +195,7 @@ public class Main extends javax.swing.JFrame {
 
         inventoryUI1.setBackground(new java.awt.Color(58, 67, 98));
         cardWindow.add(inventoryUI1, "inventoryCard");
+        cardWindow.add(deliveryUI1, "deliveryCard");
         cardWindow.add(warranty1, "warrantyCard");
         cardWindow.add(transfer1, "transferCard");
         cardWindow.add(adminUI1, "adminCard");
@@ -204,11 +216,16 @@ public class Main extends javax.swing.JFrame {
                 adminMenuButtonActionPerformed(evt);
             }
         });
-        jPanel4.add(adminMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 10, 32, 32));
+        jPanel4.add(adminMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 10, 32, 32));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/settings2.png"))); // NOI18N
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 10, -1, -1));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 10, -1, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/customer_Blue.png"))); // NOI18N
         jButton1.setBorderPainted(false);
@@ -314,10 +331,6 @@ public class Main extends javax.swing.JFrame {
         card.show(cardWindow, "deliveryCard");
     }//GEN-LAST:event_deliveryMenuButtonActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
     private void returnsMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnsMenuButtonActionPerformed
          card.show(cardWindow, "returnsCard");
     }//GEN-LAST:event_returnsMenuButtonActionPerformed
@@ -325,6 +338,14 @@ public class Main extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         card.show(cardWindow, "customerCard");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        editPasswordDialog.setVisible(true);
+    }//GEN-LAST:event_jLabel1MouseClicked
         static String host = "jdbc:mysql://localhost:3306/inventory";
         static String uName = "root";
         static String uPass = "";
@@ -441,13 +462,14 @@ public class Main extends javax.swing.JFrame {
     private VIEW.AdminUI adminUI1;
     private javax.swing.JPanel cardWindow;
     private javax.swing.JButton deliveryMenuButton;
+    private VIEW.DeliveryUI deliveryUI1;
+    private javax.swing.JDialog editPasswordDialog;
     private VIEW.InventoryUI inventoryUI1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;

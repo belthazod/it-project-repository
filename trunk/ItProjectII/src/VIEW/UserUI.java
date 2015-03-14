@@ -12,13 +12,13 @@ import CONTROLLERS.UserController;
  * @author Belthazod
  */
 public class UserUI extends javax.swing.JPanel {
-
+    private static UserController userController;
     /**
      * Creates new form UserUI
      */
     public UserUI() {
         initComponents();
-        UserController userController = new UserController(userTable, openEditUserButton, deleteUserButton, usernameInput, nameInput, passwordInput, addUserButton);
+        userController = new UserController(userTable, usernameInput, nameInput, passwordInput, editAdminDialog, oldAdminPasswordInput, newAdminPasswordInput, newAdminConfirmPasswordInput);
     }
 
     /**
@@ -30,11 +30,20 @@ public class UserUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        editAdminDialog = new javax.swing.JDialog();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        newAdminConfirmPasswordInput = new javax.swing.JPasswordField();
+        newAdminPasswordInput = new javax.swing.JPasswordField();
+        oldAdminPasswordInput = new javax.swing.JPasswordField();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         userTable = new javax.swing.JTable();
-        openEditUserButton = new javax.swing.JButton();
         deleteUserButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         usernameInput = new javax.swing.JTextField();
@@ -44,6 +53,82 @@ public class UserUI extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         passwordInput = new javax.swing.JPasswordField();
         addUserButton = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+
+        editAdminDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        editAdminDialog.setTitle("Edit Admin Password");
+
+        jLabel7.setText("Old password:");
+
+        jLabel8.setText("New password:");
+
+        jLabel9.setText("Confirm new password:");
+
+        jButton1.setText("Save");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Cancel");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        oldAdminPasswordInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oldAdminPasswordInputActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout editAdminDialogLayout = new javax.swing.GroupLayout(editAdminDialog.getContentPane());
+        editAdminDialog.getContentPane().setLayout(editAdminDialogLayout);
+        editAdminDialogLayout.setHorizontalGroup(
+            editAdminDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editAdminDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(editAdminDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editAdminDialogLayout.createSequentialGroup()
+                        .addGroup(editAdminDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(editAdminDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(newAdminConfirmPasswordInput)
+                            .addComponent(newAdminPasswordInput)
+                            .addComponent(oldAdminPasswordInput)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editAdminDialogLayout.createSequentialGroup()
+                        .addGap(0, 182, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addGap(24, 24, 24)
+                        .addComponent(jButton1)))
+                .addContainerGap())
+        );
+        editAdminDialogLayout.setVerticalGroup(
+            editAdminDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editAdminDialogLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(editAdminDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(oldAdminPasswordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(editAdminDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(newAdminPasswordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(editAdminDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(newAdminConfirmPasswordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(editAdminDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
 
         jLabel1.setText("User Panel");
 
@@ -77,14 +162,12 @@ public class UserUI extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(userTable);
 
-        openEditUserButton.setText("Edit");
-        openEditUserButton.addActionListener(new java.awt.event.ActionListener() {
+        deleteUserButton.setText("Delete");
+        deleteUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openEditUserButtonActionPerformed(evt);
+                deleteUserButtonActionPerformed(evt);
             }
         });
-
-        deleteUserButton.setText("Delete");
 
         jLabel3.setText("New User");
 
@@ -92,12 +175,25 @@ public class UserUI extends javax.swing.JPanel {
 
         jLabel5.setText("Name:");
 
+        nameInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameInputActionPerformed(evt);
+            }
+        });
+
         jLabel6.setText("Password:");
 
         addUserButton.setText("Add User");
         addUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addUserButtonActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Edit Admin Credentials");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -112,10 +208,7 @@ public class UserUI extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(openEditUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(deleteUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(deleteUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(10, 10, 10)
@@ -135,12 +228,13 @@ public class UserUI extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(usernameInput)
                                     .addComponent(nameInput)
-                                    .addComponent(passwordInput, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))))
+                                    .addComponent(passwordInput, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)))
+                            .addComponent(jButton3))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
                         .addComponent(jLabel3)
-                        .addGap(137, 137, 137))))
+                        .addGap(142, 142, 142))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,9 +248,9 @@ public class UserUI extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
+                        .addGap(20, 20, 20)
                         .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(usernameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
@@ -172,33 +266,66 @@ public class UserUI extends javax.swing.JPanel {
                         .addComponent(addUserButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(openEditUserButton)
-                    .addComponent(deleteUserButton))
+                    .addComponent(deleteUserButton)
+                    .addComponent(jButton3))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void openEditUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openEditUserButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_openEditUserButtonActionPerformed
-
     private void addUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserButtonActionPerformed
-
+        userController.addUser();
     }//GEN-LAST:event_addUserButtonActionPerformed
 
+    private void deleteUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserButtonActionPerformed
+        userController.deleteSelectedUser();
+    }//GEN-LAST:event_deleteUserButtonActionPerformed
 
+    private void nameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameInputActionPerformed
+        userController.changeAdminPassword();
+    }//GEN-LAST:event_nameInputActionPerformed
+    
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        userController.openEditAdminDialog();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        userController.closeEditDialog();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void oldAdminPasswordInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oldAdminPasswordInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_oldAdminPasswordInputActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        userController.changeAdminPassword();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public static void updateUsersTable(){
+        userController.updateUsersTable();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addUserButton;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton deleteUserButton;
+    private javax.swing.JDialog editAdminDialog;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameInput;
-    private javax.swing.JButton openEditUserButton;
+    private javax.swing.JPasswordField newAdminConfirmPasswordInput;
+    private javax.swing.JPasswordField newAdminPasswordInput;
+    private javax.swing.JPasswordField oldAdminPasswordInput;
     private javax.swing.JPasswordField passwordInput;
     private javax.swing.JTable userTable;
     private javax.swing.JTextField usernameInput;
