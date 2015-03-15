@@ -88,13 +88,20 @@ public class TransferController {
             boolean mainIsSelected = false;
             int mainCount = 0;
             boolean invalidQuantityFlag = false;
+            boolean greaterThanCurrent = false;
             for(int row = 0; row < truckTableManager.getRowCount();row++){
-                int quantity = Integer.parseInt(truckTableManager.getValueAt(
+                int currentQuantity = Integer.parseInt(truckTableManager.getValueAt(
+                        truckTableManager.getSelectedRow(), 1));
+                int newQuantity = Integer.parseInt(truckTableManager.getValueAt(
                         truckTableManager.getSelectedRow(), 5));
-                if(quantity <= 0){
+                if(newQuantity <= 0){
                     invalidQuantityFlag = true;
                     break;
                 }
+                if(currentQuantity < newQuantity){
+                    greaterThanCurrent = true;
+                }
+                
             }
             //checks if the "Main" branch is selected in either comboBox
             if(transferFrom.equals("Main")){
@@ -105,7 +112,7 @@ public class TransferController {
                 mainIsSelected = true;
                 mainCount++;
             }
-            if(!invalidQuantityFlag){
+            if(!invalidQuantityFlag && !greaterThanCurrent){
                 if(mainIsSelected && mainCount != 2){
                     dbConnector.insert("INSERT INTO transfers (transfer_date, "
                             + "transfer_from, destination) VALUES(?,?,?)", 
@@ -129,8 +136,12 @@ public class TransferController {
                 }else{
                     JOptionPane.showMessageDialog(null, "Please check the sender and recipient of the transfer. The Main branch should be in either of the two not both.", "Branch allocation error.", JOptionPane.ERROR_MESSAGE);
                 }
-            }else{
-                JOptionPane.showMessageDialog(null, "Please check the delivered quantity of each product. The quantity should not be empty, equal to 0, or less that 0", "Branch allocation error.", JOptionPane.ERROR_MESSAGE);
+            }
+            if(invalidQuantityFlag){
+                JOptionPane.showMessageDialog(null, "Please check the delivered quantity of each product. The quantity should not be empty, equal to 0, or less that 0", "Input Error", JOptionPane.ERROR_MESSAGE);
+            }
+            if(greaterThanCurrent){
+                JOptionPane.showMessageDialog(null, "Please check the delivered quantity of each product. The quantity to be delivered cannot exceed the current product count in stock.", "Input Error", JOptionPane.ERROR_MESSAGE);
             }
             
             

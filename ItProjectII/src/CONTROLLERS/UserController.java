@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTable;
@@ -34,18 +35,34 @@ public class UserController {
     private JPasswordField oldAdminPasswordInput;
     private JPasswordField newAdminPasswordInput;
     private JPasswordField newAdminPasswordConfirmInput;
+    private JPasswordField oldUserPasswordInput;
+    private JPasswordField newUserPasswordInput;
+    private JPasswordField newUserPasswordConfirmInput;
+    private JLabel username;
+    private JDialog editUserDialog;
     private static ArrayList<Account> accountList;
     
+    public UserController(JPasswordField oldUserPasswordInput, 
+            JPasswordField newUserPasswordInput, 
+            JPasswordField newUserPasswordConfirmInput,
+            JDialog editUserDialog, JLabel username){
+        dbConnector = DatabaseConnector.getInstance();
+        this.oldUserPasswordInput = oldUserPasswordInput;  
+        this.newUserPasswordInput = newUserPasswordInput; 
+        this.newUserPasswordConfirmInput = newUserPasswordConfirmInput;
+        this.username = username;
+        this.editUserDialog = editUserDialog;
+    }
     /**
      * 
      * @param userTable - the <code>JTable</code> containing the list of users and their respective name
      * @param usernameInput - the <code>JTextField</code> containing the username of the new user to be added
      * @param nameInput - the <code>JTextField</code> containing the name of the new user to be added
-     * @param passwordInput
-     * @param editAdminDialog
-     * @param oldAdminPasswordInput
-     * @param newAdminPasswordInput
-     * @param newAdminPasswordConfirmInput 
+     * @param passwordInput - the <code>JPasswordField</code> containing the password of the new user to be added
+     * @param editAdminDialog - the <code>JDialog</code> that pops out whenever the admin would like to change his/her password
+     * @param oldAdminPasswordInput - the <code>JPasswordField</code> containing the old password of the admin which will soon be changed
+     * @param newAdminPasswordInput - the <code>JPasswordField</code> containing the new password of the admin to be used
+     * @param newAdminPasswordConfirmInput - the <code>JPasswordField</code> containing and confirming the new password of the administrator
      */
     public UserController(JTable userTable, JTextField usernameInput,JTextField nameInput, JPasswordField passwordInput, JDialog editAdminDialog, JPasswordField oldAdminPasswordInput, JPasswordField newAdminPasswordInput, JPasswordField newAdminPasswordConfirmInput){
         dbConnector = DatabaseConnector.getInstance();
@@ -168,5 +185,33 @@ public class UserController {
     }
     public void closeEditDialog(){
         editAdminDialog.dispose();
+    }
+    
+    public void changeUserPassword(){
+        String oldPassword = new String(oldUserPasswordInput.getPassword());
+        String newPassword = new String(newUserPasswordInput.getPassword());
+        String newPasswordConfirm = new String(newUserPasswordInput.getPassword());
+        if(InputValidator.checkInput(new String(oldUserPasswordInput.getPassword()), "Old user password cannot be empty.")
+                & InputValidator.checkInput(new String(newUserPasswordInput.getPassword()), "New user password cannot be empty.")
+                & InputValidator.checkInput(new String(newUserPasswordConfirmInput.getPassword()), "Confirm user password cannot be empty.")){
+            if(newPassword.equals(newPasswordConfirm)){
+                try{
+                    ResultSet rs = dbConnector.query("SELECT password FROM users WHERE username = ? ", username.getText());
+                    rs.next();
+                    System.out.println(rs.getString(1));
+                    System.out.println(oldPassword);
+                    if(rs.getString(1).equals(oldPassword)){
+                        dbConnector.update("UPDATE users SET password = ? where username = ?;", new String[]{ newPassword }, username.getText());
+                        JOptionPane.showMessageDialog(null, "User credentials updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Incorrect user password.", "Input error.", JOptionPane.ERROR_MESSAGE);
+                    }
+                }catch(SQLException sqlE){
+                    sqlE.printStackTrace();
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Passwords do not match.", "Input Error.", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 }
