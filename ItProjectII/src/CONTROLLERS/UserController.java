@@ -159,7 +159,7 @@ public class UserController {
     public void changeAdminPassword(){
         String oldPassword = new String(oldAdminPasswordInput.getPassword());
         String newPassword = new String(newAdminPasswordInput.getPassword());
-        String newPasswordConfirm = new String(newAdminPasswordInput.getPassword());
+        String newPasswordConfirm = new String(newAdminPasswordConfirmInput.getPassword());
         if(InputValidator.checkInput(new String(oldAdminPasswordInput.getPassword()), "Old admin password cannot be empty.")
                 & InputValidator.checkInput(new String(newAdminPasswordInput.getPassword()), "New admin password cannot be empty.")
                 & InputValidator.checkInput(new String(newAdminPasswordConfirmInput.getPassword()), "Confirm admin password cannot be empty.")){
@@ -190,7 +190,7 @@ public class UserController {
     public void changeUserPassword(){
         String oldPassword = new String(oldUserPasswordInput.getPassword());
         String newPassword = new String(newUserPasswordInput.getPassword());
-        String newPasswordConfirm = new String(newUserPasswordInput.getPassword());
+        String newPasswordConfirm = new String(newUserPasswordConfirmInput.getPassword());
         if(InputValidator.checkInput(new String(oldUserPasswordInput.getPassword()), "Old user password cannot be empty.")
                 & InputValidator.checkInput(new String(newUserPasswordInput.getPassword()), "New user password cannot be empty.")
                 & InputValidator.checkInput(new String(newUserPasswordConfirmInput.getPassword()), "Confirm user password cannot be empty.")){
@@ -203,6 +203,7 @@ public class UserController {
                     if(rs.getString(1).equals(oldPassword)){
                         dbConnector.update("UPDATE users SET password = ? where username = ?;", new String[]{ newPassword }, username.getText());
                         JOptionPane.showMessageDialog(null, "User credentials updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        editUserDialog.dispose();
                     }else{
                         JOptionPane.showMessageDialog(null, "Incorrect user password.", "Input error.", JOptionPane.ERROR_MESSAGE);
                     }

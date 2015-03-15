@@ -149,9 +149,15 @@ public class SupplierController {
         try{
             String supplierID = supplierTableManager.getIDFromTable(supplierTableManager.getSelectedRow());
             dbConnector.delete("DELETE FROM supplier WHERE supplier_id = ?", supplierID);
+            JOptionPane.showMessageDialog(null, "Selected supplier was deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
         }catch(SQLException sqlE){
+            if(sqlE.getSQLState().startsWith("23")){
+                JOptionPane.showMessageDialog(null, "Failed to delete selected supplier. Supplier is currently linked to a product. \n\nTo remove this supplier. Please clear all products associated with it.", "Database Error", JOptionPane.ERROR_MESSAGE);
+            }else{
             sqlE.printStackTrace();
+            
             JOptionPane.showMessageDialog(null, "Failed to delete selected supplier.", "Database Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
     
