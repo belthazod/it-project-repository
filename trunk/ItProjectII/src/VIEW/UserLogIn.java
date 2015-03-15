@@ -127,20 +127,26 @@ public class UserLogIn extends javax.swing.JFrame {
 
             Connection con = DriverManager.getConnection(host,uName, uPass);
 
-            String selectString = "SELECT username, password FROM users";
+            String selectString = "SELECT username, password, name FROM users";
             selectStatement = con.prepareStatement(selectString);
             ResultSet rs = selectStatement.executeQuery();
             System.out.println("username:"+ usernameInput.getText());
             String pas = new String(passwordInput.getPassword());
             System.out.println("Password:"+ pas);
             boolean userNotFound = true;
+            String name = "";
+            String username = "";
             while(rs.next()){
                 String user = rs.getString(1);
                 String pass = rs.getString(2);
+                System.out.println(user);
+                System.out.println(pass);
                 
                 
                 if(user.equals(usernameInput.getText()) && pass.equals(pas)){
                     userNotFound = false;
+                    name = rs.getString(3);
+                    username = user;
                     break;
                 }else{
                     userNotFound = true;
@@ -155,6 +161,8 @@ public class UserLogIn extends javax.swing.JFrame {
                 JOptionPane.ERROR_MESSAGE);
             }else{
                 Main main = new Main();
+                Main.setUser(name);
+                Main.setUserName(username);
                 main.setVisible(true);
                 this.setVisible(false);
             }

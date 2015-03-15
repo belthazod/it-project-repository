@@ -235,7 +235,7 @@ public class Login extends javax.swing.JPanel {
         
         Connection con = DriverManager.getConnection(host,uName, uPass);
         
-        String selectString = "SELECT username, password FROM users";
+        String selectString = "SELECT username, password, name FROM users";
         selectStatement = con.prepareStatement(selectString);
         ResultSet rs = selectStatement.executeQuery();
         
@@ -243,9 +243,16 @@ public class Login extends javax.swing.JPanel {
             while(rs.next()){
                 String user = rs.getString(1);
                 String pass = rs.getString(2);
-                
+                String name = rs.getString(3);
+                    System.out.println(name);
                 if(user.equals(usernameInput.getText()) && pass.equals(passwordInput)){
                     userNotFound = false;
+                    try{
+                    
+                    Main.setUser(name);
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
                 }else{
                     userNotFound = true;
                 }

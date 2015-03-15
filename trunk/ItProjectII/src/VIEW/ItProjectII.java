@@ -15,15 +15,15 @@ public class ItProjectII {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        UserLogIn main = new UserLogIn();
-//        main.setVisible(true);
-//        main.setTitle("Ocampo's Battery Trading and Autosupply Inventory System");
-//        main.setLocationRelativeTo(null);
-        
-        
-        Main main = new Main();
+        UserLogIn main = new UserLogIn();
         main.setVisible(true);
-        main.setTitle("Just Another Inventory System");
+        main.setTitle("Ocampo's Battery Trading and Autosupply Inventory System");
+        main.setLocationRelativeTo(null);
+        
+        
+//        Main main = new Main();
+//        main.setVisible(true);
+//        main.setTitle("Just Another Inventory System");
                 
     }
     

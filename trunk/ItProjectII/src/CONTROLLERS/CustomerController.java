@@ -102,7 +102,8 @@ public class CustomerController {
         customerTableManager.importDBContents(rs);
         dbConnector.closeConnection();
         }catch(SQLException sqlE){
-            JOptionPane.showMessageDialog(null, "Table update failed", "Database error", JOptionPane.ERROR_MESSAGE);
+            sqlE.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Customer Table update failed", "Database error", JOptionPane.ERROR_MESSAGE);
         }
     }
     

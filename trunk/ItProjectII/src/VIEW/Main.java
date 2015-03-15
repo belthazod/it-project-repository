@@ -7,6 +7,7 @@ package VIEW;
 
 import BEANS.Product;
 import BEANS.SecondHandProduct;
+import CONTROLLERS.UserController;
 import java.awt.CardLayout;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 public class Main extends javax.swing.JFrame {
    
     CardLayout card;
-
+    UserController userController;
     /**
      * Creates new form main
      */
@@ -33,6 +34,7 @@ public class Main extends javax.swing.JFrame {
         SupplierUI.updateSupplierTable();
         ProductsUI.updateCategoryTable();
         UserUI.updateUsersTable();
+        userController = new UserController(oldUserPasswordInput, newUserPasswordInput, newUserConfirmPasswordInput,editPasswordDialog, userLabel);
         }catch(Exception e){
             
         }
@@ -56,6 +58,8 @@ public class Main extends javax.swing.JFrame {
         oldUserPasswordInput = new javax.swing.JPasswordField();
         newUserPasswordInput = new javax.swing.JPasswordField();
         newUserConfirmPasswordInput = new javax.swing.JPasswordField();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         deliveryMenuButton = new javax.swing.JButton();
         reportsMenuButton = new javax.swing.JButton();
@@ -80,9 +84,11 @@ public class Main extends javax.swing.JFrame {
         ReturnsAndReplacementPanel = new VIEW.Returns();
         adminMenuButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        userView = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         editPasswordDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        editPasswordDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
 
         jLabel2.setText("Username:");
 
@@ -100,28 +106,47 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Save");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Cancel");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout editPasswordDialogLayout = new javax.swing.GroupLayout(editPasswordDialog.getContentPane());
         editPasswordDialog.getContentPane().setLayout(editPasswordDialogLayout);
         editPasswordDialogLayout.setHorizontalGroup(
             editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editPasswordDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(editPasswordDialogLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(newUserConfirmPasswordInput))
-                    .addGroup(editPasswordDialogLayout.createSequentialGroup()
-                        .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5))
-                        .addGap(49, 49, 49)
-                        .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(userLabel)
-                            .addComponent(newUserPasswordInput, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                            .addComponent(oldUserPasswordInput))))
-                .addContainerGap(78, Short.MAX_VALUE))
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2))
+                    .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(editPasswordDialogLayout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(newUserConfirmPasswordInput))
+                        .addGroup(editPasswordDialogLayout.createSequentialGroup()
+                            .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel5))
+                            .addGap(49, 49, 49)
+                            .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(userLabel)
+                                .addComponent(newUserPasswordInput, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                                .addComponent(oldUserPasswordInput)))))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         editPasswordDialogLayout.setVerticalGroup(
             editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,7 +167,11 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(newUserConfirmPasswordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -224,19 +253,15 @@ public class Main extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(31, 37, 61));
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton17.setBorderPainted(false);
         jButton17.setContentAreaFilled(false);
-        jPanel4.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(1005, 73, -1, 29));
 
         jButton18.setBorderPainted(false);
         jButton18.setContentAreaFilled(false);
-        jPanel4.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(1005, 58, -1, -1));
 
         jButton19.setBorderPainted(false);
         jButton19.setContentAreaFilled(false);
-        jPanel4.add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(1064, 58, -1, -1));
 
         jButton13.setBackground(new java.awt.Color(31, 37, 61));
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/logout2.png"))); // NOI18N
@@ -247,7 +272,6 @@ public class Main extends javax.swing.JFrame {
                 jButton13ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 10, -1, -1));
 
         cardWindow.setBackground(new java.awt.Color(102, 102, 102));
         cardWindow.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -265,9 +289,6 @@ public class Main extends javax.swing.JFrame {
 
         cardWindow.add(ReturnsAndReplacementPanel, "returnsCard");
 
-        jPanel4.add(cardWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 60, 1100, 590));
-        card = (CardLayout)cardWindow.getLayout();
-
         adminMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/admin.png"))); // NOI18N
         adminMenuButton.setBorderPainted(false);
         adminMenuButton.setContentAreaFilled(false);
@@ -276,7 +297,6 @@ public class Main extends javax.swing.JFrame {
                 adminMenuButtonActionPerformed(evt);
             }
         });
-        jPanel4.add(adminMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 10, 32, 32));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/settings2.png"))); // NOI18N
@@ -285,7 +305,62 @@ public class Main extends javax.swing.JFrame {
                 jLabel1MouseClicked(evt);
             }
         });
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 10, -1, -1));
+
+        userView.setFont(new java.awt.Font("Tempus Sans ITC", 0, 18)); // NOI18N
+        userView.setForeground(new java.awt.Color(204, 204, 255));
+        userView.setText("123");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(936, 936, 936)
+                .addComponent(userView)
+                .addGap(18, 18, 18)
+                .addComponent(adminMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel1)
+                .addGap(5, 5, 5)
+                .addComponent(jButton13))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(998, 998, 998)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton18)
+                            .addComponent(jButton17))
+                        .addGap(26, 26, 26)
+                        .addComponent(jButton19))
+                    .addComponent(cardWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(adminMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(jButton13)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(userView)))
+                .addGap(16, 16, 16)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jButton18)
+                        .addGap(6, 6, 6)
+                        .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton19)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(cardWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+
+        card = (CardLayout)cardWindow.getLayout();
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/customer_Blue.png"))); // NOI18N
         jButton1.setBorderPainted(false);
@@ -319,7 +394,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)))
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -410,6 +485,14 @@ public class Main extends javax.swing.JFrame {
     private void oldUserPasswordInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oldUserPasswordInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_oldUserPasswordInputActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        userController.changeUserPassword();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        editPasswordDialog.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
         static String host = "jdbc:mysql://localhost:3306/inventory";
         static String uName = "root";
         static String uPass = "";
@@ -481,7 +564,13 @@ public class Main extends javax.swing.JFrame {
         }
     }
     
-
+    public static void setUser(String name){
+        userView.setText(name);
+    }
+    
+    public static void setUserName (String username){
+        userLabel.setText(username);
+    }
     /**
      * @param args the command line arguments
      */
@@ -535,6 +624,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -553,7 +644,8 @@ public class Main extends javax.swing.JFrame {
     private VIEW.SecondhandTradeIn tradeInPanel;
     private javax.swing.JButton transferMenuButton;
     private VIEW.TransferUI transferPanel;
-    private javax.swing.JLabel userLabel;
+    private static javax.swing.JLabel userLabel;
+    private static javax.swing.JLabel userView;
     private javax.swing.JButton warrantyMenuButton;
     private VIEW.Warranty warrantyPanel;
     // End of variables declaration//GEN-END:variables
