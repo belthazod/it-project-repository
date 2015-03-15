@@ -88,7 +88,10 @@ public class Main extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         editPasswordDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        editPasswordDialog.setTitle("Change User Password");
+        editPasswordDialog.setBounds(new java.awt.Rectangle(0, 0, 400, 300));
         editPasswordDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+        editPasswordDialog.setLocationRelativeTo(null);
 
         jLabel2.setText("Username:");
 
@@ -146,7 +149,7 @@ public class Main extends javax.swing.JFrame {
                                 .addComponent(userLabel)
                                 .addComponent(newUserPasswordInput, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
                                 .addComponent(oldUserPasswordInput)))))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         editPasswordDialogLayout.setVerticalGroup(
             editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,7 +174,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);

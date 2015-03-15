@@ -57,8 +57,12 @@ public class CategoryController {
             String categoryID = categoryTableManager.getIDFromTable(categoryTableManager.getSelectedRow());
             dbConnector.delete("DELETE FROM type WHERE type_id = ?", categoryID);
         }catch(SQLException sqlE){
+            if(sqlE.getSQLState().startsWith("23")){
+                JOptionPane.showMessageDialog(null, "Failed to delete selected category. Category is currently linked to a product. \n\nTo remove this category. Please clear all products associated with it.", "Constraint Error", JOptionPane.ERROR_MESSAGE);
+            }else{
             sqlE.printStackTrace();
             JOptionPane.showMessageDialog(null, "Failed to delete category", "Database error.", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
     
