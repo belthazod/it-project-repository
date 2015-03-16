@@ -45,8 +45,11 @@ public class AdminUI extends javax.swing.JPanel {
         userPanel = new VIEW.UserUI();
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(240, 177, 78));
+        setForeground(new java.awt.Color(255, 255, 255));
         setToolTipText("");
+
+        jPanel1.setBackground(new java.awt.Color(250, 238, 161));
 
         customerAdminButton.setText("Customer");
         customerAdminButton.setEnabled(false);
@@ -121,10 +124,13 @@ public class AdminUI extends javax.swing.JPanel {
                 .addComponent(userAdminButton)
                 .addGap(26, 26, 26)
                 .addComponent(logsAdminButton)
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addContainerGap(216, Short.MAX_VALUE))
         );
 
         adminCards.setLayout(new java.awt.CardLayout());
+
+        customerPanel.setBackground(new java.awt.Color(250, 238, 161));
+        customerPanel.setForeground(new java.awt.Color(255, 255, 255));
         adminCards.add(customerPanel, "customerCard");
         adminCards.add(productsPanel, "productCard");
         adminCards.add(supplierPanel, "supplierCard");
@@ -132,6 +138,7 @@ public class AdminUI extends javax.swing.JPanel {
         adminCards.add(userPanel, "userCard");
 
         jLabel1.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Admin Panel");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -155,15 +162,13 @@ public class AdminUI extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
+                .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(adminCards, javax.swing.GroupLayout.PREFERRED_SIZE, 523, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 17, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(adminCards, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 

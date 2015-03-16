@@ -50,8 +50,8 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         editPasswordDialog = new javax.swing.JDialog();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         userLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -68,6 +68,7 @@ public class Main extends javax.swing.JFrame {
         transferMenuButton = new javax.swing.JButton();
         salesMenuButton = new javax.swing.JButton();
         returnsMenuButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jButton17 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
@@ -79,13 +80,12 @@ public class Main extends javax.swing.JFrame {
         warrantyPanel = new VIEW.Warranty();
         transferPanel = new VIEW.TransferUI();
         tradeInPanel = new VIEW.SecondhandTradeIn();
-        adminPanel = new VIEW.AdminUI();
         reportsPanel = new VIEW.Reports();
         ReturnsAndReplacementPanel = new VIEW.Returns();
         adminMenuButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         userView = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         editPasswordDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         editPasswordDialog.setTitle("Change User Password");
@@ -93,9 +93,9 @@ public class Main extends javax.swing.JFrame {
         editPasswordDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         editPasswordDialog.setLocationRelativeTo(null);
 
-        jLabel2.setText("Username:");
+        jLabel3.setText("Username:");
 
-        jLabel3.setText("Old Password:");
+        jLabel4.setText("Old Password:");
 
         userLabel.setText("user");
 
@@ -142,7 +142,7 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(editPasswordDialogLayout.createSequentialGroup()
                             .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3)
-                                .addComponent(jLabel2)
+                                .addComponent(jLabel4)
                                 .addComponent(jLabel5))
                             .addGap(49, 49, 49)
                             .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -156,7 +156,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(editPasswordDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
                     .addComponent(userLabel))
                 .addGap(29, 29, 29)
                 .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -181,66 +181,66 @@ public class Main extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 102));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(31, 37, 61));
+        jPanel1.setBackground(new java.awt.Color(250, 238, 161));
         jPanel1.setPreferredSize(new java.awt.Dimension(1024, 768));
 
         deliveryMenuButton.setBackground(new java.awt.Color(31, 37, 61));
-        deliveryMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/delivery_Blue.png"))); // NOI18N
+        deliveryMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/delivery_yellow.png"))); // NOI18N
         deliveryMenuButton.setToolTipText("");
         deliveryMenuButton.setBorderPainted(false);
         deliveryMenuButton.setContentAreaFilled(false);
-        deliveryMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/delivery_Blue_hover.png"))); // NOI18N
+        deliveryMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/delivery_hover.png"))); // NOI18N
         deliveryMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deliveryMenuButtonActionPerformed(evt);
             }
         });
 
-        reportsMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/reports_Blue.png"))); // NOI18N
+        reportsMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/reports_yellow.png"))); // NOI18N
         reportsMenuButton.setBorderPainted(false);
         reportsMenuButton.setContentAreaFilled(false);
-        reportsMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/reports_Blue_hover.png"))); // NOI18N
+        reportsMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/reports_hover.png"))); // NOI18N
         reportsMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reportsMenuButtonActionPerformed(evt);
             }
         });
 
-        tradeInMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/trade-in_Blue.png"))); // NOI18N
+        tradeInMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/tradein.png"))); // NOI18N
         tradeInMenuButton.setBorderPainted(false);
         tradeInMenuButton.setContentAreaFilled(false);
-        tradeInMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/trade-in_Blue_hover.png"))); // NOI18N
+        tradeInMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/tradein_hover.png"))); // NOI18N
         tradeInMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tradeInMenuButtonActionPerformed(evt);
             }
         });
 
-        warrantyMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/warranty_blue.png"))); // NOI18N
+        warrantyMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/warranty-o_1.png"))); // NOI18N
         warrantyMenuButton.setBorderPainted(false);
         warrantyMenuButton.setContentAreaFilled(false);
-        warrantyMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/warranty_blue_hover.png"))); // NOI18N
+        warrantyMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/warranty.png"))); // NOI18N
         warrantyMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 warrantyMenuButtonActionPerformed(evt);
             }
         });
 
-        transferMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/transfer_Blue.png"))); // NOI18N
+        transferMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/transfer_yellow.png"))); // NOI18N
         transferMenuButton.setBorderPainted(false);
         transferMenuButton.setContentAreaFilled(false);
-        transferMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/transfer_Blue_hover.png"))); // NOI18N
+        transferMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/transfer_hover.png"))); // NOI18N
         transferMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 transferMenuButtonActionPerformed(evt);
             }
         });
 
-        salesMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/home_blue.png"))); // NOI18N
+        salesMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/home-o.png"))); // NOI18N
         salesMenuButton.setBorderPainted(false);
         salesMenuButton.setContentAreaFilled(false);
         salesMenuButton.setPreferredSize(new java.awt.Dimension(100, 83));
-        salesMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/home_blue_hover.png"))); // NOI18N
+        salesMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/home_1.png"))); // NOI18N
         salesMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salesMenuButtonActionPerformed(evt);
@@ -254,7 +254,17 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jPanel4.setBackground(new java.awt.Color(31, 37, 61));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/customer_yellow.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/customer_hover.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jPanel4.setBackground(new java.awt.Color(250, 238, 161));
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
 
         jButton17.setBorderPainted(false);
@@ -280,13 +290,12 @@ public class Main extends javax.swing.JFrame {
         cardWindow.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cardWindow.setLayout(new java.awt.CardLayout());
 
-        inventoryPanel.setBackground(new java.awt.Color(58, 67, 98));
+        inventoryPanel.setBackground(new java.awt.Color(240, 177, 78));
         cardWindow.add(inventoryPanel, "inventoryCard");
         cardWindow.add(deliveryPanel, "deliveryCard");
         cardWindow.add(warrantyPanel, "warrantyCard");
         cardWindow.add(transferPanel, "transferCard");
         cardWindow.add(tradeInPanel, "tradeInCard");
-        cardWindow.add(adminPanel, "adminCard");
         cardWindow.add(reportsPanel, "reportsCard");
         reportsPanel.getAccessibleContext().setAccessibleName("");
 
@@ -313,18 +322,21 @@ public class Main extends javax.swing.JFrame {
         userView.setForeground(new java.awt.Color(204, 204, 255));
         userView.setText("123");
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphics/bg.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(936, 936, 936)
+                .addGap(966, 966, 966)
                 .addComponent(userView)
                 .addGap(18, 18, 18)
                 .addComponent(adminMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
-                .addGap(5, 5, 5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton13))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(7, 7, 7)
@@ -341,16 +353,12 @@ public class Main extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(adminMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(jButton13)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(userView)))
+                    .addComponent(adminMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton13)
+                    .addComponent(userView))
                 .addGap(16, 16, 16)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -365,16 +373,6 @@ public class Main extends javax.swing.JFrame {
 
         card = (CardLayout)cardWindow.getLayout();
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/customer_Blue.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/customer_Blue_hover.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -382,21 +380,17 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(salesMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deliveryMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(warrantyMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(transferMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(salesMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(deliveryMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(warrantyMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(transferMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(returnsMenuButton))
-                            .addComponent(reportsMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tradeInMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                        .addGap(21, 21, 21)
+                        .addComponent(returnsMenuButton))
+                    .addComponent(reportsMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tradeInMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -616,7 +610,6 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private VIEW.Returns ReturnsAndReplacementPanel;
     private javax.swing.JButton adminMenuButton;
-    private VIEW.AdminUI adminPanel;
     private javax.swing.JPanel cardWindow;
     private javax.swing.JButton deliveryMenuButton;
     private VIEW.DeliveryUI deliveryPanel;
@@ -632,6 +625,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

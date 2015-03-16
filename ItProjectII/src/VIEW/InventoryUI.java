@@ -39,10 +39,8 @@ public class InventoryUI extends javax.swing.JPanel {
         jButton20 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(32, 36, 63));
+        setBackground(new java.awt.Color(240, 177, 78));
 
-        productFilterComboBox.setBackground(new java.awt.Color(230, 76, 102));
-        productFilterComboBox.setForeground(new java.awt.Color(255, 255, 255));
         productFilterComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Accessories", "Batteries", "Oils", "Rims", "Tires" }));
         productFilterComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,8 +81,6 @@ public class InventoryUI extends javax.swing.JPanel {
         inventoryTable.getColumnModel().getColumn(0).setMinWidth(0);
         inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 
-        jButton14.setBackground(new java.awt.Color(230, 76, 102));
-        jButton14.setForeground(new java.awt.Color(255, 255, 255));
         jButton14.setText("Mark as bought");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,11 +88,8 @@ public class InventoryUI extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Category:");
 
-        jButton20.setBackground(new java.awt.Color(230, 76, 102));
-        jButton20.setForeground(new java.awt.Color(255, 255, 255));
         jButton20.setText("Critical Product");
         jButton20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

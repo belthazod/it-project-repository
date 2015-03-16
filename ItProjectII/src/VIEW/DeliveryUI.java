@@ -48,6 +48,8 @@ public class DeliveryUI extends javax.swing.JPanel {
         deliveryProductFilterSupplierComboBox = new javax.swing.JComboBox<ComboItem>();
         jLabel5 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(240, 177, 78));
+
         jLabel1.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
         jLabel1.setText("Delivery Acknowledgement");
 
