@@ -75,17 +75,18 @@ public class Main extends javax.swing.JFrame {
         jButton19 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         cardWindow = new javax.swing.JPanel();
-        inventoryPanel = new VIEW.InventoryUI();
         deliveryPanel = new VIEW.DeliveryUI();
         warrantyPanel = new VIEW.Warranty();
         transferPanel = new VIEW.TransferUI();
         tradeInPanel = new VIEW.SecondhandTradeIn();
         reportsPanel = new VIEW.Reports();
         ReturnsAndReplacementPanel = new VIEW.Returns();
+        inventoryPanel = new VIEW.InventoryUI();
         adminMenuButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         userView = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         editPasswordDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         editPasswordDialog.setTitle("Change User Password");
@@ -266,15 +267,19 @@ public class Main extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(250, 238, 161));
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton17.setBorderPainted(false);
         jButton17.setContentAreaFilled(false);
+        jPanel4.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(1005, 73, -1, 29));
 
         jButton18.setBorderPainted(false);
         jButton18.setContentAreaFilled(false);
+        jPanel4.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(1005, 58, -1, -1));
 
         jButton19.setBorderPainted(false);
         jButton19.setContentAreaFilled(false);
+        jPanel4.add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(1064, 58, -1, -1));
 
         jButton13.setBackground(new java.awt.Color(31, 37, 61));
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/logout2.png"))); // NOI18N
@@ -285,13 +290,11 @@ public class Main extends javax.swing.JFrame {
                 jButton13ActionPerformed(evt);
             }
         });
+        jPanel4.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 20, -1, -1));
 
         cardWindow.setBackground(new java.awt.Color(102, 102, 102));
         cardWindow.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cardWindow.setLayout(new java.awt.CardLayout());
-
-        inventoryPanel.setBackground(new java.awt.Color(240, 177, 78));
-        cardWindow.add(inventoryPanel, "inventoryCard");
         cardWindow.add(deliveryPanel, "deliveryCard");
         cardWindow.add(warrantyPanel, "warrantyCard");
         cardWindow.add(transferPanel, "transferCard");
@@ -300,6 +303,10 @@ public class Main extends javax.swing.JFrame {
         reportsPanel.getAccessibleContext().setAccessibleName("");
 
         cardWindow.add(ReturnsAndReplacementPanel, "returnsCard");
+        cardWindow.add(inventoryPanel, "inventoryCard");
+
+        jPanel4.add(cardWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 60, 1100, 590));
+        card = (CardLayout)cardWindow.getLayout();
 
         adminMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/admin.png"))); // NOI18N
         adminMenuButton.setBorderPainted(false);
@@ -309,6 +316,7 @@ public class Main extends javax.swing.JFrame {
                 adminMenuButtonActionPerformed(evt);
             }
         });
+        jPanel4.add(adminMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 20, 32, 32));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/settings2.png"))); // NOI18N
@@ -317,61 +325,19 @@ public class Main extends javax.swing.JFrame {
                 jLabel1MouseClicked(evt);
             }
         });
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 20, -1, -1));
 
         userView.setFont(new java.awt.Font("Tempus Sans ITC", 0, 18)); // NOI18N
         userView.setForeground(new java.awt.Color(204, 204, 255));
         userView.setText("123");
+        jPanel4.add(userView, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphics/bg.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(966, 966, 966)
-                .addComponent(userView)
-                .addGap(18, 18, 18)
-                .addComponent(adminMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton13))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(998, 998, 998)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton18)
-                            .addComponent(jButton17))
-                        .addGap(26, 26, 26)
-                        .addComponent(jButton19))
-                    .addComponent(cardWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(adminMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton13)
-                    .addComponent(userView))
-                .addGap(16, 16, 16)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jButton18)
-                        .addGap(6, 6, 6)
-                        .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton19)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(cardWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        );
-
-        card = (CardLayout)cardWindow.getLayout();
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphics/bg.jpg"))); // NOI18N
+        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-142, -10, 1300, 720));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -390,7 +356,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(reportsMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tradeInMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -415,7 +381,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(96, 96, 96)
                         .addComponent(returnsMenuButton)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -628,6 +594,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPasswordField newUserConfirmPasswordInput;
