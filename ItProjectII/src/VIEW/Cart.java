@@ -5,6 +5,8 @@
  */
 package VIEW;
 
+import javax.swing.JTable;
+
 /**
  *
  * @author Bea
@@ -16,6 +18,12 @@ public class Cart extends javax.swing.JFrame {
      */
     public Cart() {
         initComponents();
+        cartTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        cartTable.getColumnModel().getColumn(0).setMinWidth(0);
+        cartTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        cartTable.getColumnModel().getColumn(1).setMaxWidth(0);
+        cartTable.getColumnModel().getColumn(1).setMinWidth(0);
+        cartTable.getColumnModel().getColumn(1).setPreferredWidth(0);
     }
 
     /**
@@ -29,7 +37,7 @@ public class Cart extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        deliveryTable1 = new javax.swing.JTable();
+        cartTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -38,28 +46,19 @@ public class Cart extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Cart");
 
-        deliveryTable1.setModel(new javax.swing.table.DefaultTableModel(
+        cartTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Product_id", "Name", "Description", "Category", "Unit", "Supplier", "Quantity"
+                "Product_id", "Physical Count", "Name", "Description", "Category", "Unit", "Supplier", "Quantity"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, true, true, true, true, true
+                false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -70,7 +69,11 @@ public class Cart extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(deliveryTable1);
+        jScrollPane3.setViewportView(cartTable);
+        if (cartTable.getColumnModel().getColumnCount() > 0) {
+            cartTable.getColumnModel().getColumn(0).setResizable(false);
+            cartTable.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         jButton1.setText("Checkout");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +114,7 @@ public class Cart extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -121,7 +124,11 @@ public class Cart extends javax.swing.JFrame {
             Checkout c = new Checkout();
             c.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+    public static JTable getCartTable(){
+        return cartTable;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -158,7 +165,7 @@ public class Cart extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable deliveryTable1;
+    private static javax.swing.JTable cartTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

@@ -26,7 +26,7 @@
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="productFilterComboBox" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="765" max="32767" attributes="0"/>
+              <EmptySpace pref="743" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jButton14" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton20" min="-2" max="-2" attributes="0"/>
@@ -122,7 +122,7 @@
                 <Column editable="false" title="Reorder Quantity Level" type="java.lang.String"/>
               </Table>
             </Property>
-            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="inventoryTable.getColumnModel().getColumn(0).setMaxWidth(0);&#xa;inventoryTable.getColumnModel().getColumn(0).setMinWidth(0);&#xa;inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(0);">
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
@@ -184,7 +184,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="jButton14">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mark as bought"/>
+        <Property name="text" type="java.lang.String" value="Add to bought items"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton14ActionPerformed"/>
