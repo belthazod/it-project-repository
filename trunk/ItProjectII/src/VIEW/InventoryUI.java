@@ -6,6 +6,7 @@
 package VIEW;
 
 import BEANS.ComboItem;
+import CONTROLLERS.CartController;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 
@@ -14,12 +15,18 @@ import javax.swing.JTable;
  * @author Belthazod
  */
 public class InventoryUI extends javax.swing.JPanel {
-
+    CartController cartController;
+    Cart c;
     /**
      * Creates new form InventoryUI
      */
     public InventoryUI() {
         initComponents();
+        inventoryTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        inventoryTable.getColumnModel().getColumn(0).setMinWidth(0);
+        inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        c = new Cart();
+        cartController = new CartController(Cart.getCartTable(), inventoryTable );
     }
 
     /**
@@ -77,11 +84,8 @@ public class InventoryUI extends javax.swing.JPanel {
         inventoryTable.setGridColor(new java.awt.Color(204, 204, 204));
         inventoryTable.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane3.setViewportView(inventoryTable);
-        inventoryTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        inventoryTable.getColumnModel().getColumn(0).setMinWidth(0);
-        inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 
-        jButton14.setText("Mark as bought");
+        jButton14.setText("Add to bought items");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
@@ -110,7 +114,7 @@ public class InventoryUI extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(productFilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 765, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 743, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton14)
                     .addComponent(jButton20))
@@ -163,7 +167,8 @@ public class InventoryUI extends javax.swing.JPanel {
     }//GEN-LAST:event_productFilterComboBoxActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        Cart c = new Cart();
+
+        cartController.addToCart();
         c.setVisible(true);
     }//GEN-LAST:event_jButton14ActionPerformed
 
