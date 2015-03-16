@@ -221,7 +221,7 @@ public class CustomerUI extends javax.swing.JPanel {
                 addCustomerButtonActionPerformed(evt);
             }
         });
-        add(addCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(703, 101, -1, -1));
+        add(addCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, -1, -1));
 
         deleteCustomerButton.setText("Delete Customer");
         deleteCustomerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -229,7 +229,7 @@ public class CustomerUI extends javax.swing.JPanel {
                 deleteCustomerButtonActionPerformed(evt);
             }
         });
-        add(deleteCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 330, -1, -1));
+        add(deleteCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 330, -1, -1));
 
         editCustomerButton.setText("Edit Customer");
         editCustomerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -237,7 +237,7 @@ public class CustomerUI extends javax.swing.JPanel {
                 editCustomerButtonActionPerformed(evt);
             }
         });
-        add(editCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 330, -1, -1));
+        add(editCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 330, -1, -1));
 
         jButton7.setText("Edit Customer");
         add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
