@@ -45,9 +45,7 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         secondHandCategoryComboBox = new javax.swing.JComboBox<ComboItem>();
         jLabel2 = new javax.swing.JLabel();
         descriptionInput = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        qualityInput = new javax.swing.JTextField();
         quantityInput = new javax.swing.JTextField();
         addToItemListButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -90,13 +88,9 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         });
         add(descriptionInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 705, -1));
 
-        jLabel3.setText("Quality:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
-
         jLabel4.setText("Quantity:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
-        add(qualityInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 705, -1));
-        add(quantityInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 705, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 20));
+        add(quantityInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 705, -1));
 
         addToItemListButton.setText("Add to Secondhand Product List");
         addToItemListButton.addActionListener(new java.awt.event.ActionListener() {
@@ -122,14 +116,14 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Product ID", "Name", "Brand", "Type", "Quality", "Quantity"
+                "Product ID", "Name", "Brand", "Type", "Quantity"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -290,12 +284,10 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField qualityInput;
     private javax.swing.JTextField quantityInput;
     private static javax.swing.JComboBox<ComboItem> secondHandCategoryComboBox;
     private static javax.swing.JTable secondHandProductsListTable;
