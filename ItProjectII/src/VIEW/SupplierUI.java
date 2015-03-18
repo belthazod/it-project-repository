@@ -28,8 +28,7 @@ public class SupplierUI extends javax.swing.JPanel {
         supplierController = new SupplierController(supplierListTable, 
                 ProductsUI.getAddProductSupplierComboBox(), 
                 ProductsUI.getEditProductSupplierComboBox(),
-                DeliveryUI.getDeliveryProductFilterSupplierComboBox(),
-                DeliveryUI.getDeliverySupplierComboBox());
+                DeliveryUI.getDeliveryProductFilterSupplierComboBox());
     }
 
     /**

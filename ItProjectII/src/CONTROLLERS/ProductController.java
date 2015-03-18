@@ -37,6 +37,7 @@ public class ProductController {
     private TableManager inventoryTableManager;
     private TableManager transferTableManager;
     private TableManager deliveryTableManager;
+    private TableManager criticalProductsTableManager;
     private JTabbedPane productsTab;
     private static ArrayList<Product> productList;
     
@@ -52,15 +53,18 @@ public class ProductController {
      * @param transferTable - the JTable located at the Transfer module
      * @param deliveryTable - the JTable located at the Delivery module
      * @param productsTab - the products Tab that opens after adding a product
+     * @param criticalProductsTable - the table of products with quantities below their reorder quantity level or zero 
      */
-    public ProductController(JTable adminTable, JTable inventoryTable, JTable transferTable, JTable deliveryTable, JTabbedPane productsTab){
+    public ProductController(JTable adminTable, JTable inventoryTable, JTable transferTable, JTable deliveryTable, JTabbedPane productsTab, JTable criticalProductsTable){
         try{
         dbConnector = DatabaseConnector.getInstance();
         adminProductTableManager = new TableManager(adminTable);
         inventoryTableManager = new TableManager(inventoryTable);
         transferTableManager = new TableManager(transferTable);
         deliveryTableManager = new TableManager(deliveryTable);
+        criticalProductsTableManager = new TableManager(criticalProductsTable);
         this.productsTab = productsTab;
+        
         }catch(NullPointerException npe){
             npe.printStackTrace();
         }
@@ -82,8 +86,7 @@ public class ProductController {
         try{
         Object supplierComboBoxitem = supplier.getSelectedItem();
         String supplierID = ((ComboItem)supplierComboBoxitem).getValue();
-        
-        Object typeComboBoxitem = category.getSelectedItem();
+        System.out.print(supplierID);        Object typeComboBoxitem = category.getSelectedItem();
         String typeID = ((ComboItem)typeComboBoxitem).getValue(); 
         ResultSet supplierResult = dbConnector.query("SELECT supplier_id FROM supplier WHERE supplier_name = ? LIMIT 1", supplier.getSelectedItem().toString());
         JTextField[] inputs = {productName, description, quantity};
@@ -97,9 +100,10 @@ public class ProductController {
             dbConnector.insert("INSERT INTO product ( type_id, name, description, "
                     + "supplier_id, unit, physical_count, reorder_quantity) "
                     + "VALUES(?,?,?,?,?,?,?)", values);
-            InputValidator.clearInput(inputs);
+            
             reorderQuantity.setValue(0);
             int result = JOptionPane.showConfirmDialog(null, productName.getText() + " added to list of products. Would you like to add another product?", "Success", JOptionPane.YES_NO_OPTION);
+            InputValidator.clearInput(inputs);
             if(result == 1){
                 productsTab.setSelectedIndex(result);
             }
@@ -275,7 +279,7 @@ public class ProductController {
         inventoryTableManager.clearTableContents();
         transferTableManager.clearTableContents();
         deliveryTableManager.clearTableContents();
-        
+        criticalProductsTableManager.clearTableContents();
         getProducts();
         for(Product product : productList){
             String[] completeValues = {product.getProductID(), product.getName(), 
@@ -297,6 +301,17 @@ public class ProductController {
                     product.getUnit(), product.getPhysicalCount(), 
                     product.getReorderQuantityLevel()};
                 transferTableManager.addRowContent(transferValues);
+            }
+            try{
+            if(Integer.parseInt(product.getPhysicalCount()) <= Integer.parseInt(product.getReorderQuantityLevel())){
+                String[] completeCriticalValues = {product.getProductID(), product.getName(), 
+                product.getDescription(), product.getTypeName(), product.getUnit(),
+                product.getSupplierName(), product.getPhysicalCount()};
+                
+                criticalProductsTableManager.addRowContent(completeCriticalValues);
+            }
+            }catch(Exception e){
+                e.printStackTrace();
             }
         }
         dbConnector.closeConnection();

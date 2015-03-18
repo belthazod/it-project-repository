@@ -129,4 +129,12 @@ public class TableManager {
     public String getValueAt(int row, int col){
         return table.getValueAt(row,col).toString();
     }
+    
+    /**
+     * Sets the option to clears the table of any highlights or selections from the user
+     * once they navigate or click any other components aside from the Table
+     */
+    public void setAutoClear(boolean state){
+        table.putClientProperty("terminateEditOnFocusLost", state);
+    }
 }

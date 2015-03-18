@@ -26,19 +26,16 @@ public class CategoryController {
     private JComboBox<ComboItem> addProductCategoryComboBox;
     private JComboBox<ComboItem> editProductCategoryComboBox;
     private JComboBox<ComboItem> secondHandCategoryComboBox;
-    private JComboBox<ComboItem> inventoryCategoryComboBox;
     private DatabaseConnector dbConnector = DatabaseConnector.getInstance();
     
     public CategoryController(JTable categoryTable, 
             JComboBox<ComboItem> addProductCategoryComboBox, 
             JComboBox<ComboItem> editProductCategoryComboBox, 
-            JComboBox<ComboItem> secondHandCategoryComboBox,
-            JComboBox<ComboItem> inventoryCategoryComboBox){
+            JComboBox<ComboItem> secondHandCategoryComboBox){
         categoryTableManager = new TableManager(categoryTable);
         this.addProductCategoryComboBox = addProductCategoryComboBox;
         this.editProductCategoryComboBox = editProductCategoryComboBox;
         this.secondHandCategoryComboBox = secondHandCategoryComboBox;
-        this.inventoryCategoryComboBox = inventoryCategoryComboBox;
     }
     
     public void addCategory(JTextField categoryName){

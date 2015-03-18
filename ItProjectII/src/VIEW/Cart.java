@@ -5,6 +5,7 @@
  */
 package VIEW;
 
+import CONTROLLERS.CartController;
 import javax.swing.JTable;
 
 /**
@@ -12,7 +13,7 @@ import javax.swing.JTable;
  * @author Bea
  */
 public class Cart extends javax.swing.JFrame {
-
+    CartController cartController;
     /**
      * Creates new form Cart
      */
@@ -24,6 +25,8 @@ public class Cart extends javax.swing.JFrame {
         cartTable.getColumnModel().getColumn(1).setMaxWidth(0);
         cartTable.getColumnModel().getColumn(1).setMinWidth(0);
         cartTable.getColumnModel().getColumn(1).setPreferredWidth(0);
+        
+        cartController = new CartController(cartTable, salesTypeDialog);
     }
 
     /**
@@ -35,11 +38,69 @@ public class Cart extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        salesTypeDialog = new javax.swing.JDialog();
+        selectPurchaseButton = new javax.swing.JButton();
+        selectServiceButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         cartTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+
+        salesTypeDialog.setTitle("Choose Transaction Type");
+        salesTypeDialog.setBounds(new java.awt.Rectangle(0, 0, 400, 200));
+        salesTypeDialog.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        salesTypeDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+        salesTypeDialog.setLocationRelativeTo(null);
+
+        selectPurchaseButton.setText("Purchase");
+        selectPurchaseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectPurchaseButtonActionPerformed(evt);
+            }
+        });
+
+        selectServiceButton.setText("Service");
+        selectServiceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectServiceButtonActionPerformed(evt);
+            }
+        });
+
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout salesTypeDialogLayout = new javax.swing.GroupLayout(salesTypeDialog.getContentPane());
+        salesTypeDialog.getContentPane().setLayout(salesTypeDialogLayout);
+        salesTypeDialogLayout.setHorizontalGroup(
+            salesTypeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(salesTypeDialogLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(selectPurchaseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addComponent(selectServiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, salesTypeDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cancelButton)
+                .addContainerGap())
+        );
+        salesTypeDialogLayout.setVerticalGroup(
+            salesTypeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, salesTypeDialogLayout.createSequentialGroup()
+                .addContainerGap(43, Short.MAX_VALUE)
+                .addGroup(salesTypeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(selectServiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectPurchaseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addComponent(cancelButton)
+                .addContainerGap())
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -55,7 +116,7 @@ public class Cart extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, true
@@ -83,6 +144,11 @@ public class Cart extends javax.swing.JFrame {
         });
 
         jButton2.setText("Clear Cart");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,9 +187,24 @@ public class Cart extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            Checkout c = new Checkout();
-            c.setVisible(true);
+        cartController.openSalesTypeDialog();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        cartController.clearCart();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void selectPurchaseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPurchaseButtonActionPerformed
+        cartController.selectTypePurchase();
+    }//GEN-LAST:event_selectPurchaseButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        cartController.closeSalesTypeDialog();
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void selectServiceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectServiceButtonActionPerformed
+        cartController.selectTypeService();
+    }//GEN-LAST:event_selectServiceButtonActionPerformed
     
     public static JTable getCartTable(){
         return cartTable;
@@ -165,10 +246,14 @@ public class Cart extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelButton;
     private static javax.swing.JTable cartTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JDialog salesTypeDialog;
+    private javax.swing.JButton selectPurchaseButton;
+    private javax.swing.JButton selectServiceButton;
     // End of variables declaration//GEN-END:variables
 }

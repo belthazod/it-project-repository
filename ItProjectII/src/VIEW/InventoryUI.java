@@ -17,6 +17,7 @@ import javax.swing.JTable;
 public class InventoryUI extends javax.swing.JPanel {
     CartController cartController;
     Cart c;
+    CriticalProducts criticalProducts;
     /**
      * Creates new form InventoryUI
      */
@@ -26,7 +27,8 @@ public class InventoryUI extends javax.swing.JPanel {
         inventoryTable.getColumnModel().getColumn(0).setMinWidth(0);
         inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(0);
         c = new Cart();
-        cartController = new CartController(Cart.getCartTable(), inventoryTable );
+        cartController = new CartController(Cart.getCartTable(), inventoryTable, c );
+        this.criticalProducts = new CriticalProducts();
     }
 
     /**
@@ -38,22 +40,13 @@ public class InventoryUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        productFilterComboBox = new javax.swing.JComboBox();
         jScrollPane3 = new javax.swing.JScrollPane();
         inventoryTable = new javax.swing.JTable();
         jButton14 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jButton20 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(240, 177, 78));
-
-        productFilterComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Accessories", "Batteries", "Oils", "Rims", "Tires" }));
-        productFilterComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                productFilterComboBoxActionPerformed(evt);
-            }
-        });
 
         inventoryTable.setAutoCreateRowSorter(true);
         inventoryTable.setBackground(new java.awt.Color(57, 66, 99));
@@ -92,8 +85,6 @@ public class InventoryUI extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setText("Category:");
-
         jButton20.setText("Critical Product");
         jButton20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,11 +101,7 @@ public class InventoryUI extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(productFilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 743, Short.MAX_VALUE)
+                .addContainerGap(921, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton14)
                     .addComponent(jButton20))
@@ -133,11 +120,8 @@ public class InventoryUI extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton20)
-                    .addComponent(productFilterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 417, Short.MAX_VALUE)
+                .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 421, Short.MAX_VALUE)
                 .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,48 +132,25 @@ public class InventoryUI extends javax.swing.JPanel {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 67, Short.MAX_VALUE)))
         );
-
-        //updateCategoryComboBox();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void productFilterComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productFilterComboBoxActionPerformed
-//        System.out.print("ComboBox");
-//
-//        if(productFilterComboBox.getSelectedItem()!=null){
-//            String category = productFilterComboBox.getSelectedItem().toString();
-//            System.out.print(category);
-//            if(category.equals("All")){
-//                updateInventoryTable();
-//            }else{
-//                updateInventoryTable(category);
-//            }
-//        }
-    }//GEN-LAST:event_productFilterComboBoxActionPerformed
-
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-
         cartController.addToCart();
-        c.setVisible(true);
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        CriticalProducts cp = new CriticalProducts();
-        cp.setVisible(true);
+        criticalProducts.setVisible(true);
     }//GEN-LAST:event_jButton20ActionPerformed
     public static JTable getInventoryTable(){
         return inventoryTable;
     }
-    public static JComboBox<ComboItem> getProductFilterCategoryComboBox(){
-        return productFilterComboBox;
-    }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JTable inventoryTable;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton20;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane3;
-    private static javax.swing.JComboBox productFilterComboBox;
     // End of variables declaration//GEN-END:variables
 }

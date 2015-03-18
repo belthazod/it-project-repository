@@ -5,6 +5,8 @@
  */
 package VIEW;
 
+import javax.swing.JTable;
+
 /**
  *
  * @author Bea
@@ -29,29 +31,26 @@ public class CriticalProducts extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        criticalProductsTable = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Critical Products");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        criticalProductsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Product_id", "Name", "Description", "Category", "Unit", "Supplier", "Quantity", "Reorder Quantity Level"
+                "Product_id", "Name", "Description", "Category", "Unit", "Supplier", "Quantity"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -62,7 +61,10 @@ public class CriticalProducts extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(criticalProductsTable);
+        if (criticalProductsTable.getColumnModel().getColumnCount() > 0) {
+            criticalProductsTable.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,7 +91,10 @@ public class CriticalProducts extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public static JTable getCriticalProductsTable(){
+        return criticalProductsTable;
+    }
     /**
      * @param args the command line arguments
      */
@@ -126,8 +131,8 @@ public class CriticalProducts extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private static javax.swing.JTable criticalProductsTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

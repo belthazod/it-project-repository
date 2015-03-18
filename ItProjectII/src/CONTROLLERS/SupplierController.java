@@ -28,15 +28,13 @@ public class SupplierController {
     private JComboBox<ComboItem> addProductSupplierComboBox;
     private JComboBox<ComboItem> editProductSupplierComboBox;
     private JComboBox<ComboItem> deliveryProductFilterSupplierComboBox;
-    private JComboBox<ComboItem> deliverySupplierComboBox;
 
-    public SupplierController(JTable table, JComboBox<ComboItem> addProductSupplierComboBox, JComboBox<ComboItem> editProductSupplierComboBox, JComboBox<ComboItem> deliveryProductFilterSupplierComboBox, JComboBox<ComboItem> deliverySupplierComboBox) {
+    public SupplierController(JTable table, JComboBox<ComboItem> addProductSupplierComboBox, JComboBox<ComboItem> editProductSupplierComboBox, JComboBox<ComboItem> deliveryProductFilterSupplierComboBox) {
         supplierTableManager = new TableManager(table);
         dbConnector= DatabaseConnector.getInstance();
         this.addProductSupplierComboBox = addProductSupplierComboBox;
         this.editProductSupplierComboBox = editProductSupplierComboBox;
         this.deliveryProductFilterSupplierComboBox = deliveryProductFilterSupplierComboBox;
-        this.deliverySupplierComboBox = deliverySupplierComboBox;
     }
     
     public void addSupplier(JTextField name, JTextField number, JComboBox Contactcmb){
@@ -167,7 +165,6 @@ public class SupplierController {
             addProductSupplierComboBox.removeAllItems();
             editProductSupplierComboBox.removeAllItems();
             deliveryProductFilterSupplierComboBox.removeAllItems();
-            deliverySupplierComboBox.removeAllItems();
             deliveryProductFilterSupplierComboBox.addItem(new ComboItem( null, "All"));
             while(rs.next()){
                 String supplierID = rs.getString(1);
@@ -176,7 +173,6 @@ public class SupplierController {
                 addProductSupplierComboBox.addItem(new ComboItem(supplierID, supplierName));
                 editProductSupplierComboBox.addItem(new ComboItem(supplierID, supplierName));
                 deliveryProductFilterSupplierComboBox.addItem(new ComboItem(supplierID, supplierName));
-                deliverySupplierComboBox.addItem(new ComboItem(supplierID, supplierName));
             }
         } catch(SQLException sqlE){
              sqlE.printStackTrace();
