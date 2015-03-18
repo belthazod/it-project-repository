@@ -155,7 +155,7 @@ public class Warranty extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 540, -1, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 540, -1, -1));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setText("Search");

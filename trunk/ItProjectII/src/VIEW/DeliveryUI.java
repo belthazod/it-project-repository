@@ -8,6 +8,7 @@ package VIEW;
 import BEANS.ComboItem;
 import CONTROLLERS.DeliveryController;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 
 /**
@@ -21,7 +22,7 @@ public class DeliveryUI extends javax.swing.JPanel {
      */
     public DeliveryUI() {
         initComponents();
-        deliveryController = new DeliveryController(deliveryProductsTable, deliveryTable, deliveryProductFilterSupplierComboBox, deliverySupplierComboBox);
+        deliveryController = new DeliveryController(deliveryProductsTable, deliveryTable, deliveryProductFilterSupplierComboBox, deliverySupplierLabel);
     }
 
     /**
@@ -43,10 +44,10 @@ public class DeliveryUI extends javax.swing.JPanel {
         removeFromListButton = new javax.swing.JButton();
         saveDeliveryButton = new javax.swing.JButton();
         addToListButton = new javax.swing.JButton();
-        deliverySupplierComboBox = new javax.swing.JComboBox<ComboItem>();
         jLabel4 = new javax.swing.JLabel();
         deliveryProductFilterSupplierComboBox = new javax.swing.JComboBox<ComboItem>();
         jLabel5 = new javax.swing.JLabel();
+        deliverySupplierLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(240, 177, 78));
 
@@ -143,13 +144,6 @@ public class DeliveryUI extends javax.swing.JPanel {
             }
         });
 
-        deliverySupplierComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        deliverySupplierComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deliverySupplierComboBoxActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("Supplier:");
 
         deliveryProductFilterSupplierComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -160,6 +154,8 @@ public class DeliveryUI extends javax.swing.JPanel {
         });
 
         jLabel5.setText("Supplier:");
+
+        deliverySupplierLabel.setText("SupplierName");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -191,7 +187,7 @@ public class DeliveryUI extends javax.swing.JPanel {
                             .addGap(610, 610, 610)
                             .addComponent(jLabel4)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(deliverySupplierComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deliverySupplierLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(removeFromListButton))
                         .addGroup(layout.createSequentialGroup()
@@ -222,10 +218,10 @@ public class DeliveryUI extends javax.swing.JPanel {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(deliverySupplierComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(deliverySupplierLabel))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
@@ -248,10 +244,6 @@ public class DeliveryUI extends javax.swing.JPanel {
         deliveryController.addSelectedToDeliverySummary();
     }//GEN-LAST:event_addToListButtonActionPerformed
 
-    private void deliverySupplierComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deliverySupplierComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deliverySupplierComboBoxActionPerformed
-
     private void deliveryProductFilterSupplierComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deliveryProductFilterSupplierComboBoxActionPerformed
         deliveryController.filterProducts();
     }//GEN-LAST:event_deliveryProductFilterSupplierComboBoxActionPerformed
@@ -264,14 +256,14 @@ public class DeliveryUI extends javax.swing.JPanel {
         return deliveryProductFilterSupplierComboBox;
     }
     
-    public static JComboBox getDeliverySupplierComboBox(){
-        return deliverySupplierComboBox;
+    public static JLabel getDeliverySupplierLabel(){
+        return deliverySupplierLabel;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addToListButton;
     private static javax.swing.JComboBox<ComboItem> deliveryProductFilterSupplierComboBox;
     public static javax.swing.JTable deliveryProductsTable;
-    private static javax.swing.JComboBox<ComboItem> deliverySupplierComboBox;
+    private static javax.swing.JLabel deliverySupplierLabel;
     private javax.swing.JTable deliveryTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -238,7 +238,7 @@ public class DatabaseConnector {
             connection = DriverManager.getConnection(host,uName, uPass);
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Failed to start Database connection", "Database error", JOptionPane.ERROR_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "Failed to start Database connection", "Database error", JOptionPane.ERROR_MESSAGE);
         }
     }
     public void closeConnection(){

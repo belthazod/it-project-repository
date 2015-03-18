@@ -68,7 +68,7 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
                 itemNameInputActionPerformed(evt);
             }
         });
-        add(itemNameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 710, -1));
+        add(itemNameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 700, 20));
 
         secondHandCategoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Batteries", "Rims" }));
         secondHandCategoryComboBox.addActionListener(new java.awt.event.ActionListener() {
