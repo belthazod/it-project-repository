@@ -149,16 +149,20 @@ public class CustomerUI extends javax.swing.JPanel {
 
         editCustomerDialog.setLocationRelativeTo(this);
 
+        setBackground(new java.awt.Color(250, 238, 161));
         setMaximumSize(new java.awt.Dimension(814, 592));
         setPreferredSize(new java.awt.Dimension(814, 592));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Customer Name:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 32, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Contact Number:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 73, -1, -1));
 
+        customerNameInput.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         customerNameInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 customerNameInputActionPerformed(evt);
@@ -166,6 +170,7 @@ public class CustomerUI extends javax.swing.JPanel {
         });
         add(customerNameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 32, 670, -1));
 
+        contactNumberInput.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         contactNumberInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contactNumberInputActionPerformed(evt);
@@ -178,6 +183,7 @@ public class CustomerUI extends javax.swing.JPanel {
         });
         add(contactNumberInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 70, 580, -1));
 
+        customerListTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         customerListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -215,33 +221,37 @@ public class CustomerUI extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 794, 182));
 
+        addCustomerButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         addCustomerButton.setText("Add Customer");
         addCustomerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addCustomerButtonActionPerformed(evt);
             }
         });
-        add(addCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, -1, -1));
+        add(addCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 100, -1, -1));
 
+        deleteCustomerButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         deleteCustomerButton.setText("Delete Customer");
         deleteCustomerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteCustomerButtonActionPerformed(evt);
             }
         });
-        add(deleteCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 330, -1, -1));
+        add(deleteCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 330, -1, -1));
 
+        editCustomerButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         editCustomerButton.setText("Edit Customer");
         editCustomerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editCustomerButtonActionPerformed(evt);
             }
         });
-        add(editCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 330, -1, -1));
+        add(editCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 330, -1, -1));
 
         jButton7.setText("Edit Customer");
         add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
 
+        Contactcmb.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Contactcmb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09", "+639", "074" }));
         add(Contactcmb, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
