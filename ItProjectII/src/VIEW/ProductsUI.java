@@ -21,11 +21,14 @@ import javax.swing.table.DefaultTableModel;
 public class ProductsUI extends javax.swing.JPanel {
     static ProductController productController;
     static CategoryController categoryController;
+    ButtonGroup reorderQuantityLevelGroup = new ButtonGroup();
+    ButtonGroup warrantyGroup = new ButtonGroup();
     /**
      * Creates new form AddProduct
      */
     public ProductsUI() {
         initComponents();
+        
         try{
         productController = new ProductController(adminProductsTable, InventoryUI.getInventoryTable(), TransferUI.getTransferProductsTable(), DeliveryUI.getDeliveryProductsTable(), productsTab, CriticalProducts.getCriticalProductsTable() );
         categoryController = new CategoryController(categoryTable, addProductCategoryComboBox, editProductCategoryComboBox, SecondhandTradeIn.getSecondHandCategoryComboBox());
@@ -69,6 +72,8 @@ public class ProductsUI extends javax.swing.JPanel {
         productIDEditInput = new javax.swing.JLabel();
         productIDEditInput.setVisible(false);
         unitEditComboBox = new javax.swing.JComboBox<String>();
+        jLabel19 = new javax.swing.JLabel();
+        warrantyEditSpinner = new javax.swing.JSpinner();
         editCategoryDialog = new javax.swing.JDialog();
         jLabel17 = new javax.swing.JLabel();
         categoryEditInput = new javax.swing.JTextField();
@@ -91,10 +96,15 @@ public class ProductsUI extends javax.swing.JPanel {
         AddProductButton = new javax.swing.JButton();
         addProductSupplierComboBox = new javax.swing.JComboBox<ComboItem>();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
-        reorderQuantityLevelSpinner = new javax.swing.JSpinner();
+        warrantySpinner = new javax.swing.JSpinner();
         reorderLevelEnableRadioButton = new javax.swing.JRadioButton();
         reorderLevelDisableRadioButton = new javax.swing.JRadioButton();
         unitComboBox = new javax.swing.JComboBox<String>();
+        jLabel18 = new javax.swing.JLabel();
+        warrantyEnableRadioButton = new javax.swing.JRadioButton();
+        warrantyDisableRadioButton = new javax.swing.JRadioButton();
+        reorderQuantityLevelSpinner = new javax.swing.JSpinner();
+        warrantyMonthsLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         adminProductsTable = new javax.swing.JTable();
@@ -152,7 +162,7 @@ public class ProductsUI extends javax.swing.JPanel {
         quantityEditInput.setText("jLabel14");
         editProductDialog.getContentPane().add(quantityEditInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, -1, -1));
 
-        jLabel15.setText("Reorder Quantity Level");
+        jLabel15.setText("Reorder Quantity Level:");
         editProductDialog.getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
         editProductDialog.getContentPane().add(reorderQuantityEditSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 90, -1));
 
@@ -162,7 +172,7 @@ public class ProductsUI extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        editProductDialog.getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
+        editProductDialog.getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, -1, -1));
 
         jButton3.setText("Save");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -170,13 +180,17 @@ public class ProductsUI extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
-        editProductDialog.getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, -1));
+        editProductDialog.getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, -1, -1));
 
         productIDEditInput.setText("jLabel17");
         editProductDialog.getContentPane().add(productIDEditInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, -1));
 
         unitEditComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "piece", "bottle", "box" }));
         editProductDialog.getContentPane().add(unitEditComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 150, -1));
+
+        jLabel19.setText("Warranty:");
+        editProductDialog.getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
+        editProductDialog.getContentPane().add(warrantyEditSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 90, -1));
 
         editCategoryDialog.setBounds(new java.awt.Rectangle(0, 0, 500, 300));
 
@@ -287,7 +301,7 @@ public class ProductsUI extends javax.swing.JPanel {
                 AddProductButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(AddProductButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
+        jPanel1.add(AddProductButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, -1, -1));
 
         addProductSupplierComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         addProductSupplierComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -298,9 +312,9 @@ public class ProductsUI extends javax.swing.JPanel {
         jPanel1.add(addProductSupplierComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 150, -1));
         jPanel1.add(filler1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, -1, -1));
 
-        reorderQuantityLevelSpinner.setEnabled(false);
-        jPanel1.add(reorderQuantityLevelSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 60, 30));
-        reorderQuantityLevelSpinner.setVisible(false);
+        warrantySpinner.setEnabled(false);
+        jPanel1.add(warrantySpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 60, 30));
+        warrantySpinner.setVisible(false);
 
         reorderLevelEnableRadioButton.setText("Enabled");
         reorderLevelEnableRadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -329,6 +343,36 @@ public class ProductsUI extends javax.swing.JPanel {
         });
         jPanel1.add(unitComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 100, -1));
 
+        jLabel18.setText("Warranty:");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
+
+        warrantyEnableRadioButton.setText("Enabled");
+        warrantyEnableRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                warrantyEnableRadioButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(warrantyEnableRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
+        warrantyGroup.add(warrantyEnableRadioButton);
+        warrantyDisableRadioButton.setSelected(true);
+
+        warrantyDisableRadioButton.setText("Disabled");
+        warrantyDisableRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                warrantyDisableRadioButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(warrantyDisableRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, -1, -1));
+        warrantyGroup.add(warrantyDisableRadioButton);
+
+        reorderQuantityLevelSpinner.setEnabled(false);
+        jPanel1.add(reorderQuantityLevelSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 60, 30));
+        reorderQuantityLevelSpinner.setVisible(false);
+
+        warrantyMonthsLabel.setText("months");
+        jPanel1.add(warrantyMonthsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, -1, -1));
+        warrantyMonthsLabel.setVisible(false);
+
         productsTab.addTab("Add Product", jPanel1);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -339,14 +383,14 @@ public class ProductsUI extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ProductID", "Product Name", "Description", "Category", "Unit", "Supplier", "Physical Count", "Reorder Quantity Level"
+                "ProductID", "Product Name", "Description", "Category", "Unit", "Supplier", "Warranty(months)", "Physical Count", "Reorder Quantity Level"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -451,7 +495,7 @@ public class ProductsUI extends javax.swing.JPanel {
         add(productsTab, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 590));
     }// </editor-fold>//GEN-END:initComponents
 
-    ButtonGroup reorderQuantityLevelGroup = new ButtonGroup();
+    
     private void productNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productNameInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_productNameInputActionPerformed
@@ -466,7 +510,7 @@ public class ProductsUI extends javax.swing.JPanel {
     }//GEN-LAST:event_addProductCategoryComboBoxActionPerformed
 
     private void AddProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductButtonActionPerformed
-        productController.addProduct(productNameInput, productDescriptionInput, quantityInput, unitComboBox, addProductSupplierComboBox, addProductCategoryComboBox, reorderQuantityLevelSpinner);    
+        productController.addProduct(productNameInput, productDescriptionInput, quantityInput, unitComboBox, addProductSupplierComboBox, addProductCategoryComboBox, reorderQuantityLevelSpinner, warrantySpinner);    
         productController.updateTableContents();
 
     }//GEN-LAST:event_AddProductButtonActionPerformed
@@ -489,7 +533,7 @@ public class ProductsUI extends javax.swing.JPanel {
     private void editProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProductButtonActionPerformed
         Integer selectedRow = adminProductsTable.getSelectedRow();
         String result = (String) adminProductsTable.getModel().getValueAt(selectedRow, 0);
-        productController.openProductEditDialog(result, productIDEditInput, productNameEditInput, descriptionEditInput, editProductCategoryComboBox, editProductSupplierComboBox, unitEditComboBox, quantityEditInput, reorderQuantityEditSpinner);
+        productController.openProductEditDialog(result, productIDEditInput, productNameEditInput, descriptionEditInput, editProductCategoryComboBox, editProductSupplierComboBox, unitEditComboBox, quantityEditInput, reorderQuantityEditSpinner, warrantyEditSpinner);
         editProductDialog.setVisible(true);
     }//GEN-LAST:event_editProductButtonActionPerformed
 
@@ -498,7 +542,7 @@ public class ProductsUI extends javax.swing.JPanel {
     }//GEN-LAST:event_productNameEditInputActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        productController.editProduct(editProductDialog, productIDEditInput, productNameEditInput, descriptionEditInput, quantityEditInput, unitEditComboBox, editProductSupplierComboBox, editProductCategoryComboBox, reorderQuantityEditSpinner);
+        productController.editProduct(editProductDialog, productIDEditInput, productNameEditInput, descriptionEditInput, quantityEditInput, unitEditComboBox, editProductSupplierComboBox, editProductCategoryComboBox, reorderQuantityEditSpinner, warrantyEditSpinner);
         productController.updateTableContents();
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -554,13 +598,24 @@ public class ProductsUI extends javax.swing.JPanel {
     private void unitComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unitComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_unitComboBoxActionPerformed
-    private static void deleteAllRows(final JTable table) {
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        for(int row =0; row < model.getRowCount(); ) {
-            model.removeRow(0);
-        
+
+    private void warrantyEnableRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warrantyEnableRadioButtonActionPerformed
+        if(warrantyEnableRadioButton.isSelected()){
+            warrantySpinner.setEnabled(true);
+            warrantySpinner.setVisible(true);
+            warrantyMonthsLabel.setVisible(true);
         }
-    }
+    }//GEN-LAST:event_warrantyEnableRadioButtonActionPerformed
+
+    private void warrantyDisableRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warrantyDisableRadioButtonActionPerformed
+        if(warrantyDisableRadioButton.isSelected()){
+            warrantySpinner.setEnabled(false);
+            warrantySpinner.setVisible(false);
+            warrantyMonthsLabel.setVisible(false);
+            warrantySpinner.setValue(0);
+        }
+    }//GEN-LAST:event_warrantyDisableRadioButtonActionPerformed
+
     
     public static void updateAdminProductsTable(){
         productController.updateTableContents();
@@ -609,6 +664,8 @@ public class ProductsUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -636,5 +693,10 @@ public class ProductsUI extends javax.swing.JPanel {
     private javax.swing.JButton saveEditCategoryButton;
     private javax.swing.JComboBox<String> unitComboBox;
     private javax.swing.JComboBox<String> unitEditComboBox;
+    private javax.swing.JRadioButton warrantyDisableRadioButton;
+    private javax.swing.JSpinner warrantyEditSpinner;
+    private javax.swing.JRadioButton warrantyEnableRadioButton;
+    private javax.swing.JLabel warrantyMonthsLabel;
+    private javax.swing.JSpinner warrantySpinner;
     // End of variables declaration//GEN-END:variables
 }

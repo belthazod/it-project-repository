@@ -124,7 +124,7 @@ public class AdminUI extends javax.swing.JPanel {
                 .addComponent(userAdminButton)
                 .addGap(26, 26, 26)
                 .addComponent(logsAdminButton)
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         adminCards.setLayout(new java.awt.CardLayout());
@@ -164,10 +164,10 @@ public class AdminUI extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(adminCards, javax.swing.GroupLayout.PREFERRED_SIZE, 523, Short.MAX_VALUE)
+                    .addComponent(adminCards, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 183, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
