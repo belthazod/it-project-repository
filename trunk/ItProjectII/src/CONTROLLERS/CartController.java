@@ -12,10 +12,10 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTable;
-
+import javax.swing.JTextField;
 /**
  *
  * @author Belthazod
@@ -24,7 +24,12 @@ public class CartController {
     private TableManager cartTableManager;
     private TableManager inventoryTableManager;
     private JDialog salesTypeDialog;
-    private Cart cart;
+    private static JLabel receiptInfoLabel1;
+    private static JLabel receiptInfoLabel2;
+    private static JTextField receiptNumberInput;
+    private static Cart cart;
+    
+    
     private DatabaseConnector dbConnector = DatabaseConnector.getInstance();
     
     public CartController(JTable cartTable, JTable inventoryTable, Cart cart){
@@ -33,16 +38,19 @@ public class CartController {
         inventoryTableManager = new TableManager(inventoryTable);
         this.cart = cart;
     }
-    public CartController (JTable cartTable, JDialog salesTypeDialog){
+    public CartController (JTable cartTable, JDialog salesTypeDialog, JLabel receiptInfoLabel1, JLabel receiptInfoLabel2, JTextField receiptNumberInput){
         cartTableManager = new TableManager(cartTable);
         cartTableManager.setAutoClear(true);
         this.salesTypeDialog = salesTypeDialog;
+        this.receiptInfoLabel1 = receiptInfoLabel1;
+        this.receiptInfoLabel2 = receiptInfoLabel2;
+        this.receiptNumberInput = receiptNumberInput;
     }
     
     public void addToCart(){
         try{
-            int currentQuantity = Integer.parseInt(inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 6));
-            String productName = inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 1);
+            int currentQuantity = Integer.parseInt(inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 7));
+            String productName = inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 2);
             if(currentQuantity != 0){
 
                 boolean itemExists = false;
@@ -58,20 +66,21 @@ public class CartController {
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
                 }else{
-                    String name = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 1);
-                    String description = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 2);
-                    String unit = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 4);
-                    String category = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 3);
-                    String quantity = (String)  inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 6);
-                    String supplier = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 5);
-
-                    cartTableManager.addRowContent(new String[]{productID, quantity, name, description, category, unit, supplier, ""});
+                    String name = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 2);
+                    String description = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 3);
+                    String unit = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 5);
+                    String category = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 4);
+                    String quantity = (String)  inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 7);
+                    String supplier = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 6);
+                    String warranty = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 1);
+                    
+                    cartTableManager.addRowContent(new String[]{productID, quantity, warranty, name, description, category, unit, supplier, ""});
                     cart.setVisible(true);
                 }
             }else{
                 JOptionPane.showMessageDialog(null, "There is no available stock for " + productName + ". Cannot add to cart.", "Product Selection Error", JOptionPane.ERROR_MESSAGE);
             }
-        }catch(NullPointerException npe){
+        }catch(NullPointerException | IndexOutOfBoundsException npe){
             JOptionPane.showMessageDialog(null, "Please select an item from the table to mark as bought.", "Product Selection Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -84,22 +93,37 @@ public class CartController {
         
         long timeNow = System.currentTimeMillis();
         Date today = new Date(timeNow);
+        String receiptNumber = "";
+        boolean orIsEmpty = false;
         try{
-            dbConnector.insert("INSERT INTO sales(sales_date, sales_type) VALUES(?,?)", new String[]{today.toString(), salesType});
-            ResultSet rs = dbConnector.query("SELECT sales_id FROM sales ORDER BY 1 LIMIT 1");
-            
-            rs.next();
-            
-            for(int i = 0; i< cartTableManager.getRowCount(); i++){
-                String productID = cartTableManager.getIDFromTable(i);
-                String quantity = cartTableManager.getValueAt(i, 7);
-                dbConnector.insert("INSERT INTO sales_details(sales_id, product_id, quantity_sold) VALUES(?,?,?)", new String[]{rs.getString(1), productID, quantity});
+            if(receiptNumberInput.isVisible()){
+                receiptNumber = receiptNumberInput.getText();
+                if(receiptNumber.equals("")){
+                    orIsEmpty = true;
+                }
+                dbConnector.insert("INSERT INTO sales(sales_date, sales_type, receipt_number) VALUES(?,?,?)", new String[]{today.toString(), salesType, receiptNumber});
+            }else{
+                dbConnector.insert("INSERT INTO sales(sales_date, sales_type) VALUES(?,?)", new String[]{today.toString(), salesType});
             }
             
-            salesTypeDialog.dispose();
-            cartTableManager.clearTableContents();
-            cart.setVisible(false);
-            JOptionPane.showMessageDialog(null, "Items successfully marked as bought.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            if(!orIsEmpty){
+                ResultSet rs = dbConnector.query("SELECT sales_id FROM sales ORDER BY 1 LIMIT 1");
+
+                rs.next();
+
+                for(int i = 0; i< cartTableManager.getRowCount(); i++){
+                    String productID = cartTableManager.getIDFromTable(i);
+                    String quantity = cartTableManager.getValueAt(i, 8);
+                    dbConnector.insert("INSERT INTO sales_details(sales_id, product_id, quantity_sold) VALUES(?,?,?)", new String[]{rs.getString(1), productID, quantity});
+                }
+
+                salesTypeDialog.dispose();
+                cartTableManager.clearTableContents();
+                cart.setVisible(false);
+                JOptionPane.showMessageDialog(null, "Items successfully marked as bought.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null, "Please enter serial number.", "Serial number error", JOptionPane.ERROR_MESSAGE);
+            }
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
         }
@@ -110,9 +134,11 @@ public class CartController {
             boolean greaterThanQuantity = false;
             boolean lessThanOrEqualToZero = false;
             for(int i = 0; i< cartTableManager.getRowCount(); i++){
-                int quantity = Integer.parseInt(cartTableManager.getValueAt(i, 7));
+                int quantity = Integer.parseInt(cartTableManager.getValueAt(i, 8));
                 int currentQuantity = Integer.parseInt(cartTableManager.getValueAt(i, 1));
-                String productName = cartTableManager.getValueAt(i, 2);
+                
+                
+                String productName = cartTableManager.getValueAt(i, 3);
                 if(quantity>currentQuantity){
                     greaterThanQuantity = true;
                     JOptionPane.showMessageDialog(null, "The set quantity sold for " + productName + " exceeds the physical count in stock. \n Please check the quantity before proceeding.", "Input Error", JOptionPane.ERROR_MESSAGE);
@@ -128,11 +154,28 @@ public class CartController {
                 JOptionPane.showMessageDialog(null, "There are no items placed in the cart. Cannot checkout", "Input Error", JOptionPane.ERROR_MESSAGE);
             }
             if(!greaterThanQuantity && !lessThanOrEqualToZero){
+                boolean hasWarranty = false;
+                for(int i = 0; i< cartTableManager.getRowCount(); i++){
+                    int warranty =  Integer.parseInt(cartTableManager.getValueAt(i, 2));
+                    
+                    if(warranty > 0){
+                        hasWarranty = true;
+                    }
+                }
+                
+                if(hasWarranty){
+                    receiptInfoLabel1.setVisible(true);
+                    receiptInfoLabel2.setVisible(true);
+                    receiptNumberInput.setVisible(true);
+                }else{
+                    receiptInfoLabel1.setVisible(false);
+                    receiptInfoLabel2.setVisible(false);
+                    receiptNumberInput.setVisible(false);
+                }
                 salesTypeDialog.setVisible(true);
             }
-       }catch(NumberFormatException nfe){
-           JOptionPane.showMessageDialog(null, "Please set the quantity of all items before proceeding.", "Input Error", JOptionPane.ERROR_MESSAGE);
-       }catch(NullPointerException npe){
+       }catch(NumberFormatException | NullPointerException nfe){
+           nfe.printStackTrace();
            JOptionPane.showMessageDialog(null, "Please set the quantity of all items before proceeding.", "Input Error", JOptionPane.ERROR_MESSAGE);
        }
     }

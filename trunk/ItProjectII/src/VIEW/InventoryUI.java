@@ -5,9 +5,7 @@
  */
 package VIEW;
 
-import BEANS.ComboItem;
 import CONTROLLERS.CartController;
-import javax.swing.JComboBox;
 import javax.swing.JTable;
 
 /**
@@ -16,7 +14,7 @@ import javax.swing.JTable;
  */
 public class InventoryUI extends javax.swing.JPanel {
     CartController cartController;
-    Cart c;
+    static Cart c;
     CriticalProducts criticalProducts;
     /**
      * Creates new form InventoryUI
@@ -26,6 +24,10 @@ public class InventoryUI extends javax.swing.JPanel {
         inventoryTable.getColumnModel().getColumn(0).setMaxWidth(0);
         inventoryTable.getColumnModel().getColumn(0).setMinWidth(0);
         inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        
+        inventoryTable.getColumnModel().getColumn(1).setMaxWidth(0);
+        inventoryTable.getColumnModel().getColumn(1).setMinWidth(0);
+        inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(0);
         c = new Cart();
         cartController = new CartController(Cart.getCartTable(), inventoryTable, c );
         this.criticalProducts = new CriticalProducts();
@@ -56,14 +58,14 @@ public class InventoryUI extends javax.swing.JPanel {
 
             },
             new String [] {
-                "product_id", "Name", "Description", "Category", "Unit", "Supplier", "Quantity", "Reorder Quantity Level"
+                "product_id", "", "Name", "Description", "Category", "Unit", "Supplier", "Quantity", "Reorder Quantity Level"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -145,6 +147,9 @@ public class InventoryUI extends javax.swing.JPanel {
         return inventoryTable;
     }
     
+    public static Cart getCart(){
+        return c;
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JTable inventoryTable;

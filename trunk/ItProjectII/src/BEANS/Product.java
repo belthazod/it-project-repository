@@ -22,8 +22,8 @@ public class Product {
     private String unit;
     private String physicalCount;
     private String reorderQuantityLevel;
-    
-    public Product(String productID, String typeID, String typeName, String name, String description, String supplierID, String supplierName, String unit, String physicalCount, String reorderQuantityLevel) {
+    private String warranty;
+    public Product(String productID, String typeID, String typeName, String name, String description, String supplierID, String supplierName, String unit, String physicalCount, String reorderQuantityLevel, String warranty) {
         this.productID = productID;
         this.typeID = typeID;
         this.typeName = typeName;
@@ -34,6 +34,15 @@ public class Product {
         this.unit = unit;
         this.physicalCount = physicalCount;
         this.reorderQuantityLevel = reorderQuantityLevel;
+        this.warranty = warranty;
+    }
+
+    public String getWarranty() {
+        return warranty;
+    }
+
+    public void setWarranty(String warranty) {
+        this.warranty = warranty;
     }
 
     public String getProductID() {

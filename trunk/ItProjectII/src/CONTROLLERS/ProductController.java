@@ -81,16 +81,21 @@ public class ProductController {
      * @param supplier - the <code>JComboBox</code> containing the selected supplier of the new product
      * @param category - the <code>JComboBox</code> containing the selected category of the new product
      * @param reorderQuantity - the <code>JSpinner</code> containing the reorder quantity level of the new product
+     * @param warranty - <code>JSpinner</code> containing the number of months the warranty of the product has.
      */
-    public void addProduct(JTextField productName, JTextField description, JTextField quantity, JComboBox<String> unit, JComboBox supplier, JComboBox category, JSpinner reorderQuantity){
+    public void addProduct(JTextField productName, JTextField description, JTextField quantity, JComboBox<String> unit, JComboBox supplier, JComboBox category, JSpinner reorderQuantity, JSpinner warranty){
         try{
         Object supplierComboBoxitem = supplier.getSelectedItem();
         String supplierID = ((ComboItem)supplierComboBoxitem).getValue();
-        System.out.print(supplierID);        Object typeComboBoxitem = category.getSelectedItem();
+       
+        
+        Object typeComboBoxitem = category.getSelectedItem();
         String typeID = ((ComboItem)typeComboBoxitem).getValue(); 
+        
+        
         ResultSet supplierResult = dbConnector.query("SELECT supplier_id FROM supplier WHERE supplier_name = ? LIMIT 1", supplier.getSelectedItem().toString());
         JTextField[] inputs = {productName, description, quantity};
-        String[] values = {typeID, productName.getText(), description.getText(), supplierID, unit.getSelectedItem().toString(), quantity.getText(), reorderQuantity.getValue().toString() };
+        String[] values = {typeID, productName.getText(), description.getText(), supplierID, unit.getSelectedItem().toString(), quantity.getText(), reorderQuantity.getValue().toString(), warranty.getValue().toString() };
        
         if(InputValidator.checkInput(productName.getText(), "Product Name cannot be empty.")
             & InputValidator.checkInput(quantity.getText(), "Quantity should be a number.")    
@@ -98,8 +103,8 @@ public class ProductController {
             & InputValidator.checkInput(reorderQuantity.getValue().toString(), "Reorder quantity should be a number.")){
             
             dbConnector.insert("INSERT INTO product ( type_id, name, description, "
-                    + "supplier_id, unit, physical_count, reorder_quantity) "
-                    + "VALUES(?,?,?,?,?,?,?)", values);
+                    + "supplier_id, unit, physical_count, reorder_quantity, warranty_duration) "
+                    + "VALUES(?,?,?,?,?,?,?,?)", values);
             
             reorderQuantity.setValue(0);
             int result = JOptionPane.showConfirmDialog(null, productName.getText() + " added to list of products. Would you like to add another product?", "Success", JOptionPane.YES_NO_OPTION);
@@ -128,8 +133,9 @@ public class ProductController {
      * @param supplier - the <code>JComboBox</code> containing the <code>Product</code> supplier
      * @param category - the <code>JComboBox</code> containing the <code>Product</code> category
      * @param reorderQuantity - the <code>JSpinner</code> containing the <code>Product</code> reorder Quantity level
+     * @param warranty - the <code>JSpinner</code> containing the number of months the warranty of the <code>Product</code> has
      */
-    public void editProduct(JDialog editDialog,JLabel productIDEditInput, JTextField productName, JTextField description, JLabel quantity, JComboBox<String> unit, JComboBox supplier, JComboBox category, JSpinner reorderQuantity){
+    public void editProduct(JDialog editDialog,JLabel productIDEditInput, JTextField productName, JTextField description, JLabel quantity, JComboBox<String> unit, JComboBox supplier, JComboBox category, JSpinner reorderQuantity, JSpinner warranty){
         try{
         Object supplierComboBoxitem = supplier.getSelectedItem();
         String supplierID = ((ComboItem)supplierComboBoxitem).getValue();
@@ -139,14 +145,14 @@ public class ProductController {
         
         JTextField[] inputs = {productName, description};
         
-        String[] values = {typeID, productName.getText(), description.getText(), supplierID, unit.getSelectedItem().toString(), quantity.getText(), reorderQuantity.getValue().toString() };
+        String[] values = {typeID, productName.getText(), description.getText(), supplierID, unit.getSelectedItem().toString(), quantity.getText(), reorderQuantity.getValue().toString(), warranty.getValue().toString() };
         if(InputValidator.checkInput(productName.getText(), "Product Name cannot be empty.")
             & InputValidator.checkInput(quantity.getText(), "Quantity should be a number.")    
             & InputValidator.checkIfNumber(quantity.getText(), "Quantity should be a number.") 
             & InputValidator.checkInput(reorderQuantity.getValue().toString(), "Reorder quantity should be a number.")){
             
             dbConnector.update("UPDATE product SET type_id = ?, name = ?, description = ?, "
-                    + "supplier_id = ?, unit = ?, physical_count = ?, reorder_quantity = ?"
+                    + "supplier_id = ?, unit = ?, physical_count = ?, reorder_quantity = ?, warranty_duration = ?"
                     + " WHERE product_ID = ?", values, productIDEditInput.getText());
             
             editDialog.dispose();
@@ -180,11 +186,11 @@ public class ProductController {
      */
     public void openProductEditDialog(String prodID, JLabel productIDTextField, JTextField productNameTextField, JTextField descriptionTextField,
             JComboBox<ComboItem> categoryComboBox, JComboBox<ComboItem> supplierComboBox, 
-            JComboBox<String> unitComboBox, JLabel quantityLabel, JSpinner reorderQuantityLevelSpinner){
+            JComboBox<String> unitComboBox, JLabel quantityLabel, JSpinner reorderQuantityLevelSpinner, JSpinner warrantySpinner){
         
         String selectString = "SELECT product_id, name, description, "
                 + "type_id, supplier_id, Unit, physical_count AS Quantity, "
-                + "reorder_quantity, type_id FROM product JOIN type USING(type_id) JOIN "
+                + "reorder_quantity, type_id, warranty_duration FROM product JOIN type USING(type_id) JOIN "
                 + "supplier using(supplier_id) WHERE product_ID = ? LIMIT 1;";
         
         try{
@@ -198,6 +204,7 @@ public class ProductController {
                 String unit = rs.getString(6);
                 String physicalCount = rs.getString(7);
                 Integer reorderQuantity = rs.getInt(8);
+                Integer warranty = rs.getInt(10);
                 
                 
                 productIDTextField.setText(productID);
@@ -206,6 +213,8 @@ public class ProductController {
                 
                 quantityLabel.setText(physicalCount);
                 reorderQuantityLevelSpinner.setValue(reorderQuantity);
+                System.out.print("Warranty:" + warranty);
+                warrantySpinner.setValue(warranty);
                 
                 for(int i = 0; i < unitComboBox.getItemCount(); i++){
                     if( unitComboBox.getItemAt(i).equals(unit) ){
@@ -242,7 +251,7 @@ public class ProductController {
         try{
             String selectString = "SELECT product_id, type_id, type_name, name, description, "
                 + "supplier_ID, supplier_name, Unit, physical_count, "
-                + "reorder_quantity FROM product JOIN type USING(type_id) JOIN "
+                + "reorder_quantity, warranty_duration FROM product JOIN type USING(type_id) JOIN "
                 + "supplier using(supplier_id) ORDER BY 4 ASC;";
             ResultSet rs = dbConnector.query(selectString);
 
@@ -250,7 +259,7 @@ public class ProductController {
                 Product product = new Product(rs.getString(1), rs.getString(2), 
                     rs.getString(3), rs.getString(4), rs.getString(5), 
                     rs.getString(6), rs.getString(7), rs.getString(8), 
-                    rs.getString(9), rs.getString(10) );
+                    rs.getString(9), rs.getString(10), rs.getString(11) );
 
                 productList.add(product);
             }
@@ -282,9 +291,14 @@ public class ProductController {
         criticalProductsTableManager.clearTableContents();
         getProducts();
         for(Product product : productList){
-            String[] completeValues = {product.getProductID(), product.getName(), 
+            String[] completeValues = {product.getProductID(), product.getWarranty(), product.getName(), 
                 product.getDescription(), product.getTypeName(), product.getUnit(),
                 product.getSupplierName(), product.getPhysicalCount(), 
+                product.getReorderQuantityLevel()};
+            
+            String[] adminCompleteValues = {product.getProductID(), product.getName(), 
+                product.getDescription(), product.getTypeName(), product.getUnit(),
+                product.getSupplierName(), product.getWarranty(), product.getPhysicalCount(), 
                 product.getReorderQuantityLevel()};
             
             String[] deliveryValues = {product.getProductID(), product.getName(), 
@@ -292,7 +306,7 @@ public class ProductController {
                 product.getUnit(), product.getPhysicalCount(), 
                 product.getReorderQuantityLevel()};
             
-            adminProductTableManager.addRowContent(completeValues);
+            adminProductTableManager.addRowContent(adminCompleteValues);
             inventoryTableManager.addRowContent(completeValues);
             deliveryTableManager.addRowContent(deliveryValues);
             if((product.getPhysicalCount()!=null) && Integer.parseInt(product.getPhysicalCount()) != 0){

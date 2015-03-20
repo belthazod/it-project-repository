@@ -22,11 +22,16 @@ public class Cart extends javax.swing.JFrame {
         cartTable.getColumnModel().getColumn(0).setMaxWidth(0);
         cartTable.getColumnModel().getColumn(0).setMinWidth(0);
         cartTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        
         cartTable.getColumnModel().getColumn(1).setMaxWidth(0);
         cartTable.getColumnModel().getColumn(1).setMinWidth(0);
         cartTable.getColumnModel().getColumn(1).setPreferredWidth(0);
         
-        cartController = new CartController(cartTable, salesTypeDialog);
+        cartTable.getColumnModel().getColumn(2).setMaxWidth(0);
+        cartTable.getColumnModel().getColumn(2).setMinWidth(0);
+        cartTable.getColumnModel().getColumn(2).setPreferredWidth(0);
+        
+        cartController = new CartController(cartTable, salesTypeDialog, receiptInfoLabel1, receiptInfoLabel2, receiptNumberInput);
     }
 
     /**
@@ -42,6 +47,9 @@ public class Cart extends javax.swing.JFrame {
         selectPurchaseButton = new javax.swing.JButton();
         selectServiceButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        receiptInfoLabel1 = new javax.swing.JLabel();
+        receiptInfoLabel2 = new javax.swing.JLabel();
+        receiptNumberInput = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         cartTable = new javax.swing.JTable();
@@ -49,7 +57,7 @@ public class Cart extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         salesTypeDialog.setTitle("Choose Transaction Type");
-        salesTypeDialog.setBounds(new java.awt.Rectangle(0, 0, 400, 200));
+        salesTypeDialog.setBounds(new java.awt.Rectangle(0, 0, 500, 200));
         salesTypeDialog.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         salesTypeDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         salesTypeDialog.setLocationRelativeTo(null);
@@ -75,6 +83,14 @@ public class Cart extends javax.swing.JFrame {
             }
         });
 
+        receiptInfoLabel1.setText("The system has detected an item with warranty among the products in the cart.");
+        receiptInfoLabel1.setVisible(false);
+
+        receiptInfoLabel2.setText("Please enter the Receipt Number:");
+        receiptInfoLabel2.setVisible(false);
+
+        receiptNumberInput.setVisible(false);
+
         javax.swing.GroupLayout salesTypeDialogLayout = new javax.swing.GroupLayout(salesTypeDialog.getContentPane());
         salesTypeDialog.getContentPane().setLayout(salesTypeDialogLayout);
         salesTypeDialogLayout.setHorizontalGroup(
@@ -82,22 +98,39 @@ public class Cart extends javax.swing.JFrame {
             .addGroup(salesTypeDialogLayout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addComponent(selectPurchaseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(selectServiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, salesTypeDialogLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelButton)
                 .addContainerGap())
+            .addGroup(salesTypeDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(salesTypeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(salesTypeDialogLayout.createSequentialGroup()
+                        .addComponent(receiptInfoLabel1)
+                        .addGap(0, 73, Short.MAX_VALUE))
+                    .addGroup(salesTypeDialogLayout.createSequentialGroup()
+                        .addComponent(receiptInfoLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(receiptNumberInput)))
+                .addContainerGap())
         );
         salesTypeDialogLayout.setVerticalGroup(
             salesTypeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, salesTypeDialogLayout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(receiptInfoLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(salesTypeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(receiptInfoLabel2)
+                    .addComponent(receiptNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(salesTypeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(selectServiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(selectPurchaseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancelButton)
                 .addContainerGap())
         );
@@ -112,14 +145,14 @@ public class Cart extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Product_id", "Physical Count", "Name", "Description", "Category", "Unit", "Supplier", "Quantity"
+                "Product_id", "Physical Count", "Warranty", "Name", "Description", "Category", "Unit", "Supplier", "Quantity"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true
+                false, false, true, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -252,6 +285,9 @@ public class Cart extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel receiptInfoLabel1;
+    private javax.swing.JLabel receiptInfoLabel2;
+    private javax.swing.JTextField receiptNumberInput;
     private javax.swing.JDialog salesTypeDialog;
     private javax.swing.JButton selectPurchaseButton;
     private javax.swing.JButton selectServiceButton;

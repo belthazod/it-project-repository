@@ -61,6 +61,7 @@ public class Main extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         deliveryMenuButton = new javax.swing.JButton();
         reportsMenuButton = new javax.swing.JButton();
         tradeInMenuButton = new javax.swing.JButton();
@@ -68,7 +69,6 @@ public class Main extends javax.swing.JFrame {
         transferMenuButton = new javax.swing.JButton();
         salesMenuButton = new javax.swing.JButton();
         returnsMenuButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jButton13 = new javax.swing.JButton();
         cardWindow = new javax.swing.JPanel();
@@ -182,6 +182,16 @@ public class Main extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(250, 238, 161));
         jPanel1.setPreferredSize(new java.awt.Dimension(1024, 768));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/customer_yellow.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/customer_hover.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         deliveryMenuButton.setBackground(new java.awt.Color(31, 37, 61));
         deliveryMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/delivery_yellow.png"))); // NOI18N
         deliveryMenuButton.setToolTipText("");
@@ -252,19 +262,8 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/customer_yellow.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/customer_hover.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
         jPanel4.setOpaque(false);
-        jPanel4.setLayout(null);
 
         jButton13.setBackground(new java.awt.Color(31, 37, 61));
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/logout2.png"))); // NOI18N
@@ -275,8 +274,6 @@ public class Main extends javax.swing.JFrame {
                 jButton13ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton13);
-        jButton13.setBounds(1060, 20, 53, 29);
 
         cardWindow.setBackground(new java.awt.Color(102, 102, 102));
         cardWindow.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -292,10 +289,6 @@ public class Main extends javax.swing.JFrame {
         cardWindow.add(ReturnsAndReplacementPanel, "returnsCard");
         cardWindow.add(adminUI1, "adminCard");
 
-        jPanel4.add(cardWindow);
-        cardWindow.setBounds(7, 60, 1100, 590);
-        card = (CardLayout)cardWindow.getLayout();
-
         adminMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/admin.png"))); // NOI18N
         adminMenuButton.setBorderPainted(false);
         adminMenuButton.setContentAreaFilled(false);
@@ -309,8 +302,6 @@ public class Main extends javax.swing.JFrame {
                 adminMenuButtonActionPerformed(evt);
             }
         });
-        jPanel4.add(adminMenuButton);
-        adminMenuButton.setBounds(980, 20, 32, 32);
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/settings2.png"))); // NOI18N
@@ -319,16 +310,44 @@ public class Main extends javax.swing.JFrame {
                 jLabel1MouseClicked(evt);
             }
         });
-        jPanel4.add(jLabel1);
-        jLabel1.setBounds(1030, 20, 25, 25);
 
         userView.setFont(new java.awt.Font("Tempus Sans ITC", 0, 18)); // NOI18N
         userView.setForeground(new java.awt.Color(51, 51, 51));
         userView.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         userView.setText("123");
         userView.setToolTipText("");
-        jPanel4.add(userView);
-        userView.setBounds(800, 20, 170, 25);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(800, 800, 800)
+                .addComponent(userView, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(adminMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(5, 5, 5)
+                .addComponent(jButton13))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(cardWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(userView)
+                    .addComponent(adminMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton13))
+                .addGap(8, 8, 8)
+                .addComponent(cardWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        card = (CardLayout)cardWindow.getLayout();
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphics/bg.jpg"))); // NOI18N
 
@@ -364,7 +383,7 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(salesMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(128, 128, 128)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 1317, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -388,7 +407,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(463, 463, 463)
                 .addComponent(transferMenuButton))
-            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 754, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(285, 285, 285)
                 .addComponent(tradeInMenuButton))
@@ -477,70 +496,6 @@ public class Main extends javax.swing.JFrame {
         static ArrayList<Product> productList = new ArrayList<Product>();
         static ArrayList<SecondHandProduct> secondHandList = new ArrayList<SecondHandProduct>();                                    
 
-    
-
-
-    
-    public static void updateProductsList(){
-        PreparedStatement selectStatement = null;
-        productList.clear();
-        try{
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        
-        String selectString = "SELECT product_id, type_id, type_name, name, description, "
-                + "supplier_ID, supplier_name, Unit, physical_count, "
-                + "reorder_quantity FROM product JOIN type USING(type_id) JOIN "
-                + "supplier using(supplier_id);";
-        selectStatement = con.prepareStatement(selectString);
-        ResultSet rs = selectStatement.executeQuery();
-        
-            while(rs.next()){
-                Product product = new Product(rs.getString(1), rs.getString(2), 
-                        rs.getString(3), rs.getString(4), rs.getString(5), 
-                        rs.getString(6), rs.getString(7), rs.getString(8), 
-                        rs.getString(9), rs.getString(10) );
-                
-                productList.add(product);
-
-            }
-        Warranty.updateProductsListWarrantyTable();
-
-  //          customerIDEditInput.setText(result);
-       // editCustomerDialog.setVisible(true);
-        }
-        catch ( SQLException err ){
-            System.out.println( err.getMessage ());
-            System.out.print("FAIL");
-        }
-    }
-    
-    public static void updateSecondHandList(){
-        PreparedStatement selectStatement = null;
-        secondHandList.clear();
-        try{
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        
-        String selectString = "SELECT used_item_id, used_item_name, used_item_brand, used_item_quality, "
-                + "used_item_quantity, used_item_type, type_name "
-                + "FROM secondhand JOIN type ON type.type_id = used_item_type;";
-        selectStatement = con.prepareStatement(selectString);
-        ResultSet rs = selectStatement.executeQuery();
-        
-            while(rs.next()){
-                SecondHandProduct product = new SecondHandProduct(rs.getString(1), rs.getString(2), 
-                        rs.getString(3), rs.getString(4), rs.getString(5), 
-                        rs.getString(6), rs.getString(7));
-                
-                secondHandList.add(product);
-
-            }
-        SecondhandTradeIn.updateSecondHandProductsListTable();
-        }
-        catch ( SQLException err ){
-            System.out.println( err.getMessage ());
-            System.out.print("FAIL");
-        }
-    }
     
     public static void setUser(String name){
         userView.setText(name);

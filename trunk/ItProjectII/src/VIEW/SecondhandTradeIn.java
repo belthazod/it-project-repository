@@ -12,9 +12,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -178,46 +176,7 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
     }//GEN-LAST:event_secondHandCategoryComboBoxActionPerformed
 
     private void addToItemListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToItemListButtonActionPerformed
-        PreparedStatement insertStatement = null;
-        PreparedStatement selectStatement = null;
-            try{
-            Connection con = DriverManager.getConnection(host,uName, uPass);
-
-            String typeName = secondHandCategoryComboBox.getSelectedItem().toString();
-            
-            Statement stmt = con.createStatement( );
-            
-            String typeSelectString = "SELECT type_id FROM type WHERE type_name = ? LIMIT 1";
-            selectStatement = con.prepareStatement(typeSelectString);
-            
-            selectStatement.setString(1,typeName);
-            ResultSet rs = selectStatement.executeQuery();
-        
-            rs.next();
-            String typeID = rs.getString(1);
-
-            String insertString = "INSERT INTO secondhand ( used_item_name, used_item_brand, used_item_quality, used_item_quantity, used_item_type) VALUES(?,?,?,?,?)";
-            insertStatement = con.prepareStatement(insertString);
-
-            insertStatement.setString(1, itemNameInput.getText());
-            insertStatement.setString(2, descriptionInput.getText());
-            insertStatement.setString(3, qualityInput.getText());
-            insertStatement.setString(4, quantityInput.getText());
-            insertStatement.setString(5, typeID);
-            insertStatement.executeUpdate();
-
-            JOptionPane.showMessageDialog(null, itemNameInput.getText() + " added to Secondhand Products list.");
-            itemNameInput.setText("");
-            descriptionInput.setText("");
-            qualityInput.setText("");
-            quantityInput.setText("");
-            
-            Main.updateSecondHandList();
-            }
-            catch ( SQLException err ){
-                System.out.println( err.getMessage ());
-                System.out.print("FAIL");
-            }
+       
     }//GEN-LAST:event_addToItemListButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
