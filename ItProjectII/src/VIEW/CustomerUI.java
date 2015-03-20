@@ -57,7 +57,6 @@ public class CustomerUI extends javax.swing.JPanel {
         deleteCustomerButton = new javax.swing.JButton();
         editCustomerButton = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        Contactcmb = new javax.swing.JComboBox();
 
         editCustomerDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         editCustomerDialog.setTitle("Edit Customer Information");
@@ -181,7 +180,7 @@ public class CustomerUI extends javax.swing.JPanel {
                 contactNumberInputKeyPressed(evt);
             }
         });
-        add(contactNumberInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 70, 580, -1));
+        add(contactNumberInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 70, 670, -1));
 
         customerListTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         customerListTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -250,10 +249,6 @@ public class CustomerUI extends javax.swing.JPanel {
 
         jButton7.setText("Edit Customer");
         add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
-
-        Contactcmb.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Contactcmb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09", "+639", "074" }));
-        add(Contactcmb, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void contactNumberInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactNumberInputActionPerformed
@@ -265,7 +260,7 @@ public class CustomerUI extends javax.swing.JPanel {
     }//GEN-LAST:event_customerNameInputActionPerformed
 
     private void addCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerButtonActionPerformed
-        customerController.addCustomer(customerNameInput, contactNumberInput, Contactcmb);
+        customerController.addCustomer(customerNameInput, contactNumberInput);
         customerController.updateTableContents();
         
     }//GEN-LAST:event_addCustomerButtonActionPerformed
@@ -321,7 +316,6 @@ public class CustomerUI extends javax.swing.JPanel {
         customerController.updateTableContents();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox Contactcmb;
     private javax.swing.JButton addCustomerButton;
     protected static javax.swing.JTextField contactNumberEditInput;
     private javax.swing.JTextField contactNumberInput;

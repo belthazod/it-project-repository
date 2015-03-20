@@ -25,34 +25,30 @@ import java.util.regex.Pattern;
 public class SupplierController {
     private final DatabaseConnector dbConnector; 
     private TableManager supplierTableManager;
+
     private JComboBox<ComboItem> addProductSupplierComboBox;
     private JComboBox<ComboItem> editProductSupplierComboBox;
     private JComboBox<ComboItem> deliveryProductFilterSupplierComboBox;
+    private JComboBox<ComboItem> deliverySupplierComboBox;
+
 
     public SupplierController(JTable table, JComboBox<ComboItem> addProductSupplierComboBox, JComboBox<ComboItem> editProductSupplierComboBox, JComboBox<ComboItem> deliveryProductFilterSupplierComboBox) {
         supplierTableManager = new TableManager(table);
         dbConnector= DatabaseConnector.getInstance();
+
         this.addProductSupplierComboBox = addProductSupplierComboBox;
         this.editProductSupplierComboBox = editProductSupplierComboBox;
         this.deliveryProductFilterSupplierComboBox = deliveryProductFilterSupplierComboBox;
+        this.deliverySupplierComboBox = deliverySupplierComboBox;
     }
     
-    public void addSupplier(JTextField name, JTextField number, JComboBox Contactcmb){
-        
-        Pattern pat = Pattern.compile("[0-9]{9}");
-        Matcher mat = pat.matcher(number.getText());
-        boolean match = mat.matches();
-        
-        Pattern pat2 = Pattern.compile("[0-9]{7}");
-        Matcher mat2 = pat2.matcher(number.getText());
-        boolean match2 = mat2.matches();
-        
+    public void addSupplier(JTextField name, JTextField number){
+
         if(InputValidator.checkInput(name.getText(), "Supplier Name cannot be empty.") 
                 && InputValidator.checkInput(number.getText(), "Contact Number cannot be empty")){
-            Object selected = Contactcmb.getSelectedItem();
             
-            if(selected.toString().equals("09") && match == true){
-            String[] values = {name.getText(), selected + number.getText()};
+            if(InputValidator.match(number.getText()) == true || InputValidator.match2(number.getText()) == true || InputValidator.match3(number.getText()) == true){
+            String[] values = {name.getText(), number.getText()};
             try{
             dbConnector.insert("INSERT INTO Supplier(supplier_name, supplier_contact) VALUES(?,?)", values);
             JTextField[] inputs = {name, number};
@@ -64,30 +60,6 @@ public class SupplierController {
                 JOptionPane.showMessageDialog(null, "Add to suppliers list failed", "Database error", JOptionPane.ERROR_MESSAGE);
             }
             
-            }else if(selected.toString().equals("+639") && match == true){
-            String[] values = {name.getText(), selected + number.getText()};
-            try{
-            dbConnector.insert("INSERT INTO Supplier(supplier_name, supplier_contact) VALUES(?,?)", values);
-            JTextField[] inputs = {name, number};
-            
-            JOptionPane.showMessageDialog(null, name.getText() + " saved to Supplier list.");
-            InputValidator.clearInput(inputs);
-            dbConnector.closeConnection();
-            }catch(SQLException sqlE){
-                JOptionPane.showMessageDialog(null, "Add to suppliers list failed", "Database error", JOptionPane.ERROR_MESSAGE);
-            }
-            }else if(selected.toString().equals("074") && match2 == true){
-             String[] values = {name.getText(), selected + number.getText()};
-            try{
-            dbConnector.insert("INSERT INTO Supplier(supplier_name, supplier_contact) VALUES(?,?)", values);
-            JTextField[] inputs = {name, number};
-            
-            JOptionPane.showMessageDialog(null, name.getText() + " saved to Supplier list.");
-            InputValidator.clearInput(inputs);
-            dbConnector.closeConnection();
-            }catch(SQLException sqlE){
-                JOptionPane.showMessageDialog(null, "Add to suppliers list failed", "Database error", JOptionPane.ERROR_MESSAGE);
-            }
             }else{
                 JOptionPane.showMessageDialog(null, "Please enter a valid phone number", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -108,19 +80,24 @@ public class SupplierController {
     }
     
     public void editSupplier(JTextField name, JTextField contactNumber, String supplierID){
+        
         if(InputValidator.checkInput(name.getText(), "Supplier Name cannot be empty.") 
                 & InputValidator.checkInput(contactNumber.getText(), "Contact Number cannot be empty.")){
             try{
+                if(InputValidator.match(contactNumber.getText()) == true || InputValidator.match2(contactNumber.getText()) == true || InputValidator.match3(contactNumber.getText()) == true){
                 String[] values = {name.getText(), contactNumber.getText()};
                 dbConnector.update("UPDATE supplier SET supplier_name = ?, supplier_contact = ? WHERE supplier_id = ?", values, supplierID);
                 JTextField[] inputs = {contactNumber, name};
                 JOptionPane.showMessageDialog(null, "Supplier details updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
                 InputValidator.clearInput(inputs);
                 dbConnector.closeConnection();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Invalid input. Please try aganin.", "Error", JOptionPane.ERROR_MESSAGE);                   
+                }
             }catch(SQLException sqlE){
                 JOptionPane.showMessageDialog(null, "Edit supplier failed", "Database error", JOptionPane.ERROR_MESSAGE);
-            }
-        }else{
+            }        
+           }else{
             JOptionPane.showMessageDialog(null, "Please fill out all fields", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -165,6 +142,7 @@ public class SupplierController {
             addProductSupplierComboBox.removeAllItems();
             editProductSupplierComboBox.removeAllItems();
             deliveryProductFilterSupplierComboBox.removeAllItems();
+            deliverySupplierComboBox.removeAllItems();
             deliveryProductFilterSupplierComboBox.addItem(new ComboItem( null, "All"));
             while(rs.next()){
                 String supplierID = rs.getString(1);
@@ -173,6 +151,7 @@ public class SupplierController {
                 addProductSupplierComboBox.addItem(new ComboItem(supplierID, supplierName));
                 editProductSupplierComboBox.addItem(new ComboItem(supplierID, supplierName));
                 deliveryProductFilterSupplierComboBox.addItem(new ComboItem(supplierID, supplierName));
+                deliverySupplierComboBox.addItem(new ComboItem(supplierID, supplierName));
             }
         } catch(SQLException sqlE){
              sqlE.printStackTrace();

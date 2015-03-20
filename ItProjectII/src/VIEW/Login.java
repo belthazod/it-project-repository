@@ -5,6 +5,7 @@
  */
 package VIEW;
 
+import CONTROLLERS.LogInController;
 import static VIEW.CustomerUI.contactNumberEditInput;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,7 +18,7 @@ import java.sql.SQLException;
  * @author weak_2030
  */
 public class Login extends javax.swing.JPanel {
-
+        private static LogInController logInCotroller;      
     /**
      * Creates new form Login
      */
@@ -225,52 +226,7 @@ public class Login extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        PreparedStatement selectStatement = null;
-        try{
-        
-        String host = "jdbc:mysql://localhost:3306/inventory";
-        String uName = "root";
-        String uPass = "";
-        
-        
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        
-        String selectString = "SELECT username, password, name FROM users";
-        selectStatement = con.prepareStatement(selectString);
-        ResultSet rs = selectStatement.executeQuery();
-        
-        boolean userNotFound = true;
-            while(rs.next()){
-                String user = rs.getString(1);
-                String pass = rs.getString(2);
-                String name = rs.getString(3);
-                    System.out.println(name);
-                if(user.equals(usernameInput.getText()) && pass.equals(passwordInput)){
-                    userNotFound = false;
-                    try{
-                    
-                    Main.setUser(name);
-                    }catch(Exception e){
-                        e.printStackTrace();
-                    }
-                }else{
-                    userNotFound = true;
-                }
-                
-            }
-            
-            if(userNotFound){
-                Main main = new Main();
-                main.setVisible(true);
-                this.setVisible(false);
-            }else{
-                
-            }
-        }
-        catch ( SQLException err ){
-            System.out.println( err.getMessage ());
-            System.out.print("FAIL");
-        }
+            logInCotroller.LogIn(usernameInput, passwordInput);
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void loginButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton1ActionPerformed
