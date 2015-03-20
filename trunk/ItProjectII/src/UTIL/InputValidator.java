@@ -1,6 +1,8 @@
 
 package UTIL;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -60,6 +62,27 @@ public class InputValidator {
  * @param input - the String to be checked.
  * @param message - the error message to show when the String is not an integer.
  */
+    public static boolean match(String input){
+        Pattern pat = Pattern.compile("09[0-9]{9}");
+        Matcher mat = pat.matcher(input);
+        boolean match = mat.matches();
+        return match;
+    }
+    
+    public static boolean match2(String input){
+        Pattern pat2 = Pattern.compile("\\+639[0-9]{9}");
+        Matcher mat2 = pat2.matcher(input);
+        boolean match2 = mat2.matches();
+        return match2;
+    }
+    
+    public static boolean match3(String input){
+        Pattern pat3 = Pattern.compile("\\d{3}[0-9]{7}");
+        Matcher mat3 = pat3.matcher(input);
+        boolean match3 = mat3.matches();
+        return match3;
+    }
+    
     public static boolean checkIfNumber(String input, String message){
         try{
             Integer.parseInt(input);
