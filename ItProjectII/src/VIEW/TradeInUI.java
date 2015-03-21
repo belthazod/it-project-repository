@@ -5,17 +5,20 @@
  */
 package VIEW;
 
+import CONTROLLERS.SecHandTradeInController;
+        
 /**
  *
  * @author weak_2030
  */
 public class TradeInUI extends javax.swing.JPanel {
-
+        
     /**
      * Creates new form TraedIn
      */
     public TradeInUI() {
         initComponents();
+        
     }
 
     /**
@@ -47,7 +50,7 @@ public class TradeInUI extends javax.swing.JPanel {
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        secondHandProductListTable = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
@@ -140,11 +143,16 @@ public class TradeInUI extends javax.swing.JPanel {
         jLabel11.setText("Brand:");
 
         jButton7.setText("Add to Secondhand Product List");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Trade/ Swap Item");
         jButton8.setToolTipText("");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        secondHandProductListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -152,7 +160,7 @@ public class TradeInUI extends javax.swing.JPanel {
                 "Item_ID", "Name", "Brand", "Quantity"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(secondHandProductListTable);
 
         jLabel12.setText("Secondhand Product List:");
 
@@ -245,6 +253,10 @@ public class TradeInUI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        
+    }//GEN-LAST:event_jButton7ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog editProductDialog;
@@ -268,11 +280,11 @@ public class TradeInUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JTable secondHandProductListTable;
     // End of variables declaration//GEN-END:variables
 }

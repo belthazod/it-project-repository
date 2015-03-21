@@ -7,6 +7,7 @@ package VIEW;
 
 import BEANS.ComboItem;
 import BEANS.SecondHandProduct;
+import CONTROLLERS.SecHandTradeInController;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -21,12 +22,13 @@ import javax.swing.table.DefaultTableModel;
  * @author weak_2030
  */
 public class SecondhandTradeIn extends javax.swing.JPanel {
-
+        private static SecHandTradeInController secHandTradeInController;
     /**
      * Creates new form SecondhandTradeIn
      */
     public SecondhandTradeIn() {
         initComponents();
+        secHandTradeInController = new SecHandTradeInController(secondHandProductsListTable);
     }
 
     /**
@@ -43,8 +45,6 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         secondHandCategoryComboBox = new javax.swing.JComboBox<ComboItem>();
         jLabel2 = new javax.swing.JLabel();
         descriptionInput = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        quantityInput = new javax.swing.JTextField();
         addToItemListButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -53,6 +53,7 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(814, 592));
         setPreferredSize(new java.awt.Dimension(814, 592));
@@ -68,13 +69,13 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         });
         add(itemNameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 700, 20));
 
-        secondHandCategoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Batteries", "Rims" }));
+        secondHandCategoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Battery", "Tire", "Motor Oil" }));
         secondHandCategoryComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 secondHandCategoryComboBoxActionPerformed(evt);
             }
         });
-        add(secondHandCategoryComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, -1, -1));
+        add(secondHandCategoryComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 90, -1));
 
         jLabel2.setText("Description:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
@@ -86,10 +87,6 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         });
         add(descriptionInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 705, -1));
 
-        jLabel4.setText("Quantity:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 20));
-        add(quantityInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 705, -1));
-
         addToItemListButton.setText("Add to Secondhand Product List");
         addToItemListButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,13 +95,13 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         });
         add(addToItemListButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 240, 40));
 
-        jButton2.setText("Trade/Swap Item");
+        jButton2.setText("Trade/Swap to Brand New Item");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 230, 160, 40));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 230, 190, 40));
 
         jLabel5.setText("Category:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
@@ -114,14 +111,14 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Product ID", "Name", "Brand", "Type", "Quantity"
+                "Product ID", "Name", "Description", "Type"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -158,10 +155,16 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
         jLabel6.setText("Secondhand  & Trade In");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, -1, -1));
+
+        jButton4.setText("Trade/Swap Item");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 230, 160, 40));
     }// </editor-fold>//GEN-END:initComponents
-    static String host = "jdbc:mysql://localhost:3306/inventory";
-    static String uName = "root";
-    static String uPass = "";
+    
     
     private void itemNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNameInputActionPerformed
         // TODO add your handling code here:
@@ -172,11 +175,11 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
     }//GEN-LAST:event_descriptionInputActionPerformed
 
     private void secondHandCategoryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secondHandCategoryComboBoxActionPerformed
-
+        
     }//GEN-LAST:event_secondHandCategoryComboBoxActionPerformed
 
     private void addToItemListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToItemListButtonActionPerformed
-       
+        secHandTradeInController.addSecondHand(itemNameInput, descriptionInput, secondHandCategoryComboBox);
     }//GEN-LAST:event_addToItemListButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -191,43 +194,16 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private static void deleteAllRows(final JTable table) {
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        for(int row =0; row < model.getRowCount(); ) {
-            model.removeRow(0);
-        
-        }
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+    
+    public static void updateCategoryComboBox(){   
+          secHandTradeInController.getCategory(secondHandCategoryComboBox);
     }
     
-    public static void updateCategoryComboBox(){
-        secondHandCategoryComboBox.removeAllItems();
-        PreparedStatement selectStatement = null;
-        try{
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        String selectString = "SELECT type_name, type_id FROM type ORDER By 1 ASC";
-        selectStatement = con.prepareStatement(selectString);
-        ResultSet rs = selectStatement.executeQuery();
-        secondHandCategoryComboBox.addItem(new ComboItem("--Choose Category--","null"));
-            while(rs.next()){
-                String categoryName = rs.getString(1);
-                String categoryID = rs.getString(2);
-                secondHandCategoryComboBox.addItem(new ComboItem(categoryName, categoryID));
-            }
-
-        }
-        catch ( SQLException err ){
-            System.out.println( err.getMessage ());
-            System.out.print("FAIL");
-        }
-    }
-    
-    protected static void updateSecondHandProductsListTable(){
-        deleteAllRows(secondHandProductsListTable);
-        DefaultTableModel model = (DefaultTableModel) secondHandProductsListTable.getModel();
-        System.out.print(Main.secondHandList);
-        for(SecondHandProduct product: Main.secondHandList){
-            model.addRow(new Object[]{product.getProductID(), product.getName(), product.getDescription(), product.getTypeName(),product.getQuality(), product.getPhysicalCount()});
-        }
+    protected static void updateSecondHandTable(){
+      secHandTradeInController.updateSecondHandTable();
     }
     
     public static JComboBox<ComboItem> getSecondHandCategoryComboBox(){
@@ -241,13 +217,12 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField quantityInput;
     private static javax.swing.JComboBox<ComboItem> secondHandCategoryComboBox;
     private static javax.swing.JTable secondHandProductsListTable;
     // End of variables declaration//GEN-END:variables

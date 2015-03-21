@@ -12,20 +12,23 @@ package BEANS;
 public class SecondHandProduct {
     private String productID;
     private String name;
-    private String quality;
-    private String description;
-    private String physicalCount;
     private String typeID;
     private String typeName;
-    
-    public SecondHandProduct(String productID, String name, String description, String quality, String physicalCount,String typeID,String typeName ) {
+    private String description;
+    public SecondHandProduct(String productID, String name, String typeID, String typeName, String description) {
         this.productID = productID;
         this.name = name;
-        this.description = description;
-        this.quality = quality;
-        this.physicalCount = physicalCount;
         this.typeID = typeID;
         this.typeName = typeName;
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getTypeID() {
@@ -58,30 +61,6 @@ public class SecondHandProduct {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getQuality() {
-        return quality;
-    }
-
-    public void setQuality(String quality) {
-        this.quality = quality;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getPhysicalCount() {
-        return physicalCount;
-    }
-
-    public void setPhysicalCount(String physicalCount) {
-        this.physicalCount = physicalCount;
     }
     
 }
