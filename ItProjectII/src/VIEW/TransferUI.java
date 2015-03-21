@@ -8,6 +8,7 @@ package VIEW;
 import BEANS.ComboItem;
 import BEANS.Product;
 import CONTROLLERS.TransferController;
+import UTIL.InputValidator;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -32,6 +33,7 @@ public class TransferUI extends javax.swing.JPanel {
     public TransferUI() {
         initComponents();
         transferController = new TransferController(transferProductsTable, truckTable, transferFromComboBox, transferToComboBox);
+        InputValidator.enabler(transferProductsTable, addToTruckButton);
     }
 
     
@@ -139,6 +141,7 @@ public class TransferUI extends javax.swing.JPanel {
         truckTable.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 
         addToTruckButton.setText("Add to truck");
+        addToTruckButton.setEnabled(false);
         addToTruckButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addToTruckButtonActionPerformed(evt);

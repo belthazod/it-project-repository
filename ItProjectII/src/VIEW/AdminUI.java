@@ -43,6 +43,7 @@ public class AdminUI extends javax.swing.JPanel {
         supplierPanel = new VIEW.SupplierUI();
         backUpPanel = new VIEW.BackUp();
         userPanel = new VIEW.UserUI();
+        logs1 = new VIEW.Logs();
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(240, 177, 78));
@@ -129,13 +130,13 @@ public class AdminUI extends javax.swing.JPanel {
 
         adminCards.setLayout(new java.awt.CardLayout());
 
-        customerPanel.setBackground(new java.awt.Color(250, 238, 161));
         customerPanel.setForeground(new java.awt.Color(255, 255, 255));
         adminCards.add(customerPanel, "customerCard");
         adminCards.add(productsPanel, "productCard");
         adminCards.add(supplierPanel, "supplierCard");
         adminCards.add(backUpPanel, "backupCard");
         adminCards.add(userPanel, "userCard");
+        adminCards.add(logs1, "card7");
 
         jLabel1.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -233,7 +234,7 @@ public class AdminUI extends javax.swing.JPanel {
     }//GEN-LAST:event_userAdminButtonActionPerformed
 
     private void logsAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logsAdminButtonActionPerformed
-        card.show(adminCards, "logsCard");
+        card.show(adminCards, "card7");
         
         userAdminButton.setEnabled(true);
         logsAdminButton.setEnabled(false);
@@ -254,6 +255,7 @@ public class AdminUI extends javax.swing.JPanel {
     private VIEW.CustomerUI customerPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private VIEW.Logs logs1;
     private javax.swing.JButton logsAdminButton;
     private javax.swing.JButton productAdminButton;
     private VIEW.ProductsUI productsPanel;

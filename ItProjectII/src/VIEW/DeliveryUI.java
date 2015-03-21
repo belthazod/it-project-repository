@@ -7,6 +7,7 @@ package VIEW;
 
 import BEANS.ComboItem;
 import CONTROLLERS.DeliveryController;
+import UTIL.InputValidator;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -23,6 +24,7 @@ public class DeliveryUI extends javax.swing.JPanel {
     public DeliveryUI() {
         initComponents();
         deliveryController = new DeliveryController(deliveryProductsTable, deliveryTable, deliveryProductFilterSupplierComboBox, deliverySupplierLabel);
+        InputValidator.enabler(deliveryProductsTable, addToListButton);
     }
 
     /**
@@ -144,6 +146,7 @@ public class DeliveryUI extends javax.swing.JPanel {
         });
 
         addToListButton.setText("Add To List");
+        addToListButton.setEnabled(false);
         addToListButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addToListButtonActionPerformed(evt);

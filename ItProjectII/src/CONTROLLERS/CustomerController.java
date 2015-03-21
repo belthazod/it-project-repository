@@ -117,7 +117,7 @@ public class CustomerController {
             dbConnector.delete("DELETE FROM customer WHERE customer_id = ?", customerID);
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Failed to delete selected customerer.", "Database Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Failed to delete selected customer.", "Database Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

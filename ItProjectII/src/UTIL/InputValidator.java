@@ -3,8 +3,13 @@ package UTIL;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  * The InputValidator servers as a tool check user Input depending on the 
@@ -91,5 +96,18 @@ public class InputValidator {
             JOptionPane.showMessageDialog(null, message, "Input error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
+    }
+     public static void enabler(JTable table, JButton button){
+        
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+        public void valueChanged(ListSelectionEvent event) {
+            ListSelectionModel lsm = (ListSelectionModel)event.getSource();
+            if(!lsm.isSelectionEmpty()){
+            button.setEnabled(true);
+            }else{
+                button.setEnabled(false);
+            }
+        }
+    });
     }
 }
