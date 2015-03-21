@@ -69,12 +69,16 @@ public class TransferUI extends javax.swing.JPanel {
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
+        setBackground(new java.awt.Color(240, 177, 78));
         setPreferredSize(new java.awt.Dimension(814, 592));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Transfer From:");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Transfer To:");
 
+        transferFromComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         transferFromComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Main", "Pacdal", "Marcos", "Trinidad" }));
         transferFromComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,6 +86,7 @@ public class TransferUI extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Transfer");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,6 +95,7 @@ public class TransferUI extends javax.swing.JPanel {
         });
 
         truckTable.setAutoCreateRowSorter(true);
+        truckTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         truckTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -140,6 +146,7 @@ public class TransferUI extends javax.swing.JPanel {
         });
 
         transferProductsTable.setAutoCreateRowSorter(true);
+        transferProductsTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         transferProductsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -172,8 +179,10 @@ public class TransferUI extends javax.swing.JPanel {
             transferProductsTable.getColumnModel().getColumn(0).setPreferredWidth(0);
         }
 
+        transferToComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         transferToComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Marcos", "Trinidad", "Pacdal", "Main" }));
 
+        removeItemButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         removeItemButton.setText("Remove Item");
         removeItemButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,8 +193,10 @@ public class TransferUI extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
         jLabel3.setText("Product Transfer");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Products Available For Transfer");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Items To Transfer");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -204,7 +215,7 @@ public class TransferUI extends javax.swing.JPanel {
                         .addGap(40, 40, 40)
                         .addComponent(transferToComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(removeItemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(removeItemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(880, 880, 880)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -224,7 +235,7 @@ public class TransferUI extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

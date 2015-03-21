@@ -130,10 +130,15 @@ public class UserUI extends javax.swing.JPanel {
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
+        setBackground(new java.awt.Color(240, 177, 78));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("User Panel");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Manage Users");
 
+        userTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -162,6 +167,7 @@ public class UserUI extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(userTable);
 
+        deleteUserButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         deleteUserButton.setText("Delete");
         deleteUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,20 +175,30 @@ public class UserUI extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("New User");
 
+        usernameInput.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Username:");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Name:");
 
+        nameInput.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nameInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameInputActionPerformed(evt);
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Password:");
 
+        passwordInput.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        addUserButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         addUserButton.setText("Add User");
         addUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,6 +206,7 @@ public class UserUI extends javax.swing.JPanel {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setText("Edit Admin Credentials");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,7 +285,7 @@ public class UserUI extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteUserButton)
                     .addComponent(jButton3))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
