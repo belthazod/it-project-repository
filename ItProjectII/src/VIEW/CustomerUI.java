@@ -148,7 +148,7 @@ public class CustomerUI extends javax.swing.JPanel {
 
         editCustomerDialog.setLocationRelativeTo(this);
 
-        setBackground(new java.awt.Color(250, 238, 161));
+        setBackground(new java.awt.Color(240, 177, 78));
         setMaximumSize(new java.awt.Dimension(814, 592));
         setPreferredSize(new java.awt.Dimension(814, 592));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
