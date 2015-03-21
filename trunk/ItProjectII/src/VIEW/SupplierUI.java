@@ -147,16 +147,20 @@ public class SupplierUI extends javax.swing.JPanel {
 
         editSupplierDialog.setLocationRelativeTo(this);
 
+        setBackground(new java.awt.Color(240, 177, 78));
         setMaximumSize(new java.awt.Dimension(814, 592));
         setPreferredSize(new java.awt.Dimension(814, 592));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Supplier Name:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 32, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Contact Number:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 73, -1, -1));
 
+        supplierNameInput.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         supplierNameInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 supplierNameInputActionPerformed(evt);
@@ -164,6 +168,7 @@ public class SupplierUI extends javax.swing.JPanel {
         });
         add(supplierNameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 32, 674, -1));
 
+        contactNumberInput.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         contactNumberInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contactNumberInputActionPerformed(evt);
@@ -176,22 +181,25 @@ public class SupplierUI extends javax.swing.JPanel {
         });
         add(contactNumberInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 70, 670, -1));
 
+        addSupplierButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         addSupplierButton.setText("Add Supplier");
         addSupplierButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addSupplierButtonActionPerformed(evt);
             }
         });
-        add(addSupplierButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(711, 101, -1, -1));
+        add(addSupplierButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 100, -1, -1));
 
+        deleteSupplierButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         deleteSupplierButton.setText("Delete Supplier");
         deleteSupplierButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteSupplierButtonActionPerformed(evt);
             }
         });
-        add(deleteSupplierButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 360, -1, -1));
+        add(deleteSupplierButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 360, -1, -1));
 
+        supplierListTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         supplierListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -236,13 +244,14 @@ public class SupplierUI extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 794, 185));
 
+        editSupplierButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         editSupplierButton.setText("Edit Supplier");
         editSupplierButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editSupplierButtonActionPerformed(evt);
             }
         });
-        add(editSupplierButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 360, -1, -1));
+        add(editSupplierButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 360, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
         String host = "jdbc:mysql://localhost:3306/inventory";
