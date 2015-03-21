@@ -6,6 +6,7 @@
 package VIEW;
 
 import BEANS.ComboItem;
+import VIEW.SecondhandTradeIn;
 import CONTROLLERS.CategoryController;
 import CONTROLLERS.ProductController;
 import javax.swing.ButtonGroup;

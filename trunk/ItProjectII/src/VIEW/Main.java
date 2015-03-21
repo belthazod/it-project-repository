@@ -34,6 +34,7 @@ public class Main extends javax.swing.JFrame {
         SupplierUI.updateSupplierTable();
         ProductsUI.updateCategoryTable();
         UserUI.updateUsersTable();
+        SecondhandTradeIn.updateSecondHandTable();
         userController = new UserController(oldUserPasswordInput, newUserPasswordInput, newUserConfirmPasswordInput,editPasswordDialog, userLabel);
         }catch(Exception e){
             
