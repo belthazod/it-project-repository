@@ -8,13 +8,19 @@ package VIEW;
 import BEANS.ComboItem;
 import BEANS.SecondHandProduct;
 import CONTROLLERS.SecHandTradeInController;
+import UTIL.InputValidator;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JComboBox;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,11 +32,13 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
     /**
      * Creates new form SecondhandTradeIn
      */
+        
     public SecondhandTradeIn() {
         initComponents();
         secHandTradeInController = new SecHandTradeInController(secondHandProductsListTable);
+        InputValidator.enabler(secondHandProductsListTable, TradeButton);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,7 +61,7 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        TradeButton = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(814, 592));
         setPreferredSize(new java.awt.Dimension(814, 592));
@@ -70,6 +78,7 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         add(itemNameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 700, 20));
 
         secondHandCategoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Battery", "Tire", "Motor Oil" }));
+        secondHandCategoryComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         secondHandCategoryComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 secondHandCategoryComboBoxActionPerformed(evt);
@@ -156,16 +165,28 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         jLabel6.setText("Secondhand  & Trade In");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, -1, -1));
 
-        jButton4.setText("Trade/Swap Item");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        TradeButton.setText("Trade/Swap Item");
+        TradeButton.setEnabled(false);
+        TradeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                TradeButtonActionPerformed(evt);
             }
         });
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 230, 160, 40));
+        add(TradeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 230, 160, 40));
     }// </editor-fold>//GEN-END:initComponents
     
-    
+    public void disabler(){
+        secondHandProductsListTable.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+        public void valueChanged(ListSelectionEvent event) {
+            ListSelectionModel lsm = (ListSelectionModel)event.getSource();
+            if(!lsm.isSelectionEmpty()){
+            TradeButton.setEnabled(true);
+            }else{
+                TradeButton.setEnabled(false);
+            }
+        }
+    });
+    }
     private void itemNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNameInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_itemNameInputActionPerformed
@@ -180,6 +201,8 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
 
     private void addToItemListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToItemListButtonActionPerformed
         secHandTradeInController.addSecondHand(itemNameInput, descriptionInput, secondHandCategoryComboBox);
+        secHandTradeInController.updateSecondHandTable();
+        
     }//GEN-LAST:event_addToItemListButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -187,20 +210,33 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        Integer selectedRow = secondHandProductsListTable.getSelectedRow();
+        String item = (String) secondHandProductsListTable.getModel().getValueAt(selectedRow, 1);
+        int result = JOptionPane.showConfirmDialog(null, "Are you sure in deleting " + item + " from the Customer List","Warning!" ,JOptionPane.YES_NO_OPTION);
+        if(result == 0){
+        secHandTradeInController.deleteSelectedItem();   
+        secHandTradeInController.updateSecondHandTable();
+        }// TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void TradeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TradeButtonActionPerformed
+        
+        Integer selectedRow = secondHandProductsListTable.getSelectedRow();
+        String item = (String) secondHandProductsListTable.getModel().getValueAt(selectedRow, 1);
+        if(InputValidator.checkInput(itemNameInput.getText(), "Please Enter an Item to Swap.")){
+        int result = JOptionPane.showConfirmDialog(null, "Swap " + item,"Warning!" ,JOptionPane.YES_NO_OPTION);
+        if(result == 0){
+        secHandTradeInController.addSecondHand(itemNameInput, descriptionInput, secondHandCategoryComboBox);
+        secHandTradeInController.deleteSelectedItem();   
+        secHandTradeInController.updateSecondHandTable();
+        }// TODO ad        // TODO add your handling code here:
+        }
+    }//GEN-LAST:event_TradeButtonActionPerformed
     
-    public static void updateCategoryComboBox(){   
-          secHandTradeInController.getCategory(secondHandCategoryComboBox);
-    }
     
     protected static void updateSecondHandTable(){
       secHandTradeInController.updateSecondHandTable();
@@ -211,13 +247,13 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton TradeButton;
     private javax.swing.JButton addToItemListButton;
     private javax.swing.JTextField descriptionInput;
     private javax.swing.JTextField itemNameInput;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;

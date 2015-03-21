@@ -31,6 +31,7 @@ public class UserController {
     private JTextField usernameInput;
     private JTextField nameInput;
     private JPasswordField passwordInput;
+    private JPasswordField retype;
     private JDialog editAdminDialog;
     private JPasswordField oldAdminPasswordInput;
     private JPasswordField newAdminPasswordInput;
@@ -64,12 +65,13 @@ public class UserController {
      * @param newAdminPasswordInput - the <code>JPasswordField</code> containing the new password of the admin to be used
      * @param newAdminPasswordConfirmInput - the <code>JPasswordField</code> containing and confirming the new password of the administrator
      */
-    public UserController(JTable userTable, JTextField usernameInput,JTextField nameInput, JPasswordField passwordInput, JDialog editAdminDialog, JPasswordField oldAdminPasswordInput, JPasswordField newAdminPasswordInput, JPasswordField newAdminPasswordConfirmInput){
+    public UserController(JTable userTable, JTextField usernameInput,JTextField nameInput, JPasswordField passwordInput, JPasswordField retype, JDialog editAdminDialog, JPasswordField oldAdminPasswordInput, JPasswordField newAdminPasswordInput, JPasswordField newAdminPasswordConfirmInput){
         dbConnector = DatabaseConnector.getInstance();
         this.userTable = userTable;
         this.usernameInput = usernameInput;
         this.nameInput = nameInput;
         this.passwordInput = passwordInput;
+        this.retype = retype;
         this.editAdminDialog = editAdminDialog;
         this.oldAdminPasswordInput = oldAdminPasswordInput;
         this.newAdminPasswordInput = newAdminPasswordInput;
@@ -80,15 +82,16 @@ public class UserController {
     }
     
     public void addUser(){
-        
+        String password = new String(passwordInput.getPassword());
+        String retypePW = new String(retype.getPassword());
         try{
         
-        JTextField[] inputs = {usernameInput, nameInput, passwordInput};
+        JTextField[] inputs = {usernameInput, nameInput, passwordInput, retype};
         
         if(InputValidator.checkInput(usernameInput.getText(), "Username cannot be empty")
             & InputValidator.checkInput(nameInput.getText(), "Name cannot be empty")    
             & InputValidator.checkInput(new String(passwordInput.getPassword()), "Password cannot be empty")){
-            
+            if(password.equals(retypePW)){
             dbConnector.insert("INSERT INTO users (username, name, password) "
                     + "VALUES(?,?,?)", 
                     new String[]{usernameInput.getText(), nameInput.getText(),
@@ -96,12 +99,16 @@ public class UserController {
             JOptionPane.showMessageDialog(null, nameInput.getText() + " has been added to list of users.", "Success", JOptionPane.INFORMATION_MESSAGE);
             InputValidator.clearInput(inputs);
             updateUsersTable();
+        }else{
+                JOptionPane.showMessageDialog(null, "Sorry. Your passwords do not match, please check and try again.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
         dbConnector.closeConnection();
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
             JOptionPane.showMessageDialog(null,"Failed to add User.","Database error",JOptionPane.ERROR_MESSAGE);
         }
+        
     }
     /**
      * Queries from the database the list of users and displays their name and username on the User <code>JTable</code>
@@ -148,7 +155,7 @@ public class UserController {
             }
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Failed to delete " + username +" from the Users list.", "Database Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Failed to delete " + username + " from the Users list.", "Database Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     

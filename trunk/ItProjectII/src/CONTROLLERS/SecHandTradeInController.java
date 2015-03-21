@@ -29,9 +29,7 @@ public class SecHandTradeInController {
     private final DatabaseConnector dbConnector;
     private TableManager secondHandTableManager;
     private static ArrayList<SecondHandProduct> secHandItems;
-    static String host = "jdbc:mysql://localhost:3306/inventory";
-    static String uName = "root";
-    static String uPass = "";
+    static JComboBox category;
     
     public SecHandTradeInController(JTable table){
         secondHandTableManager = new TableManager(table);
@@ -39,28 +37,7 @@ public class SecHandTradeInController {
         secHandItems = new ArrayList<SecondHandProduct>();
     }
     
-    public void getCategory(JComboBox category){
-        
-        category.removeAllItems();
-        PreparedStatement selectStatement = null;
-        try{
-        Connection con = DriverManager.getConnection(host,uName, uPass);
-        String selectString = "SELECT Type_name, Type_id FROM type ORDER By 1 ASC";
-        selectStatement = con.prepareStatement(selectString);
-        ResultSet rs = selectStatement.executeQuery();
-        category.addItem(new ComboItem("Choose Category","null"));
-            while(rs.next()){
-                String categoryName = rs.getString(0);
-                String categoryID = rs.getString(1);
-                category.addItem(new ComboItem(categoryName, categoryID));
-            }
 
-        }
-        catch ( SQLException err ){
-            System.out.println( err.getMessage ());
-            System.out.print("FAIL");
-        }
-    }
     public void addSecondHand(JTextField itemName, JTextField description, JComboBox category){
         try{
         //Object supplierComboBoxitem = supplier.getSelectedItem();
@@ -76,7 +53,7 @@ public class SecHandTradeInController {
        
         if(InputValidator.checkInput(itemName.getText(), "Product Name cannot be empty.")){
             
-            dbConnector.insert("INSERT INTO secondhand ( used++---_item_type, used_item_name, description) "
+            dbConnector.insert("INSERT INTO secondhand ( used_item_type, used_item_name, description) "
                     + "VALUES(?,?,?)", values);
             
             JOptionPane.showMessageDialog(null, itemName.getText() + " added to list of secondhand items.", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -120,6 +97,28 @@ public class SecHandTradeInController {
                 String[] transferValues = {shp.getProductID(), shp.getName(), 
                     shp.getDescription(), shp.getTypeName()};
                 secondHandTableManager.addRowContent(transferValues);
-    }
+    }        
      }
+     public void deleteSelectedItem(){
+      
+        try{
+            String itemID = secondHandTableManager.getIDFromTable(secondHandTableManager.getSelectedRow());
+            dbConnector.delete("DELETE FROM secondhand WHERE used_item_id = ?", itemID);
+        }catch(SQLException sqlE){
+            sqlE.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Failed to delete item from the Users list.", "Database Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+  /*  
+     public void tradeItem(){
+        Integer selectedRow = secondHandProductsListTable.getSelectedRow();
+        String item = (String) secondHandProductsListTable.getModel().getValueAt(selectedRow, 1);
+        int result = JOptionPane.showConfirmDialog(null, "Swap " + item,"Warning!" ,JOptionPane.YES_NO_OPTION);
+        if(result == 0){
+        secHandTradeInController.addSecondHand(itemNameInput, descriptionInput, secondHandCategoryComboBox);
+        secHandTradeInController.deleteSelectedItem();   
+        secHandTradeInController.updateSecondHandTable();
+        }
+     }
+     */
 }

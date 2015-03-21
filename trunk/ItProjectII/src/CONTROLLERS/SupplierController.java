@@ -142,7 +142,6 @@ public class SupplierController {
             addProductSupplierComboBox.removeAllItems();
             editProductSupplierComboBox.removeAllItems();
             deliveryProductFilterSupplierComboBox.removeAllItems();
-            deliverySupplierComboBox.removeAllItems();
             deliveryProductFilterSupplierComboBox.addItem(new ComboItem( null, "All"));
             while(rs.next()){
                 String supplierID = rs.getString(1);
@@ -151,7 +150,6 @@ public class SupplierController {
                 addProductSupplierComboBox.addItem(new ComboItem(supplierID, supplierName));
                 editProductSupplierComboBox.addItem(new ComboItem(supplierID, supplierName));
                 deliveryProductFilterSupplierComboBox.addItem(new ComboItem(supplierID, supplierName));
-                deliverySupplierComboBox.addItem(new ComboItem(supplierID, supplierName));
             }
         } catch(SQLException sqlE){
              sqlE.printStackTrace();
