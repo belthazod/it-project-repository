@@ -10,12 +10,8 @@ import BEANS.SecondHandProduct;
 import UTIL.DatabaseConnector;
 import UTIL.InputValidator;
 import UTIL.TableManager;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -37,7 +33,6 @@ public class SecHandTradeInController {
         secHandItems = new ArrayList<SecondHandProduct>();
     }
     
-
     public void addSecondHand(JTextField itemName, JTextField description, JComboBox category){
         try{
         //Object supplierComboBoxitem = supplier.getSelectedItem();
@@ -65,6 +60,7 @@ public class SecHandTradeInController {
             JOptionPane.showMessageDialog(null,"Failed to add Product.","Database error",JOptionPane.ERROR_MESSAGE);
         }
     }
+    
      public ArrayList<SecondHandProduct> getSecItems(){
         secHandItems = new ArrayList<SecondHandProduct>();
         try{
@@ -97,7 +93,7 @@ public class SecHandTradeInController {
                 String[] transferValues = {shp.getProductID(), shp.getName(), 
                     shp.getDescription(), shp.getTypeName()};
                 secondHandTableManager.addRowContent(transferValues);
-    }        
+        }        
      }
      public void deleteSelectedItem(){
       
@@ -109,16 +105,7 @@ public class SecHandTradeInController {
             JOptionPane.showMessageDialog(null, "Failed to delete item from the Users list.", "Database Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-  /*  
-     public void tradeItem(){
-        Integer selectedRow = secondHandProductsListTable.getSelectedRow();
-        String item = (String) secondHandProductsListTable.getModel().getValueAt(selectedRow, 1);
-        int result = JOptionPane.showConfirmDialog(null, "Swap " + item,"Warning!" ,JOptionPane.YES_NO_OPTION);
-        if(result == 0){
-        secHandTradeInController.addSecondHand(itemNameInput, descriptionInput, secondHandCategoryComboBox);
-        secHandTradeInController.deleteSelectedItem();   
-        secHandTradeInController.updateSecondHandTable();
-        }
+     public void editSelectedItem(){
+        
      }
-     */
 }

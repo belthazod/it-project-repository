@@ -40,6 +40,7 @@ public class ProductController {
     private TableManager criticalProductsTableManager;
     private JTabbedPane productsTab;
     private static ArrayList<Product> productList;
+    private TableManager secondhandSwapProductsTableManager;
     
     public ProductController(){
     dbConnector = DatabaseConnector.getInstance();
@@ -54,8 +55,10 @@ public class ProductController {
      * @param deliveryTable - the JTable located at the Delivery module
      * @param productsTab - the products Tab that opens after adding a product
      * @param criticalProductsTable - the table of products with quantities below their reorder quantity level or zero 
+     * @param secondhandSwapProductsTable - table of products for swapping
+     * 
      */
-    public ProductController(JTable adminTable, JTable inventoryTable, JTable transferTable, JTable deliveryTable, JTabbedPane productsTab, JTable criticalProductsTable){
+    public ProductController(JTable adminTable, JTable inventoryTable, JTable transferTable, JTable deliveryTable, JTabbedPane productsTab, JTable criticalProductsTable, JTable secondhandSwapProductsTable){
         try{
         dbConnector = DatabaseConnector.getInstance();
         adminProductTableManager = new TableManager(adminTable);
@@ -63,8 +66,8 @@ public class ProductController {
         transferTableManager = new TableManager(transferTable);
         deliveryTableManager = new TableManager(deliveryTable);
         criticalProductsTableManager = new TableManager(criticalProductsTable);
+        secondhandSwapProductsTableManager = new TableManager(secondhandSwapProductsTable);
         this.productsTab = productsTab;
-        
         }catch(NullPointerException npe){
             npe.printStackTrace();
         }
@@ -289,6 +292,7 @@ public class ProductController {
         transferTableManager.clearTableContents();
         deliveryTableManager.clearTableContents();
         criticalProductsTableManager.clearTableContents();
+        secondhandSwapProductsTableManager.clearTableContents();
         getProducts();
         for(Product product : productList){
             String[] completeValues = {product.getProductID(), product.getWarranty(), product.getName(), 
@@ -305,7 +309,7 @@ public class ProductController {
                 product.getDescription(), product.getTypeName(), 
                 product.getUnit(), product.getPhysicalCount(), 
                 product.getReorderQuantityLevel()};
-            
+            secondhandSwapProductsTableManager.addRowContent(completeValues);
             adminProductTableManager.addRowContent(adminCompleteValues);
             inventoryTableManager.addRowContent(completeValues);
             deliveryTableManager.addRowContent(deliveryValues);

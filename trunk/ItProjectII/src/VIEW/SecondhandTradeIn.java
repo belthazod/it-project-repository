@@ -29,6 +29,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SecondhandTradeIn extends javax.swing.JPanel {
         private static SecHandTradeInController secHandTradeInController;
+        ProductTrade productTrade;
+        
+        
     /**
      * Creates new form SecondhandTradeIn
      */
@@ -37,6 +40,7 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         initComponents();
         secHandTradeInController = new SecHandTradeInController(secondHandProductsListTable);
         InputValidator.enabler(secondHandProductsListTable, TradeButton);
+        this.productTrade = new ProductTrade();
     }
     
     /**
@@ -54,7 +58,7 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         descriptionInput = new javax.swing.JTextField();
         addToItemListButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        TradeToBrandNew = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         secondHandProductsListTable = new javax.swing.JTable();
@@ -65,17 +69,14 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
 
         setMaximumSize(new java.awt.Dimension(814, 592));
         setPreferredSize(new java.awt.Dimension(814, 592));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Item Name:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         itemNameInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemNameInputActionPerformed(evt);
             }
         });
-        add(itemNameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 700, 20));
 
         secondHandCategoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Battery", "Tire", "Motor Oil" }));
         secondHandCategoryComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -84,17 +85,14 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
                 secondHandCategoryComboBoxActionPerformed(evt);
             }
         });
-        add(secondHandCategoryComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 90, -1));
 
         jLabel2.setText("Description:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
         descriptionInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 descriptionInputActionPerformed(evt);
             }
         });
-        add(descriptionInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 705, -1));
 
         addToItemListButton.setText("Add to Secondhand Product List");
         addToItemListButton.addActionListener(new java.awt.event.ActionListener() {
@@ -102,18 +100,15 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
                 addToItemListButtonActionPerformed(evt);
             }
         });
-        add(addToItemListButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 240, 40));
 
-        jButton2.setText("Trade/Swap to Brand New Item");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        TradeToBrandNew.setText("Trade/Swap to Brand New Item");
+        TradeToBrandNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                TradeToBrandNewActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 230, 190, 40));
 
         jLabel5.setText("Category:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
 
         secondHandProductsListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -143,15 +138,12 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         secondHandProductsListTable.getColumnModel().getColumn(0).setMinWidth(0);
         secondHandProductsListTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 1070, 240));
-
         jButton1.setText("Edit Item");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 540, -1, -1));
 
         jButton3.setText("Delete Item");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -159,11 +151,9 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 540, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
         jLabel6.setText("Secondhand  & Trade In");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, -1, -1));
 
         TradeButton.setText("Trade/Swap Item");
         TradeButton.setEnabled(false);
@@ -172,7 +162,71 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
                 TradeButtonActionPerformed(evt);
             }
         });
-        add(TradeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 230, 160, 40));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(420, 420, 420)
+                .addComponent(jLabel6))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addGap(14, 14, 14)
+                .addComponent(itemNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel2)
+                .addGap(13, 13, 13)
+                .addComponent(descriptionInput, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel5)
+                .addGap(21, 21, 21)
+                .addComponent(secondHandCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(170, 170, 170)
+                .addComponent(addToItemListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(TradeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(TradeToBrandNew, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1020, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(840, 840, 840)
+                .addComponent(jButton1)
+                .addGap(15, 15, 15)
+                .addComponent(jButton3))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(itemNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(descriptionInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(secondHandCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addToItemListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TradeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TradeToBrandNew, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jButton3)))
+        );
     }// </editor-fold>//GEN-END:initComponents
     
     public void disabler(){
@@ -219,9 +273,9 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         }// TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void TradeToBrandNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TradeToBrandNewActionPerformed
+        productTrade.setVisible(true);
+    }//GEN-LAST:event_TradeToBrandNewActionPerformed
 
     private void TradeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TradeButtonActionPerformed
         
@@ -248,11 +302,11 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton TradeButton;
+    private javax.swing.JButton TradeToBrandNew;
     private javax.swing.JButton addToItemListButton;
     private javax.swing.JTextField descriptionInput;
     private javax.swing.JTextField itemNameInput;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

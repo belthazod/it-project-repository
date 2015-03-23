@@ -531,6 +531,13 @@
                     </Constraint>
                   </Constraints>
                 </Component>
+                <Component class="VIEW.NewCustomerUI" name="newCustomerUI1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="customerCard"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
               </SubComponents>
             </Container>
             <Component class="javax.swing.JButton" name="adminMenuButton">
