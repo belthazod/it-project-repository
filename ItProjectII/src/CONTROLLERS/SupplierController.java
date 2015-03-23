@@ -142,7 +142,6 @@ public class SupplierController {
             addProductSupplierComboBox.removeAllItems();
             editProductSupplierComboBox.removeAllItems();
             deliveryProductFilterSupplierComboBox.removeAllItems();
-            deliveryProductFilterSupplierComboBox.addItem(new ComboItem( null, "All"));
             while(rs.next()){
                 String supplierID = rs.getString(1);
                 String supplierName = rs.getString(2);

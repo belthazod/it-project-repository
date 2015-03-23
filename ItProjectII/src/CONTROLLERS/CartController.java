@@ -8,6 +8,7 @@ package CONTROLLERS;
 import UTIL.TableManager;
 import UTIL.DatabaseConnector;
 import VIEW.Cart;
+import VIEW.ProductsUI;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -107,7 +108,7 @@ public class CartController {
             }
             
             if(!orIsEmpty){
-                ResultSet rs = dbConnector.query("SELECT sales_id FROM sales ORDER BY 1 LIMIT 1");
+                ResultSet rs = dbConnector.query("SELECT sales_id FROM sales ORDER BY 1 DESC LIMIT 1");
 
                 rs.next();
 
@@ -120,6 +121,7 @@ public class CartController {
                 salesTypeDialog.dispose();
                 cartTableManager.clearTableContents();
                 cart.setVisible(false);
+                ProductsUI.updateAdminProductsTable();
                 JOptionPane.showMessageDialog(null, "Items successfully marked as bought.", "Success", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 JOptionPane.showMessageDialog(null, "Please enter serial number.", "Serial number error", JOptionPane.ERROR_MESSAGE);

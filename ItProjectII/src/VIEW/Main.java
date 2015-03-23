@@ -81,6 +81,7 @@ public class Main extends javax.swing.JFrame {
         reportsPanel = new VIEW.Reports();
         ReturnsAndReplacementPanel = new VIEW.Returns();
         adminUI1 = new VIEW.AdminUI();
+        newCustomerUI1 = new VIEW.NewCustomerUI();
         adminMenuButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         userView = new javax.swing.JLabel();
@@ -289,6 +290,7 @@ public class Main extends javax.swing.JFrame {
 
         cardWindow.add(ReturnsAndReplacementPanel, "returnsCard");
         cardWindow.add(adminUI1, "adminCard");
+        cardWindow.add(newCustomerUI1, "customerCard");
 
         adminMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/admin.png"))); // NOI18N
         adminMenuButton.setBorderPainted(false);
@@ -565,6 +567,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
+    private VIEW.NewCustomerUI newCustomerUI1;
     private javax.swing.JPasswordField newUserConfirmPasswordInput;
     private javax.swing.JPasswordField newUserPasswordInput;
     private javax.swing.JPasswordField oldUserPasswordInput;

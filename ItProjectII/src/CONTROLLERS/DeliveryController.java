@@ -9,6 +9,7 @@ import BEANS.ComboItem;
 import BEANS.Product;
 import UTIL.DatabaseConnector;
 import UTIL.TableManager;
+import VIEW.ProductsUI;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -118,9 +119,11 @@ public class DeliveryController {
                             product.getReorderQuantityLevel()};
 
                         deliveryProductsTableManager.addRowContent(deliveryValues);
+                        
                     }
                 }
             }
+            deliverySupplierLabel.setText(deliveryProductFilterSupplierComboBox.getSelectedItem().toString());
         }
     }
     
@@ -163,6 +166,8 @@ public class DeliveryController {
                                 + "(delivery_id, product_id, quantity_delivered)"
                                 + " VALUES(?,?,?)", 
                                 new String[]{deliveryID, productID, quantityToTransfer.toString()});
+                        ProductsUI.updateAdminProductsTable();
+                        
                     }
                 }
                 deliveryTableManager.clearTableContents();
