@@ -38,6 +38,8 @@ public class NewCustomerUI extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(240, 177, 78));
+
         jLabel1.setText("Customer Name:");
 
         jLabel2.setText("Contact Number:");
