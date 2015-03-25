@@ -246,6 +246,7 @@ public class ProductsUI extends javax.swing.JPanel {
                 .addContainerGap(164, Short.MAX_VALUE))
         );
 
+        setBackground(new java.awt.Color(240, 177, 78));
         setMaximumSize(new java.awt.Dimension(814, 592));
         setPreferredSize(new java.awt.Dimension(814, 592));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
