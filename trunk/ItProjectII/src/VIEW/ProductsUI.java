@@ -328,10 +328,12 @@ public class ProductsUI extends javax.swing.JPanel {
         jPanel1.add(addProductSupplierComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 150, -1));
         jPanel1.add(filler1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, -1, -1));
 
+        warrantySpinner.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         warrantySpinner.setEnabled(false);
         jPanel1.add(warrantySpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 60, 30));
         warrantySpinner.setVisible(false);
 
+        reorderLevelEnableRadioButton.setBackground(new java.awt.Color(240, 177, 78));
         reorderLevelEnableRadioButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         reorderLevelEnableRadioButton.setText("Enabled");
         reorderLevelEnableRadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -343,6 +345,7 @@ public class ProductsUI extends javax.swing.JPanel {
         reorderQuantityLevelGroup.add(reorderLevelEnableRadioButton);
         reorderLevelDisableRadioButton.setSelected(true);
 
+        reorderLevelDisableRadioButton.setBackground(new java.awt.Color(240, 177, 78));
         reorderLevelDisableRadioButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         reorderLevelDisableRadioButton.setText("Disabled");
         reorderLevelDisableRadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -365,6 +368,7 @@ public class ProductsUI extends javax.swing.JPanel {
         jLabel18.setText("Warranty:");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
 
+        warrantyEnableRadioButton.setBackground(new java.awt.Color(240, 177, 78));
         warrantyEnableRadioButton.setText("Enabled");
         warrantyEnableRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -375,6 +379,7 @@ public class ProductsUI extends javax.swing.JPanel {
         warrantyGroup.add(warrantyEnableRadioButton);
         warrantyDisableRadioButton.setSelected(true);
 
+        warrantyDisableRadioButton.setBackground(new java.awt.Color(240, 177, 78));
         warrantyDisableRadioButton.setText("Disabled");
         warrantyDisableRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
