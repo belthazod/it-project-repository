@@ -31,15 +31,15 @@ public class ItProjectII {
         if (mySplash != null)   // check if we really had a spash screen
             mySplash.close();   // we're done with it
         
-    //    UserLogIn main = new UserLogIn();
-     //   main.setVisible(true);
-     //   main.setTitle("Ocampo's Battery Trading and Autosupply Inventory System");
-     //   main.setLocationRelativeTo(null);
+       UserLogIn main = new UserLogIn();
+        main.setVisible(true);
+        main.setTitle("Ocampo's Battery Trading and Autosupply Inventory System");
+        main.setLocationRelativeTo(null);
         
         
-       Main main = new Main();
-      main.setVisible(true);
-       main.setTitle("Just Another Inventory System");
+     //  Main main = new Main();
+    //  main.setVisible(true);
+    //   main.setTitle("Just Another Inventory System");
                 
     }
     
