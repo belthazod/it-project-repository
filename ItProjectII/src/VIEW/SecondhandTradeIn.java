@@ -67,6 +67,7 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         TradeButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(240, 177, 78));
         setMaximumSize(new java.awt.Dimension(814, 592));
         setPreferredSize(new java.awt.Dimension(814, 592));
 
