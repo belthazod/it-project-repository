@@ -154,7 +154,8 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         });
 
         jLabel6.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel6.setText("Secondhand  & Trade In");
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText(" Trade In");
 
         TradeButton.setText("Trade/Swap Item");
         TradeButton.setEnabled(false);
@@ -168,9 +169,6 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(420, 420, 420)
-                .addComponent(jLabel6))
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
@@ -200,6 +198,9 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
                 .addComponent(jButton1)
                 .addGap(15, 15, 15)
                 .addComponent(jButton3))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(461, 461, 461)
+                .addComponent(jLabel6))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

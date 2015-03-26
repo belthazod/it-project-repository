@@ -32,7 +32,7 @@ public class ItProjectII {
         if (mySplash != null)   // check if we really had a spash screen
             mySplash.close();   // we're done with it
         
-       UserLogIn main = new UserLogIn();
+        UserLogIn main = new UserLogIn();
         main.setVisible(true);
        main.setTitle("Ocampo's Battery Trading and Autosupply Inventory System");
         main.setLocationRelativeTo(null);

@@ -73,15 +73,6 @@ public class Main extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jButton13 = new javax.swing.JButton();
         cardWindow = new javax.swing.JPanel();
-        inventoryPanel = new VIEW.InventoryUI();
-        deliveryPanel = new VIEW.DeliveryUI();
-        warrantyPanel = new VIEW.Warranty();
-        transferPanel = new VIEW.TransferUI();
-        tradeInPanel = new VIEW.SecondhandTradeIn();
-        reportsPanel = new VIEW.Reports();
-        ReturnsAndReplacementPanel = new VIEW.Returns();
-        adminUI1 = new VIEW.AdminUI();
-        newCustomerUI1 = new VIEW.NewCustomerUI();
         adminMenuButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         userView = new javax.swing.JLabel();
@@ -268,7 +259,7 @@ public class Main extends javax.swing.JFrame {
         jPanel4.setOpaque(false);
 
         jButton13.setBackground(new java.awt.Color(31, 37, 61));
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/logout2.png"))); // NOI18N
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/logout.png"))); // NOI18N
         jButton13.setBorderPainted(false);
         jButton13.setContentAreaFilled(false);
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -280,19 +271,8 @@ public class Main extends javax.swing.JFrame {
         cardWindow.setBackground(new java.awt.Color(102, 102, 102));
         cardWindow.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cardWindow.setLayout(new java.awt.CardLayout());
-        cardWindow.add(inventoryPanel, "inventoryCard");
-        cardWindow.add(deliveryPanel, "deliveryCard");
-        cardWindow.add(warrantyPanel, "warrantyCard");
-        cardWindow.add(transferPanel, "transferCard");
-        cardWindow.add(tradeInPanel, "tradeInCard");
-        cardWindow.add(reportsPanel, "reportsCard");
-        reportsPanel.getAccessibleContext().setAccessibleName("");
 
-        cardWindow.add(ReturnsAndReplacementPanel, "returnsCard");
-        cardWindow.add(adminUI1, "adminCard");
-        cardWindow.add(newCustomerUI1, "customerCard");
-
-        adminMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/admin.png"))); // NOI18N
+        adminMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/adminkey.png"))); // NOI18N
         adminMenuButton.setBorderPainted(false);
         adminMenuButton.setContentAreaFilled(false);
         adminMenuButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -307,7 +287,7 @@ public class Main extends javax.swing.JFrame {
         });
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/settings2.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/settings-grey.png"))); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
@@ -325,28 +305,37 @@ public class Main extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(800, 800, 800)
-                .addComponent(userView, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(adminMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(5, 5, 5)
-                .addComponent(jButton13))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(cardWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(cardWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(800, 800, 800)
+                        .addComponent(userView, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(adminMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(userView)
-                    .addComponent(adminMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton13))
-                .addGap(8, 8, 8)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(userView)
+                                .addGap(1, 1, 1))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(adminMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(cardWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -547,14 +536,10 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private VIEW.Returns ReturnsAndReplacementPanel;
     private javax.swing.JButton adminMenuButton;
-    private VIEW.AdminUI adminUI1;
     private javax.swing.JPanel cardWindow;
     private javax.swing.JButton deliveryMenuButton;
-    private VIEW.DeliveryUI deliveryPanel;
     private javax.swing.JDialog editPasswordDialog;
-    private VIEW.InventoryUI inventoryPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
@@ -567,21 +552,16 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
-    private VIEW.NewCustomerUI newCustomerUI1;
     private javax.swing.JPasswordField newUserConfirmPasswordInput;
     private javax.swing.JPasswordField newUserPasswordInput;
     private javax.swing.JPasswordField oldUserPasswordInput;
     private javax.swing.JButton reportsMenuButton;
-    private VIEW.Reports reportsPanel;
     private javax.swing.JButton returnsMenuButton;
     private javax.swing.JButton salesMenuButton;
     private javax.swing.JButton tradeInMenuButton;
-    private VIEW.SecondhandTradeIn tradeInPanel;
     private javax.swing.JButton transferMenuButton;
-    private VIEW.TransferUI transferPanel;
     private static javax.swing.JLabel userLabel;
     private static javax.swing.JLabel userView;
     private javax.swing.JButton warrantyMenuButton;
-    private VIEW.Warranty warrantyPanel;
     // End of variables declaration//GEN-END:variables
 }
