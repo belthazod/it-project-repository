@@ -61,7 +61,7 @@ public class CartController {
                     String truckProductID = cartTableManager.getIDFromTable(row);
                     itemExists = productID.equals(truckProductID);
                 }
-                if(itemExists){
+                if(itemExists && Integer.parseInt(inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 1)) == 0){
                     JOptionPane.showMessageDialog(null,
                         "Item already in cart.",
                         "Error",
@@ -70,12 +70,10 @@ public class CartController {
                     String name = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 2);
                     String description = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 3);
                     String unit = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 5);
-                    String category = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 4);
                     String quantity = (String)  inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 7);
-                    String supplier = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 6);
                     String warranty = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 1);
                     
-                    cartTableManager.addRowContent(new String[]{productID, quantity, warranty, name, description, category, unit, supplier, ""});
+                    cartTableManager.addRowContent(new String[]{productID, quantity, warranty, name, description, unit, "", ""});
                     cart.setVisible(true);
                 }
             }else{
@@ -114,8 +112,14 @@ public class CartController {
 
                 for(int i = 0; i< cartTableManager.getRowCount(); i++){
                     String productID = cartTableManager.getIDFromTable(i);
-                    String quantity = cartTableManager.getValueAt(i, 8);
-                    dbConnector.insert("INSERT INTO sales_details(sales_id, product_id, quantity_sold) VALUES(?,?,?)", new String[]{rs.getString(1), productID, quantity});
+                    String quantity = cartTableManager.getValueAt(i, 6);
+                    String warranty = cartTableManager.getValueAt(i, 2);
+                    if(Integer.parseInt(warranty) > 0){
+                    dbConnector.insert("INSERT INTO sales_details(sales_id, product_id, serial_number, warranty_duration) VALUES(?,?,?,?)", new String[]{rs.getString(1), productID, quantity, warranty});
+                    
+                    }else{
+                    dbConnector.insert("INSERT INTO sales_details(sales_id, product_id, quantity_sold, warranty_duration) VALUES(?,?,?,?)", new String[]{rs.getString(1), productID, quantity, warranty});
+                    }
                 }
 
                 salesTypeDialog.dispose();
@@ -136,7 +140,7 @@ public class CartController {
             boolean greaterThanQuantity = false;
             boolean lessThanOrEqualToZero = false;
             for(int i = 0; i< cartTableManager.getRowCount(); i++){
-                int quantity = Integer.parseInt(cartTableManager.getValueAt(i, 8));
+                int quantity = Integer.parseInt(cartTableManager.getValueAt(i, 6));
                 int currentQuantity = Integer.parseInt(cartTableManager.getValueAt(i, 1));
                 
                 
@@ -194,62 +198,5 @@ public class CartController {
         markItemsAsSold("purchase");
     }
     
-//    public void deleteCategory(){
-//        try{
-//            String categoryID = categoryTableManager.getIDFromTable(categoryTableManager.getSelectedRow());
-//            dbConnector.delete("DELETE FROM type WHERE type_id = ?", categoryID);
-//        }catch(SQLException sqlE){
-//            if(sqlE.getSQLState().startsWith("23")){
-//                JOptionPane.showMessageDialog(null, "Failed to delete selected category. Category is currently linked to a product. \n\nTo remove this category. Please clear all products associated with it.", "Constraint Error", JOptionPane.ERROR_MESSAGE);
-//            }else{
-//            sqlE.printStackTrace();
-//            JOptionPane.showMessageDialog(null, "Failed to delete category", "Database error.", JOptionPane.ERROR_MESSAGE);
-//            }
-//        }
-//    }
-//    
-//    public void updateCategoryTable(){
-//        try{
-//        ResultSet rs = dbConnector.query("SELECT type_id, type_name FROM type ORDER BY 2 ASC");
-//        categoryTableManager.importDBContents(rs);
-//        updateCategoryComponents();
-//        dbConnector.closeConnection();
-//        }catch(SQLException sqlE){
-//            JOptionPane.showMessageDialog(null, "Table update failed", "Database error", JOptionPane.ERROR_MESSAGE);
-//        }
-//    }
-//    
-//    public boolean openEditDialog(String selectedTypeID, JTextField input, JLabel typeID){
-//        try{
-//            ResultSet rs = dbConnector.query("SELECT type_name FROM type WHERE type_id = ?", selectedTypeID);
-//            rs.next();
-//                input.setText(rs.getString(1));
-//            typeID.setText(selectedTypeID);
-//            return true;
-//           
-//        }catch(SQLException sqlE){
-//            sqlE.printStackTrace();
-//            JOptionPane.showMessageDialog(null, "Editing failed", "Database error", JOptionPane.ERROR_MESSAGE);
-//            return false;
-//        }
-//    }
-//    public void updateCategoryComponents(){
-//        addProductCategoryComboBox.removeAllItems();
-//        editProductCategoryComboBox.removeAllItems();
-//        secondHandCategoryComboBox.removeAllItems();
-//        try{
-//        ResultSet rs = dbConnector.query("SELECT type_id, type_name FROM type ORDER BY 2 ASC");
-//        while(rs.next()){
-//            String categoryID = rs.getString(1);
-//            String categoryName = rs.getString(2);
-//            addProductCategoryComboBox.addItem(new ComboItem(categoryID, categoryName));
-//            editProductCategoryComboBox.addItem(new ComboItem(categoryID, categoryName));
-//            secondHandCategoryComboBox.addItem(new ComboItem(categoryID, categoryName));
-//        }
-//        dbConnector.closeConnection();
-//        }catch(SQLException sqlE){
-//            JOptionPane.showMessageDialog(null, "Table update failed", "Database error", JOptionPane.ERROR_MESSAGE);
-//        }
-//    }
    
 }
