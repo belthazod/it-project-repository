@@ -138,6 +138,7 @@ public class TradeInUI extends javax.swing.JPanel {
         setBackground(new java.awt.Color(240, 177, 78));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Trade-in");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -162,6 +163,7 @@ public class TradeInUI extends javax.swing.JPanel {
         jButton8.setText("Trade/ Swap Item");
         jButton8.setToolTipText("");
 
+        secondHandProductListTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         secondHandProductListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -183,6 +185,8 @@ public class TradeInUI extends javax.swing.JPanel {
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Quantity:");
+
+        jSpinner1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jButton11.setText("Trade/ Swap to new Item");
 
