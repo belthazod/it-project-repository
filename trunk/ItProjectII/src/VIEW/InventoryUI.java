@@ -51,8 +51,6 @@ public class InventoryUI extends javax.swing.JPanel {
         setBackground(new java.awt.Color(240, 177, 78));
 
         inventoryTable.setAutoCreateRowSorter(true);
-        inventoryTable.setBackground(new java.awt.Color(57, 66, 99));
-        inventoryTable.setForeground(new java.awt.Color(255, 255, 255));
         inventoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -76,7 +74,6 @@ public class InventoryUI extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        inventoryTable.setGridColor(new java.awt.Color(204, 204, 204));
         inventoryTable.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane3.setViewportView(inventoryTable);
 
