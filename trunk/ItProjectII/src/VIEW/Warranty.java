@@ -90,12 +90,12 @@ public class Warranty extends javax.swing.JPanel {
                 .addGap(39, 39, 39))
         );
 
-        setBackground(new java.awt.Color(240, 177, 78));
+        setBackground(new java.awt.Color(250, 238, 161));
         setMaximumSize(new java.awt.Dimension(814, 592));
         setPreferredSize(new java.awt.Dimension(814, 592));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
         jLabel3.setText("Warranty");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, -1, -1));
 
@@ -121,7 +121,7 @@ public class Warranty extends javax.swing.JPanel {
         productsListWarrantyTable.getColumnModel().getColumn(0).setMinWidth(0);
         productsListWarrantyTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 930, 230));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 930, 230));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("OR No. :");
@@ -157,7 +157,7 @@ public class Warranty extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 540, -1, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 520, -1, -1));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setText("Search");

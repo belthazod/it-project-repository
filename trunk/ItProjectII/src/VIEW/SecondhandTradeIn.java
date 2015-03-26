@@ -67,7 +67,7 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         TradeButton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(240, 177, 78));
+        setBackground(new java.awt.Color(250, 238, 161));
         setMaximumSize(new java.awt.Dimension(814, 592));
         setPreferredSize(new java.awt.Dimension(814, 592));
 
@@ -153,7 +153,7 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
         jLabel6.setText("Secondhand  & Trade In");
 
         TradeButton.setText("Trade/Swap Item");

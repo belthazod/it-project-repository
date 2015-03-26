@@ -130,6 +130,7 @@ public class AdminUI extends javax.swing.JPanel {
 
         adminCards.setLayout(new java.awt.CardLayout());
 
+        customerPanel.setBackground(new java.awt.Color(250, 238, 161));
         customerPanel.setForeground(new java.awt.Color(255, 255, 255));
         adminCards.add(customerPanel, "customerCard");
         adminCards.add(productsPanel, "productCard");

@@ -36,7 +36,7 @@ public class CriticalProducts extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(160, 156, 162));
+        jPanel1.setBackground(new java.awt.Color(250, 238, 161));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Critical Products");

@@ -51,9 +51,9 @@ public class DeliveryUI extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         deliverySupplierLabel = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(240, 177, 78));
+        setBackground(new java.awt.Color(250, 238, 161));
 
-        jLabel1.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
         jLabel1.setText("Delivery Acknowledgement");
 
         deliveryProductsTable.setAutoCreateRowSorter(true);
