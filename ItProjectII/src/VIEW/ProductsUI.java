@@ -246,12 +246,14 @@ public class ProductsUI extends javax.swing.JPanel {
                 .addContainerGap(164, Short.MAX_VALUE))
         );
 
-        setBackground(new java.awt.Color(240, 177, 78));
+        setBackground(new java.awt.Color(250, 238, 161));
         setMaximumSize(new java.awt.Dimension(814, 592));
         setPreferredSize(new java.awt.Dimension(814, 592));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(240, 177, 78));
+        productsTab.setBackground(new java.awt.Color(250, 238, 161));
+
+        jPanel1.setBackground(new java.awt.Color(250, 238, 161));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -334,7 +336,7 @@ public class ProductsUI extends javax.swing.JPanel {
         jPanel1.add(warrantySpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 60, 30));
         warrantySpinner.setVisible(false);
 
-        reorderLevelEnableRadioButton.setBackground(new java.awt.Color(240, 177, 78));
+        reorderLevelEnableRadioButton.setBackground(new java.awt.Color(250, 238, 161));
         reorderLevelEnableRadioButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         reorderLevelEnableRadioButton.setText("Enabled");
         reorderLevelEnableRadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -346,7 +348,7 @@ public class ProductsUI extends javax.swing.JPanel {
         reorderQuantityLevelGroup.add(reorderLevelEnableRadioButton);
         reorderLevelDisableRadioButton.setSelected(true);
 
-        reorderLevelDisableRadioButton.setBackground(new java.awt.Color(240, 177, 78));
+        reorderLevelDisableRadioButton.setBackground(new java.awt.Color(250, 238, 161));
         reorderLevelDisableRadioButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         reorderLevelDisableRadioButton.setText("Disabled");
         reorderLevelDisableRadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -369,7 +371,7 @@ public class ProductsUI extends javax.swing.JPanel {
         jLabel18.setText("Warranty:");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
 
-        warrantyEnableRadioButton.setBackground(new java.awt.Color(240, 177, 78));
+        warrantyEnableRadioButton.setBackground(new java.awt.Color(250, 238, 161));
         warrantyEnableRadioButton.setText("Enabled");
         warrantyEnableRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -380,7 +382,7 @@ public class ProductsUI extends javax.swing.JPanel {
         warrantyGroup.add(warrantyEnableRadioButton);
         warrantyDisableRadioButton.setSelected(true);
 
-        warrantyDisableRadioButton.setBackground(new java.awt.Color(240, 177, 78));
+        warrantyDisableRadioButton.setBackground(new java.awt.Color(250, 238, 161));
         warrantyDisableRadioButton.setText("Disabled");
         warrantyDisableRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -400,7 +402,7 @@ public class ProductsUI extends javax.swing.JPanel {
 
         productsTab.addTab("Add Product", jPanel1);
 
-        jPanel2.setBackground(new java.awt.Color(240, 177, 78));
+        jPanel2.setBackground(new java.awt.Color(250, 238, 161));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         adminProductsTable.setAutoCreateRowSorter(true);
@@ -456,7 +458,7 @@ public class ProductsUI extends javax.swing.JPanel {
 
         productsTab.addTab("Edit Product", jPanel2);
 
-        jPanel3.setBackground(new java.awt.Color(240, 177, 78));
+        jPanel3.setBackground(new java.awt.Color(250, 238, 161));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         categoryTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

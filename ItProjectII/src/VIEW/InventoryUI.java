@@ -48,7 +48,7 @@ public class InventoryUI extends javax.swing.JPanel {
         jButton20 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(240, 177, 78));
+        setBackground(new java.awt.Color(250, 238, 161));
 
         inventoryTable.setAutoCreateRowSorter(true);
         inventoryTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -91,8 +91,7 @@ public class InventoryUI extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
         jLabel2.setText("Product Inventory");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -129,7 +128,7 @@ public class InventoryUI extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addGap(47, 47, 47)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 67, Short.MAX_VALUE)))
+                    .addGap(0, 69, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 

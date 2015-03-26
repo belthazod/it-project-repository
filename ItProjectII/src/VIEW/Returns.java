@@ -138,9 +138,9 @@ public class Returns extends javax.swing.JPanel {
                 .addGap(35, 35, 35))
         );
 
-        setBackground(new java.awt.Color(240, 177, 78));
+        setBackground(new java.awt.Color(250, 238, 161));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
         jLabel1.setText("Returns & Replacement");
 
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

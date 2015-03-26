@@ -71,7 +71,7 @@ public class TransferUI extends javax.swing.JPanel {
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
-        setBackground(new java.awt.Color(240, 177, 78));
+        setBackground(new java.awt.Color(250, 238, 161));
         setPreferredSize(new java.awt.Dimension(814, 592));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -193,7 +193,7 @@ public class TransferUI extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
         jLabel3.setText("Product Transfer");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -238,7 +238,7 @@ public class TransferUI extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
