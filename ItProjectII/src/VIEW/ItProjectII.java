@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.SplashScreen;
+import java.awt.Toolkit;
 import java.awt.geom.Rectangle2D;
 
 public class ItProjectII {
@@ -33,13 +34,17 @@ public class ItProjectII {
         
        UserLogIn main = new UserLogIn();
         main.setVisible(true);
-        main.setTitle("Ocampo's Battery Trading and Autosupply Inventory System");
+       main.setTitle("Ocampo's Battery Trading and Autosupply Inventory System");
         main.setLocationRelativeTo(null);
         
         
-     //  Main main = new Main();
-    //  main.setVisible(true);
-    //   main.setTitle("Just Another Inventory System");
+      //Main main = new Main();
+    
+     //main.setLocationRelativeTo(null);
+    // main.setVisible(true);
+     //main.setTitle("Just Another Inventory System");
+     
+           
                 
     }
     
