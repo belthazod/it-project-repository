@@ -148,14 +148,14 @@ public class Cart extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Product_id", "Physical Count", "Warranty", "Name", "Description", "Category", "Unit", "Supplier", "Quantity"
+                "Product_id", "Physical Count", "Warranty", "Name", "Description", "Category", "Unit", "Supplier", "Quantity", "Serial No."
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -193,7 +193,7 @@ public class Cart extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(317, 317, 317)
                 .addComponent(jLabel1)
-                .addGap(306, 316, Short.MAX_VALUE))
+                .addGap(306, 334, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -204,7 +204,7 @@ public class Cart extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)))
-                .addContainerGap())
+                .addGap(25, 25, 25))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

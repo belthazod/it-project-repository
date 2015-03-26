@@ -9,11 +9,6 @@ import BEANS.Product;
 import BEANS.SecondHandProduct;
 import CONTROLLERS.UserController;
 import java.awt.CardLayout;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 /**
  *
@@ -73,6 +68,15 @@ public class Main extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jButton13 = new javax.swing.JButton();
         cardWindow = new javax.swing.JPanel();
+        inventoryUI1 = new VIEW.InventoryUI();
+        deliveryUI1 = new VIEW.DeliveryUI();
+        reports1 = new VIEW.Reports();
+        secondhandTradeIn1 = new VIEW.SecondhandTradeIn();
+        warranty1 = new VIEW.Warranty();
+        transferUI1 = new VIEW.TransferUI();
+        returns1 = new VIEW.Returns();
+        newCustomerUI1 = new VIEW.NewCustomerUI();
+        adminUI1 = new VIEW.AdminUI();
         adminMenuButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         userView = new javax.swing.JLabel();
@@ -271,6 +275,15 @@ public class Main extends javax.swing.JFrame {
         cardWindow.setBackground(new java.awt.Color(102, 102, 102));
         cardWindow.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cardWindow.setLayout(new java.awt.CardLayout());
+        cardWindow.add(inventoryUI1, "inventoryCard");
+        cardWindow.add(deliveryUI1, "deliveryCard");
+        cardWindow.add(reports1, "reportsCard");
+        cardWindow.add(secondhandTradeIn1, "tradeInCard");
+        cardWindow.add(warranty1, "warrantyCard");
+        cardWindow.add(transferUI1, "transferCard");
+        cardWindow.add(returns1, "returnsCard");
+        cardWindow.add(newCustomerUI1, "customerCard");
+        cardWindow.add(adminUI1, "adminCard");
 
         adminMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/adminkey.png"))); // NOI18N
         adminMenuButton.setBorderPainted(false);
@@ -316,9 +329,9 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(adminMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 366, Short.MAX_VALUE)
                         .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(432, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,33 +363,22 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(reportsMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(warrantyMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(returnsMenuButton))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(deliveryMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(transferMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(tradeInMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(salesMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 1317, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(reportsMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(warrantyMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deliveryMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(transferMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tradeInMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(salesMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 1317, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -537,9 +539,12 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adminMenuButton;
+    private VIEW.AdminUI adminUI1;
     private javax.swing.JPanel cardWindow;
     private javax.swing.JButton deliveryMenuButton;
+    private VIEW.DeliveryUI deliveryUI1;
     private javax.swing.JDialog editPasswordDialog;
+    private VIEW.InventoryUI inventoryUI1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
@@ -552,16 +557,22 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
+    private VIEW.NewCustomerUI newCustomerUI1;
     private javax.swing.JPasswordField newUserConfirmPasswordInput;
     private javax.swing.JPasswordField newUserPasswordInput;
     private javax.swing.JPasswordField oldUserPasswordInput;
+    private VIEW.Reports reports1;
     private javax.swing.JButton reportsMenuButton;
+    private VIEW.Returns returns1;
     private javax.swing.JButton returnsMenuButton;
     private javax.swing.JButton salesMenuButton;
+    private VIEW.SecondhandTradeIn secondhandTradeIn1;
     private javax.swing.JButton tradeInMenuButton;
     private javax.swing.JButton transferMenuButton;
+    private VIEW.TransferUI transferUI1;
     private static javax.swing.JLabel userLabel;
     private static javax.swing.JLabel userView;
+    private VIEW.Warranty warranty1;
     private javax.swing.JButton warrantyMenuButton;
     // End of variables declaration//GEN-END:variables
 }

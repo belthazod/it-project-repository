@@ -198,42 +198,25 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="112" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="reportsMenuButton" min="-2" pref="112" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="warrantyMenuButton" min="-2" pref="112" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
                           <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
                           <Component id="returnsMenuButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="deliveryMenuButton" min="-2" pref="105" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="transferMenuButton" min="-2" pref="112" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="tradeInMenuButton" min="-2" pref="112" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="salesMenuButton" min="-2" pref="105" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jButton1" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                              <Component id="reportsMenuButton" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                              <Component id="warrantyMenuButton" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                              <Component id="deliveryMenuButton" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
+                              <Component id="transferMenuButton" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                              <Component id="tradeInMenuButton" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                              <Component id="salesMenuButton" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel7" min="-2" pref="1317" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jLabel7" alignment="0" min="-2" pref="1317" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -254,7 +237,7 @@
                   <Component id="warrantyMenuButton" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
-                  <EmptySpace min="731" pref="731" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="731" max="-2" attributes="0"/>
                   <Component id="returnsMenuButton" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
@@ -420,11 +403,11 @@
                               <Component id="adminMenuButton" min="-2" pref="22" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="366" max="32767" attributes="0"/>
                               <Component id="jButton13" min="-2" pref="39" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="78" max="32767" attributes="0"/>
+                      <EmptySpace pref="432" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -486,6 +469,71 @@
               </AuxValues>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
+              <SubComponents>
+                <Component class="VIEW.InventoryUI" name="inventoryUI1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="inventoryCard"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="VIEW.DeliveryUI" name="deliveryUI1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="deliveryCard"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="VIEW.Reports" name="reports1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="reportsCard"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="VIEW.SecondhandTradeIn" name="secondhandTradeIn1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="tradeInCard"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="VIEW.Warranty" name="warranty1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="warrantyCard"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="VIEW.TransferUI" name="transferUI1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="transferCard"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="VIEW.Returns" name="returns1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="returnsCard"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="VIEW.NewCustomerUI" name="newCustomerUI1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="customerCard"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="VIEW.AdminUI" name="adminUI1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="adminCard"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+              </SubComponents>
             </Container>
             <Component class="javax.swing.JButton" name="adminMenuButton">
               <Properties>
