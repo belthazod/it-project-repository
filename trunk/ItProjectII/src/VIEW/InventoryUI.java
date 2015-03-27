@@ -28,6 +28,10 @@ public class InventoryUI extends javax.swing.JPanel {
         inventoryTable.getColumnModel().getColumn(1).setMaxWidth(0);
         inventoryTable.getColumnModel().getColumn(1).setMinWidth(0);
         inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(0);
+        
+        inventoryTable.getColumnModel().getColumn(8).setMaxWidth(0);
+        inventoryTable.getColumnModel().getColumn(8).setMinWidth(0);
+        inventoryTable.getColumnModel().getColumn(8).setPreferredWidth(0);
         c = new Cart();
         cartController = new CartController(Cart.getCartTable(), inventoryTable, c );
         this.criticalProducts = new CriticalProducts();

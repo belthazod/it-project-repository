@@ -112,10 +112,11 @@ public class CartController {
 
                 for(int i = 0; i< cartTableManager.getRowCount(); i++){
                     String productID = cartTableManager.getIDFromTable(i);
-                    String quantity = cartTableManager.getValueAt(i, 6);
+                    String quantity = cartTableManager.getValueAt(i, 7);
+                    String serialNumber = cartTableManager.getValueAt(i,6);
                     String warranty = cartTableManager.getValueAt(i, 2);
                     if(Integer.parseInt(warranty) > 0){
-                    dbConnector.insert("INSERT INTO sales_details(sales_id, product_id, serial_number, warranty_duration) VALUES(?,?,?,?)", new String[]{rs.getString(1), productID, quantity, warranty});
+                    dbConnector.insert("INSERT INTO sales_details(sales_id, product_id, serial_number, warranty_duration) VALUES(?,?,?,?)", new String[]{rs.getString(1), productID, serialNumber, warranty});
                     
                     }else{
                     dbConnector.insert("INSERT INTO sales_details(sales_id, product_id, quantity_sold, warranty_duration) VALUES(?,?,?,?)", new String[]{rs.getString(1), productID, quantity, warranty});
@@ -139,50 +140,50 @@ public class CartController {
         try{
             boolean greaterThanQuantity = false;
             boolean lessThanOrEqualToZero = false;
+            boolean noSerialNumber = false;
+            int quantity = 0;
+            int currentQuantity = 0;
+            int warranty = 0;
+            String serialNumber = "";
             for(int i = 0; i< cartTableManager.getRowCount(); i++){
-                int quantity = Integer.parseInt(cartTableManager.getValueAt(i, 6));
-                int currentQuantity = Integer.parseInt(cartTableManager.getValueAt(i, 1));
+                
+                if(Integer.parseInt(cartTableManager.getValueAt(i, 2)) == 0){
+                    quantity = Integer.parseInt(cartTableManager.getValueAt(i, 7));
+                    currentQuantity = Integer.parseInt(cartTableManager.getValueAt(i, 1));
+                }else if(Integer.parseInt(cartTableManager.getValueAt(i, 2)) > 0){
+                    warranty = Integer.parseInt(cartTableManager.getValueAt(i, 2));
+                    serialNumber = cartTableManager.getValueAt(i,6);
+                }
                 
                 
                 String productName = cartTableManager.getValueAt(i, 3);
-                if(quantity>currentQuantity){
+                if(warranty == 0 && quantity>currentQuantity ){
                     greaterThanQuantity = true;
                     JOptionPane.showMessageDialog(null, "The set quantity sold for " + productName + " exceeds the physical count in stock. \n Please check the quantity before proceeding.", "Input Error", JOptionPane.ERROR_MESSAGE);
                     break;
                 }
-                if(quantity <= 0 ){
+                if(warranty == 0 && quantity <= 0){
                     lessThanOrEqualToZero = true;
                     JOptionPane.showMessageDialog(null, "The set quantity sold for " + productName + " cannot be negative or zero. \n Please check the quantity before proceeding.", "Input Error", JOptionPane.ERROR_MESSAGE);
                      break;
                 }
+                if(warranty > 0 && serialNumber.equals("")){
+                    noSerialNumber = true;
+                    JOptionPane.showMessageDialog(null, "Please input the serial number for " + productName + ".", "Input Error", JOptionPane.ERROR_MESSAGE);
+                     break;
+                }
+                
             }
             if(cartTableManager.getRowCount() == 0){
                 JOptionPane.showMessageDialog(null, "There are no items placed in the cart. Cannot checkout", "Input Error", JOptionPane.ERROR_MESSAGE);
             }
-            if(!greaterThanQuantity && !lessThanOrEqualToZero){
-                boolean hasWarranty = false;
-                for(int i = 0; i< cartTableManager.getRowCount(); i++){
-                    int warranty =  Integer.parseInt(cartTableManager.getValueAt(i, 2));
-                    
-                    if(warranty > 0){
-                        hasWarranty = true;
-                    }
-                }
-                
-                if(hasWarranty){
-                    receiptInfoLabel1.setVisible(true);
-                    receiptInfoLabel2.setVisible(true);
-                    receiptNumberInput.setVisible(true);
-                }else{
-                    receiptInfoLabel1.setVisible(false);
-                    receiptInfoLabel2.setVisible(false);
-                    receiptNumberInput.setVisible(false);
-                }
+            if(!greaterThanQuantity && !lessThanOrEqualToZero && !noSerialNumber && cartTableManager.getRowCount() != 0){
                 salesTypeDialog.setVisible(true);
             }
        }catch(NumberFormatException | NullPointerException nfe){
-           nfe.printStackTrace();
            JOptionPane.showMessageDialog(null, "Please set the quantity of all items before proceeding.", "Input Error", JOptionPane.ERROR_MESSAGE);
+       }catch(Exception e){
+           e.printStackTrace();
        }
     }
     

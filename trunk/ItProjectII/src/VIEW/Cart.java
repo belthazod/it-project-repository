@@ -19,7 +19,7 @@ public class Cart extends javax.swing.JFrame {
      */
     public Cart() {
         initComponents();
-        cartTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        /*cartTable.getColumnModel().getColumn(0).setMaxWidth(0);
         cartTable.getColumnModel().getColumn(0).setMinWidth(0);
         cartTable.getColumnModel().getColumn(0).setPreferredWidth(0);
         
@@ -29,7 +29,7 @@ public class Cart extends javax.swing.JFrame {
         
         cartTable.getColumnModel().getColumn(2).setMaxWidth(0);
         cartTable.getColumnModel().getColumn(2).setMinWidth(0);
-        cartTable.getColumnModel().getColumn(2).setPreferredWidth(0);
+        cartTable.getColumnModel().getColumn(2).setPreferredWidth(0);*/
         
         cartController = new CartController(cartTable, salesTypeDialog, receiptInfoLabel1, receiptInfoLabel2, receiptNumberInput);
     }
@@ -137,6 +137,7 @@ public class Cart extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
 
         jPanel1.setBackground(new java.awt.Color(250, 238, 161));
 
@@ -148,14 +149,14 @@ public class Cart extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Product_id", "Physical Count", "Warranty", "Name", "Description", "Category", "Unit", "Supplier", "Quantity", "Serial No."
+                "Product_id", "Physical Count", "Warranty", "Name", "Description", "Unit", "Serial No.", "Quantity"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, true, true
+                false, false, false, false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -195,15 +196,13 @@ public class Cart extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(306, 334, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
                         .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addGap(467, 467, 467)
+                        .addComponent(jButton1))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
         jPanel1Layout.setVerticalGroup(
