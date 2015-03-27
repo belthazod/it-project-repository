@@ -9,6 +9,7 @@ import BEANS.ComboItem;
 import VIEW.SecondhandTradeIn;
 import CONTROLLERS.CategoryController;
 import CONTROLLERS.ProductController;
+import UTIL.InputValidator;
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -43,6 +44,10 @@ public class ProductsUI extends javax.swing.JPanel {
         }catch(NullPointerException npe){
             npe.printStackTrace();
         }
+        InputValidator.enabler(adminProductsTable, editProductButton);
+        InputValidator.enabler(adminProductsTable, deleteProductButton);
+        InputValidator.enabler(categoryTable, jButton4);
+        InputValidator.enabler(categoryTable, editCategoryButton);
     }
 
     /**
@@ -440,6 +445,7 @@ public class ProductsUI extends javax.swing.JPanel {
 
         editProductButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         editProductButton.setText("Edit Product");
+        editProductButton.setEnabled(false);
         editProductButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editProductButtonActionPerformed(evt);
@@ -449,6 +455,7 @@ public class ProductsUI extends javax.swing.JPanel {
 
         deleteProductButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         deleteProductButton.setText("Delete Product");
+        deleteProductButton.setEnabled(false);
         deleteProductButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteProductButtonActionPerformed(evt);
@@ -505,6 +512,7 @@ public class ProductsUI extends javax.swing.JPanel {
 
         editCategoryButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         editCategoryButton.setText("Edit Category");
+        editCategoryButton.setEnabled(false);
         editCategoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editCategoryButtonActionPerformed(evt);
@@ -514,6 +522,7 @@ public class ProductsUI extends javax.swing.JPanel {
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setText("Delete Category");
+        jButton4.setEnabled(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);

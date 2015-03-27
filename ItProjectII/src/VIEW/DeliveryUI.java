@@ -25,6 +25,7 @@ public class DeliveryUI extends javax.swing.JPanel {
         initComponents();
         deliveryController = new DeliveryController(deliveryProductsTable, deliveryTable, deliveryProductFilterSupplierComboBox, deliverySupplierLabel);
         InputValidator.enabler(deliveryProductsTable, addToListButton);
+        InputValidator.enabler(deliveryTable, removeFromListButton);
     }
 
     /**
@@ -132,6 +133,7 @@ public class DeliveryUI extends javax.swing.JPanel {
 
         removeFromListButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         removeFromListButton.setText("Remove From List");
+        removeFromListButton.setEnabled(false);
         removeFromListButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeFromListButtonActionPerformed(evt);

@@ -6,6 +6,7 @@
 package VIEW;
 
 import CONTROLLERS.SupplierController;
+import UTIL.InputValidator;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -29,6 +30,8 @@ public class SupplierUI extends javax.swing.JPanel {
                 ProductsUI.getAddProductSupplierComboBox(), 
                 ProductsUI.getEditProductSupplierComboBox(),
                 DeliveryUI.getDeliveryProductFilterSupplierComboBox());
+        InputValidator.enabler(supplierListTable, editSupplierButton);
+        InputValidator.enabler(supplierListTable, deleteSupplierButton);
     }
 
     /**
@@ -192,6 +195,7 @@ public class SupplierUI extends javax.swing.JPanel {
 
         deleteSupplierButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         deleteSupplierButton.setText("Delete Supplier");
+        deleteSupplierButton.setEnabled(false);
         deleteSupplierButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteSupplierButtonActionPerformed(evt);
@@ -246,6 +250,7 @@ public class SupplierUI extends javax.swing.JPanel {
 
         editSupplierButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         editSupplierButton.setText("Edit Supplier");
+        editSupplierButton.setEnabled(false);
         editSupplierButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editSupplierButtonActionPerformed(evt);

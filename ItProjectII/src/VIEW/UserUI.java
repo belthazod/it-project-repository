@@ -6,6 +6,7 @@
 package VIEW;
 
 import CONTROLLERS.UserController;
+import UTIL.InputValidator;
 
 /**
  *
@@ -19,6 +20,7 @@ public class UserUI extends javax.swing.JPanel {
     public UserUI() {
         initComponents();
         userController = new UserController(userTable, usernameInput, nameInput, retype, passwordInput, editAdminDialog, oldAdminPasswordInput, newAdminPasswordInput, newAdminConfirmPasswordInput);
+        InputValidator.enabler(userTable, deleteUserButton);
     }
 
     /** 
@@ -134,7 +136,8 @@ public class UserUI extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(250, 238, 161));
 
-        jLabel1.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("User Panel");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -171,6 +174,7 @@ public class UserUI extends javax.swing.JPanel {
 
         deleteUserButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         deleteUserButton.setText("Delete");
+        deleteUserButton.setEnabled(false);
         deleteUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteUserButtonActionPerformed(evt);

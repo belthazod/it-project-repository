@@ -34,6 +34,7 @@ public class TransferUI extends javax.swing.JPanel {
         initComponents();
         transferController = new TransferController(transferProductsTable, truckTable, transferFromComboBox, transferToComboBox);
         InputValidator.enabler(transferProductsTable, addToTruckButton);
+        InputValidator.enabler(truckTable, removeItemButton);
     }
 
     
@@ -187,6 +188,7 @@ public class TransferUI extends javax.swing.JPanel {
 
         removeItemButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         removeItemButton.setText("Remove Item");
+        removeItemButton.setEnabled(false);
         removeItemButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeItemButtonActionPerformed(evt);

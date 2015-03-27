@@ -7,6 +7,7 @@ package VIEW;
 
 
 import CONTROLLERS.CustomerController;
+import UTIL.InputValidator;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -28,6 +29,8 @@ public class CustomerUI extends javax.swing.JPanel {
         customerListTable.getColumnModel().getColumn(0).setMaxWidth(0);
         customerListTable.getColumnModel().getColumn(0).setMinWidth(0);
         customerListTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        InputValidator.enabler(customerListTable, editCustomerButton);
+        InputValidator.enabler(customerListTable, deleteCustomerButton);
     }
 
     /**
@@ -231,6 +234,7 @@ public class CustomerUI extends javax.swing.JPanel {
 
         deleteCustomerButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         deleteCustomerButton.setText("Delete Customer");
+        deleteCustomerButton.setEnabled(false);
         deleteCustomerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteCustomerButtonActionPerformed(evt);
@@ -240,6 +244,7 @@ public class CustomerUI extends javax.swing.JPanel {
 
         editCustomerButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         editCustomerButton.setText("Edit Customer");
+        editCustomerButton.setEnabled(false);
         editCustomerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editCustomerButtonActionPerformed(evt);

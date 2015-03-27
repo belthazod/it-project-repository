@@ -32,6 +32,8 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         initComponents();
         secHandTradeInController = new SecHandTradeInController(secondHandProductsListTable);
         InputValidator.enabler(secondHandProductsListTable, TradeButton);
+        InputValidator.enabler(secondHandProductsListTable, jButton1);
+        InputValidator.enabler(secondHandProductsListTable, jButton3);
         this.productTrade = new ProductTrade();
         }catch(Exception e){
             e.printStackTrace();
@@ -135,6 +137,7 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         secondHandProductsListTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 
         jButton1.setText("Edit Item");
+        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -142,6 +145,7 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         });
 
         jButton3.setText("Delete Item");
+        jButton3.setEnabled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -225,7 +229,8 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
-                    .addComponent(jButton3)))
+                    .addComponent(jButton3))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     
