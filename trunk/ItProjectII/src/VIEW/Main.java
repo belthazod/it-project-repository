@@ -8,8 +8,11 @@ package VIEW;
 import BEANS.Product;
 import BEANS.SecondHandProduct;
 import CONTROLLERS.UserController;
+import UTIL.DatabaseConnector;
 import java.awt.CardLayout;
+import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Belthazod
@@ -56,6 +59,11 @@ public class Main extends javax.swing.JFrame {
         newUserConfirmPasswordInput = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        adminAccessDialog = new javax.swing.JDialog();
+        jLabel10 = new javax.swing.JLabel();
+        adminPasswordInput = new javax.swing.JPasswordField();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         deliveryMenuButton = new javax.swing.JButton();
@@ -137,8 +145,8 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(editPasswordDialogLayout.createSequentialGroup()
                             .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5))
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel4))
                             .addGap(49, 49, 49)
                             .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(userLabel)
@@ -151,12 +159,12 @@ public class Main extends javax.swing.JFrame {
             .addGroup(editPasswordDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(userLabel))
+                    .addComponent(userLabel)
+                    .addComponent(jLabel3))
                 .addGap(29, 29, 29)
                 .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(oldUserPasswordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(oldUserPasswordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(editPasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -170,6 +178,60 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton3))
                 .addContainerGap(75, Short.MAX_VALUE))
+        );
+
+        adminAccessDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        adminAccessDialog.setTitle("Aministrator Privilege Needed");
+        adminAccessDialog.setBounds(new java.awt.Rectangle(0, 0, 400, 140));
+        adminAccessDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+        adminAccessDialog.setLocationRelativeTo(null);
+
+        jLabel10.setText("Enter Admin Password:");
+
+        jButton4.setText("Ok");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Cancel");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout adminAccessDialogLayout = new javax.swing.GroupLayout(adminAccessDialog.getContentPane());
+        adminAccessDialog.getContentPane().setLayout(adminAccessDialogLayout);
+        adminAccessDialogLayout.setHorizontalGroup(
+            adminAccessDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(adminAccessDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(adminAccessDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(adminAccessDialogLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4))
+                    .addGroup(adminAccessDialogLayout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(adminPasswordInput, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        adminAccessDialogLayout.setVerticalGroup(
+            adminAccessDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(adminAccessDialogLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(adminAccessDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(adminPasswordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(adminAccessDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -436,7 +498,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_salesMenuButtonActionPerformed
 
     private void adminMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminMenuButtonActionPerformed
-        card.show(cardWindow, "adminCard");
+        adminAccessDialog.setVisible(true);
+        
+        
     }//GEN-LAST:event_adminMenuButtonActionPerformed
 
     private void transferMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferMenuButtonActionPerformed
@@ -490,6 +554,27 @@ public class Main extends javax.swing.JFrame {
     private void adminMenuButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminMenuButtonMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_adminMenuButtonMouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        DatabaseConnector dbConnector = DatabaseConnector.getInstance();
+        try{
+            ResultSet rs = dbConnector.query("SELECT password FROM USERS where username = ' '");
+            rs.next();
+            System.out.print("password:" + rs.getString((1)) + " " + adminPasswordInput.getPassword());
+            if(new String(adminPasswordInput.getPassword()).equals(rs.getString(1))){
+                card.show(cardWindow, "adminCard");
+                adminAccessDialog.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "Incorrect Administrator Password.", "Incorrect Password", JOptionPane.ERROR_MESSAGE);
+            }
+        }catch(Exception e){
+            
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        adminAccessDialog.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
         static String host = "jdbc:mysql://localhost:3306/inventory";
         static String uName = "root";
         static String uPass = "";
@@ -544,7 +629,9 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog adminAccessDialog;
     private javax.swing.JButton adminMenuButton;
+    private javax.swing.JPasswordField adminPasswordInput;
     private VIEW.AdminUI adminUI1;
     private javax.swing.JPanel cardWindow;
     private javax.swing.JButton deliveryMenuButton;
@@ -555,7 +642,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

@@ -35,6 +35,9 @@ public class TransferUI extends javax.swing.JPanel {
         transferController = new TransferController(transferProductsTable, truckTable, transferFromComboBox, transferToComboBox);
         InputValidator.enabler(transferProductsTable, addToTruckButton);
         InputValidator.enabler(truckTable, removeItemButton);
+        transferProductsTable.getColumnModel().getColumn(5).setMaxWidth(0);
+        transferProductsTable.getColumnModel().getColumn(5).setMinWidth(0);
+        transferProductsTable.getColumnModel().getColumn(5).setPreferredWidth(0);
     }
 
     
@@ -277,12 +280,8 @@ public class TransferUI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-        String host = "jdbc:mysql://localhost:3306/inventory";
-        String uName = "root";
-        String uPass = "";
     private void addToTruckButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToTruckButtonActionPerformed
         transferController.addSelectedToTruck();
-
     }//GEN-LAST:event_addToTruckButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -302,8 +301,6 @@ public class TransferUI extends javax.swing.JPanel {
 
     }//GEN-LAST:event_truckTableKeyTyped
 
-    
-    
     public static JTable getTransferProductsTable(){
         return transferProductsTable;
     }
