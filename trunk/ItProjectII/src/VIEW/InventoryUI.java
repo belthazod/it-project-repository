@@ -6,6 +6,7 @@
 package VIEW;
 
 import CONTROLLERS.CartController;
+import UTIL.InputValidator;
 import javax.swing.JTable;
 
 /**
@@ -35,6 +36,7 @@ public class InventoryUI extends javax.swing.JPanel {
         c = new Cart();
         cartController = new CartController(Cart.getCartTable(), inventoryTable, c );
         this.criticalProducts = new CriticalProducts();
+        InputValidator.enabler(inventoryTable, jButton14);
     }
 
     /**
@@ -82,6 +84,7 @@ public class InventoryUI extends javax.swing.JPanel {
         jScrollPane3.setViewportView(inventoryTable);
 
         jButton14.setText("Add to bought items");
+        jButton14.setEnabled(false);
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
