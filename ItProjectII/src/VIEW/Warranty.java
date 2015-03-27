@@ -6,7 +6,10 @@
 package VIEW;
 
 import BEANS.Product;
+import CONTROLLERS.WarrantyController;
+import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,12 +17,13 @@ import javax.swing.table.DefaultTableModel;
  * @author weak_2030
  */
 public class Warranty extends javax.swing.JPanel {
-
+    WarrantyController warrantyController;
     /**
      * Creates new form Warranty
      */
     public Warranty() {
         initComponents();
+        warrantyController = new WarrantyController(warrantyTable, serialNumberInput, productNameLabel, durationLabel, salesDateLabel);
     }
 
     /**
@@ -37,15 +41,17 @@ public class Warranty extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        productsListWarrantyTable = new javax.swing.JTable();
+        warrantyTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        serialNumberInput = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        searchSerialNumberButton = new javax.swing.JButton();
+        productNameLabel = new javax.swing.JLabel();
+        durationLabel = new javax.swing.JLabel();
+        salesDateLabel = new javax.swing.JLabel();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,15 +99,12 @@ public class Warranty extends javax.swing.JPanel {
         setBackground(new java.awt.Color(250, 238, 161));
         setMaximumSize(new java.awt.Dimension(814, 592));
         setPreferredSize(new java.awt.Dimension(814, 592));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Warranty");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, -1, -1));
 
-        productsListWarrantyTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        productsListWarrantyTable.setModel(new javax.swing.table.DefaultTableModel(
+        warrantyTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        warrantyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -117,39 +120,28 @@ public class Warranty extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(productsListWarrantyTable);
-        productsListWarrantyTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        productsListWarrantyTable.getColumnModel().getColumn(0).setMinWidth(0);
-        productsListWarrantyTable.getColumnModel().getColumn(0).setPreferredWidth(0);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 930, 230));
+        jScrollPane1.setViewportView(warrantyTable);
+        warrantyTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        warrantyTable.getColumnModel().getColumn(0).setMinWidth(0);
+        warrantyTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("OR No. :");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
+        jLabel2.setText("Serial Number:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        serialNumberInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                serialNumberInputActionPerformed(evt);
             }
         });
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 240, -1));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Product ID:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Product Name: ");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Valid For:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Sales Date:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Accept");
@@ -158,53 +150,113 @@ public class Warranty extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 520, -1, -1));
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton3.setText("Search");
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, -1, -1));
+        searchSerialNumberButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        searchSerialNumberButton.setText("Search");
+        searchSerialNumberButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchSerialNumberButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(470, 470, 470)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 930, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(860, 860, 860)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(17, 17, 17)
+                                .addComponent(serialNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(searchSerialNumberButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel7))
+                                .addGap(13, 13, 13)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(salesDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(productNameLabel)
+                                        .addGap(276, 276, 276)
+                                        .addComponent(jLabel6)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(durationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel3)
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(serialNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchSerialNumberButton))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(durationLabel))
+                    .addComponent(jLabel5)
+                    .addComponent(productNameLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(salesDateLabel)))
+                .addGap(90, 90, 90)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jButton1))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void serialNumberInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serialNumberInputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_serialNumberInputActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-    private static void deleteAllRows(final JTable table) {
-        
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        for(int row =0; row < model.getRowCount(); ) {
-            model.removeRow(0);
-        
-        }
-    }
-    
-    public static void updateProductsListWarrantyTable(){
-        deleteAllRows(productsListWarrantyTable);
-        DefaultTableModel model = (DefaultTableModel) productsListWarrantyTable.getModel();
 
-        for(Product product: Main.productList){
-            model.addRow(new Object[]{product.getProductID(), product.getName(), product.getDescription(), product.getTypeName(), product.getPhysicalCount()});
-        }
-    }
+    private void searchSerialNumberButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchSerialNumberButtonActionPerformed
+        warrantyController.searchSerialNumber();
+    }//GEN-LAST:event_searchSerialNumberButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel durationLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField2;
-    private static javax.swing.JTable productsListWarrantyTable;
+    private javax.swing.JLabel productNameLabel;
+    private javax.swing.JLabel salesDateLabel;
+    private javax.swing.JButton searchSerialNumberButton;
+    private javax.swing.JTextField serialNumberInput;
+    private static javax.swing.JTable warrantyTable;
     // End of variables declaration//GEN-END:variables
 }

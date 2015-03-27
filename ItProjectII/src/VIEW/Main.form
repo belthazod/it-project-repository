@@ -175,7 +175,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" min="-2" pref="710" max="-2" attributes="0"/>
+              <Component id="jPanel1" min="-2" pref="726" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -196,28 +196,23 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
-                          <Component id="returnsMenuButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButton1" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                          <Component id="reportsMenuButton" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                          <Component id="warrantyMenuButton" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                          <Component id="deliveryMenuButton" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
+                          <Component id="transferMenuButton" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                          <Component id="tradeInMenuButton" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                          <Component id="salesMenuButton" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButton1" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
-                              <Component id="reportsMenuButton" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
-                              <Component id="warrantyMenuButton" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
-                              <Component id="deliveryMenuButton" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                              <Component id="transferMenuButton" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
-                              <Component id="tradeInMenuButton" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
-                              <Component id="salesMenuButton" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel7" min="-2" pref="1317" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="returnsMenuButton" min="-2" pref="112" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel7" min="-2" pref="1317" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -225,36 +220,44 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="552" pref="552" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="552" pref="552" max="-2" attributes="0"/>
+                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="196" pref="196" max="-2" attributes="0"/>
+                          <Component id="reportsMenuButton" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="374" pref="374" max="-2" attributes="0"/>
+                          <Component id="warrantyMenuButton" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="98" pref="98" max="-2" attributes="0"/>
+                          <Component id="deliveryMenuButton" min="-2" pref="92" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="463" pref="463" max="-2" attributes="0"/>
+                          <Component id="transferMenuButton" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="285" pref="285" max="-2" attributes="0"/>
+                          <Component id="tradeInMenuButton" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="salesMenuButton" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="returnsMenuButton" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
-                  <EmptySpace min="196" pref="196" max="-2" attributes="0"/>
-                  <Component id="reportsMenuButton" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel7" min="-2" pref="742" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="374" pref="374" max="-2" attributes="0"/>
-                  <Component id="warrantyMenuButton" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="731" max="-2" attributes="0"/>
-                  <Component id="returnsMenuButton" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="98" pref="98" max="-2" attributes="0"/>
-                  <Component id="deliveryMenuButton" min="-2" pref="92" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="463" pref="463" max="-2" attributes="0"/>
-                  <Component id="transferMenuButton" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="285" pref="285" max="-2" attributes="0"/>
-                  <Component id="tradeInMenuButton" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <Component id="jLabel7" min="-2" pref="742" max="-2" attributes="0"/>
-              <Component id="salesMenuButton" min="-2" pref="92" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -373,7 +376,18 @@
         </Component>
         <Component class="javax.swing.JButton" name="returnsMenuButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Returns"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/UI ICONS/returns.png"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+            <Property name="borderPainted" type="boolean" value="false"/>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
+            <Property name="opaque" type="boolean" value="false"/>
+            <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/UI ICONS/returns-hover.png"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="returnsMenuButtonActionPerformed"/>
