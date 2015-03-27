@@ -198,7 +198,7 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(461, 461, 461)
                         .addComponent(jLabel6)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,8 +254,23 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
     }//GEN-LAST:event_secondHandCategoryComboBoxActionPerformed
 
     private void addToItemListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToItemListButtonActionPerformed
-        secHandTradeInController.addSecondHand(itemNameInput, descriptionInput, secondHandCategoryComboBox);
-        secHandTradeInController.updateSecondHandTable();
+        String s = "";
+            String name = itemNameInput.getText();
+            boolean exists = false;
+            for (int i=0; i<secondHandProductsListTable.getRowCount(); i++) {    
+            s = secondHandProductsListTable.getValueAt(i, 1).toString().trim();
+            if(name.equals(s)){
+            exists = true;
+            break;
+            }
+            }
+            if(!exists){ 
+            secHandTradeInController.addSecondHand(itemNameInput, descriptionInput, secondHandCategoryComboBox);
+            secHandTradeInController.updateSecondHandTable();
+            }else{ 
+            JOptionPane.showMessageDialog(null, "Item already exist.","message",JOptionPane.PLAIN_MESSAGE);
+            }          
+        
         
     }//GEN-LAST:event_addToItemListButtonActionPerformed
 
