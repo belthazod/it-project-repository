@@ -60,6 +60,7 @@ public class CustomerUI extends javax.swing.JPanel {
         deleteCustomerButton = new javax.swing.JButton();
         editCustomerButton = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         editCustomerDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         editCustomerDialog.setTitle("Edit Customer Information");
@@ -221,7 +222,7 @@ public class CustomerUI extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(customerListTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 794, 182));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 794, 182));
 
         addCustomerButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         addCustomerButton.setText("Add Customer");
@@ -230,7 +231,7 @@ public class CustomerUI extends javax.swing.JPanel {
                 addCustomerButtonActionPerformed(evt);
             }
         });
-        add(addCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 100, -1, -1));
+        add(addCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 150, -1, -1));
 
         deleteCustomerButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         deleteCustomerButton.setText("Delete Customer");
@@ -240,7 +241,7 @@ public class CustomerUI extends javax.swing.JPanel {
                 deleteCustomerButtonActionPerformed(evt);
             }
         });
-        add(deleteCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 330, -1, -1));
+        add(deleteCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 380, -1, -1));
 
         editCustomerButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         editCustomerButton.setText("Edit Customer");
@@ -250,10 +251,14 @@ public class CustomerUI extends javax.swing.JPanel {
                 editCustomerButtonActionPerformed(evt);
             }
         });
-        add(editCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 330, -1, -1));
+        add(editCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 380, -1, -1));
 
         jButton7.setText("Edit Customer");
         add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("e.g. 074-555-444, 09091234567, +639091234567");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void contactNumberInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactNumberInputActionPerformed
@@ -335,6 +340,7 @@ public class CustomerUI extends javax.swing.JPanel {
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;

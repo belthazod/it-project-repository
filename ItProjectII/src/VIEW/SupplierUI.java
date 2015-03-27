@@ -60,6 +60,7 @@ public class SupplierUI extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         supplierListTable = new javax.swing.JTable();
         editSupplierButton = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         editSupplierDialog.setTitle("Edit Supplier Information");
         editSupplierDialog.setBounds(new java.awt.Rectangle(0, 0, 400, 200));
@@ -160,8 +161,8 @@ public class SupplierUI extends javax.swing.JPanel {
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 32, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Contact Number:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 73, -1, -1));
+        jLabel2.setText("e.g. 074-555-444, 09091234567, +639091234567");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
 
         supplierNameInput.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         supplierNameInput.addActionListener(new java.awt.event.ActionListener() {
@@ -191,7 +192,7 @@ public class SupplierUI extends javax.swing.JPanel {
                 addSupplierButtonActionPerformed(evt);
             }
         });
-        add(addSupplierButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 100, -1, -1));
+        add(addSupplierButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 150, -1, -1));
 
         deleteSupplierButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         deleteSupplierButton.setText("Delete Supplier");
@@ -201,7 +202,7 @@ public class SupplierUI extends javax.swing.JPanel {
                 deleteSupplierButtonActionPerformed(evt);
             }
         });
-        add(deleteSupplierButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 360, -1, -1));
+        add(deleteSupplierButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 400, -1, -1));
 
         supplierListTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         supplierListTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -246,7 +247,7 @@ public class SupplierUI extends javax.swing.JPanel {
             supplierListTable.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 794, 185));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 794, 185));
 
         editSupplierButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         editSupplierButton.setText("Edit Supplier");
@@ -256,7 +257,11 @@ public class SupplierUI extends javax.swing.JPanel {
                 editSupplierButtonActionPerformed(evt);
             }
         });
-        add(editSupplierButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 360, -1, -1));
+        add(editSupplierButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 400, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("Contact Number:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 73, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
         String host = "jdbc:mysql://localhost:3306/inventory";
@@ -346,6 +351,7 @@ public class SupplierUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton saveEditedSupplierButton;
     protected static javax.swing.JTextField supplierContactNumberEditInput;
