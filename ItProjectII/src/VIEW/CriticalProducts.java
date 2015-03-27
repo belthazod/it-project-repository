@@ -18,6 +18,9 @@ public class CriticalProducts extends javax.swing.JFrame {
      */
     public CriticalProducts() {
         initComponents();
+        criticalProductsTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        criticalProductsTable.getColumnModel().getColumn(0).setMinWidth(0);
+        criticalProductsTable.getColumnModel().getColumn(0).setPreferredWidth(0);
     }
 
     /**
@@ -46,14 +49,14 @@ public class CriticalProducts extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Product_id", "Name", "Description", "Category", "Unit", "Supplier", "Quantity"
+                "Product_id", "Name", "Category", "Unit", "Supplier", "Quantity"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

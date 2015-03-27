@@ -50,7 +50,7 @@ public class CartController {
     
     public void addToCart(){
         try{
-            int currentQuantity = Integer.parseInt(inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 7));
+            int currentQuantity = Integer.parseInt(inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 6));
             String productName = inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 2);
             if(currentQuantity != 0){
 
@@ -68,12 +68,11 @@ public class CartController {
                         JOptionPane.ERROR_MESSAGE);
                 }else{
                     String name = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 2);
-                    String description = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 3);
-                    String unit = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 5);
-                    String quantity = (String)  inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 7);
+                    String unit = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 4);
+                    String quantity = (String)  inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 6);
                     String warranty = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 1);
                     
-                    cartTableManager.addRowContent(new String[]{productID, quantity, warranty, name, description, unit, "", ""});
+                    cartTableManager.addRowContent(new String[]{productID, quantity, warranty, name, unit, "", ""});
                     cart.setVisible(true);
                 }
             }else{
@@ -112,8 +111,8 @@ public class CartController {
 
                 for(int i = 0; i< cartTableManager.getRowCount(); i++){
                     String productID = cartTableManager.getIDFromTable(i);
-                    String quantity = cartTableManager.getValueAt(i, 7);
-                    String serialNumber = cartTableManager.getValueAt(i,6);
+                    String quantity = cartTableManager.getValueAt(i, 6);
+                    String serialNumber = cartTableManager.getValueAt(i,5);
                     String warranty = cartTableManager.getValueAt(i, 2);
                     if(Integer.parseInt(warranty) > 0){
                     dbConnector.insert("INSERT INTO sales_details(sales_id, product_id, serial_number, warranty_duration) VALUES(?,?,?,?)", new String[]{rs.getString(1), productID, serialNumber, warranty});
@@ -148,11 +147,11 @@ public class CartController {
             for(int i = 0; i< cartTableManager.getRowCount(); i++){
                 
                 if(Integer.parseInt(cartTableManager.getValueAt(i, 2)) == 0){
-                    quantity = Integer.parseInt(cartTableManager.getValueAt(i, 7));
+                    quantity = Integer.parseInt(cartTableManager.getValueAt(i, 6));
                     currentQuantity = Integer.parseInt(cartTableManager.getValueAt(i, 1));
                 }else if(Integer.parseInt(cartTableManager.getValueAt(i, 2)) > 0){
                     warranty = Integer.parseInt(cartTableManager.getValueAt(i, 2));
-                    serialNumber = cartTableManager.getValueAt(i,6);
+                    serialNumber = cartTableManager.getValueAt(i,5);
                 }
                 
                 

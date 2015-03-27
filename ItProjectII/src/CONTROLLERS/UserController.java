@@ -179,6 +179,7 @@ public class UserController {
                     if(rs.getString(1).equals(oldPassword)){
                         dbConnector.update("UPDATE users SET password = ? where username = ?;", new String[]{ newPassword }, " ");
                         JOptionPane.showMessageDialog(null, "Admin credentials updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        editAdminDialog.dispose();
                     }else{
                         JOptionPane.showMessageDialog(null, "Incorrect administrator password.", "Input error.", JOptionPane.ERROR_MESSAGE);
                     }

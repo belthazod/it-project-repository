@@ -62,20 +62,20 @@ public class DeliveryUI extends javax.swing.JPanel {
         deliveryProductsTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         deliveryProductsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Product ID", "Name", "Description", "Category", "Unit", "Current Quantity", "ReorderQuantity Level"
+                "Product ID", "Name", "Category", "Unit", "Current Quantity", "ReorderQuantity Level"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -101,14 +101,14 @@ public class DeliveryUI extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Product ID", "Name", "Description", "Unit of measurement", "Quantity delivered"
+                "Product ID", "Name", "Unit of measurement", "Quantity delivered"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {

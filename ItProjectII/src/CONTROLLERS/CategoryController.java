@@ -12,6 +12,7 @@ import UTIL.InputValidator;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -26,16 +27,24 @@ public class CategoryController {
     private JComboBox<ComboItem> addProductCategoryComboBox;
     private JComboBox<ComboItem> editProductCategoryComboBox;
     private JComboBox<ComboItem> secondHandCategoryComboBox;
+    private JDialog categoryEditDialog;
+    private JLabel categoryIDLabel;
+    private JTextField categoryNameEditInput;
     private DatabaseConnector dbConnector = DatabaseConnector.getInstance();
     
     public CategoryController(JTable categoryTable, 
             JComboBox<ComboItem> addProductCategoryComboBox, 
             JComboBox<ComboItem> editProductCategoryComboBox, 
-            JComboBox<ComboItem> secondHandCategoryComboBox){
+            JComboBox<ComboItem> secondHandCategoryComboBox,
+            JLabel categoryIDLabel, JTextField categoryNameEditInput,
+            JDialog categoryEditDialog){
         categoryTableManager = new TableManager(categoryTable);
         this.addProductCategoryComboBox = addProductCategoryComboBox;
         this.editProductCategoryComboBox = editProductCategoryComboBox;
         this.secondHandCategoryComboBox = secondHandCategoryComboBox;
+        this.categoryIDLabel = categoryIDLabel;
+        this.categoryNameEditInput = categoryNameEditInput;
+        this.categoryEditDialog = categoryEditDialog;
     }
     
     public void addCategory(JTextField categoryName){
@@ -86,6 +95,23 @@ public class CategoryController {
             sqlE.printStackTrace();
             JOptionPane.showMessageDialog(null, "Editing failed", "Database error", JOptionPane.ERROR_MESSAGE);
             return false;
+        }
+    }
+    public void editCategory(){
+        try{
+            String categoryID = categoryIDLabel.getText();
+            String categoryName = categoryNameEditInput.getText();
+            if(!categoryName.equals("")){
+                dbConnector.update("UPDATE type SET type_name = ? WHERE type_ID = ?", new String[]{categoryName}, categoryID);
+                JOptionPane.showMessageDialog(null, "Category details updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                InputValidator.clearInput(categoryNameEditInput);
+                updateCategoryTable();
+                categoryEditDialog.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "Category Name cannot be empty.", "Input error", JOptionPane.ERROR_MESSAGE);
+            }
+        }catch(SQLException sqlE){
+            sqlE.printStackTrace();
         }
     }
     public void updateCategoryComponents(){

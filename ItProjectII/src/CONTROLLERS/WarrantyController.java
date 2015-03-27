@@ -25,27 +25,30 @@ public class WarrantyController {
     JLabel productNameLabel;
     JLabel durationLabel;
     JLabel salesDateLabel;
-    
-    public WarrantyController(JTable warrantyTable, JTextField serialNumberInput, JLabel productNameLabel, JLabel durationLabel, JLabel salesDateLabel){
+    JLabel salesIDLabel;
+    public WarrantyController(JTable warrantyTable, JTextField serialNumberInput, JLabel productNameLabel, JLabel durationLabel, JLabel salesDateLabel, JLabel salesIDLabel){
         this.productNameLabel = productNameLabel;
         this.durationLabel = durationLabel;
         this.salesDateLabel = salesDateLabel;
         this.serialNumberInput = serialNumberInput;
+        this.salesIDLabel = salesIDLabel;
     }
     
     public void searchSerialNumber(){
         try{
             String serialNumber = serialNumberInput.getText();
             
-            ResultSet rs = dbConnector.query("SELECT name, sales_date, sales_details.warranty_duration FROM sales_details JOIN product USING(product_id) JOIN sales USING(sales_id) WHERE sales_details.product_id = ?", serialNumber);
+            ResultSet rs = dbConnector.query("SELECT name, sales_date, sales_details.warranty_duration, sales_details.sales_id FROM sales_details JOIN product USING(product_id) JOIN sales USING(sales_id) WHERE sales_details.serial_number = ?", serialNumber);
             if(rs.next()){
                 String productName = rs.getString(1);
                 String salesDate = rs.getString(2);
                 String duration = rs.getString(3);
+                String salesID = rs.getString(4);
                 
                 productNameLabel.setText(productName);
                 salesDateLabel.setText(salesDate);
                 durationLabel.setText(duration);
+                salesIDLabel.setText(salesID);
             }else{
                 JOptionPane.showMessageDialog(null, "No product with that serial number was found.", "Not found", JOptionPane.ERROR_MESSAGE);
             }
@@ -53,4 +56,14 @@ public class WarrantyController {
             sqlE.printStackTrace();
         }
     }
+    
+//    public void acceptItemAsCovered(){
+//        try{
+//            
+//        }catch(NullPointerException npe){
+//            JOptionPane.showMessageDialog(null, "No item is being accepted.", "Input Error", JOptionPane.ERROR_MESSAGE);
+//        }catch(SQLException sqlE){
+//            sqlE.printStackTrace();
+//        }
+//    }
 }

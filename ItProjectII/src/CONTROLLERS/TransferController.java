@@ -65,11 +65,10 @@ public class TransferController {
                 JOptionPane.ERROR_MESSAGE);
         }else{
             String name = (String) transferTableManager.getValueAt(transferTableManager.getSelectedRow(), 1);
-            String description = (String) transferTableManager.getValueAt(transferTableManager.getSelectedRow(), 2);
-            String unit = (String) transferTableManager.getValueAt(transferTableManager.getSelectedRow(), 4);
-            String quantity = (String) transferTableManager.getValueAt(transferTableManager.getSelectedRow(), 5);
+            String unit = (String) transferTableManager.getValueAt(transferTableManager.getSelectedRow(), 3);
+            String quantity = (String) transferTableManager.getValueAt(transferTableManager.getSelectedRow(), 4);
         
-            truckTableManager.addRowContent(new String[]{productID, quantity, name, description, unit, ""});
+            truckTableManager.addRowContent(new String[]{productID, quantity, name, unit, ""});
             
         }
     }
@@ -93,7 +92,7 @@ public class TransferController {
                 int currentQuantity = Integer.parseInt(truckTableManager.getValueAt(
                         truckTableManager.getSelectedRow(), 1));
                 int newQuantity = Integer.parseInt(truckTableManager.getValueAt(
-                        truckTableManager.getSelectedRow(), 5));
+                        truckTableManager.getSelectedRow(), 4));
                 if(newQuantity <= 0){
                     invalidQuantityFlag = true;
                     break;
@@ -121,7 +120,7 @@ public class TransferController {
                     rs.next();
                     String transferID = rs.getString(1);
                     for(int row = 0; row < truckTableManager.getRowCount(); row++){
-                        Integer quantityToTransfer = Integer.parseInt(truckTableManager.getValueAt(row, 5));
+                        Integer quantityToTransfer = Integer.parseInt(truckTableManager.getValueAt(row, 4));
                         Integer currentQuantity = Integer.parseInt(truckTableManager.getValueAt(row, 1));    
                         String productID = truckTableManager.getIDFromTable(row);
                         if(quantityToTransfer < currentQuantity && quantityToTransfer > 0){
