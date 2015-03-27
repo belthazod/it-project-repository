@@ -47,7 +47,8 @@ public class SupplierController {
         if(InputValidator.checkInput(name.getText(), "Supplier Name cannot be empty.") 
                 && InputValidator.checkInput(number.getText(), "Contact Number cannot be empty")){
             
-            if(InputValidator.match(number.getText()) == true || InputValidator.match2(number.getText()) == true || InputValidator.match3(number.getText()) == true){
+           if(InputValidator.match(number.getText()) == true || InputValidator.match2(number.getText()) == true 
+           || InputValidator.match3(number.getText()) == true || InputValidator.match4(number.getText()) == true){
             String[] values = {name.getText(), number.getText()};
             try{
             dbConnector.insert("INSERT INTO Supplier(supplier_name, supplier_contact) VALUES(?,?)", values);
@@ -61,7 +62,7 @@ public class SupplierController {
             }
             
             }else{
-                JOptionPane.showMessageDialog(null, "Please enter a valid phone number", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Invalid contact number.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }else{
             JOptionPane.showMessageDialog(null, "Please fill out all fields", "Error", JOptionPane.ERROR_MESSAGE);
@@ -84,7 +85,8 @@ public class SupplierController {
         if(InputValidator.checkInput(name.getText(), "Supplier Name cannot be empty.") 
                 & InputValidator.checkInput(contactNumber.getText(), "Contact Number cannot be empty.")){
             try{
-                if(InputValidator.match(contactNumber.getText()) == true || InputValidator.match2(contactNumber.getText()) == true || InputValidator.match3(contactNumber.getText()) == true){
+                if(InputValidator.match(contactNumber.getText()) == true || InputValidator.match2(contactNumber.getText()) == true 
+                || InputValidator.match3(contactNumber.getText()) == true || InputValidator.match4(contactNumber.getText()) == true){
                 String[] values = {name.getText(), contactNumber.getText()};
                 dbConnector.update("UPDATE supplier SET supplier_name = ?, supplier_contact = ? WHERE supplier_id = ?", values, supplierID);
                 JTextField[] inputs = {contactNumber, name};
@@ -92,7 +94,7 @@ public class SupplierController {
                 InputValidator.clearInput(inputs);
                 dbConnector.closeConnection();
                 }else{
-                    JOptionPane.showMessageDialog(null, "Invalid input. Please try aganin.", "Error", JOptionPane.ERROR_MESSAGE);                   
+                    JOptionPane.showMessageDialog(null, "Invalid contact number.", "Error", JOptionPane.ERROR_MESSAGE);                   
                 }
             }catch(SQLException sqlE){
                 JOptionPane.showMessageDialog(null, "Edit supplier failed", "Database error", JOptionPane.ERROR_MESSAGE);

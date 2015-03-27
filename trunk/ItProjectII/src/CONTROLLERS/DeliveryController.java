@@ -172,13 +172,17 @@ public class DeliveryController {
                 }
                 deliveryTableManager.clearTableContents();
                 dbConnector.closeConnection();
-                JOptionPane.showMessageDialog(null, "Products transfered successfully", "Success", JOptionPane.INFORMATION_MESSAGE);        
+                JOptionPane.showMessageDialog(null, "Products transferred successfully", "Success", JOptionPane.INFORMATION_MESSAGE);        
             }else{
                 JOptionPane.showMessageDialog(null, "Please check the delivered quantity of each product. The quantity should not be empty, equal to 0, or less than 0", "Quantity Input Error", JOptionPane.ERROR_MESSAGE);
             }
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
             JOptionPane.showMessageDialog(null, "Failed to transfer products", "Database error.", JOptionPane.ERROR_MESSAGE);
+        }catch(IndexOutOfBoundsException ioobe){
+            JOptionPane.showMessageDialog(null, "Please input the quantity of the item/s delivered.");
+        }catch(NumberFormatException nfe){
+            JOptionPane.showMessageDialog(null, "Please input a valid quantity.");
         }
     }
 }

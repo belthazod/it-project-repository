@@ -75,17 +75,24 @@ public class InputValidator {
     }
     
     public static boolean match2(String input){
-        Pattern pat2 = Pattern.compile("\\+639[0-9]{9}");
-        Matcher mat2 = pat2.matcher(input);
-        boolean match2 = mat2.matches();
-        return match2;
+        Pattern pat = Pattern.compile("^\\+639[0-9]{9}");
+        Matcher mat = pat.matcher(input);
+        boolean match = mat.matches();
+        return match;
     }
     
     public static boolean match3(String input){
-        Pattern pat3 = Pattern.compile("\\d{3}[0-9]{7}");
-        Matcher mat3 = pat3.matcher(input);
-        boolean match3 = mat3.matches();
-        return match3;
+        Pattern pat = Pattern.compile("^[0-9]{3}-[0-9]{3}-[0-9]{4}");
+        Matcher mat = pat.matcher(input);
+        boolean match = mat.matches();
+        return match;
+    }
+      
+      public static boolean match4(String input){
+        Pattern pat = Pattern.compile("^[0-9]{2}-[0-9]{3}-[0-9]{4}");
+        Matcher mat = pat.matcher(input);
+        boolean match = mat.matches();
+        return match;
     }
     
     public static boolean checkIfNumber(String input, String message){

@@ -550,9 +550,22 @@ public class ProductsUI extends javax.swing.JPanel {
     }//GEN-LAST:event_addProductCategoryComboBoxActionPerformed
 
     private void AddProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductButtonActionPerformed
-        productController.addProduct(productNameInput, productDescriptionInput, quantityInput, unitComboBox, addProductSupplierComboBox, addProductCategoryComboBox, reorderQuantityLevelSpinner, warrantySpinner);    
-        productController.updateTableContents();
-
+        String s = "";
+            String name = productNameInput.getText();
+            boolean exists = false;
+            for (int i=0; i<adminProductsTable.getRowCount(); i++) {    
+            s = adminProductsTable.getValueAt(i, 1).toString().trim();
+            if(name.equals(s)){
+            exists = true;
+            break;
+            }
+            }
+            if(!exists){ 
+            productController.addProduct(productNameInput, productDescriptionInput, quantityInput, unitComboBox, addProductSupplierComboBox, addProductCategoryComboBox, reorderQuantityLevelSpinner, warrantySpinner);    
+            productController.updateTableContents();
+            }else{ 
+            JOptionPane.showMessageDialog(null, "Item already exist.","message",JOptionPane.PLAIN_MESSAGE);
+            }          
     }//GEN-LAST:event_AddProductButtonActionPerformed
 
     private void reorderLevelEnableRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reorderLevelEnableRadioButtonActionPerformed
@@ -587,19 +600,47 @@ public class ProductsUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void addNewCategoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewCategoryButtonActionPerformed
-        categoryController.addCategory(categoryNameInput);
-        categoryController.updateCategoryTable();
+        String s = "";
+            String name = categoryNameInput.getText();
+            boolean exists = false;
+            for (int i=0; i<categoryTable.getRowCount(); i++) {    
+            s = categoryTable.getValueAt(i, 1).toString().trim();
+            if(name.equals(s)){
+            exists = true;
+            break;
+            }
+            }
+            if(!exists){ 
+            categoryController.addCategory(categoryNameInput);
+            categoryController.updateCategoryTable();
+            }else{ 
+            JOptionPane.showMessageDialog(null, "Category already exist.","message",JOptionPane.PLAIN_MESSAGE);
+            }       
     }//GEN-LAST:event_addNewCategoryButtonActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         Integer selectedRow = categoryTable.getSelectedRow();
         String categoryName = (String) categoryTable.getModel().getValueAt(selectedRow, 1);
         int result = JOptionPane.showConfirmDialog(null, "Are you sure in deleting " + categoryName + " from the Category List","Warning!" ,JOptionPane.YES_NO_OPTION);
-        
-        if(result == 0){
+               String s = "";
+            String name = categoryNameInput.getText();
+            boolean exists = false;
+            for (int i=0; i<categoryTable.getRowCount(); i++) {    
+            s = categoryTable.getValueAt(i, 1).toString().trim();
+            if(name.equals(s)){
+            exists = true;
+            break;
+            }
+            }
+            if(!exists){ 
+            if(result == 0){
             categoryController.deleteCategory();
             categoryController.updateCategoryTable();
-        }
+            }
+            }else{ 
+            JOptionPane.showMessageDialog(null, "Category already exist.","message",JOptionPane.PLAIN_MESSAGE);
+            }  
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void productDescriptionInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productDescriptionInputActionPerformed
