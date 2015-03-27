@@ -106,7 +106,7 @@ public class UserController {
         dbConnector.closeConnection();
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Failed to add User.","Database error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"User already exist.","Database error",JOptionPane.ERROR_MESSAGE);
         }
         
     }
