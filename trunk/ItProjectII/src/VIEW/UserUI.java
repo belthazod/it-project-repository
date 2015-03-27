@@ -20,7 +20,7 @@ public class UserUI extends javax.swing.JPanel {
     public UserUI() {
         initComponents();
         userController = new UserController(userTable, usernameInput, nameInput, retype, passwordInput, editAdminDialog, oldAdminPasswordInput, newAdminPasswordInput, newAdminConfirmPasswordInput);
-        InputValidator.enabler(userTable, deleteUserButton);
+        editAdminDialog.setLocationRelativeTo(null);
     }
 
     /** 
@@ -61,6 +61,7 @@ public class UserUI extends javax.swing.JPanel {
 
         editAdminDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         editAdminDialog.setTitle("Edit Admin Password");
+        editAdminDialog.setBounds(new java.awt.Rectangle(0, 0, 350, 250));
 
         jLabel7.setText("Old password:");
 
@@ -115,7 +116,7 @@ public class UserUI extends javax.swing.JPanel {
         editAdminDialogLayout.setVerticalGroup(
             editAdminDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editAdminDialogLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(24, 24, 24)
                 .addGroup(editAdminDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(oldAdminPasswordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -131,7 +132,7 @@ public class UserUI extends javax.swing.JPanel {
                 .addGroup(editAdminDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setBackground(new java.awt.Color(250, 238, 161));

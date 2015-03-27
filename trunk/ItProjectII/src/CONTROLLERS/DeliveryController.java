@@ -72,13 +72,13 @@ public class DeliveryController {
                     JOptionPane.ERROR_MESSAGE);
             }else{
                 String name = (String) deliveryProductsTableManager.getValueAt(deliveryProductsTableManager.getSelectedRow(), 1);
-                String description = (String) deliveryProductsTableManager.getValueAt(deliveryProductsTableManager.getSelectedRow(), 2);
-                String unit = (String) deliveryProductsTableManager.getValueAt(deliveryProductsTableManager.getSelectedRow(), 4);
+                String unit = (String) deliveryProductsTableManager.getValueAt(deliveryProductsTableManager.getSelectedRow(), 3);
 
-                deliveryTableManager.addRowContent(new String[]{productID, name, description, unit, ""});
+                deliveryTableManager.addRowContent(new String[]{productID, name, unit, ""});
 
             }
         }catch(IndexOutOfBoundsException ioobe){
+            ioobe.printStackTrace();
             JOptionPane.showMessageDialog(null, "Please select a Product to add to the Delivery Summary Table", "Selection Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -103,8 +103,7 @@ public class DeliveryController {
             if(supplier.equals("All")){
                 for(Product product : productList){
 
-                String[] deliveryValues = {product.getProductID(), product.getName(), 
-                    product.getDescription(), product.getTypeName(), 
+                String[] deliveryValues = {product.getProductID(), product.getName(),  product.getTypeName(), 
                     product.getUnit(), product.getPhysicalCount(), 
                     product.getReorderQuantityLevel()};
 
@@ -113,8 +112,7 @@ public class DeliveryController {
             }else{
                 for(Product product : productList){
                     if(product.getSupplierName().equals(supplier)){
-                        String[] deliveryValues = {product.getProductID(), product.getName(), 
-                            product.getDescription(), product.getTypeName(), 
+                        String[] deliveryValues = {product.getProductID(), product.getName(),  product.getTypeName(), 
                             product.getUnit(), product.getPhysicalCount(), 
                             product.getReorderQuantityLevel()};
 
@@ -143,7 +141,7 @@ public class DeliveryController {
             boolean invalidQuantityFlag = false;
             for(int row = 0; row < deliveryTableManager.getRowCount();row++){
                 int quantity = Integer.parseInt(deliveryTableManager.getValueAt(
-                        deliveryTableManager.getSelectedRow(), 4));
+                        deliveryTableManager.getSelectedRow(), 3));
                 if(quantity <= 0){
                     invalidQuantityFlag = true;
                     break;
@@ -158,7 +156,7 @@ public class DeliveryController {
                 rs.next();
                 String deliveryID = rs.getString(1);
                 for(int row = 0; row < deliveryTableManager.getRowCount(); row++){
-                    Integer quantityToTransfer = Integer.parseInt(deliveryTableManager.getValueAt(row, 4));
+                    Integer quantityToTransfer = Integer.parseInt(deliveryTableManager.getValueAt(row, 3));
                         
                     String productID = deliveryTableManager.getIDFromTable(row);
                     if(quantityToTransfer > 0){

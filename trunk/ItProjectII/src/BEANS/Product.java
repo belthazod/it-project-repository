@@ -16,19 +16,17 @@ public class Product {
     private String typeID;
     private String typeName;
     private String name;
-    private String description;
     private String supplierID;
     private String supplierName;
     private String unit;
     private String physicalCount;
     private String reorderQuantityLevel;
     private String warranty;
-    public Product(String productID, String typeID, String typeName, String name, String description, String supplierID, String supplierName, String unit, String physicalCount, String reorderQuantityLevel, String warranty) {
+    public Product(String productID, String typeID, String typeName, String name, String supplierID, String supplierName, String unit, String physicalCount, String reorderQuantityLevel, String warranty) {
         this.productID = productID;
         this.typeID = typeID;
         this.typeName = typeName;
         this.name = name;
-        this.description = description;
         this.supplierID = supplierID;
         this.supplierName = supplierName;
         this.unit = unit;
@@ -75,14 +73,6 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getSupplierID() {

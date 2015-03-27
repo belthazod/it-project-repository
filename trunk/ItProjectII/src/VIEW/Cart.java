@@ -19,7 +19,7 @@ public class Cart extends javax.swing.JFrame {
      */
     public Cart() {
         initComponents();
-        /*cartTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        cartTable.getColumnModel().getColumn(0).setMaxWidth(0);
         cartTable.getColumnModel().getColumn(0).setMinWidth(0);
         cartTable.getColumnModel().getColumn(0).setPreferredWidth(0);
         
@@ -29,7 +29,7 @@ public class Cart extends javax.swing.JFrame {
         
         cartTable.getColumnModel().getColumn(2).setMaxWidth(0);
         cartTable.getColumnModel().getColumn(2).setMinWidth(0);
-        cartTable.getColumnModel().getColumn(2).setPreferredWidth(0);*/
+        cartTable.getColumnModel().getColumn(2).setPreferredWidth(0);
         
         cartController = new CartController(cartTable, salesTypeDialog, receiptInfoLabel1, receiptInfoLabel2, receiptNumberInput);
     }
@@ -149,14 +149,14 @@ public class Cart extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Product_id", "Physical Count", "Warranty", "Name", "Description", "Unit", "Serial No.", "Quantity"
+                "Product_id", "Physical Count", "Warranty", "Name", "Unit", "Serial No.", "Quantity"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true, true
+                false, false, false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {

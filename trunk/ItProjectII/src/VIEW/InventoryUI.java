@@ -30,9 +30,9 @@ public class InventoryUI extends javax.swing.JPanel {
         inventoryTable.getColumnModel().getColumn(1).setMinWidth(0);
         inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(0);
         
-        inventoryTable.getColumnModel().getColumn(8).setMaxWidth(0);
-        inventoryTable.getColumnModel().getColumn(8).setMinWidth(0);
-        inventoryTable.getColumnModel().getColumn(8).setPreferredWidth(0);
+        inventoryTable.getColumnModel().getColumn(7).setMaxWidth(0);
+        inventoryTable.getColumnModel().getColumn(7).setMinWidth(0);
+        inventoryTable.getColumnModel().getColumn(7).setPreferredWidth(0);
         c = new Cart();
         cartController = new CartController(Cart.getCartTable(), inventoryTable, c );
         this.criticalProducts = new CriticalProducts();
@@ -62,14 +62,14 @@ public class InventoryUI extends javax.swing.JPanel {
 
             },
             new String [] {
-                "product_id", "", "Name", "Description", "Category", "Unit", "Supplier", "Quantity", "Reorder Quantity Level"
+                "product_id", "", "Name", "Category", "Unit", "Supplier", "Quantity", "Reorder Quantity Level"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

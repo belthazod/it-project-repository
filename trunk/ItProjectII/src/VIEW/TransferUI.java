@@ -104,14 +104,14 @@ public class TransferUI extends javax.swing.JPanel {
 
             },
             new String [] {
-                "product_id", "quantity limit", "Name", "Description", "Unit", "Quantity"
+                "product_id", "quantity limit", "Name", "Unit", "Quantity"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true
+                false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -156,14 +156,14 @@ public class TransferUI extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ProductID", "Name", "Brand", "Category", "Unit", "Quantity", "Re-order Level"
+                "ProductID", "Name", "Category", "Unit", "Quantity", "Re-order Level"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
