@@ -21,6 +21,7 @@ public class UserUI extends javax.swing.JPanel {
         initComponents();
         userController = new UserController(userTable, usernameInput, nameInput, retype, passwordInput, editAdminDialog, oldAdminPasswordInput, newAdminPasswordInput, newAdminConfirmPasswordInput);
         editAdminDialog.setLocationRelativeTo(null);
+        InputValidator.enabler(userTable, deleteUserButton);
     }
 
     /** 

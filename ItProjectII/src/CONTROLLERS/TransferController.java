@@ -148,6 +148,10 @@ public class TransferController {
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
             JOptionPane.showMessageDialog(null, "Failed to transfer products", "Database error.", JOptionPane.ERROR_MESSAGE);
+        }catch(IndexOutOfBoundsException ioobe){
+            JOptionPane.showMessageDialog(null, "Please input the quantity of the item/s.");
+        }catch(NumberFormatException nfe){
+            JOptionPane.showMessageDialog(null, "Please input a valid quantity.");
         }
     }
     
