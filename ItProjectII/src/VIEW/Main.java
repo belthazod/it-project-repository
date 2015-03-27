@@ -176,7 +176,7 @@ public class Main extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 102));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(250, 238, 161));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1024, 768));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/customer_yellow.png"))); // NOI18N
@@ -256,7 +256,6 @@ public class Main extends javax.swing.JFrame {
         returnsMenuButton.setBorder(null);
         returnsMenuButton.setBorderPainted(false);
         returnsMenuButton.setContentAreaFilled(false);
-        returnsMenuButton.setOpaque(false);
         returnsMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UI ICONS/returns-hover.png"))); // NOI18N
         returnsMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
