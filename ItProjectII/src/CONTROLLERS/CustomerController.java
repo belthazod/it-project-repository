@@ -37,7 +37,8 @@ public class CustomerController {
         if(InputValidator.checkInput(name.getText(), "Customer Name cannot be empty.") 
                 && InputValidator.checkInput(number.getText(), "Contact Number cannot be empty")){
                        
-            if(InputValidator.match(number.getText()) == true || InputValidator.match2(number.getText()) == true || InputValidator.match3(number.getText()) == true){
+            if(InputValidator.match(number.getText()) == true || InputValidator.match2(number.getText()) == true 
+                || InputValidator.match3(number.getText()) == true || InputValidator.match4(number.getText()) == true){
             String[] values = {name.getText(), number.getText()};
  
             try{
@@ -51,7 +52,7 @@ public class CustomerController {
                 JOptionPane.showMessageDialog(null, "Add to contacts failed", "Database error", JOptionPane.ERROR_MESSAGE);
             }
             }else{
-                JOptionPane.showMessageDialog(null, "Please enter a valid phone number", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Invalid contact number.", "Error", JOptionPane.ERROR_MESSAGE);
             }
             
     }else{
@@ -75,7 +76,8 @@ public class CustomerController {
                 & InputValidator.checkInput(contactNumber.getText(), "Contact Number cannot be empty.")){
             
             try{
-                if(InputValidator.match(contactNumber.getText()) == true || InputValidator.match2(contactNumber.getText()) == true || InputValidator.match3(contactNumber.getText()) == true){
+                if(InputValidator.match(contactNumber.getText()) == true || InputValidator.match2(contactNumber.getText()) == true 
+                || InputValidator.match3(contactNumber.getText()) == true || InputValidator.match4(contactNumber.getText()) == true){
                 String[] values = {name.getText(), contactNumber.getText()};
                 dbConnector.update("UPDATE customer SET customer_name = ?, customer_contact = ? WHERE customer_id = ?", values, customerID);
                 JOptionPane.showMessageDialog(null, "Customer details updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -83,7 +85,7 @@ public class CustomerController {
                 InputValidator.clearInput(inputs);
                 dbConnector.closeConnection();
                 }else{
-                    JOptionPane.showMessageDialog(null, "Invalid input. Please try aganin.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Invalid contact number.", "Error", JOptionPane.ERROR_MESSAGE);
                     
                 }
             }catch(SQLException sqlE){
