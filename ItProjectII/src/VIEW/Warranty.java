@@ -228,6 +228,8 @@ public class Warranty extends javax.swing.JPanel {
                         .addComponent(jButton1))
                     .addComponent(productNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
+
+        salesIDLabel.setVisible(false);
     }// </editor-fold>//GEN-END:initComponents
 
     private void serialNumberInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serialNumberInputActionPerformed

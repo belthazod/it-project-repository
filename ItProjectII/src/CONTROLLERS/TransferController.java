@@ -8,6 +8,7 @@ package CONTROLLERS;
 import BEANS.ComboItem;
 import UTIL.DatabaseConnector;
 import UTIL.TableManager;
+import VIEW.ProductsUI;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -127,8 +128,10 @@ public class TransferController {
                             dbConnector.insert("INSERT INTO transferdetails "
                                     + "(transfer_id, product_id, qty_transfered) "
                                     + "VALUES(?,?,?)", new String[]{transferID, productID, quantityToTransfer.toString()});
+                            
                         }
                     }
+                    ProductsUI.updateAdminProductsTable();
                     truckTableManager.clearTableContents();
                     dbConnector.closeConnection();
                     JOptionPane.showMessageDialog(null, "Products transfered successfully", "Success", JOptionPane.INFORMATION_MESSAGE);        
