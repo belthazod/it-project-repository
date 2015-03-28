@@ -395,7 +395,7 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(adminMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 366, Short.MAX_VALUE)
+                        .addGap(18, 21, Short.MAX_VALUE)
                         .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(432, Short.MAX_VALUE))
         );
@@ -532,7 +532,13 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
+        int x = JOptionPane.showConfirmDialog(null, "This would log you out of the system. Continue?", "Warning", JOptionPane.OK_CANCEL_OPTION);
+        
+        if(x ==0){this.dispose();
+            UserLogIn uli = new UserLogIn();
+            uli.setLocationRelativeTo(null);
+            uli.setVisible(true);
+        }
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -564,6 +570,8 @@ public class Main extends javax.swing.JFrame {
             if(new String(adminPasswordInput.getPassword()).equals(rs.getString(1))){
                 card.show(cardWindow, "adminCard");
                 adminAccessDialog.dispose();
+                
+                
             }else{
                 JOptionPane.showMessageDialog(null, "Incorrect Administrator Password.", "Incorrect Password", JOptionPane.ERROR_MESSAGE);
             }
