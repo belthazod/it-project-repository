@@ -59,7 +59,7 @@ public class UserLogIn extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(240, 177, 78));
-        setPreferredSize(new java.awt.Dimension(400, 300));
+        setPreferredSize(new java.awt.Dimension(420, 300));
 
         jPanel1.setBackground(new java.awt.Color(240, 177, 78));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
