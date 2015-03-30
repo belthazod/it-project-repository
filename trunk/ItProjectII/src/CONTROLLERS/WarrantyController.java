@@ -45,9 +45,10 @@ public class WarrantyController {
                 String duration = rs.getString(3);
                 String salesID = rs.getString(4);
                 
+                System.out.print(productName);
                 productNameLabel.setText(productName);
                 salesDateLabel.setText(salesDate);
-                durationLabel.setText(duration);
+                durationLabel.setText(duration + "month(s)");
                 salesIDLabel.setText(salesID);
             }else{
                 JOptionPane.showMessageDialog(null, "No product with that serial number was found.", "Not found", JOptionPane.ERROR_MESSAGE);

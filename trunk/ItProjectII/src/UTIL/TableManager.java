@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -136,5 +138,11 @@ public class TableManager {
      */
     public void setAutoClear(boolean state){
         table.putClientProperty("terminateEditOnFocusLost", state);
+    }
+    
+    public void alignCellRight(int col){
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
+        table.getColumnModel().getColumn(col).setCellRenderer(rightRenderer);
     }
 }

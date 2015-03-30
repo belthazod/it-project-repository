@@ -5,6 +5,7 @@
  */
 package CONTROLLERS;
 
+import BEANS.Product;
 import UTIL.TableManager;
 import UTIL.DatabaseConnector;
 import VIEW.Cart;
@@ -12,6 +13,7 @@ import VIEW.ProductsUI;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -29,15 +31,19 @@ public class CartController {
     private static JLabel receiptInfoLabel2;
     private static JTextField receiptNumberInput;
     private static Cart cart;
-    
+    private JTextField inventorySearchInput;
+    private ProductController productController;
     
     private DatabaseConnector dbConnector = DatabaseConnector.getInstance();
     
-    public CartController(JTable cartTable, JTable inventoryTable, Cart cart){
+    public CartController(JTable cartTable, JTable inventoryTable, Cart cart, JTextField inventoryTableSearchInput){
         cartTableManager = new TableManager(cartTable);
         cartTableManager.setAutoClear(true);
         inventoryTableManager = new TableManager(inventoryTable);
         this.cart = cart;
+        inventorySearchInput = inventoryTableSearchInput;
+        productController = new ProductController();
+        inventoryTableManager.alignCellRight(6);
     }
     public CartController (JTable cartTable, JDialog salesTypeDialog, JLabel receiptInfoLabel1, JLabel receiptInfoLabel2, JTextField receiptNumberInput){
         cartTableManager = new TableManager(cartTable);
@@ -72,7 +78,7 @@ public class CartController {
                     String quantity = (String)  inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 6);
                     String warranty = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 1);
                     
-                    cartTableManager.addRowContent(new String[]{productID, quantity, warranty, name, unit, "", ""});
+                    cartTableManager.addRowContent(new String[]{productID, warranty, name, unit, quantity, "", ""});
                     cart.setVisible(true);
                 }
             }else{
@@ -113,7 +119,7 @@ public class CartController {
                     String productID = cartTableManager.getIDFromTable(i);
                     String quantity = cartTableManager.getValueAt(i, 6);
                     String serialNumber = cartTableManager.getValueAt(i,5);
-                    String warranty = cartTableManager.getValueAt(i, 2);
+                    String warranty = cartTableManager.getValueAt(i, 1);
                     if(Integer.parseInt(warranty) > 0){
                     dbConnector.insert("INSERT INTO sales_details(sales_id, product_id, serial_number, warranty_duration) VALUES(?,?,?,?)", new String[]{rs.getString(1), productID, serialNumber, warranty});
                     
@@ -146,16 +152,16 @@ public class CartController {
             String serialNumber = "";
             for(int i = 0; i< cartTableManager.getRowCount(); i++){
                 
-                if(Integer.parseInt(cartTableManager.getValueAt(i, 2)) == 0){
+                if(Integer.parseInt(cartTableManager.getValueAt(i, 1)) == 0){
                     quantity = Integer.parseInt(cartTableManager.getValueAt(i, 6));
-                    currentQuantity = Integer.parseInt(cartTableManager.getValueAt(i, 1));
-                }else if(Integer.parseInt(cartTableManager.getValueAt(i, 2)) > 0){
-                    warranty = Integer.parseInt(cartTableManager.getValueAt(i, 2));
+                    currentQuantity = Integer.parseInt(cartTableManager.getValueAt(i, 4));
+                }else if(Integer.parseInt(cartTableManager.getValueAt(i, 1)) > 0){
+                    warranty = Integer.parseInt(cartTableManager.getValueAt(i, 1));
                     serialNumber = cartTableManager.getValueAt(i,5);
                 }
                 
                 
-                String productName = cartTableManager.getValueAt(i, 3);
+                String productName = cartTableManager.getValueAt(i, 2);
                 if(warranty == 0 && quantity>currentQuantity ){
                     greaterThanQuantity = true;
                     JOptionPane.showMessageDialog(null, "The set quantity sold for " + productName + " exceeds the physical count in stock. \n Please check the quantity before proceeding.", "Input Error", JOptionPane.ERROR_MESSAGE);
@@ -184,6 +190,22 @@ public class CartController {
        }catch(Exception e){
            e.printStackTrace();
        }
+    }
+    
+    public void searchProduct(){
+        String productName = inventorySearchInput.getText();
+        
+        ArrayList<Product> productList = productController.getProducts();
+        inventoryTableManager.clearTableContents();
+        for(Product product: productList){
+            if(product.getName().contains(productName)){
+                String[] adminCompleteValues = {product.getProductID(), product.getWarranty(), product.getName(), 
+                    product.getTypeName(), product.getUnit(),
+                    product.getSupplierName(), product.getPhysicalCount(), 
+                    product.getReorderQuantityLevel()};
+                inventoryTableManager.addRowContent(adminCompleteValues);
+            }
+        }
     }
     
     public void closeSalesTypeDialog(){

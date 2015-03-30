@@ -23,6 +23,13 @@ public class DeliveryUI extends javax.swing.JPanel {
      */
     public DeliveryUI() {
         initComponents();
+        deliveryProductsTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        deliveryProductsTable.getColumnModel().getColumn(0).setMinWidth(0);
+        deliveryProductsTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        
+        deliveryProductsTable.getColumnModel().getColumn(5).setMaxWidth(0);
+        deliveryProductsTable.getColumnModel().getColumn(5).setMinWidth(0);
+        deliveryProductsTable.getColumnModel().getColumn(5).setPreferredWidth(0);
         deliveryController = new DeliveryController(deliveryProductsTable, deliveryTable, deliveryProductFilterSupplierComboBox, deliverySupplierLabel);
         InputValidator.enabler(deliveryProductsTable, addToListButton);
         InputValidator.enabler(deliveryTable, removeFromListButton);
@@ -55,7 +62,6 @@ public class DeliveryUI extends javax.swing.JPanel {
         setBackground(new java.awt.Color(250, 238, 161));
 
         jLabel1.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Delivery Acknowledgement");
 
         deliveryProductsTable.setAutoCreateRowSorter(true);
@@ -87,9 +93,6 @@ public class DeliveryUI extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(deliveryProductsTable);
-        deliveryProductsTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        deliveryProductsTable.getColumnModel().getColumn(0).setMinWidth(0);
-        deliveryProductsTable.getColumnModel().getColumn(0).setPreferredWidth(0);
         if (deliveryProductsTable.getColumnModel().getColumnCount() > 0) {
             deliveryProductsTable.getColumnModel().getColumn(0).setResizable(false);
         }
@@ -183,14 +186,13 @@ public class DeliveryUI extends javax.swing.JPanel {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(deliveryProductFilterSupplierComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(10, 10, 10)
                         .addComponent(addToListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
@@ -215,9 +217,10 @@ public class DeliveryUI extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jLabel1)
-                .addGap(44, 44, 44)
+                .addGap(21, 21, 21)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
                     .addComponent(deliveryProductFilterSupplierComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(3, 3, 3)

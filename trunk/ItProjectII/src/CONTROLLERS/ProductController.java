@@ -67,6 +67,19 @@ public class ProductController {
         deliveryTableManager = new TableManager(deliveryTable);
         criticalProductsTableManager = new TableManager(criticalProductsTable);
         secondhandSwapProductsTableManager = new TableManager(secondhandSwapProductsTable);
+        
+        adminProductTableManager.alignCellRight(5);
+        adminProductTableManager.alignCellRight(6);
+        adminProductTableManager.alignCellRight(7);
+        
+        inventoryTableManager.alignCellRight(6);
+        
+        deliveryTableManager.alignCellRight(4);
+        
+        transferTableManager.alignCellRight(4);
+        
+        criticalProductsTableManager.alignCellRight(5);
+        
         this.productsTab = productsTab;
         }catch(NullPointerException npe){
             npe.printStackTrace();
@@ -312,7 +325,7 @@ public class ProductController {
             deliveryTableManager.addRowContent(deliveryValues);
             if((product.getPhysicalCount()!=null) && Integer.parseInt(product.getPhysicalCount()) != 0){
                 String[] transferValues = {product.getProductID(), product.getName(), 
-                     product.getTypeName(), 
+                    product.getTypeName(), 
                     product.getUnit(), product.getPhysicalCount(), 
                     product.getReorderQuantityLevel()};
                 transferTableManager.addRowContent(transferValues);

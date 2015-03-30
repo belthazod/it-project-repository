@@ -29,8 +29,8 @@ public class DeliveryController {
     private TableManager deliveryTableManager;
     private JComboBox<ComboItem> deliveryProductFilterSupplierComboBox;
     private JLabel deliverySupplierLabel;
-    private ProductController productController;
-    private ArrayList<Product> productList;
+    private static ProductController productController;
+    private static ArrayList<Product> productList;
     /**
      * Creates and instance of <code>DeliveryController</code> based on the given UI components to be manipulated
      * @param deliveryProductsTable - the <code>JTable</code> containing the list of all products in the inventory system
@@ -46,6 +46,7 @@ public class DeliveryController {
         this.deliverySupplierLabel= deliverySupplierLabel;
         this.productController = new ProductController();
         productList = ProductController.getProductList();
+        deliveryProductsTableManager.alignCellRight(4);
         }catch(NullPointerException npe){
             
         }
@@ -110,6 +111,7 @@ public class DeliveryController {
                 deliveryProductsTableManager.addRowContent(deliveryValues);
                 }
             }else{
+                productList = ProductController.getProductList();
                 for(Product product : productList){
                     if(product.getSupplierName().equals(supplier)){
                         String[] deliveryValues = {product.getProductID(), product.getName(),  product.getTypeName(), 
@@ -164,13 +166,15 @@ public class DeliveryController {
                                 + "(delivery_id, product_id, quantity_delivered)"
                                 + " VALUES(?,?,?)", 
                                 new String[]{deliveryID, productID, quantityToTransfer.toString()});
-                        ProductsUI.updateAdminProductsTable();
+                        
                         
                     }
                 }
                 deliveryTableManager.clearTableContents();
+                ProductsUI.updateAdminProductsTable();
+                filterProducts();
                 dbConnector.closeConnection();
-                JOptionPane.showMessageDialog(null, "Products transferred successfully", "Success", JOptionPane.INFORMATION_MESSAGE);        
+                JOptionPane.showMessageDialog(null, "The delivery acknowledged successfully", "Delivery Acknowledgement Success", JOptionPane.INFORMATION_MESSAGE);        
             }else{
                 JOptionPane.showMessageDialog(null, "Please check the delivered quantity of each product. The quantity should not be empty, equal to 0, or less than 0", "Quantity Input Error", JOptionPane.ERROR_MESSAGE);
             }
