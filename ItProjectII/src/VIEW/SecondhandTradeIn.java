@@ -153,7 +153,6 @@ public class SecondhandTradeIn extends javax.swing.JPanel {
         });
 
         jLabel6.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText(" Trade In");
 
         TradeButton.setText("Trade/Swap Item");

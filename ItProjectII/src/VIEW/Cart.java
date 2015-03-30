@@ -27,9 +27,6 @@ public class Cart extends javax.swing.JFrame {
         cartTable.getColumnModel().getColumn(1).setMinWidth(0);
         cartTable.getColumnModel().getColumn(1).setPreferredWidth(0);
         
-        cartTable.getColumnModel().getColumn(2).setMaxWidth(0);
-        cartTable.getColumnModel().getColumn(2).setMinWidth(0);
-        cartTable.getColumnModel().getColumn(2).setPreferredWidth(0);
         
         cartController = new CartController(cartTable, salesTypeDialog, receiptInfoLabel1, receiptInfoLabel2, receiptNumberInput);
     }
@@ -149,7 +146,7 @@ public class Cart extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Product_id", "Physical Count", "Warranty", "Name", "Unit", "Serial No.", "Quantity"
+                "Product_id", "Warranty", "Name", "Unit", "Physical Count", "Serial No.", "Quantity"
             }
         ) {
             Class[] types = new Class [] {
@@ -170,7 +167,6 @@ public class Cart extends javax.swing.JFrame {
         jScrollPane3.setViewportView(cartTable);
         if (cartTable.getColumnModel().getColumnCount() > 0) {
             cartTable.getColumnModel().getColumn(0).setResizable(false);
-            cartTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
         jButton2.setText("Clear Cart");

@@ -257,7 +257,7 @@ public class CustomerUI extends javax.swing.JPanel {
         add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("e.g. 074-555-444, 09091234567, +639091234567");
+        jLabel3.setText("e.g. 074-555-4444, 09091234567, +639091234567");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
