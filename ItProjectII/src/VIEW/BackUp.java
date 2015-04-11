@@ -56,7 +56,6 @@ public class BackUp extends javax.swing.JPanel {
         setBackground(new java.awt.Color(250, 238, 161));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Backup");
 
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -66,37 +65,44 @@ public class BackUp extends javax.swing.JPanel {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jRadioButton1.setText("Backup automatically according to the following schedule:");
 
+        jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jCheckBox1.setText("Monday");
 
+        jCheckBox2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jCheckBox2.setText("Tuesday");
 
+        jCheckBox3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jCheckBox3.setText("Wednesday");
 
+        jCheckBox4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jCheckBox4.setText("Thursday");
 
+        jCheckBox5.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jCheckBox5.setText("Friday");
 
+        jCheckBox6.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jCheckBox6.setText("Saturday");
 
+        jCheckBox7.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jCheckBox7.setText("Sunday");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel2.setText("Start Time:");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel3.setText("End Time:");
 
         jSpinner1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jSpinner2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton2.setText("Cancel");
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton4.setText("OK");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -127,7 +133,7 @@ public class BackUp extends javax.swing.JPanel {
                             .addComponent(jCheckBox5)
                             .addComponent(jCheckBox7)))
                     .addComponent(jRadioButton1))
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addContainerGap(177, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4)
@@ -172,7 +178,7 @@ public class BackUp extends javax.swing.JPanel {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton1.setText("Backup Now");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -218,6 +224,7 @@ public class BackUp extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(250, 238, 161));
         jPanel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel8.setText("Available Backups:");
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
