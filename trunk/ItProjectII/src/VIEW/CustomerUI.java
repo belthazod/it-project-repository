@@ -224,7 +224,7 @@ public class CustomerUI extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 794, 182));
 
-        addCustomerButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        addCustomerButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         addCustomerButton.setText("Add Customer");
         addCustomerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -233,7 +233,7 @@ public class CustomerUI extends javax.swing.JPanel {
         });
         add(addCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 150, -1, -1));
 
-        deleteCustomerButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        deleteCustomerButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         deleteCustomerButton.setText("Delete Customer");
         deleteCustomerButton.setEnabled(false);
         deleteCustomerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -243,7 +243,7 @@ public class CustomerUI extends javax.swing.JPanel {
         });
         add(deleteCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 380, -1, -1));
 
-        editCustomerButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        editCustomerButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         editCustomerButton.setText("Edit Customer");
         editCustomerButton.setEnabled(false);
         editCustomerButton.addActionListener(new java.awt.event.ActionListener() {

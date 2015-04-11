@@ -128,10 +128,10 @@ public class DeliveryUI extends javax.swing.JPanel {
         deliveryTable.getColumnModel().getColumn(0).setPreferredWidth(0);
         deliveryTable.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel2.setText("Delivery Summary (Items Received)");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel3.setText("Products List");
 
         removeFromListButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -143,7 +143,7 @@ public class DeliveryUI extends javax.swing.JPanel {
             }
         });
 
-        saveDeliveryButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        saveDeliveryButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         saveDeliveryButton.setText("Save Delivery");
         saveDeliveryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,7 +162,7 @@ public class DeliveryUI extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Supplier:");
 
-        deliveryProductFilterSupplierComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        deliveryProductFilterSupplierComboBox.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         deliveryProductFilterSupplierComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         deliveryProductFilterSupplierComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,7 +170,7 @@ public class DeliveryUI extends javax.swing.JPanel {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel5.setText("Supplier:");
 
         deliverySupplierLabel.setText("SupplierName");
@@ -244,9 +244,9 @@ public class DeliveryUI extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(removeFromListButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(saveDeliveryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(saveDeliveryButton)
+                        .addContainerGap(37, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 

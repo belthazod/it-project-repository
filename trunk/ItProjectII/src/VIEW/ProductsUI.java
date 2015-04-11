@@ -341,31 +341,31 @@ public class ProductsUI extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(250, 238, 161));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel1.setText("Product Name:");
 
-        productNameInput.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        productNameInput.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         productNameInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 productNameInputActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel3.setText("Quantity:");
 
-        quantityInput.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        quantityInput.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel4.setText("Re- order Level:");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel5.setText("Unit of measurement:");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel6.setText("Category:");
 
-        addProductCategoryComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        addProductCategoryComboBox.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         addProductCategoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Accessories" }));
         addProductCategoryComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -373,10 +373,10 @@ public class ProductsUI extends javax.swing.JPanel {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel7.setText("Supplier:");
 
-        AddProductButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        AddProductButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         AddProductButton.setText("Add New Product");
         AddProductButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -384,7 +384,7 @@ public class ProductsUI extends javax.swing.JPanel {
             }
         });
 
-        addProductSupplierComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        addProductSupplierComboBox.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         addProductSupplierComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         addProductSupplierComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -396,7 +396,7 @@ public class ProductsUI extends javax.swing.JPanel {
         warrantySpinner.setEnabled(false);
 
         reorderLevelEnableRadioButton.setBackground(new java.awt.Color(250, 238, 161));
-        reorderLevelEnableRadioButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        reorderLevelEnableRadioButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         reorderLevelEnableRadioButton.setText("Enabled");
         reorderLevelEnableRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -405,7 +405,7 @@ public class ProductsUI extends javax.swing.JPanel {
         });
 
         reorderLevelDisableRadioButton.setBackground(new java.awt.Color(250, 238, 161));
-        reorderLevelDisableRadioButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        reorderLevelDisableRadioButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         reorderLevelDisableRadioButton.setText("Disabled");
         reorderLevelDisableRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -413,7 +413,7 @@ public class ProductsUI extends javax.swing.JPanel {
             }
         });
 
-        unitComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        unitComboBox.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         unitComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "piece", "bottle", "box", "roll" }));
         unitComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -421,9 +421,11 @@ public class ProductsUI extends javax.swing.JPanel {
             }
         });
 
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel18.setText("Warranty:");
 
         warrantyEnableRadioButton.setBackground(new java.awt.Color(250, 238, 161));
+        warrantyEnableRadioButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         warrantyEnableRadioButton.setText("Enabled");
         warrantyEnableRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -432,6 +434,7 @@ public class ProductsUI extends javax.swing.JPanel {
         });
 
         warrantyDisableRadioButton.setBackground(new java.awt.Color(250, 238, 161));
+        warrantyDisableRadioButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         warrantyDisableRadioButton.setText("Disabled");
         warrantyDisableRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -441,6 +444,7 @@ public class ProductsUI extends javax.swing.JPanel {
 
         reorderQuantityLevelSpinner.setEnabled(false);
 
+        warrantyMonthsLabel.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         warrantyMonthsLabel.setText("months");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -553,7 +557,7 @@ public class ProductsUI extends javax.swing.JPanel {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         adminProductsTable.setAutoCreateRowSorter(true);
-        adminProductsTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        adminProductsTable.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         adminProductsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -585,7 +589,7 @@ public class ProductsUI extends javax.swing.JPanel {
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 795, 410));
 
-        editProductButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        editProductButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         editProductButton.setText("Edit Product");
         editProductButton.setEnabled(false);
         editProductButton.addActionListener(new java.awt.event.ActionListener() {
@@ -593,9 +597,9 @@ public class ProductsUI extends javax.swing.JPanel {
                 editProductButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(editProductButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 430, -1, -1));
+        jPanel2.add(editProductButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, -1, -1));
 
-        deleteProductButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        deleteProductButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         deleteProductButton.setText("Delete Product");
         deleteProductButton.setEnabled(false);
         deleteProductButton.addActionListener(new java.awt.event.ActionListener() {
@@ -603,14 +607,14 @@ public class ProductsUI extends javax.swing.JPanel {
                 deleteProductButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(deleteProductButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 430, -1, -1));
+        jPanel2.add(deleteProductButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 430, -1, -1));
 
         productsTab.addTab("Edit Product", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(250, 238, 161));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        categoryTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        categoryTable.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         categoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -641,18 +645,23 @@ public class ProductsUI extends javax.swing.JPanel {
 
         jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 610, 230));
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel14.setText("Category List");
         jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel16.setText("Category Name:");
         jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
-        categoryNameInput.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel3.add(categoryNameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 500, -1));
+        categoryNameInput.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        categoryNameInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoryNameInputActionPerformed(evt);
+            }
+        });
+        jPanel3.add(categoryNameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 500, -1));
 
-        editCategoryButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        editCategoryButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         editCategoryButton.setText("Edit Category");
         editCategoryButton.setEnabled(false);
         editCategoryButton.addActionListener(new java.awt.event.ActionListener() {
@@ -662,7 +671,7 @@ public class ProductsUI extends javax.swing.JPanel {
         });
         jPanel3.add(editCategoryButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 390, -1, -1));
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jButton4.setText("Delete Category");
         jButton4.setEnabled(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -672,14 +681,14 @@ public class ProductsUI extends javax.swing.JPanel {
         });
         jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 390, -1, -1));
 
-        addNewCategoryButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        addNewCategoryButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         addNewCategoryButton.setText("Add to Category List");
         addNewCategoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addNewCategoryButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(addNewCategoryButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, -1, -1));
+        jPanel3.add(addNewCategoryButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, -1, -1));
 
         productsTab.addTab("Add/Edit Category", jPanel3);
 
@@ -847,6 +856,10 @@ public class ProductsUI extends javax.swing.JPanel {
     private void saveEditCategoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEditCategoryButtonActionPerformed
         categoryController.editCategory();
     }//GEN-LAST:event_saveEditCategoryButtonActionPerformed
+
+    private void categoryNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryNameInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_categoryNameInputActionPerformed
 
     public static void updateAdminProductsTable(){
         productController.updateTableContents();
