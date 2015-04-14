@@ -85,7 +85,7 @@ public class TransferUI extends javax.swing.JPanel {
         jLabel2.setText("Transfer To:");
 
         transferFromComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        transferFromComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Main", "Pacdal", "Marcos", "Trinidad" }));
+        transferFromComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Main Branch", "Pacdal Branch", "Marcos Highway Branch", "Trinidad Branch" }));
         transferFromComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 transferFromComboBoxActionPerformed(evt);
@@ -187,7 +187,7 @@ public class TransferUI extends javax.swing.JPanel {
         }
 
         transferToComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        transferToComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Marcos", "Trinidad", "Pacdal", "Main" }));
+        transferToComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Marcos Highway Branch", "Trinidad Branch", "Pacdal Branch", "Main Branch" }));
 
         removeItemButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         removeItemButton.setText("Remove Item");

@@ -159,10 +159,10 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
-            <StringItem index="0" value="Main"/>
-            <StringItem index="1" value="Pacdal"/>
-            <StringItem index="2" value="Marcos"/>
-            <StringItem index="3" value="Trinidad"/>
+            <StringItem index="0" value="Main Branch"/>
+            <StringItem index="1" value="Pacdal Branch"/>
+            <StringItem index="2" value="Marcos Highway Branch"/>
+            <StringItem index="3" value="Trinidad Branch"/>
           </StringArray>
         </Property>
       </Properties>
@@ -328,10 +328,10 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
-            <StringItem index="0" value="Marcos"/>
-            <StringItem index="1" value="Trinidad"/>
-            <StringItem index="2" value="Pacdal"/>
-            <StringItem index="3" value="Main"/>
+            <StringItem index="0" value="Marcos Highway Branch"/>
+            <StringItem index="1" value="Trinidad Branch"/>
+            <StringItem index="2" value="Pacdal Branch"/>
+            <StringItem index="3" value="Main Branch"/>
           </StringArray>
         </Property>
       </Properties>
