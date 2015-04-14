@@ -118,7 +118,7 @@ public class InventoryUI extends javax.swing.JPanel {
         inventoryTableSearchInput.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton2.setText("View Cart");
+        jButton2.setText("View List");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
