@@ -287,7 +287,7 @@ public class CustomerUI extends javax.swing.JPanel {
     private void deleteCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCustomerButtonActionPerformed
         Integer selectedRow = customerListTable.getSelectedRow();
         String name = (String) customerListTable.getModel().getValueAt(selectedRow, 1);
-        int result = JOptionPane.showConfirmDialog(null, "Are you sure in deleting " + name + " from the Customer List","Warning!" ,JOptionPane.YES_NO_OPTION);
+        int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete " + name + " from the Customer List","Warning!" ,JOptionPane.YES_NO_OPTION);
         
         if(result == 0){
             customerController.deleteSelectedCustomer();

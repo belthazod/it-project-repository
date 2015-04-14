@@ -17,6 +17,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.util.ArrayList;
+import javax.swing.JDialog;
 /**
  *
  * @author AMD
@@ -51,13 +52,25 @@ public class SecHandTradeInController {
             dbConnector.insert("INSERT INTO secondhand ( used_item_type, used_item_name, description) "
                     + "VALUES(?,?,?)", values);
             
-            JOptionPane.showMessageDialog(null, itemName.getText() + " added to list of secondhand items.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane op = new JOptionPane(itemName.getText() + " successfully added to list of secondhand items.",JOptionPane.INFORMATION_MESSAGE);
+            JDialog dialog = op.createDialog("Add To Secondhand");
+            dialog.setAlwaysOnTop(true); //<-- this line
+            dialog.setModal(true);
+            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null, itemName.getText() + " added to list of secondhand items.", "Success", JOptionPane.INFORMATION_MESSAGE);
             InputValidator.clearInput(inputs);
         }
         dbConnector.closeConnection();
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Failed to add Product.","Database error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("Failed to add Product.",JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = op.createDialog("Database Error");
+            dialog.setAlwaysOnTop(true); //<-- this line
+            dialog.setModal(true);
+            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null,"Failed to add Product.","Database error",JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -78,7 +91,13 @@ public class SecHandTradeInController {
             dbConnector.closeConnection();
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Incorrect Product SQL query", "Database error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("Incorrect product SQL query.",JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = op.createDialog("Database Error");
+            dialog.setAlwaysOnTop(true); //<-- this line
+            dialog.setModal(true);
+            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Incorrect Product SQL query", "Database error", JOptionPane.ERROR_MESSAGE);
         }
         return secHandItems;
     }
@@ -102,7 +121,13 @@ public class SecHandTradeInController {
             dbConnector.delete("DELETE FROM secondhand WHERE used_item_id = ?", itemID);
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Failed to delete item from the Users list.", "Database Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("Failed to delete item from the Users List.",JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = op.createDialog("Database Error");
+            dialog.setAlwaysOnTop(true); //<-- this line
+            dialog.setModal(true);
+            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Failed to delete item from the Users list.", "Database Error", JOptionPane.ERROR_MESSAGE);
         }
     }
      public void editSelectedItem(){

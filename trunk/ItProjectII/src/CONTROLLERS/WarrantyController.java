@@ -9,6 +9,7 @@ import UTIL.DatabaseConnector;
 import UTIL.TableManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -51,7 +52,13 @@ public class WarrantyController {
                 durationLabel.setText(duration + "month(s)");
                 salesIDLabel.setText(salesID);
             }else{
-                JOptionPane.showMessageDialog(null, "No product with that serial number was found.", "Not found", JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("The serial number you entered doesn't match to any product.",JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = op.createDialog("Input Error");
+            dialog.setAlwaysOnTop(true); //<-- this line
+            dialog.setModal(true);
+            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            dialog.setVisible(true);
+                //JOptionPane.showMessageDialog(null, "No product with that serial number was found.", "Not found", JOptionPane.ERROR_MESSAGE);
             }
         }catch(SQLException sqlE){
             sqlE.printStackTrace();

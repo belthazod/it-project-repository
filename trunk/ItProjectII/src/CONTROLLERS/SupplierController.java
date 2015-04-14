@@ -18,6 +18,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JDialog;
 /**
  *
  * @author Belthazod
@@ -58,13 +59,31 @@ public class SupplierController {
             InputValidator.clearInput(inputs);
             dbConnector.closeConnection();
             }catch(SQLException sqlE){
-                JOptionPane.showMessageDialog(null, "Add to suppliers list failed", "Database error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("Failed to add supplier.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                //JOptionPane.showMessageDialog(null, "Add to suppliers list failed", "Database error", JOptionPane.ERROR_MESSAGE);
             }
             
             }else{
-                JOptionPane.showMessageDialog(null, "Invalid contact number.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("Invalid contact number. Please input a valid contact number.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+               // JOptionPane.showMessageDialog(null, "Invalid contact number.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }else{
+                JOptionPane op = new JOptionPane("Please fill out all the fields.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
             JOptionPane.showMessageDialog(null, "Please fill out all fields", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -90,17 +109,41 @@ public class SupplierController {
                 String[] values = {name.getText(), contactNumber.getText()};
                 dbConnector.update("UPDATE supplier SET supplier_name = ?, supplier_contact = ? WHERE supplier_id = ?", values, supplierID);
                 JTextField[] inputs = {contactNumber, name};
-                JOptionPane.showMessageDialog(null, "Supplier details updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane op = new JOptionPane("Supplier details successfully updated.",JOptionPane.INFORMATION_MESSAGE);
+                JDialog dialog = op.createDialog("Edit Supplier");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                //JOptionPane.showMessageDialog(null, "Supplier details updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
                 InputValidator.clearInput(inputs);
                 dbConnector.closeConnection();
                 }else{
-                    JOptionPane.showMessageDialog(null, "Invalid contact number.", "Error", JOptionPane.ERROR_MESSAGE);                   
+                JOptionPane op = new JOptionPane("Invalid contact number. Please enter a valid contact.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                //    JOptionPane.showMessageDialog(null, "Invalid contact number.", "Error", JOptionPane.ERROR_MESSAGE);                   
                 }
             }catch(SQLException sqlE){
-                JOptionPane.showMessageDialog(null, "Edit supplier failed", "Database error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("Failed to edit supplier.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+               // JOptionPane.showMessageDialog(null, "Edit supplier failed", "Database error", JOptionPane.ERROR_MESSAGE);
             }        
            }else{
-            JOptionPane.showMessageDialog(null, "Please fill out all fields", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("Please fill out all fields",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Please fill out all fields", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -129,11 +172,22 @@ public class SupplierController {
             JOptionPane.showMessageDialog(null, "Selected supplier was deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
         }catch(SQLException sqlE){
             if(sqlE.getSQLState().startsWith("23")){
-                JOptionPane.showMessageDialog(null, "Failed to delete selected supplier. Supplier is currently linked to a product. \n\nTo remove this supplier. Please clear all products associated with it.", "Database Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("Failed to delete selected supplier. Supplier is currently linked to a product. \n\nTo remove this supplier. Please clear all products associated with it.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                //JOptionPane.showMessageDialog(null, "Failed to delete selected supplier. Supplier is currently linked to a product. \n\nTo remove this supplier. Please clear all products associated with it.", "Database Error", JOptionPane.ERROR_MESSAGE);
             }else{
             sqlE.printStackTrace();
-            
-            JOptionPane.showMessageDialog(null, "Failed to delete selected supplier.", "Database Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("Failed to delete selected supplier.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Failed to delete selected supplier.", "Database Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -154,7 +208,13 @@ public class SupplierController {
             }
         } catch(SQLException sqlE){
              sqlE.printStackTrace();
-             JOptionPane.showMessageDialog(null,"Failed to update Supplier Components.", "Database Error", JOptionPane.ERROR_MESSAGE);
+             JOptionPane op = new JOptionPane("Failed to update supplier components.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+             //JOptionPane.showMessageDialog(null,"Failed to update Supplier Components.", "Database Error", JOptionPane.ERROR_MESSAGE);
          }
     }
 }

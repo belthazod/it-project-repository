@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -60,10 +61,17 @@ public class TransferController {
             itemExists = productID.equals(truckProductID);
         }
         if(itemExists){
-            JOptionPane.showMessageDialog(null,
+            JOptionPane op = new JOptionPane("Item is already in the list.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+            /*JOptionPane.showMessageDialog(null,
                 "Item already in truck.",
                 "Error",
                 JOptionPane.ERROR_MESSAGE);
+                */
         }else{
             String name = (String) transferTableManager.getValueAt(transferTableManager.getSelectedRow(), 1);
             String unit = (String) transferTableManager.getValueAt(transferTableManager.getSelectedRow(), 3);
@@ -134,27 +142,69 @@ public class TransferController {
                     ProductsUI.updateAdminProductsTable();
                     truckTableManager.clearTableContents();
                     dbConnector.closeConnection();
-                    JOptionPane.showMessageDialog(null, "Products transfered successfully", "Success", JOptionPane.INFORMATION_MESSAGE);        
+                    JOptionPane op = new JOptionPane("Product/s transfered successfully.",JOptionPane.INFORMATION_MESSAGE);
+                    JDialog dialog = op.createDialog("Transfer");
+                    dialog.setAlwaysOnTop(true); //<-- this line
+                    dialog.setModal(true);
+                    dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                    dialog.setVisible(true);
+                    //JOptionPane.showMessageDialog(null, "Products transfered successfully", "Success", JOptionPane.INFORMATION_MESSAGE);        
                 }else{
-                    JOptionPane.showMessageDialog(null, "Please check the sender and recipient of the transfer. The Main branch should be in either of the two not both.", "Branch allocation error.", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("Please check the branches. Main branch should always be involve.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                    //JOptionPane.showMessageDialog(null, "Please check the sender and recipient of the transfer. The Main branch should be in either of the two not both.", "Branch allocation error.", JOptionPane.ERROR_MESSAGE);
                 }
             }
             if(invalidQuantityFlag){
-                JOptionPane.showMessageDialog(null, "Please check the delivered quantity of each product. The quantity should not be empty, equal to 0, or less that 0", "Input Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("Please check the delivered of each product. The quantity should not be empty, equal to 0, or less than 0.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                //JOptionPane.showMessageDialog(null, "Please check the delivered quantity of each product. The quantity should not be empty, equal to 0, or less that 0", "Input Error", JOptionPane.ERROR_MESSAGE);
             }
             if(greaterThanCurrent){
-                JOptionPane.showMessageDialog(null, "Please check the delivered quantity of each product. The quantity to be delivered cannot exceed the current product count in stock.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("Please check the quantity of each product. The quantity to be delivered cannot exceed the current product count in stock.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                //JOptionPane.showMessageDialog(null, "Please check the delivered quantity of each product. The quantity to be delivered cannot exceed the current product count in stock.", "Input Error", JOptionPane.ERROR_MESSAGE);
             }
             
             
             
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Failed to transfer products", "Database error.", JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("Failed to transfer products.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+           // JOptionPane.showMessageDialog(null, "Failed to transfer products", "Database error.", JOptionPane.ERROR_MESSAGE);
         }catch(IndexOutOfBoundsException ioobe){
-            JOptionPane.showMessageDialog(null, "Please input the quantity of the item/s.");
+            JOptionPane op = new JOptionPane("Please input the quantity of the item/s.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Please input the quantity of the item/s.");
         }catch(NumberFormatException nfe){
-            JOptionPane.showMessageDialog(null, "Please input a valid quantity.");
+            JOptionPane op = new JOptionPane("Please enter a valid quantity.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Please input a valid quantity.");
         }
     }
     
