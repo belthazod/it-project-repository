@@ -19,7 +19,7 @@ public class Warranty extends javax.swing.JPanel {
      */
     public Warranty() {
         initComponents();
-        warrantyController = new WarrantyController(warrantyTable, serialNumberInput, productNameLabel, durationLabel, salesDateLabel, salesIDLabel);
+        warrantyController = new WarrantyController(warrantyTable, serialNumberInput, productNameLabel, durationLabel, salesDateLabel, salesIDLabel, productIDLabel);
     }
 
     /**
@@ -49,6 +49,7 @@ public class Warranty extends javax.swing.JPanel {
         durationLabel = new javax.swing.JLabel();
         salesDateLabel = new javax.swing.JLabel();
         salesIDLabel = new javax.swing.JLabel();
+        productIDLabel = new javax.swing.JLabel();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,15 +107,22 @@ public class Warranty extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Product ID", "Name", "Brand", "Category", "Serial No."
+                "Name", "Serial No.", "Date Retiurned"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(warrantyTable);
@@ -158,6 +166,8 @@ public class Warranty extends javax.swing.JPanel {
 
         salesIDLabel.setText("jLabel1");
 
+        productIDLabel.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -172,27 +182,29 @@ public class Warranty extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(60, 60, 60)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(17, 17, 17)
-                                        .addComponent(serialNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(20, 20, 20)
-                                        .addComponent(searchSerialNumberButton))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel7)
-                                            .addComponent(salesIDLabel))
-                                        .addGap(13, 13, 13)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(salesDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(productNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGap(189, 189, 189)
-                                                .addComponent(jLabel6)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(durationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(productIDLabel)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel2)
+                                            .addGap(17, 17, 17)
+                                            .addComponent(serialNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(20, 20, 20)
+                                            .addComponent(searchSerialNumberButton))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel5)
+                                                .addComponent(jLabel7)
+                                                .addComponent(salesIDLabel))
+                                            .addGap(13, 13, 13)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(salesDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(productNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addGap(189, 189, 189)
+                                                    .addComponent(jLabel6)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(durationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 295, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
@@ -220,7 +232,9 @@ public class Warranty extends javax.swing.JPanel {
                     .addComponent(salesDateLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(salesIDLabel)
-                .addGap(18, 18, 18)
+                .addGap(3, 3, 3)
+                .addComponent(productIDLabel)
+                .addGap(1, 1, 1)
                 .addComponent(jButton1)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,7 +249,7 @@ public class Warranty extends javax.swing.JPanel {
     }//GEN-LAST:event_serialNumberInputActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        warrantyController.acceptItemAsCovered();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void searchSerialNumberButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchSerialNumberButtonActionPerformed
@@ -255,6 +269,7 @@ public class Warranty extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable2;
+    private javax.swing.JLabel productIDLabel;
     private javax.swing.JLabel productNameLabel;
     private javax.swing.JLabel salesDateLabel;
     private javax.swing.JLabel salesIDLabel;
