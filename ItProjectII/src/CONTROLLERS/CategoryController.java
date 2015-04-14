@@ -54,7 +54,13 @@ public class CategoryController {
             InputValidator.clearInput(categoryName);
         } catch(SQLException sqlE){
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Failed to add " + categoryName.getText() + " to category list", "Database Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("Failed to add " + categoryName.getText() + " to category list.",JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);  
+            //JOptionPane.showMessageDialog(null, "Failed to add " + categoryName.getText() + " to category list", "Database Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -64,10 +70,22 @@ public class CategoryController {
             dbConnector.delete("DELETE FROM type WHERE type_id = ?", categoryID);
         }catch(SQLException sqlE){
             if(sqlE.getSQLState().startsWith("23")){
-                JOptionPane.showMessageDialog(null, "Failed to delete selected category. Category is currently linked to a product. \n\nTo remove this category. Please clear all products associated with it.", "Constraint Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("Failed to delete selected category. Category is currently linked to a product. \n\nTo remove this category, please clear all products associated with it.",JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = op.createDialog("Constraint Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);  
+                //JOptionPane.showMessageDialog(null, "Failed to delete selected category. Category is currently linked to a product. \n\nTo remove this category. Please clear all products associated with it.", "Constraint Error", JOptionPane.ERROR_MESSAGE);
             }else{
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Failed to delete category", "Database error.", JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("Failed to delete category.",JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true); 
+            //JOptionPane.showMessageDialog(null, "Failed to delete category", "Database error.", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -79,7 +97,13 @@ public class CategoryController {
         updateCategoryComponents();
         dbConnector.closeConnection();
         }catch(SQLException sqlE){
-            JOptionPane.showMessageDialog(null, "Table update failed", "Database error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("Failed to update table.",JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Table update failed", "Database error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -93,7 +117,13 @@ public class CategoryController {
            
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Editing failed", "Database error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("Edit failed.",JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Editing failed", "Database error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
@@ -103,12 +133,24 @@ public class CategoryController {
             String categoryName = categoryNameEditInput.getText();
             if(!categoryName.equals("")){
                 dbConnector.update("UPDATE type SET type_name = ? WHERE type_ID = ?", new String[]{categoryName}, categoryID);
-                JOptionPane.showMessageDialog(null, "Category details updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane op = new JOptionPane("Category details updated successfully.",JOptionPane.INFORMATION_MESSAGE);
+                JDialog dialog = op.createDialog("Edit Category");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                //JOptionPane.showMessageDialog(null, "Category details updated successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
                 InputValidator.clearInput(categoryNameEditInput);
                 updateCategoryTable();
                 categoryEditDialog.dispose();
             }else{
-                JOptionPane.showMessageDialog(null, "Category Name cannot be empty.", "Input error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("Category Name cannot be empty.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                //JOptionPane.showMessageDialog(null, "Category Name cannot be empty.", "Input error", JOptionPane.ERROR_MESSAGE);
             }
         }catch(SQLException sqlE){
             sqlE.printStackTrace();

@@ -131,7 +131,13 @@ public class ProductController {
         dbConnector.closeConnection();
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Failed to add Product.","Database error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("Failed to add product.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null,"Failed to add Product.","Database error",JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -173,14 +179,26 @@ public class ProductController {
             editDialog.dispose();
             InputValidator.clearInput(inputs);
             quantity.setText("");
-            JOptionPane.showMessageDialog(null, "Product details updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane op = new JOptionPane("Product details successfully updated.",JOptionPane.INFORMATION_MESSAGE);
+                JDialog dialog = op.createDialog("Edit Product");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+           // JOptionPane.showMessageDialog(null, "Product details updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
         }
         
         
         dbConnector.closeConnection();
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Failed to add Product.","Database error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("Failed to add product.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null,"Failed to add Product.","Database error",JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -250,7 +268,13 @@ public class ProductController {
             }
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Failed to load Edit Dialog.", "Database Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("Failed to load Edit Dialog.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Failed to load Edit Dialog.", "Database Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -279,7 +303,13 @@ public class ProductController {
             dbConnector.closeConnection();
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Incorrect Product SQL query", "Database error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("Incorrect product SQL query.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Incorrect Product SQL query", "Database error", JOptionPane.ERROR_MESSAGE);
         }
         return productList;
     }
@@ -354,7 +384,13 @@ public class ProductController {
             dbConnector.delete("DELETE FROM product WHERE product_id = ?", productID);
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Failed to delete selected product.", "Database Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("Failed to delete selected product.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Failed to delete selected product.", "Database Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     

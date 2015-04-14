@@ -16,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JDialog;
 
 /**
  *
@@ -44,19 +45,42 @@ public class CustomerController {
             try{
             dbConnector.insert("INSERT INTO Customer(customer_name, customer_contact) VALUES(?,?)", values);
             JTextField[] inputs = {name,number};
-            
-            JOptionPane.showMessageDialog(null, name.getText() + " saved to Customers list.");
+            JOptionPane op = new JOptionPane(name.getText() + " saved to Customers list.",JOptionPane.INFORMATION_MESSAGE);
+                JDialog dialog = op.createDialog("Add Customer");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null, name.getText() + " saved to Customers list.");
             InputValidator.clearInput(inputs);
             dbConnector.closeConnection();
             }catch(SQLException sqlE){
-                JOptionPane.showMessageDialog(null, "Add to contacts failed", "Database error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("Failed to add Contact.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                //JOptionPane.showMessageDialog(null, "Add to contacts failed", "Database error", JOptionPane.ERROR_MESSAGE);
             }
             }else{
-                JOptionPane.showMessageDialog(null, "Invalid contact number.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("Invalid contact number. Please enter a valid contact number.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                //JOptionPane.showMessageDialog(null, "Invalid contact number.", "Error", JOptionPane.ERROR_MESSAGE);
             }
             
     }else{
-            JOptionPane.showMessageDialog(null, "Please fill out all fields", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("Please fill out all fields.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Please fill out all fields", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     public void updateTableContents(){
@@ -66,7 +90,13 @@ public class CustomerController {
         dbConnector.closeConnection();
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Customer Table update failed", "Database error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("Failed to update Customer Table.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Customer Table update failed", "Database error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -85,14 +115,32 @@ public class CustomerController {
                 InputValidator.clearInput(inputs);
                 dbConnector.closeConnection();
                 }else{
-                    JOptionPane.showMessageDialog(null, "Invalid contact number.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("Invalid contact number. Please enter a valid contact number.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true); 
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                    //JOptionPane.showMessageDialog(null, "Invalid contact number.", "Error", JOptionPane.ERROR_MESSAGE);
                     
                 }
             }catch(SQLException sqlE){
-                JOptionPane.showMessageDialog(null, "Edit customer failed", "Database error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("Failed to edti customer.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true); 
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                //JOptionPane.showMessageDialog(null, "Edit customer failed", "Database error", JOptionPane.ERROR_MESSAGE);
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Please fill out all fields", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("Please fill out all fields.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true); 
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Please fill out all fields", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -108,7 +156,13 @@ public class CustomerController {
             return true;
            
         }catch(SQLException sqlE){
-            JOptionPane.showMessageDialog(null, "Editing failed", "Database error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("Editing failed.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Editing failed", "Database error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
@@ -119,7 +173,13 @@ public class CustomerController {
             dbConnector.delete("DELETE FROM customer WHERE customer_id = ?", customerID);
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Failed to delete selected customer.", "Database Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("Failed to delete customer.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Failed to delete selected customer.", "Database Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

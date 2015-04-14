@@ -68,10 +68,16 @@ public class CartController {
                     itemExists = productID.equals(truckProductID);
                 }
                 if(itemExists && Integer.parseInt(inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 1)) == 0){
-                    JOptionPane.showMessageDialog(null,
+                JOptionPane op = new JOptionPane("This item is already in the list.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                    /*JOptionPane.showMessageDialog(null,
                         "Item already in cart.",
                         "Error",
-                        JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.ERROR_MESSAGE);*/
                 }else{
                     String name = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 2);
                     String unit = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 4);
@@ -82,10 +88,16 @@ public class CartController {
                     cart.setVisible(true);
                 }
             }else{
-                JOptionPane.showMessageDialog(null, "There is no available stock for " + productName + ". Cannot add to cart.", "Product Selection Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("There are no available stocks for " + productName + ". Add to list failed.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                //JOptionPane.showMessageDialog(null, "There is no available stock for " + productName + ". Cannot add to cart.", "Product Selection Error", JOptionPane.ERROR_MESSAGE);
             }
         }catch(NullPointerException | IndexOutOfBoundsException npe){
-            JOptionPane.showMessageDialog(null, "Please select an item from the table to mark as bought.", "Product Selection Error", JOptionPane.ERROR_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "Please select an item from the table to mark as bought.", "Product Selection Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -132,9 +144,21 @@ public class CartController {
                 cartTableManager.clearTableContents();
                 cart.setVisible(false);
                 ProductsUI.updateAdminProductsTable();
-                JOptionPane.showMessageDialog(null, "Items successfully marked as bought.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane op = new JOptionPane("This item is already in the list.",JOptionPane.INFORMATION_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                //JOptionPane.showMessageDialog(null, "Items successfully marked as bought.", "Success", JOptionPane.INFORMATION_MESSAGE);
             }else{
-                JOptionPane.showMessageDialog(null, "Please enter serial number.", "Serial number error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("Please enter serial number.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Serial Number Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                //JOptionPane.showMessageDialog(null, "Please enter serial number.", "Serial number error", JOptionPane.ERROR_MESSAGE);
             }
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
@@ -164,29 +188,53 @@ public class CartController {
                 String productName = cartTableManager.getValueAt(i, 2);
                 if(warranty == 0 && quantity>currentQuantity ){
                     greaterThanQuantity = true;
-                    JOptionPane.showMessageDialog(null, "The set quantity sold for " + productName + " exceeds the physical count in stock. \n Please check the quantity before proceeding.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("The entered quantity sold for " + productName + " exceeds the physical count in stock. \n Please check the quantity before proceeding.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                    //JOptionPane.showMessageDialog(null, "The set quantity sold for " + productName + " exceeds the physical count in stock. \n Please check the quantity before proceeding.", "Input Error", JOptionPane.ERROR_MESSAGE);
                     break;
                 }
                 if(warranty == 0 && quantity <= 0){
                     lessThanOrEqualToZero = true;
-                    JOptionPane.showMessageDialog(null, "The set quantity sold for " + productName + " cannot be negative or zero. \n Please check the quantity before proceeding.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("The entered quantity sold for " + productName + " cannot be negative or zero. \n Please check the quantity before proceeding.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);   
+                    //JOptionPane.showMessageDialog(null, "The set quantity sold for " + productName + " cannot be negative or zero. \n Please check the quantity before proceeding.", "Input Error", JOptionPane.ERROR_MESSAGE);
                      break;
                 }
                 if(warranty > 0 && serialNumber.equals("")){
                     noSerialNumber = true;
-                    JOptionPane.showMessageDialog(null, "Please input the serial number for " + productName + ".", "Input Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("Please input the serial number for " + productName + ".",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);   
+                    //JOptionPane.showMessageDialog(null, "Please input the serial number for " + productName + ".", "Input Error", JOptionPane.ERROR_MESSAGE);
                      break;
                 }
                 
             }
             if(cartTableManager.getRowCount() == 0){
-                JOptionPane.showMessageDialog(null, "There are no items placed in the cart. Cannot checkout", "Input Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("There is/are no item/s to checkout.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Checkout Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true); 
+               // JOptionPane.showMessageDialog(null, "There are no items placed in the cart. Cannot checkout", "Input Error", JOptionPane.ERROR_MESSAGE);
             }
             if(!greaterThanQuantity && !lessThanOrEqualToZero && !noSerialNumber && cartTableManager.getRowCount() != 0){
                 salesTypeDialog.setVisible(true);
             }
        }catch(NumberFormatException | NullPointerException nfe){
-           JOptionPane.showMessageDialog(null, "Please set the quantity of all items before proceeding.", "Input Error", JOptionPane.ERROR_MESSAGE);
+           //JOptionPane.showMessageDialog(null, "Please set the quantity of all items before proceeding.", "Input Error", JOptionPane.ERROR_MESSAGE);
        }catch(Exception e){
            e.printStackTrace();
        }

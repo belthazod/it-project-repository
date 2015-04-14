@@ -96,17 +96,35 @@ public class UserController {
                     + "VALUES(?,?,?)", 
                     new String[]{usernameInput.getText(), nameInput.getText(),
                         new String(passwordInput.getPassword())});
-            JOptionPane.showMessageDialog(null, nameInput.getText() + " has been added to list of users.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane op = new JOptionPane(nameInput.getText() + " has successfully been added to list of users.",JOptionPane.INFORMATION_MESSAGE);
+                JDialog dialog = op.createDialog("Add User");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+           // JOptionPane.showMessageDialog(null, nameInput.getText() + " has been added to list of users.", "Success", JOptionPane.INFORMATION_MESSAGE);
             InputValidator.clearInput(inputs);
             updateUsersTable();
         }else{
-                JOptionPane.showMessageDialog(null, "Sorry. Your passwords do not match, please check and try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("Sorry the password you entered did not match. Please try again.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Input Error");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                //JOptionPane.showMessageDialog(null, "Sorry. Your passwords do not match, please check and try again.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         dbConnector.closeConnection();
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null,"User already exist.","Database error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("User already exist.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null,"User already exist.","Database error",JOptionPane.ERROR_MESSAGE);
         }
         
     }
@@ -118,7 +136,13 @@ public class UserController {
             userTableManager.importDBContents(dbConnector.query("SELECT username, name FROM users ORDER BY 2")); 
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Failed to update Users' table", "Database error.", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane op = new JOptionPane("Failed to update Users Table.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+           // JOptionPane.showMessageDialog(null, "Failed to update Users' table", "Database error.", JOptionPane.INFORMATION_MESSAGE);
         }
     }
     
@@ -145,17 +169,28 @@ public class UserController {
         String username = "";
         try{
             username = userTableManager.getIDFromTable(userTableManager.getSelectedRow());
-            int result = JOptionPane.showConfirmDialog(null, "Are you sure to delete " + username + " from the Users List","Warning!" ,JOptionPane.YES_NO_OPTION);
+            int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete " + username + " from the Users List","Warning!" ,JOptionPane.YES_NO_OPTION);
             
             if(result == 0){
                 dbConnector.delete("DELETE FROM users WHERE username = ?", username);
                 updateUsersTable();
-                JOptionPane.showMessageDialog(null,  username + " deleted from user list.", "Success", JOptionPane.INFORMATION_MESSAGE);
-                
+                JOptionPane op = new JOptionPane(username + "has successfully been deleted from user list.",JOptionPane.INFORMATION_MESSAGE);
+                JDialog dialog = op.createDialog("Delete User");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                //JOptionPane.showMessageDialog(null,  username + " deleted from user list.", "Success", JOptionPane.INFORMATION_MESSAGE);                
             }
         }catch(SQLException sqlE){
             sqlE.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Failed to delete " + username + " from the Users list.", "Database Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane op = new JOptionPane("Failed to delete user.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Database Error");
+                dialog.setAlwaysOnTop(true);
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Failed to delete " + username + " from the Users list.", "Database Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -178,16 +213,35 @@ public class UserController {
                     System.out.println(oldAdminPasswordInput);
                     if(rs.getString(1).equals(oldPassword)){
                         dbConnector.update("UPDATE users SET password = ? where username = ?;", new String[]{ newPassword }, " ");
-                        JOptionPane.showMessageDialog(null, "Admin credentials updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane op = new JOptionPane("Admin credentials successfully updated.",JOptionPane.INFORMATION_MESSAGE);
+                        JDialog dialog = op.createDialog("Change Admin Password");
+                        dialog.setAlwaysOnTop(true);
+                        dialog.setModal(true);
+                        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                        dialog.setVisible(true);
+                       // JOptionPane.showMessageDialog(null, "Admin credentials updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
                         editAdminDialog.dispose();
                     }else{
-                        JOptionPane.showMessageDialog(null, "Incorrect administrator password.", "Input error.", JOptionPane.ERROR_MESSAGE);
+                        dbConnector.update("UPDATE users SET password = ? where username = ?;", new String[]{ newPassword }, " ");
+                        JOptionPane op = new JOptionPane("Incorrect admin password.",JOptionPane.ERROR_MESSAGE);
+                        JDialog dialog = op.createDialog("Input Error");
+                        dialog.setAlwaysOnTop(true);
+                        dialog.setModal(true);
+                        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                        dialog.setVisible(true);
+                       // JOptionPane.showMessageDialog(null, "Incorrect administrator password.", "Input error.", JOptionPane.ERROR_MESSAGE);
                     }
                 }catch(SQLException sqlE){
                     sqlE.printStackTrace();
                 }
             }else{
-                JOptionPane.showMessageDialog(null, "Passwords do not match.", "Input Error.", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("The Password you entered did not match.",JOptionPane.ERROR_MESSAGE);
+                        JDialog dialog = op.createDialog("Input Error");
+                        dialog.setAlwaysOnTop(true);
+                        dialog.setModal(true);
+                        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                        dialog.setVisible(true);
+                //JOptionPane.showMessageDialog(null, "Passwords do not match.", "Input Error.", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -213,13 +267,25 @@ public class UserController {
                         JOptionPane.showMessageDialog(null, "User credentials updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
                         editUserDialog.dispose();
                     }else{
-                        JOptionPane.showMessageDialog(null, "Incorrect user password.", "Input error.", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane op = new JOptionPane("Incorrect user password.",JOptionPane.ERROR_MESSAGE);
+                        JDialog dialog = op.createDialog("Input Error");
+                        dialog.setAlwaysOnTop(true);
+                        dialog.setModal(true);
+                        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                        dialog.setVisible(true);
+                        //JOptionPane.showMessageDialog(null, "Incorrect user password.", "Input error.", JOptionPane.ERROR_MESSAGE);
                     }
                 }catch(SQLException sqlE){
                     sqlE.printStackTrace();
                 }
             }else{
-                JOptionPane.showMessageDialog(null, "Passwords do not match.", "Input Error.", JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("The password you have entered did not match.",JOptionPane.ERROR_MESSAGE);
+                        JDialog dialog = op.createDialog("Input Error");
+                        dialog.setAlwaysOnTop(true);
+                        dialog.setModal(true);
+                        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                        dialog.setVisible(true);
+               // JOptionPane.showMessageDialog(null, "Passwords do not match.", "Input Error.", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

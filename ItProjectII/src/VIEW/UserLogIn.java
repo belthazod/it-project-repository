@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /**
@@ -120,6 +121,8 @@ public class UserLogIn extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         PreparedStatement selectStatement = null;
+       // String unI = usernameInput.getText();
+       // String pw = passwordInput.getText();
         try{
 
             String host = "jdbc:mysql://localhost:3306/inventory";
@@ -154,12 +157,29 @@ public class UserLogIn extends javax.swing.JFrame {
                 }
 
             }
-
+            /*
+            if(unI == "" || pw == ""){
+                JOptionPane op = new JOptionPane("Please enter your username and password to login.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Login Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);            
+            }else if(unI == "" && pw == ""){
+                JOptionPane op = new JOptionPane("Please enter your username and password to login.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Login Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                    */
             if(userNotFound){
-                JOptionPane.showMessageDialog(null,
-                "Username/password Incorrect",
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
+                JOptionPane op = new JOptionPane("The username or password you entered is incorrect.",JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = op.createDialog("Login Error");
+                dialog.setAlwaysOnTop(true); //<-- this line
+                dialog.setModal(true);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);     
             }else{
                 Main main = new Main();
                 Main.setUser(name);
