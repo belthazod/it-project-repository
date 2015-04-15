@@ -33,17 +33,18 @@ public class CartController {
     private static Cart cart;
     private JTextField inventorySearchInput;
     private ProductController productController;
+    private JLabel clearMark;
     
     private DatabaseConnector dbConnector = DatabaseConnector.getInstance();
     
-    public CartController(JTable cartTable, JTable inventoryTable, Cart cart, JTextField inventoryTableSearchInput){
+    public CartController(JTable cartTable, JTable inventoryTable, JTextField inventoryTableSearchInput, JLabel clearMark){
         cartTableManager = new TableManager(cartTable);
         cartTableManager.setAutoClear(true);
         inventoryTableManager = new TableManager(inventoryTable);
-        this.cart = cart;
         inventorySearchInput = inventoryTableSearchInput;
         productController = new ProductController();
-        inventoryTableManager.alignCellRight(6);
+        inventoryTableManager.alignCellRight(4);
+        this.clearMark = clearMark;
     }
     public CartController (JTable cartTable, JDialog salesTypeDialog, JLabel receiptInfoLabel1, JLabel receiptInfoLabel2, JTextField receiptNumberInput){
         cartTableManager = new TableManager(cartTable);
@@ -56,36 +57,44 @@ public class CartController {
     
     public void addToCart(){
         try{
-            int currentQuantity = Integer.parseInt(inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 6));
+            int currentQuantity = Integer.parseInt(inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 4));
             String productName = inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 2);
             if(currentQuantity != 0){
-
                 boolean itemExists = false;
                 String productID = inventoryTableManager.getIDFromTable(inventoryTableManager.getSelectedRow());
+                String existingProductName = "";
 
-                for(int row = 0; row < cartTableManager.getRowCount(); row++){
+                for(int row = 0; row < cartTableManager.getRowCount() && Integer.parseInt(inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 1)) == 0; row++){
+
                     String truckProductID = cartTableManager.getIDFromTable(row);
-                    itemExists = productID.equals(truckProductID);
+                    
+                   
+                    if(productID.equals(truckProductID)){
+
+                        itemExists = true;
+                        existingProductName = inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 2);
+                        break;
+                    }
+                    
                 }
-                if(itemExists && Integer.parseInt(inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 1)) == 0){
-                JOptionPane op = new JOptionPane("This item is already in the list.",JOptionPane.ERROR_MESSAGE);
+                if(itemExists){
+                JOptionPane op = new JOptionPane(existingProductName + " is already in the list.",JOptionPane.ERROR_MESSAGE);
                 JDialog dialog = op.createDialog("Input Error");
                 dialog.setAlwaysOnTop(true); //<-- this line
                 dialog.setModal(true);
                 dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                 dialog.setVisible(true);
-                    /*JOptionPane.showMessageDialog(null,
-                        "Item already in cart.",
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);*/
+//                    JOptionPane.showMessageDialog(null,
+//                        "Item already in cart.",
+//                        "Error",
+//                        JOptionPane.ERROR_MESSAGE);
                 }else{
                     String name = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 2);
-                    String unit = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 4);
-                    String quantity = (String)  inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 6);
+                    String supplier = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 3);
+                    String quantity = (String)  inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 4);
                     String warranty = (String) inventoryTableManager.getValueAt(inventoryTableManager.getSelectedRow(), 1);
                     
-                    cartTableManager.addRowContent(new String[]{productID, warranty, name, unit, quantity, "", ""});
-                    cart.setVisible(true);
+                    cartTableManager.addRowContent(new String[]{productID, warranty, name, supplier, quantity, "", ""});
                 }
             }else{
                 JOptionPane op = new JOptionPane("There are no available stocks for " + productName + ". Add to list failed.",JOptionPane.ERROR_MESSAGE);
@@ -98,6 +107,8 @@ public class CartController {
             }
         }catch(NullPointerException | IndexOutOfBoundsException npe){
             //JOptionPane.showMessageDialog(null, "Please select an item from the table to mark as bought.", "Product Selection Error", JOptionPane.ERROR_MESSAGE);
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
     
@@ -248,12 +259,23 @@ public class CartController {
         for(Product product: productList){
             if(product.getName().contains(productName)){
                 String[] adminCompleteValues = {product.getProductID(), product.getWarranty(), product.getName(), 
-                    product.getTypeName(), product.getUnit(),
-                    product.getSupplierName(), product.getPhysicalCount(), 
+                     product.getSupplierName(),
+                     product.getPhysicalCount(), 
                     product.getReorderQuantityLevel()};
                 inventoryTableManager.addRowContent(adminCompleteValues);
             }
         }
+        if(productName.equals("")){
+            clearMark.setVisible(false);
+        }else{
+            clearMark.setVisible(true);
+        }
+    }
+    
+    public void clearSearch(){
+        inventorySearchInput.setText("");
+        searchProduct();
+        clearMark.setVisible(false);
     }
     
     public void closeSalesTypeDialog(){

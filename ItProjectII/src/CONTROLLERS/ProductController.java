@@ -72,7 +72,7 @@ public class ProductController {
         adminProductTableManager.alignCellRight(6);
         adminProductTableManager.alignCellRight(7);
         
-        inventoryTableManager.alignCellRight(6);
+        inventoryTableManager.alignCellRight(4);
         
         deliveryTableManager.alignCellRight(4);
         
@@ -336,8 +336,7 @@ public class ProductController {
         getProducts();
         for(Product product : productList){
             String[] completeValues = {product.getProductID(), product.getWarranty(), product.getName(), 
-                 product.getTypeName(), product.getUnit(),
-                product.getSupplierName(), product.getPhysicalCount(), 
+                 product.getSupplierName(), product.getPhysicalCount(), 
                 product.getReorderQuantityLevel()};
             
             String[] adminCompleteValues = {product.getProductID(), product.getName(), 
