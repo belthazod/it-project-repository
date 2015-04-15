@@ -19,16 +19,7 @@ public class Cart extends javax.swing.JFrame {
      */
     public Cart() {
         initComponents();
-        cartTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        cartTable.getColumnModel().getColumn(0).setMinWidth(0);
-        cartTable.getColumnModel().getColumn(0).setPreferredWidth(0);
         
-        cartTable.getColumnModel().getColumn(1).setMaxWidth(0);
-        cartTable.getColumnModel().getColumn(1).setMinWidth(0);
-        cartTable.getColumnModel().getColumn(1).setPreferredWidth(0);
-        
-        
-        cartController = new CartController(cartTable, salesTypeDialog, receiptInfoLabel1, receiptInfoLabel2, receiptNumberInput);
     }
 
     /**
@@ -49,10 +40,7 @@ public class Cart extends javax.swing.JFrame {
         receiptNumberInput = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        cartTable = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         salesTypeDialog.setTitle("Choose Transaction Type");
         salesTypeDialog.setBounds(new java.awt.Rectangle(0, 0, 500, 200));
@@ -141,45 +129,10 @@ public class Cart extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Product List");
 
-        cartTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Product_id", "Warranty", "Name", "Unit", "Physical Count", "Serial No.", "Quantity"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(cartTable);
-        if (cartTable.getColumnModel().getColumnCount() > 0) {
-            cartTable.getColumnModel().getColumn(0).setResizable(false);
-        }
-
         jButton2.setText("Clear List");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Checkout");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
             }
         });
 
@@ -189,13 +142,8 @@ public class Cart extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(48, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(467, 467, 467)
-                        .addComponent(jButton1))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                .addComponent(jButton2)
+                .addGap(573, 573, 573))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(312, 312, 312)
                 .addComponent(jLabel1)
@@ -206,12 +154,8 @@ public class Cart extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
+                .addComponent(jButton2)
                 .addContainerGap())
         );
 
@@ -229,10 +173,6 @@ public class Cart extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        cartController.openSalesTypeDialog();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         cartController.clearCart();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -249,9 +189,7 @@ public class Cart extends javax.swing.JFrame {
         cartController.selectTypeService();
     }//GEN-LAST:event_selectServiceButtonActionPerformed
     
-    public static JTable getCartTable(){
-        return cartTable;
-    }
+
     
     /**
      * @param args the command line arguments
@@ -290,12 +228,9 @@ public class Cart extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
-    private static javax.swing.JTable cartTable;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel receiptInfoLabel1;
     private javax.swing.JLabel receiptInfoLabel2;
     private javax.swing.JTextField receiptNumberInput;

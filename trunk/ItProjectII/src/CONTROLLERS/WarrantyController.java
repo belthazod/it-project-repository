@@ -29,7 +29,8 @@ public class WarrantyController {
     JLabel salesDateLabel;
     JLabel salesIDLabel;
     JLabel productIDLabel;
-    public WarrantyController(JTable warrantyTable, JTextField serialNumberInput, JLabel productNameLabel, JLabel durationLabel, JLabel salesDateLabel, JLabel salesIDLabel, JLabel productIDLabel){
+    JLabel serialNumberLabel;
+    public WarrantyController(JTable warrantyTable, JTextField serialNumberInput, JLabel productNameLabel, JLabel durationLabel, JLabel salesDateLabel, JLabel salesIDLabel, JLabel productIDLabel, JLabel serialNumberLabel){
         this.productNameLabel = productNameLabel;
         this.durationLabel = durationLabel;
         this.salesDateLabel = salesDateLabel;
@@ -37,6 +38,7 @@ public class WarrantyController {
         this.salesIDLabel = salesIDLabel;
         this.productIDLabel = productIDLabel;
         warrantyTableManager = new TableManager(warrantyTable);
+        this.serialNumberLabel = serialNumberLabel;
     }
     
     public void searchSerialNumber(){
@@ -57,6 +59,7 @@ public class WarrantyController {
                 durationLabel.setText(duration + "month(s)");
                 salesIDLabel.setText(salesID);
                 productIDLabel.setText(productID);
+                serialNumberLabel.setText(serialNumber);
             }else{
             JOptionPane op = new JOptionPane("The serial number you entered doesn't match to any product.",JOptionPane.ERROR_MESSAGE);
             JDialog dialog = op.createDialog("Input Error");
@@ -73,7 +76,7 @@ public class WarrantyController {
     
     public void updateWarrantyTable(){
         try{
-        ResultSet rs = dbConnector.query("SELECT name, serial_number, warranty_ret_date FROM warranty JOIN Product USING(product_id) JOIN sales_details USING(sales_id)");
+        ResultSet rs = dbConnector.query("SELECT name, serial_number, warranty_ret_date FROM warranty JOIN Product USING(product_id) ");
         warrantyTableManager.clearTableContents();
         while(rs.next()){
             String name = rs.getString(1);
@@ -92,6 +95,7 @@ public class WarrantyController {
         try{
             String salesID = salesIDLabel.getText();
             String productID = productIDLabel.getText();
+            String serialNumber = serialNumberLabel.getText();
             Date date = new Date();
             String warrantyReturnDate = date.toString();
             dbConnector.insert("INSERT INTO warranty (sales_id, product_id, warranty_ret_date) VALUES(?,?,?)", 
